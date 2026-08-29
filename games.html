@@ -10,33 +10,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@600&display=swap">
 
 <style>
+/* 明るい単一テーマ（ダークモードには追従しない） */
 :root{
-  --ground:#f3f4f6; --sheet:#ffffff; --surface-2:#eceef2;
-  --ink:#141b26; --ink-2:#3f4c5e; --ink-3:#6b7889;
-  --line:#d7dbe2; --line-soft:#e5e8ed;
-  --indigo:#26456e; --indigo-soft:#e3eaf4;
-  --brick:#b0413a; --brick-soft:#f6e6e4;
-  --ochre:#9c7420; --ochre-soft:#f6eeda;
+  color-scheme:light;
+  --ground:#faf9f6; --sheet:#ffffff; --surface-2:#f0ede6;
+  --ink:#1b2230; --ink-2:#42506a; --ink-3:#6f7c90;
+  --line:#ddd9cf; --line-soft:#ebe6db;
+  --indigo:#2a4d78; --indigo-soft:#e7edf6;
+  --brick:#b0413a; --brick-soft:#f8e8e4;
+  --ochre:#9a7016; --ochre-soft:#f8f0da;
   --cut:#9aa4b2;
-  --shadow:0 1px 2px rgba(20,27,38,.05), 0 10px 30px -18px rgba(20,27,38,.35);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#11161e; --surface-2:#222b37;
-    --ink-2:#b6c0cd; --ink-3:#8b96a5;
-    --line:#333d4b; --line-soft:#28313d;
-    --indigo:#89aede; --indigo-soft:#1e2b3d;
-    --brick:#e08b82; --brick-soft:#33221f;
-    --ochre:#d8ab55; --ochre-soft:#302818;
-  }
-}
-:root[data-theme="dark"]{
-  --ground:#11161e; --surface-2:#222b37;
-  --ink-2:#b6c0cd; --ink-3:#8b96a5;
-  --line:#333d4b; --line-soft:#28313d;
-  --indigo:#89aede; --indigo-soft:#1e2b3d;
-  --brick:#e08b82; --brick-soft:#33221f;
-  --ochre:#d8ab55; --ochre-soft:#302818;
+  --shadow:0 1px 2px rgba(27,34,48,.04), 0 10px 28px -18px rgba(27,34,48,.28);
 }
 
 *{box-sizing:border-box}
