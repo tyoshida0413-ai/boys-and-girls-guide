@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="小学低学年で11以上の数がつかめないとき、原因を切り分け、10パターンの仮定ごとに具体的な対処を選ぶための支援者向け資料。">
+<title>「10といくつ」の壁</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#f3f4f6;
+  --surface:#ffffff;
+  --surface-2:#eceef2;
+  --ink:#141b26;
+  --ink-2:#3f4c5e;
+  --ink-3:#6b7889;
+  --line:#d7dbe2;
+  --line-soft:#e5e8ed;
+  --indigo:#26456e;
+  --indigo-soft:#e3eaf4;
+  --brick:#b0413a;
+  --brick-soft:#f6e6e4;
+  --ochre:#9c7420;
+  --ochre-soft:#f6eeda;
+  --green:#2f6b52;
+  --green-soft:#e2efe8;
+  --shadow:0 1px 2px rgba(20,27,38,.05), 0 8px 24px -16px rgba(20,27,38,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#11161e; --surface:#1a212b; --surface-2:#222b37;
+    --ink:#e7ebf1; --ink-2:#b6c0cd; --ink-3:#8b96a5;
+    --line:#333d4b; --line-soft:#28313d;
+    --indigo:#89aede; --indigo-soft:#1e2b3d;
+    --brick:#e08b82; --brick-soft:#33221f;
+    --ochre:#d8ab55; --ochre-soft:#302818;
+    --green:#7bc0a0; --green-soft:#1c2a24;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#11161e; --surface:#1a212b; --surface-2:#222b37;
+  --ink:#e7ebf1; --ink-2:#b6c0cd; --ink-3:#8b96a5;
+  --line:#333d4b; --line-soft:#28313d;
+  --indigo:#89aede; --indigo-soft:#1e2b3d;
+  --brick:#e08b82; --brick-soft:#33221f;
+  --ochre:#d8ab55; --ochre-soft:#302818;
+  --green:#7bc0a0; --green-soft:#1c2a24;
+  --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0}
+a{color:var(--indigo)}
+a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* hero */
+.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,54px);letter-spacing:.02em}
+.hero .lede{margin-top:24px;max-width:60ch;color:var(--ink-2);font-size:17px}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+
+/* sections */
+section{padding-top:64px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
+.sec-head h2{font-size:clamp(23px,3.2vw,30px)}
+.sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
+.body-col{max-width:66ch;display:flex;flex-direction:column;gap:18px;color:var(--ink-2)}
+
+/* how to read + toc */
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto h2{font-size:20px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
+.flow .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--brick)}
+.flow b{font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 24px;border-top:1px solid var(--line-soft);padding-top:20px}
+.toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
+.toc a:hover{color:var(--brick)}
+.toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.tag{align-self:flex-start;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;background:var(--indigo-soft);color:var(--indigo)}
+.tag.brick{background:var(--brick-soft);color:var(--brick)}
+.tag.ochre{background:var(--ochre-soft);color:var(--ochre)}
+.verdict{border-left:3px solid var(--brick)}
+.verdict .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);letter-spacing:.1em}
+.verdict h3{font-size:19px;line-height:1.5}
+
+/* layer stack */
+.stack{display:flex;flex-direction:column;gap:6px;margin:8px 0 28px}
+.layer{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:16px 18px}
+.layer .lv{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--surface);background:var(--indigo);border-radius:2px;text-align:center;padding:3px 0}
+.layer h4{font-size:16px;margin-bottom:4px}
+.layer p{font-size:14px;color:var(--ink-2)}
+.layer .fail{font-size:13.5px;color:var(--brick);margin-top:6px;padding-left:12px;border-left:2px solid var(--brick-soft)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-top:8px}
+.gloss div{background:var(--surface);padding:16px 18px}
+.gloss dt{font-weight:700;font-size:14.5px;margin-bottom:3px}
+.gloss dd{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:8px 0 4px;border:1px solid var(--line-soft);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--surface-2);font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--brick);white-space:nowrap}
+td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick-soft)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .idx{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600;color:var(--line);line-height:1.1;font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin-bottom:10px}
+.step .row{display:grid;grid-template-columns:82px 1fr;gap:14px;font-size:14.5px;margin-top:8px;align-items:start}
+.step .k{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.step .v{color:var(--ink-2)}
+.step .v em{font-style:normal;color:var(--brick);font-weight:500}
+
+/* callouts */
+.callout{background:var(--indigo-soft);border-radius:4px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.callout h4{font-size:16px;color:var(--ink)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+.callout.warn{background:var(--ochre-soft)}
+
+/* hypotheses */
+.hyps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.hyp{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:24px}
+.hyp > .top{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:baseline;padding:20px 24px 16px;border-bottom:1px solid var(--line-soft)}
+.hyp .hid{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--surface);background:var(--brick);border-radius:2px;text-align:center;padding:3px 0}
+.hyp h3{font-size:17.5px;line-height:1.5}
+.hyp .inner{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.hyp .blk{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start}
+.hyp .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.hyp .lbl.sci{color:var(--indigo)}
+.hyp .txt{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.hyp .sci-box{background:var(--indigo-soft);border-radius:3px;padding:14px 16px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.hyp .sci-box .ref{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px}
+.hyp ol.acts{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.hyp ol.acts b{color:var(--ink)}
+.hyp .hit{color:var(--green)}
+.hyp .miss{color:var(--brick)}
+.hyp .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+.hyp a{color:var(--brick)}
+
+/* don't list */
+.dont ul{margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dont li{list-style:none;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.dont .x{color:var(--brick);font-family:"IBM Plex Mono",monospace;font-size:15px;line-height:1.7}
+.dont b{display:block;font-weight:700;font-size:15px;color:var(--ink)}
+.dont span.d{font-size:14px;color:var(--ink-2)}
+
+/* program */
+.phase{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.phase .ph{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--indigo);font-weight:600;padding-top:3px}
+.phase h4{font-size:16.5px;margin-bottom:6px}
+.phase p{font-size:14.5px;color:var(--ink-2)}
+.pass{margin-top:10px;font-size:13.5px;color:var(--green);border-left:2px solid var(--green);padding-left:12px}
+
+/* sources */
+.src{font-size:13.5px;color:var(--ink-2);line-height:1.9}
+.src ol{padding-left:22px;margin:0;display:flex;flex-direction:column;gap:10px}
+.src li{scroll-margin-top:24px}
+.src a{word-break:break-all}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+@media print{
+  body{background:#fff}
+  .card,.layer,.tablewrap,.hyp,.howto{box-shadow:none}
+  section,.hyp{break-inside:avoid}
+}
+@media (max-width:620px){
+  .step{grid-template-columns:44px 1fr;gap:14px}
+  .step .idx{font-size:20px}
+  .step .row,.hyp .blk{grid-template-columns:1fr;gap:3px}
+  .phase{grid-template-columns:1fr;gap:6px}
+  .layer{grid-template-columns:36px 1fr;gap:12px}
+  .hyp > .top{grid-template-columns:48px 1fr;gap:12px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">小学低学年 ／ 数の認識 ／ 国内外調査まとめ</div>
+  <h1>「10といくつ」の壁</h1>
+  <p class="lede">
+    10までは自分で数えて分かる。けれど11以上になると怪しくなる——この段階でまず必要なのは、繰り上がりの指導でも、学習障害かどうかの判定でもありません。
+    「10まで数えられる」という一言の中に束ねられた <strong>5つの別々の能力</strong> のうち、どれが立っていて、どれがまだ立っていないかを切り分けることです。
+    この資料は、その切り分け方と、想定される10通りの原因ごとの具体的な対処、そして学習障害を疑うべき局面を整理したものです。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-29</span>
+    <span>対象 小1〜小2／未就学後期</span>
+    <span>読了 約20分</span>
+  </div>
+</header>
+
+<!-- ===== 使い方 ===== -->
+<div class="howto">
+  <h2>この資料の歩き方</h2>
+  <div class="flow">
+    <div class="f">
+      <span class="fn">STEP 1</span>
+      <b>切り分ける</b>
+      <span>15分のチェック（§02）で、5つの能力のどこで止まっているかを見ます。ここを飛ばすと、教材選びが当てずっぽうになります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 2</span>
+      <b>仮定を選ぶ</b>
+      <span>結果に対応する仮定を §03 の10パターンから選びます。各パターンに、想定される原因・学術的な裏づけ・具体的な対処が並んでいます。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 3</span>
+      <b>2週間試し、記録する</b>
+      <span>「当たりの印」が出れば継続、出なければ次の候補へ。この記録自体が、専門機関に相談するときの最良の材料になります。</span>
+    </div>
+  </div>
+  <nav class="toc">
+    <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
+    <a href="#s01"><span class="n">01</span><span>数の理解の5層と用語</span></a>
+    <a href="#s02"><span class="n">02</span><span>15分の切り分けチェック</span></a>
+    <a href="#s03"><span class="n">03</span><span>想定される原因と対処 10パターン</span></a>
+    <a href="#s04"><span class="n">04</span><span>世界の指導法カタログ</span></a>
+    <a href="#s05"><span class="n">05</span><span>6週間のプログラム案</span></a>
+    <a href="#s06"><span class="n">06</span><span>日本語話者の追い風と罠</span></a>
+    <a href="#s07"><span class="n">07</span><span>やってしまいがちな7つ</span></a>
+    <a href="#s08"><span class="n">08</span><span>学習障害を考えるとき</span></a>
+    <a href="#s09"><span class="n">09</span><span>記録テンプレート</span></a>
+    <a href="#s10"><span class="n">出典</span><span>参照した情報</span></a>
+  </nav>
+</div>
+
+<!-- ===== 結論 ===== -->
+<section id="s-verdict">
+  <div class="sec-head"><span class="sec-num">結論</span><h2>先に、3つ</h2></div>
+  <p class="sec-sub">調査全体から言えることを最初に置きます。詳細は以降のセクションで裏づけます。</p>
+  <div class="grid g3">
+    <div class="card verdict">
+      <span class="n">01</span>
+      <h3>繰り上がりは、まだ先の話</h3>
+      <p>繰り上がり（8+7 など）は「10のまとまりを作って、あまりを足す」操作です。<strong>10のまとまりという単位そのものが未形成の段階で教えると、手続きの丸暗記にしかなりません。</strong>順序は「10のまとまり → 10といくつ（11〜19）→ 10の補数 → 繰り上がり」。今は2つ目の段階です。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">02</span>
+      <h3>「10まで数えられる」は5つの能力の束</h3>
+      <p>数唱・計数・基数性・量感・数字の読み書きは別の力です。10までは唱える力だけでも通用してしまうため、<strong>11以上で初めて「実は基数性が立っていなかった」が露呈する</strong>ことがよくあります。どこで止まっているかで打ち手がまったく変わります。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">03</span>
+      <h3>学習障害の判定は「今」ではない</h3>
+      <p>算数障害（発達性ディスカリキュリア）は実在し、出現率も報告により3〜7%と決して稀ではありません。ただし<strong>1回の観察や1つの検査では診断されません。</strong>適切な指導を数週間受けてなお反応が乏しいか、という「指導への反応」で見るのが国際的な標準です。まず切り分け、次に手を打ち、その反応を記録する。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 5層 ===== -->
+<section id="s01">
+  <div class="sec-head"><span class="sec-num">01</span><h2>数の理解の5層 — 何が起きているのか</h2></div>
+  <p class="sec-sub">「数が分かる」は単一の能力ではありません。下の層が抜けたまま上の層だけ育つと、10までは通用し、11以上で崩れます。</p>
+
+  <div class="stack">
+    <div class="layer">
+      <div class="lv">L1</div>
+      <div>
+        <h4>数唱（すうしょう）</h4>
+        <p>「いち、に、さん…」と数詞を順番に唱えられる。歌の歌詞に近く、量とは無関係に覚えられます。</p>
+        <p class="fail">11以上での現れ方：10でいったん止まる／「じゅう、じゅういち」の先が続かない／途中（例：7から）から言い出せない。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L2</div>
+      <div>
+        <h4>計数（けいすう・1対1対応）</h4>
+        <p>ものを1つ指しながら数詞を1つ当てる。数え終わったものと、まだのものを区別し続ける必要があります。</p>
+        <p class="fail">11以上での現れ方：10個までは正確なのに、それ以上だと数え飛ばす・重複して数える。<strong>これは数の理解ではなく、追跡（注意・作業記憶）の限界のことがあります。</strong></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L3</div>
+      <div>
+        <h4>基数性（きすうせい）</h4>
+        <p>最後に言った数詞が「集合全体の個数」を表す、という理解。Gelman &amp; Gallistel の計数原理の中核で、発達研究では「◯個ちょうだい」課題（Give-N）で測られます。</p>
+        <p class="fail">11以上での現れ方：数え終わった直後に「全部でいくつ？」と聞くと、また1から数え直す／「12個ちょうだい」と言うと山ごと渡す、または数えずに適当に取る。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L4</div>
+      <div>
+        <h4>量感（数感覚・大小の直観）</h4>
+        <p>数えなくても3個か5個かが分かる（直観的把握＝サビタイジング）、7と9ではどちらが大きいかが即座に分かる。国際的には、この層の弱さこそが算数障害の中核仮説とされています。</p>
+        <p class="fail">11以上での現れ方：13と31、17と19の大小が判断できない／数直線上でだいたいの位置に置けない／「だいたい何個くらい？」に答えられない。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L5</div>
+      <div>
+        <h4>十進位取り（10のまとまり）</h4>
+        <p>「13」を〈10が1つと、1が3つ〉として見る。1年生でぶつかる最初の抽象で、以降の繰り上がり・筆算・大きな数すべての土台になります。</p>
+        <p class="fail">11以上での現れ方：10個の束＋3個を見せても、必ず1から数え直す／「10と3で？」に答えられない／13を「1と3」と読む。</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:18px;margin-bottom:10px">この資料で使う言葉</h3>
+  <dl class="gloss">
+    <div><dt>数唱</dt><dd>数詞を順に唱えること。量の理解とは別の、言語的な系列の記憶。</dd></div>
+    <div><dt>計数</dt><dd>ものと数詞を1つずつ対応させて数えること。「1対1対応」ともいう。</dd></div>
+    <div><dt>基数性</dt><dd>最後に言った数が全体の個数を表す、という理解。数の意味の中核。</dd></div>
+    <div><dt>サビタイジング</dt><dd>数えずに一目で個数が分かること。ふつう3〜4個までが範囲。</dd></div>
+    <div><dt>位取り（くらいどり）</dt><dd>13を〈10が1つと1が3つ〉と見る仕組み。目に見えない約束事。</dd></div>
+    <div><dt>ワーキングメモリ</dt><dd>作業中の情報を一時的に保持する力。数えている途中の管理に使われる。</dd></div>
+    <div><dt>算数障害</dt><dd>発達性ディスカリキュリア。知的発達や教育経験では説明できない、数と計算の特異的な困難。</dd></div>
+    <div><dt>10の補数</dt><dd>10にするために足りない数（6なら4）。繰り上がりの直前に必要になる。</dd></div>
+  </dl>
+</section>
+
+<!-- ===== 02 チェック ===== -->
+<section id="s02">
+  <div class="sec-head"><span class="sec-num">02</span><h2>15分でできる切り分けチェック</h2></div>
+  <p class="sec-sub">おはじきや積み木を20個ほど、1〜20の数字カード、紙と鉛筆を用意します。テストではなく遊びとして。正解を教えず、できなかった項目もその場では訂正せず、記録だけします（訂正すると次の項目の反応が変わるため）。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>数唱 — どこまで、どこから言えるか</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「どこまで数えられる？」と自由に言わせる。次に「7から数えて」「12の次は？」「20から逆に数えて」。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>10で止まる／11〜13があいまい／途中から言い出せない／逆唱ができない。</em>途中から言い出せないのは、数詞が「一連の歌」として覚えられていて、個々の数がバラバラに取り出せていないサインです。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L1。ここだけの問題なら、量の理解は無事な可能性があります。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>計数 — 15個を数えてもらう</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">おはじきを (a) 一列に並べて、(b) バラバラに散らして、それぞれ15個数えてもらう。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>一列だとできるのに、散らすとできない</em>なら、数の理解ではなく「数えたもの／まだのもの」の追跡の問題。指で触る・端に寄せるなどの方略を自発的に使うかも見ます。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L2。並べ方の支援だけで解決することが多い層です。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>基数性 — 「全部でいくつ？」と「◯個ちょうだい」</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) 数え終わった直後に「じゃあ全部でいくつ？」。(b) 山から「7個ちょうだい」「12個ちょうだい」（Give-N課題）。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) で1から数え直す。(b) で数えずに適当につかむ、または全部渡す。</em>「7個」はできて「12個」でできない場合、基数性は成立しているが範囲が狭い状態です。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L3。ここが立っていないと、どんな教具を入れても入りません。<strong>最優先の確認項目です。</strong></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>量感 — 数えずに分かるか、大小が分かるか</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) ドットを一瞬（1〜2秒）見せて「いくつ？」（3個・4個・5個）。(b) 2枚の数字カードを見せて「どっちが大きい？」（3と8／7と9／13と31／17と19）。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>3〜4個でも必ず数えないと分からない。数字カードの大小に長い時間がかかる、または当てずっぽう。</em>とくに 7と9 のような「近い数」で時間がかかるかどうかを見ます。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L4。国際的な研究で算数障害の中核とされる層です。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>数字の読み・書き — 記号との対応</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">1〜20の数字カードをランダムに読ませる。逆に「13を書いて」「20を書いて」。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>13を「いちさん」と読む／13と31、6と9を取り違える／数字が鏡文字になる／「じゅうよん」と「じゅうし」で混乱する。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">数処理（具体物・数詞・数字の三項関係）のうち、記号の枝だけが弱いのか。ここだけの問題なら、量の理解は保たれています。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">06</div>
+      <div>
+        <h3>10のまとまり — 数え直すかどうか</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">おはじき10個を輪ゴムや小袋でまとめ、そこに3個を添えて見せる。「これ、全部でいくつ？」</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>まとまりを解いて1から数え直すか、「10と3で13」と言えるか。</em>これがこの資料の中心です。数え直すなら、10がまだ「単位」になっていません。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L5。ここが未形成なら、繰り上がりの指導は時期尚早と判断できます。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">07</div>
+      <div>
+        <h3>合成・分解 — 5と10をいくつに割れるか</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「5は、2といくつ？」「10は、6といくつ？」を、おはじきありとなしの両方で。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>おはじきがあればできるが、頭の中ではできない。</em>これは正常な途中段階です。繰り上がりの直前に必要になる力なので、現在地の記録として残します。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">繰り上がり指導の開始タイミング。10の補数が即答できるようになってからで十分です。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:18px;margin:36px 0 12px">結果から、どの仮定へ進むか</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>最初に崩れた項目</th><th>読み取れること</th><th>進む先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">01 数唱</td><td>数詞の系列がまだ20まで自動化していない。量の理解とは別問題。</td><td><a class="goto" href="#h01">H01</a> ／ <a class="goto" href="#h10">H10</a></td></tr>
+        <tr><td class="num">02 計数</td><td>1対1対応の追跡が持たない。注意・作業記憶の負荷の問題である可能性。</td><td><a class="goto" href="#h02">H02</a> ／ <a class="goto" href="#h07">H07</a></td></tr>
+        <tr><td class="num">03 基数性</td><td>数えることと「量を表すこと」がまだ結びついていない。<strong>最優先。</strong></td><td><a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">04 量感</td><td>数の大きさの直観が育っていない。算数障害の中核とされる層。</td><td><a class="goto" href="#h04">H04</a></td></tr>
+        <tr><td class="num">05 数字</td><td>量は分かるが記号との対応が弱い。視覚認知が絡むこともある。</td><td><a class="goto" href="#h06">H06</a> ／ <a class="goto" href="#h08">H08</a></td></tr>
+        <tr><td class="num">06 10のまとまり</td><td><strong>今回の想定にいちばん近い状態。</strong>10が単位になっていない。</td><td><a class="goto" href="#h05">H05</a></td></tr>
+        <tr><td class="num">07 合成分解</td><td>土台は十分。繰り上がりの準備段階。</td><td><a class="goto" href="#s05">§05 STEP 6</a></td></tr>
+        <tr><td class="num">—</td><td>項目自体はできるのに、日によって・場面によって崩れる。</td><td><a class="goto" href="#h09">H09</a> ／ <a class="goto" href="#h07">H07</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 03 10パターン ===== -->
+<section id="s03">
+  <div class="sec-head"><span class="sec-num">03</span><h2>想定される原因と対処 — 10パターン</h2></div>
+  <p class="sec-sub">
+    「11以上が怪しい」という同じ見え方の裏には、少なくとも10通りの別々の状態がありえます。それぞれについて
+    <strong>①想定される原因（なぜそうなるのか）／②こう見える（サイン）／③学術的な裏づけ／④具体的な対応策／⑤当たりの印と、外れたときの次の候補</strong>
+    をまとめました。上から順に試すのではなく、§02 の結果に対応するものから入ってください。1つの仮定は2週間を目安に試し、目印が出なければ次へ移ります。
+  </p>
+
+  <div class="hyps">
+
+    <!-- H01 -->
+    <div class="hyp" id="h01">
+      <div class="top"><div class="hid">H01</div><h3>数詞の並びが、まだ20まで自動化していない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">数詞の列は、量の理解とは別ルートで獲得される<strong>言語的な系列の記憶</strong>です。多くの子どもは最初、これを一続きの「歌」として覚えます。歌のままだと途中から取り出せず、11以降の未習部分で止まります。量の理解に問題がなくても、この層だけが遅れることは普通に起こります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">10や12で止まる。「7から数えて」と言われると言い出せない。逆に数えられない。ただし、少ない数のものは正しく数えられる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          Gelman &amp; Gallistel の計数原理のうち「安定順序の原理」にあたります。近年の研究では、安定順序と語–対象の対応は<strong>基数原理より早く獲得される</strong>ことが示されており、数唱ができることは数の意味の理解を保証しません。逆に言えば、数唱の練習は必要条件であって十分条件ではない、という位置づけで扱うのが妥当です。
+          <span class="ref">→ 出典 [3] Sarnecka &amp; Carey ほか、[4] Cheung et al. (2022)</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>20玉そろばんで声と手を合わせる。</b>玉を1つはじきながら1〜20。1回1分、1日2回。言えない数は支援者が先に言い、次の周では少し待って本人に言わせる（だんだん助けを引く）。</li>
+            <li><b>「途中から」の練習。</b>数字カードを1枚引き、その数から5つ先まで数える。<span class="say">「8。ここから5こ先まで」</span>。系列が“歌”ではなく“部品”になります。</li>
+            <li><b>生活の中に20まで数える場面を1日3つ固定する。</b>階段、配膳、片づけ、洗濯ばさみ。毎日同じ場面であることが定着の条件です。</li>
+            <li><b>逆唱は最後。</b>20→15、10→5のような短い区間から。前進が安定するまで手を出さない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">2週間ほどで「12の次は？」に即答でき、途中から数え出せる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03（基数性）</a> または <a href="#h06">H06（記号との対応）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H02 -->
+    <div class="hyp" id="h02">
+      <div class="top"><div class="hid">H02</div><h3>数えたもの／まだのものの追跡が続かない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">1対1対応で数えるには、「もう数えた集合」を頭の中で保持し続ける必要があります。これは<strong>注意と作業記憶を継続的に消費する作業</strong>で、対象が10を超えると資源が尽き、飛ばし・重複が起きます。数の概念ではなく、処理の容量の問題です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">一列に並んでいれば数えられるのに、散らばると崩れる。同じものを二度数える、飛ばす。数えるたびに答えが違う。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          計数原理の「1対1対応の原理」に対応します。一目で分かる範囲（サビタイジング＝3〜4個）を超えると外部の支えが必要になり、指を使うことがその役割を果たすという知見があります。指の感覚（finger gnosis）は<strong>作業記憶の負荷を肩代わりし、量の保持を助ける</strong>と説明されており、指を使う子のほうが計算の習熟が早いという報告もあります。
+          <span class="ref">→ 出典 [3] 計数原理、[7] 指と数に関する研究群</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>「移動法」を教える。</b>数えたものを必ず別のトレイ・皿へ移す。手で分ける動作が追跡を外部化します。これだけで解決する例は珍しくありません。</li>
+            <li><b>区切りを外から与える。</b>卵パック、製氷皿、5つ仕切りのカップ。5個ずつの区画に入れながら数える。</li>
+            <li><b>まず7個で100%成功させてから15個へ。</b>失敗し続ける経験を先に作らない。成功する個数を見つけ、そこから1〜2個ずつ増やす。</li>
+            <li><b>指さしと発声のタイミングを合わせる。</b>支援者が指さし・子どもが数詞 → 交代 → 本人が両方。</li>
+            <li><b>指を使うことを止めない。</b>禁止する根拠はありません。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">散らばった15個を、3回試して3回とも同じ数で数え終えられる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h07">H07（作業記憶）</a> または <a href="#h08">H08（視覚認知）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H03 -->
+    <div class="hyp" id="h03">
+      <div class="top"><div class="hid">H03</div><h3>「最後に言った数＝全体の量」が、まだ成立していない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">数詞を唱えること（手続き）と、集合の大きさを表すこと（意味）は別の獲得物です。発達研究では、子どもはまず「1が分かる子」「2まで分かる子」…と<strong>段階的に進み、ある時点で〈数え終わりの数＝全体〉という原理を一般化する</strong>ことが分かっています。この一般化がまだ起きていない、あるいは小さい数でしか起きていない状態です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">数え終わった直後に「全部でいくつ？」と聞くと、また1から数え直す。「12個ちょうだい」と言うと、数えずに山ごと渡す、または適当につかむ。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          Give-N 課題（「◯個ちょうだい」）で測られる基数原理の理解であり、発達心理学では knower level として段階化されています。<strong>この段階が未成立のまま教具や計算を導入しても、意味づけが起きません。</strong>逆にここが成立していれば、以降の指導は急速に通ります。他のどの仮定より先に確かめる価値があるのはこのためです。
+          <span class="ref">→ 出典 [3] Sarnecka &amp; Carey (2008)、[4] Cheung et al. (2022)</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>「◯個ちょうだい」を1日5回、生活に埋め込む。</b>おやつ、シール、ブロック、洗濯ばさみ。<strong>本人が本当に欲しいもの</strong>で行うと、数が意味を持ちます。</li>
+            <li><b>数え終わりに必ず一拍おいて問う。</b><span class="say">「じゃあ、ぜんぶで？」</span>。数え直し始めても止めず、最後まで見守り、言えたら<span class="say">「そう、ぜんぶで7」</span>と受ける。</li>
+            <li><b>隠す課題。</b>数え終えたら布や手で覆い、<span class="say">「見えないけど、いくつある？」</span>。見えないと答えられないなら、まだ量として保持できていない証拠。</li>
+            <li><b>支援者がモデルを見せる。</b>わざと数え直そうとして、<span class="say">「あ、さっき7って言ったから、数えなくていいんだ」</span>と口に出す。</li>
+            <li><b>扱う数を、確実にできる範囲に落とす。</b>3個や4個で成立しているなら、そこから1つずつ広げる。いきなり12を求めない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">「全部で？」に数え直さず答える。「7個ちょうだい」で7個を数えて渡す。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h04">H04（量感）</a> へ。基数性は量の直観に支えられているためです。</div></div>
+      </div>
+    </div>
+
+    <!-- H04 -->
+    <div class="hyp" id="h04">
+      <div class="top"><div class="hid">H04</div><h3>数の「大きさ」の直観そのものが育っていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">言語以前から働く数量処理（一目で分かるサビタイジングと、おおよその大小を捉える近似的な数感覚）が弱いと、数詞や数字を覚えても<strong>それが指す「量」の実感が伴いません</strong>。結果として、数え上げという手続きだけに頼ることになり、10を超えると破綻します。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">3個や4個でも必ず数えないと分からない。7と9のような近い数の大小に時間がかかる、または当てずっぽう。「だいたい何個？」に答えられない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          Butterworth らは、算数障害の中核を<strong>「集合の数量を素早く正確に表現する能力」の欠陥</strong>に求め、介入もこの能力を強化し、数詞・数字と結びつけることに焦点を当てるべきだとしています。実際の介入研究としては、(1) 適応型ゲーム The Number Race で、サビタイジングと数比較の速度が数百ミリ秒改善し、引き算の正答率が平均23%向上した報告（小規模のオープン試験のため効果量の解釈には留保が必要）、(2) Siegler &amp; Ramani の<strong>直線型の数のボードゲームを15分×4回</strong>行うだけで数直線推定・大小比較・計数・数字認識が改善し、効果が約9週間持続した報告があります。後者では<strong>円形の盤では効果が出ず、直線型でのみ効果が出ました。</strong>
+          <span class="ref">→ 出典 [1] Butterworth (2011)、[2] Siegler &amp; Ramani、[12] The Number Race</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>ドットの瞬間提示。</b>1〜2秒だけ見せて「いくつ？」。1日10試行、3個 → 4個 → 5個。<strong>サイコロ目やトランプのような“形として覚えられる配置”を使う</strong>のがコツで、ランダム配置は後回し。</li>
+            <li><b>直線型のすごろくを1日1ゲーム。</b>マスに数字が書かれた横一列の盤を使う。進むときは「7、8、9」と数字を声に出す。市販品を選ぶときは<strong>必ず直線型</strong>を。</li>
+            <li><b>どっちが多いゲーム。</b>2枚めくって多いほうが取る。ドット版と数字版を交互に行い、量と記号を橋渡しする。</li>
+            <li><b>形で量が見える教材。</b>Numicon のような穴あきプレート、色分けされた玉。数えずに見分ける経験を増やす。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">4個を数えずに答える。7と9の比較が迷わずできる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 期間を4週間まで延ばす。それでも動きが乏しければ、<a href="#s08">§08</a> の相談先へ記録を持参する段階です。</div></div>
+      </div>
+    </div>
+
+    <!-- H05 -->
+    <div class="hyp" id="h05">
+      <div class="top"><div class="hid">H05</div><h3>10が、まだ「1つのまとまり」になっていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">位取りは目で見えない約束事であり、<strong>10個の集合を「1つの新しい単位」として作り直す</strong>という、それまでの数え方とは質の違う発想を要求します。数え上げでどうにかなってきた子ほど、ここで「数え直せば済む」戦略に留まり、まとまりを使う必然性を感じません。<strong>今回の相談内容に最も近いと考えられる状態です。</strong></div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">10個の束＋3個を見せても、必ず束を解いて1から数え直す。「10と3で？」に答えられない。11〜19だけが不安定で、10までと20以降の数唱はできる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          Miura らの国際比較では、基数10ブロックで数を作らせると、中国語・日本語・韓国語圏の子どもは「10の棒＋ばら」で構成する傾向が強く、英語圏の子どもは1の積み木を並べる傾向が強いと報告されています。<strong>数詞の透明性（じゅういち＝十と一）が位取りの獲得を後押しする</strong>という解釈です。指導面では、シンガポールの CPA（具体 → 半具体 → 抽象）と、IES 実践ガイドの「視覚表現を慎重に選び、抽象的な表記と明示的に結びつける」という勧告が、この層に直接対応します。
+          <span class="ref">→ 出典 [4] Miura ほか国際比較、[5] IES 実践ガイド、[14] CPA</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>「10になったら袋」を全活動のルールにする。</b>何を数えるときでも、10たまったら輪ゴムで束ねる・小袋に入れる・卵パックの1段を埋める。手続きを毎回同じにすることで、10が“ひとかたまり”として身体に入ります。</li>
+            <li><b>セガン板（モンテッソーリ）またはテンフレーム2枚。</b>「10」の上に1〜9をスライドさせて11〜19を作る。<strong>13という数字が、10の上に3が乗って出来ていることを、手の動きとして経験させる</strong>のが狙い。</li>
+            <li><b>数え直そうとしたら、束を手で覆う。</b><span class="say">「これは10だったね。じゃあ全部で？」</span>。覆うことで、まとまりとして扱う以外の道をなくす。</li>
+            <li><b>10円玉と1円玉。</b><span class="say">「13円ちょうだい」</span>。10のまとまりが日常の道具として存在することを示せる、最も自然な教材です。</li>
+            <li><b>1日1回、11〜19を通しで作る。</b>10の束に1個ずつ足しながら「10と1で11、10と2で12…」。所要3分。</li>
+            <li><b>10が大きすぎるなら、5を経由する。</b>水道方式のタイルのように、まず「5のまとまり」を足場にしてから10へ。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">10の束＋n個を、数え直さずに答えられる（11〜19のすべてで）。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03</a> に戻る。10をまとまりとして扱えないのは、基数性が実は未成立だからという場合があります。</div></div>
+      </div>
+    </div>
+
+    <!-- H06 -->
+    <div class="hyp" id="h06">
+      <div class="top"><div class="hid">H06</div><h3>量は分かるが、数字という記号と結びついていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">数の処理は「具体物」「数詞（音）」「数字（記号）」の<strong>三者をつなぐ三項関係</strong>で成り立っており、そのうち一本の結合だけが弱いことがあります。量は分かるのに数字になると崩れる、数字は読めるのに量が浮かばない、というのはこの型です。日本語特有の読みのゆれ（4＝よん／し、7＝なな／しち）が、音と記号の対応をさらに不安定にします。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">13を「いちさん」と読む。13と31、6と9を取り違える。ものを使えば正しく答えられるのに、数字だけになると崩れる。「じゅうし」と「じゅうよん」で混乱する。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          日本では熊谷恵子らが算数障害を<strong>数処理（具体物・数詞・数字の三項関係）／数概念（序数性・基数性）／計算（暗算・筆算）／数的推論（文章題）</strong>の4領域に分けて捉える枠組みを示しており、この型は最初の「数処理」に位置づきます。指導面では、IES 実践ガイドの<strong>「視覚表現を、抽象的な数式表記と明示的に結びつける」</strong>という勧告が直接あてはまります。量と記号を別々に扱わず、常に同時提示するのが原則です。
+          <span class="ref">→ 出典 [9] 熊谷恵子ほか、[5] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>数字カードとドットカードのペア作り。</b>神経衰弱の要領で、記号と量を必ずセットで扱う。数字だけを単独で提示しない期間を作る。</li>
+            <li><b>13と31を上下に並べて対比する。</b>それぞれの下に、10の束と1個を実際に置く。<span class="say">「10のまとまりが多いのはどっち？」</span>。左右ではなく上下に並べると、位の対応が見えます。</li>
+            <li><b>読み方を支援者側で統一する。</b>4は「よん」、7は「なな」に固定。助数詞も当面「個」に統一し、量の同一性が言葉で隠れないようにする。</li>
+            <li><b>書字は、なぞり → 点線 → 自力の順。</b>鏡文字は書き順から直す。マス目は大きめ、1マス1数字。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">11〜20の数字をランダムに提示して読める。13と31を区別できる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h08">H08（視覚認知）</a> へ。記号の見え方そのものが関与している可能性があります。</div></div>
+      </div>
+    </div>
+
+    <!-- H07 -->
+    <div class="hyp" id="h07">
+      <div class="top"><div class="hid">H07</div><h3>作業記憶と口頭指示の負荷で崩れている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">算数の困難は、数に固有の問題だけでなく、<strong>領域を問わず働く力（作業記憶・注意・実行機能）</strong>からも生じます。「数えて、覚えて、答える」は複数の情報を同時に保持する課題であり、保持の容量が小さいと、数の理解が十分でも結果が崩れます。<strong>数の障害と取り違えられやすい代表格です。</strong></div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">手順が2つ以上になると崩れる。途中で何をしていたか分からなくなる。口で言われるとできないが、紙に書いてあるとできる。前半はできているのに後半で失速する。数以外の場面でも同じ様子がある。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          英国 British Dyslexia Association は、算数の困難の原因として<strong>作業記憶の制約・不安・動機・指導の空白などを、算数障害と区別して</strong>整理しています。また IES 実践ガイドが推奨する「明示的・体系的な指導」——手順のモデル提示、思考の言語化、段階的な練習、即時のフィードバック、累積的な復習——は、いずれも<strong>保持すべき情報量を減らす設計</strong>であり、この型に有効に働きます。
+          <span class="ref">→ 出典 [8] British Dyslexia Association、[5] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>指示を1回1手順に切る。</b><span class="say">「数えて」</span>→（終わるまで待つ）→<span class="say">「全部でいくつ？」</span>。2つを続けて言わない。</li>
+            <li><b>手順を机の上に置く。</b>「①かぞえる ②うつす ③ぜんぶでいくつ」を絵カードで並べ、終わったら裏返す。頭の中に置かせない。</li>
+            <li><b>途中経過を残す。</b>数えた数を指で残す、付箋に書く、玉をはじいたまま残す。暗記させない設計にする。</li>
+            <li><b>支援者が考えを声に出す。</b><span class="say">「まず10のまとまりを作って…あと3こだから…」</span>。手順の言語化はIESが明示的に推奨する要素です。</li>
+            <li><b>5分×3ブロックに分割する。</b>15分続けるより、間に別の活動を挟むほうが正答率が上がることが多い。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">支援を入れると正答できる。<strong>これは「数の理解自体は保たれている」という重要な情報です。</strong></div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h02">H02（計数の追跡）</a> または <a href="#h09">H09（情意）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H08 -->
+    <div class="hyp" id="h08">
+      <div class="top"><div class="hid">H08</div><h3>見え方・空間の処理でつまずいている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">数直線、位取り、マス目、筆算はいずれも<strong>空間的な表現</strong>です。視覚的な注意の配分、眼球運動、左右や上下の位置関係の処理に弱さがあると、数の理解とは独立に成績が落ちます。立体教具ではできるのに紙になるとできない、という落差が典型です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">鏡文字が出る。プリントの行を追えない、どこを見ればいいか分からない。マス目に収まらない。数直線上の位置が定まらない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          IES 実践ガイドは数直線の活用を強く推奨する一方で、<strong>「表現は慎重に選び、抽象表記と明示的に結びつけよ」</strong>と条件を付けています。裏を返せば、表現の選び方次第で成績が変わるということです。<strong>提示のしかたを変えただけで正答率が上がるなら、それは数の困難ではなく表現の問題である</strong>——この切り分けの論理が、この仮定の実用的な価値です。
+          <span class="ref">→ 出典 [5] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>提示する情報量を減らす。</b>1ページ1課題。余白を広く。使わない部分は紙で隠す。市販ドリルはそのまま使わず、切って渡す。</li>
+            <li><b>数直線を体で歩く。</b>床に1〜20のテープを貼り、実際に歩いて進む。紙の上の位置関係が分からない子でも、体で分かることがあります。</li>
+            <li><b>コントラストの強い立体教材を優先する。</b>20玉そろばん、Numicon、色分けタイル。平面のプリントは最後。</li>
+            <li><b>一度、見え方の確認を入れる。</b>視力だけでなく、眼球運動や両眼視の問題が隠れていることがあります。学校の視力検査だけでは拾えません。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">提示のしかたを変えただけで正答率が上がる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h04">H04（量感）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H09 -->
+    <div class="hyp" id="h09">
+      <div class="top"><div class="hid">H09</div><h3>不安や失敗回避で、本来の力が出ていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">算数への不安は、それ自体が作業記憶を占有して成績を下げ、さらに<strong>不安 → 回避 → 経験不足 → いっそう難しくなる</strong>という悪循環を作ります。速さを求められる経験、人前で間違えた経験が引き金になりやすく、低学年でも十分に起こります。能力の問題に見えて、実際は取り組みの量の問題であることがあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">算数と聞くと逃げる、話題を変える。<span class="say">「どうせできない」</span>と言う。当てずっぽうで早く終わらせようとする。固まって答えない。<strong>機嫌や場面によって、できたりできなかったりする</strong>のが特徴的なサインです。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          BDA は不安・動機を、算数障害とは区別すべき困難の原因として明記しています。また、EEF が効果を確認した少人数介入 1stClass@Number 1 は、単なる反復練習ではなく<strong>「考える・話す・振り返る」というメタ認知的な要素</strong>を組み込んだ設計で、平均約2か月分、もともと学力が最も低かった層では約7か月分の伸びを示しました。<strong>安心して考えを口に出せる場を作ること自体が、介入の中身に含まれている</strong>と読めます。
+          <span class="ref">→ 出典 [8] British Dyslexia Association、[6] EEF 1stClass@Number 1</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>速さの要求をすべてやめる。</b>タイマー、「はやく」、他児との比較。この段階で速さを求める利点は一つもありません。</li>
+            <li><b>必ず「できた」で終える。</b>最後の1問は、確実にできる課題を置く。締めの記憶が次回の入りを決めます。</li>
+            <li><b>結果ではなく方略をほめる。</b><span class="say">「10のまとまり作ったの、いいね」</span><span class="say">「数えたの、丁寧だったね」</span>。正解に触れない回を作る。</li>
+            <li><b>選択肢を渡す。</b><span class="say">「そろばんとカード、どっちでやる？」</span>。自分で選んだ活動は続きます。</li>
+            <li><b>誤答を即座に訂正しない。</b><span class="say">「もう一回いっしょにやってみよう」</span>と並走する形に変える。</li>
+            <li><b>記録を本人にも見せる。</b>「先週は12まで、今週は15まで」。伸びが見えると回避が減ります。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">取り組む時間が延びる。当てずっぽうが減り、「わからない」と言えるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 課題の難度が高すぎる可能性。1段階下げて、<a href="#h01">H01</a>〜<a href="#h05">H05</a> のどこかに戻る。</div></div>
+      </div>
+    </div>
+
+    <!-- H10 -->
+    <div class="hyp" id="h10">
+      <div class="top"><div class="hid">H10</div><h3>単純に、11以上を扱う経験がまだ足りていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">学習の機会そのものが不足している状態です。学校でまだ11以上を本格的に扱っていない、家庭や支援場面で数える機会が10までに偏っている、というだけで同じ見え方になります。<strong>最も見落とされやすく、同時に最も可能性が高い仮定</strong>であり、他を検討する前に消しておく価値があります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">少し教えると、数回でするりと入る。10までの活動ばかり繰り返してきた。学校の進度を確認していない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          算数障害の診断は<strong>「適切な指導を受けてなお困難が持続するか」</strong>で判断されるものであり、1回の検査では確定しません（BDA）。指導への反応を見る RTI の考え方では、<strong>まず質の高い指導の機会を保証することが最初の段階</strong>と位置づけられます。つまり「2週間、意図的に11以上を扱ってみる」ことは、支援であると同時に、最も安価で妥当な検証手続きでもあります。
+          <span class="ref">→ 出典 [8] British Dyslexia Association、[13] RTI による分類</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>まず2週間、意図的に11〜20を扱う場面を作る。</b>これが最も費用の安い検証です。伸びるなら、障害ではなく経験量の問題だったということ。</li>
+            <li><b>生活の中の11以上を拾う。</b>カレンダーの日付、本のページ番号、階段の段数、卵パック（10＋2）、エレベーターの階、お金。<strong>10より大きい数が自然に登場する場面を、意識して指さす。</strong></li>
+            <li><b>担任・学校に進度を確認する。</b>既習か未習かで、同じ状態の解釈がまったく変わります。未習なら「つまずき」ではありません。</li>
+            <li><b>10までの活動を、そのまま20までに引き延ばす。</b>すでにできている活動の数だけを増やすのが、最も抵抗の少ない導入です。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">2週間で明確に伸びる。数回の説明で「10と3で13」に到達する。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h01">H01</a>〜<a href="#h09">H09</a> の切り分けへ。ここで伸びなかったという事実自体が、専門機関に伝えるべき重要な情報になります。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:26px">
+    <h4>10パターンを一巡しても動かないとき</h4>
+    <p>該当しそうな仮定を2つ3つ試し、それぞれ2〜4週間の焦点の合った指導を行ってなお反応が乏しい——この<strong>「適切な指導への反応が乏しい」という記録そのもの</strong>が、専門機関に持ち込むべき最も価値のある材料です。<a href="#s08">§08</a> の相談先へ、<a href="#s09">§09</a> の記録用紙とあわせて持参してください。何を試して何が起きなかったかが書かれた紙は、口頭の相談より確実に話を前に進めます。</p>
+  </div>
+</section>
+
+<!-- ===== 04 カタログ ===== -->
+<section id="s04">
+  <div class="sec-head"><span class="sec-num">04</span><h2>世界の指導法カタログ</h2></div>
+  <p class="sec-sub">§03 の対応策に出てくる道具の詳細です。それぞれ狙う層が違います。全部やる必要はなく、1つか2つ選び、しばらく替えないこと。</p>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <span class="tag">アメリカ ／ L4-L5</span>
+      <h3>テンフレーム</h3>
+      <p>5×2の枠に玉を置く。「10の枠が1つ埋まって、次の枠に3つ」で13を表します。<strong>枠が埋まる＝10という視覚的な区切り</strong>が生まれるのが本質で、あと何個で10かも同時に見えます。紙とおはじきで今日から作れる、費用対効果の最も高い道具。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">オランダ・日本 ／ L4-L5</span>
+      <h3>レーケンレック ／ 20玉・百玉そろばん</h3>
+      <p>10玉×2段、うち5玉ずつ色違い。玉を横にはじくだけなので、ブロックのような細かい操作が要らず、<strong>微細運動や注意に困難がある子でも「量の操作」に集中できる</strong>のが利点です。オランダのレーケンレックと日本の百玉そろばんは、ほぼ同じ発想に別々にたどり着いた道具。5のまとまりが色で見えるため、7を「5と2」と捉える力も同時に育ちます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">イギリス ／ L4</span>
+      <h3>Numicon（ニューミコン）</h3>
+      <p>1〜10それぞれに固有の形と色を持つ穴あきプレート。数が「数える対象」ではなく<strong>一目で見分けられる形</strong>になるため、量感（L4）が弱い子に届きやすい。10のプレートに3のプレートを添えれば13。イギリスでは特別支援の定番教材です。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">イタリア ／ L5</span>
+      <h3>モンテッソーリ：セガン板＋金ビーズ</h3>
+      <p>「10」と書かれた板の上に1〜9の数字カードをスライドさせて重ね、11〜19を作る教具。<strong>13という数字が、10の上に3が乗って出来ている</strong>ことを、手の動きとして経験できます。同時に10のビーズ棒＋3個のビーズを並べ、記号と量を対応させる。11〜19に的を絞った教具としては、最も設計が明快です。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">日本 ／ L4-L5</span>
+      <h3>水道方式のタイル（5・2進法）</h3>
+      <p>遠山啓・銀林浩が1958年頃に提唱。正方形のタイルで位取りを表し、<strong>10をいきなり扱わず、まず5のまとまりを経由する</strong>のが特徴です（8+7を「5と3」「5と2」に割り、5と5で10、3と2で5、合わせて15と見る）。10が大きすぎて扱えない子に、5という中間の足場を与えられる点で今も有効。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">シンガポール ／ 進め方</span>
+      <h3>CPA（具体 → 半具体 → 抽象）</h3>
+      <p>ブルーナーに由来し、シンガポールの算数教育の骨格になっている進め方。実物 → 絵や図 → 数字、の順で必ず橋を架けます。<strong>よくある失敗は、具体物で成功したまま止まること</strong>。同じ活動を絵にし、次に式にする移行を、意識的に計画へ入れる必要があります。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">オランダ ／ L4</span>
+      <h3>空の数直線（Empty Number Line）</h3>
+      <p>目盛りのない直線に、自分で数を置いていく。オランダの現実的数学教育（RME）で生まれた道具で、<strong>形式的な位取りや筆算をあえて後回しにし、子ども自身の頭の中の数の並びを可視化する</strong>という思想です。量感（L4）の育成と、後の暗算方略に効きます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag brick">研究エビデンス ／ L4</span>
+      <h3>直線型の数のすごろく</h3>
+      <p>Siegler らの研究で、1〜10の数字が横一列に並んだボードゲームを<strong>15分×4回</strong>遊ぶだけで、数直線推定・大小比較・計数・数字認識が改善し、効果が約9週間持続することが示されています。重要なのは形で、<strong>円形の盤では効果が出ず、直線型でのみ効果が出た</strong>点。市販のすごろくを選ぶときの基準になります。</p>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:24px">
+    <h4>「どれくらいやれば足りるか」の目安</h4>
+    <p>イギリスの教育財団 EEF が評価した少人数算数介入（1stClass@Number 1、小2対象）は、<strong>1回30分・週3回・10週</strong>という設計で、平均して約2か月分、もともと学力が最も低かった層では約7か月分の伸びが確認されています。指導助手が担当する形式でこの結果です。家庭や支援現場で計画を立てるとき、「毎日15〜20分を数週間」という規模感は、決して過剰ではないという参考になります。</p>
+  </div>
+</section>
+
+<!-- ===== 05 プログラム ===== -->
+<section id="s05">
+  <div class="sec-head"><span class="sec-num">05</span><h2>6週間のプログラム案</h2></div>
+  <p class="sec-sub">1回15〜20分、週3〜4回を想定。合格基準を満たすまで次に進まないことが唯一のルールです。切り分けの結果によっては、途中のステップから始めて構いません。</p>
+
+  <div>
+    <div class="phase">
+      <div class="ph">STEP 0</div>
+      <div>
+        <h4>量そのものに慣れる（L4）</h4>
+        <p>ドットカードを1〜2秒だけ見せて「いくつ？」。1〜3個から始め、4〜5個へ。同時に、直線型のすごろくを毎回1ゲーム。数字は読ませても書かせません。</p>
+        <p class="pass">合格基準：3個・4個を数えずに即答できる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 1</div>
+      <div>
+        <h4>5をまとまりにする</h4>
+        <p>20玉そろばんの色の切れ目、またはテンフレームの上段を使い、「5と2で7」「5と1で6」を繰り返す。指を使うのはむしろ推奨します（指は最初の外部記憶装置です）。</p>
+        <p class="pass">合格基準：6〜9を「5といくつ」で言い直せる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 2</div>
+      <div>
+        <h4>10を「作る」経験を体に入れる</h4>
+        <p>数えて10になったら、必ず袋に入れる・輪ゴムで束ねる・箱に移す。<strong>10がひとかたまりになる瞬間を、手で経験させることが目的</strong>。この段階では11以上を扱いません。</p>
+        <p class="pass">合格基準：「10のまとまりを作って」と言われて自分で作れる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 3</div>
+      <div>
+        <h4>「10といくつ」＝11〜19（L5の核心）</h4>
+        <p>10の束に1個ずつ足しながら「10と1で11」「10と2で12」。テンフレーム2枚、またはセガン板を使う。ここで<strong>「数え直さずに答える」ことを毎回求める</strong>のが決定的です。数え直したら、まとまりを指さして「これは？」と10であることを確認してから再度問う。</p>
+        <p class="pass">合格基準：10の束＋n個を見て、数え直さずに答えられる（11〜19の全部で）。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 4</div>
+      <div>
+        <h4>数字と結びつける（CPAの「抽象」へ）</h4>
+        <p>玉やタイルの隣に、必ず数字カードを置く。13と31を並べて対比し、「どっちが10のまとまりが多い？」と問う。書字はこの段階で。読みは「じゅうよん」「なな」に統一します。</p>
+        <p class="pass">合格基準：11〜20の数字を読める・書ける。13と31を区別できる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 5</div>
+      <div>
+        <h4>20を超えて、100まで（10とび）</h4>
+        <p>百玉そろばんで10、20、30…と10とびで数える。10円玉と1円玉で金額を作る。「10のまとまりが3つで30」を、位取りの言葉で言い直す。</p>
+        <p class="pass">合格基準：10とびで100まで言える。「10が4つでいくつ？」に答えられる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 6</div>
+      <div>
+        <h4>ここで初めて、繰り上がり</h4>
+        <p>まず10の補数（1と9、2と8…）を即答できるようにする。そのうえで 8+7 を「8にあと2で10、7を2と5に分ける、10と5で15」。<strong>さくらんぼ図は、この理解の記録として書くもので、教える順序としては最後です。</strong></p>
+        <p class="pass">合格基準：10の補数が即答できる。繰り上がりを、教具なしで説明できる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 言語 ===== -->
+<section id="s06">
+  <div class="sec-head"><span class="sec-num">06</span><h2>日本語話者の追い風と、日本語固有の罠</h2></div>
+  <div class="body-col">
+    <p>海外の「11以上でつまずく」議論の相当部分は、実は<strong>英語の数詞の不規則さ</strong>の話です。英語の eleven / twelve には10の痕跡がなく、thirteen 〜 nineteen も「3-10」の順で、しかも three が thir- に変形します。子どもは13を〈10と3〉として読み解く手がかりを、言葉から得られません。</p>
+    <p>日本語・中国語・韓国語は違います。「じゅういち」は文字どおり〈十・一〉で、数詞そのものが十進構造を露出しています。Miura らの国際比較研究では、基数10ブロックで数を作らせると、中国語・日本語・韓国語圏の子どもは「10の棒＋ばら」で構成する傾向が強く、英語圏の子どもは1の積み木を並べる傾向が強いという差が報告されています。<strong>言語が位取りの獲得を後押ししている</strong>という解釈です。</p>
+
+    <div class="callout">
+      <h4>ここから導かれる、実務上の含意</h4>
+      <p>日本語を使う子どもが11以上でつまずいている場合、<strong>「名前が覚えられない」という英語圏型の原因である可能性は相対的に低い</strong>と言えます。つまり原因は、量そのもの（L4）か、10をまとまりとして扱うこと（L5）か、そもそも基数性（L3）か、のいずれかに絞り込みやすい。日本語話者であることは、この切り分けにおいてむしろ有利です。</p>
+    </div>
+
+    <p>ただし日本語にも固有の罠があります。<strong>読みのゆれ</strong>（14＝じゅうよん／じゅうし、7＝なな／しち、4＝よん／し）は、耳から入る数と数字の対応を不安定にします。支援場面では読みを一方に統一する（「よん」「なな」に固定する）ほうが混乱が減ります。また「20」以降で「にじゅう」という新しい語が出るところ、助数詞（本・個・枚・人）が量の同一性を隠してしまうところも、つまずきが起きやすい箇所です。</p>
+  </div>
+</section>
+
+<!-- ===== 07 落とし穴 ===== -->
+<section id="s07">
+  <div class="sec-head"><span class="sec-num">07</span><h2>やってしまいがちな7つ</h2></div>
+  <div class="dont">
+    <ul>
+      <li><span class="x">✕</span><span><b>数唱を伸ばして「分かった」と判断する</b><span class="d">30まで言えるようになっても、量の理解が進んだ証拠にはなりません。唱えられる範囲と、正しく数えられる範囲は別々に記録します。</span></span></li>
+      <li><span class="x">✕</span><span><b>10のまとまりが未形成のまま、さくらんぼ計算を教える</b><span class="d">手続きだけが残り、2年生の筆算でより大きく崩れます。順序を戻すほうが結局は速い。</span></span></li>
+      <li><span class="x">✕</span><span><b>具体物のまま終わり、絵や数字へ橋を架けない</b><span class="d">教具は目的ではなく通過点です。同じ活動を「実物 → 絵 → 数字」の3形態でやる計画を最初から組む。</span></span></li>
+      <li><span class="x">✕</span><span><b>教具を次々に替える</b><span class="d">道具が替わるたびに、子どもは道具の使い方の学習からやり直します。1つか2つに絞り、数週間は固定する。</span></span></li>
+      <li><span class="x">✕</span><span><b>速さを求める・時間を計る</b><span class="d">この段階でのスピード要求は、算数不安を作るだけです。正確さと「自分で説明できるか」だけを見る。</span></span></li>
+      <li><span class="x">✕</span><span><b>指を使うのをやめさせる</b><span class="d">指は量を保持する外部記憶であり、指を使う子のほうが計算の習熟が早いという報告もあります。禁止する理由はありません（ただし「指の訓練そのもの」に特効薬的な効果があるかは、研究の結果が割れています）。</span></span></li>
+      <li><span class="x">✕</span><span><b>できなかった項目をその場で正解に直して終わる</b><span class="d">切り分けの情報が失われます。記録してから、後日その層に合った活動として仕込み直す。</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 08 LD ===== -->
+<section id="s08">
+  <div class="sec-head"><span class="sec-num">08</span><h2>学習障害を考えるとき</h2></div>
+  <div class="body-col">
+    <p>算数障害（発達性ディスカリキュリア）は、知的能力全般の遅れや教育経験の不足では説明できない、数の理解・計算の特異的な困難を指します。出現率は報告により幅がありますが、おおむね3〜7%とされ、読み書きの困難に比べて<strong>気づかれにくく、支援につながりにくい</strong>のが国際的にも共通した課題です。学習が本格化する小1〜小2で顕在化することが多い、という点は日本の解説とも一致します。</p>
+    <p>日本では、熊谷恵子らが算数障害を <strong>数処理（具体物・数詞・数字の三項関係）／数概念（序数性・基数性）／計算（暗算＝数的事実、筆算＝手続き）／数的推論（文章題）</strong> の4領域に分けて捉える枠組みを示しており、スクリーニング検査も刊行されています。この資料の切り分けチェックは、前半2領域にあたります。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <span class="tag ochre">判断の原則</span>
+      <h3>1回では決まらない</h3>
+      <p>スクリーニングは「診断」ではありません。国際的には、<strong>適切な指導を一定期間行い、その反応を見てから</strong>判断する考え方（RTI）が標準です。数週間、焦点の合った指導を行い、記録を残す。それ自体が支援であると同時に、最良の判断材料になります。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">先に除外すること</span>
+      <h3>数以外の理由で崩れていないか</h3>
+      <p>視力・聴力、注意の持続、作業記憶、言葉の理解（指示が伝わっているか）、経験量、そして不安。とくに「数え飛ばす」「途中で分からなくなる」は、数の障害ではなく<strong>注意と記憶の負荷</strong>で説明できることがあります（H02・H07）。並べ方を変えるだけで結果が変わるなら、そちらの線です。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">相談先</span>
+      <h3>どこに持っていくか</h3>
+      <p>学校の特別支援教育コーディネーター、自治体の教育相談・教育センター、小児科／児童精神科、発達検査を扱う心理職、言語聴覚士。「11以上でつまずく」だけでなく、<strong>切り分けチェックと、試した仮定の記録を持参する</strong>と、話が具体的に進みます。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">併存を疑う</span>
+      <h3>単独とは限らない</h3>
+      <p>注意の困難（ADHD）、読み書きの困難、言語の発達の遅れ、視覚認知の弱さと重なることが少なくありません。算数だけを見ていると原因を取り違えます。他教科・生活面での様子も並べて記録してください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09 記録 ===== -->
+<section id="s09">
+  <div class="sec-head"><span class="sec-num">09</span><h2>記録テンプレート</h2></div>
+  <p class="sec-sub">印刷して使えます。同じ項目を2〜3週間おきに取り直すと、「指導への反応」が可視化されます。</p>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>項目</th><th>課題</th><th>できた範囲</th><th>使った方略・様子</th><th>日付</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">01</td><td>数唱（前進／途中から／逆唱）</td><td>　　まで</td><td></td><td></td></tr>
+        <tr><td class="num">02</td><td>計数（一列15個／散らばり15個）</td><td>　　まで</td><td></td><td></td></tr>
+        <tr><td class="num">03</td><td>基数性（全部でいくつ／◯個ちょうだい）</td><td>　　まで</td><td></td><td></td></tr>
+        <tr><td class="num">04</td><td>量感（瞬間提示／大小比較）</td><td>　　まで</td><td></td><td></td></tr>
+        <tr><td class="num">05</td><td>数字の読み・書き（1〜20）</td><td>　　まで</td><td></td><td></td></tr>
+        <tr><td class="num">06</td><td>10のまとまり（10の束＋n）</td><td>　　まで</td><td></td><td></td></tr>
+        <tr><td class="num">07</td><td>合成分解（5／10）</td><td>　　まで</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">試した仮定の記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>仮定</th><th>試した期間</th><th>実際にやったこと</th><th>当たりの印は出たか</th><th>次の仮定</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 出典 ===== -->
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">出典</span><h2>参照した情報</h2></div>
+  <p class="sec-sub">研究知見と実践情報を分けて記載しています。番号は §03 の「学術的には」から参照しています。個別の子どもへの適用は、必ず実際の観察を優先してください。</p>
+  <div class="src">
+    <ol>
+      <li id="r1">Butterworth, B. et al. <em>Dyscalculia: From Brain to Education</em>, Science (2011) — 算数障害の中核をなす数量処理の欠陥仮説と、介入の方向性。<a href="https://www.science.org/doi/10.1126/science.1201536">science.org</a></li>
+      <li id="r2">Siegler, R. S. &amp; Ramani, G. B. — 直線型の数のボードゲームによる介入研究（15分×4回、円形では効果なし、約9週間持続）。<a href="https://siegler.tc.columbia.edu/wp-content/uploads/2019/02/sieg-ram08.pdf">siegler.tc.columbia.edu</a></li>
+      <li id="r3">Sarnecka, B. &amp; Carey, S. (2008) <em>How counting represents number</em> — 基数原理と Give-N 課題、knower level。<a href="https://www.harvardlds.org/wp-content/uploads/2018/05/Sarnecka-2008-How-counting-represents-number-What-children-must-learn-and-when-they-learn-it.pdf">harvardlds.org</a></li>
+      <li id="r4">Cheung, P. et al. (2022) <em>Acquisition of the counting principles during the subset-knower stages</em>, Developmental Science — 安定順序・語対象対応は基数原理より先に獲得される。<a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/desc.13219">Wiley</a> ／ Miura ほかの国際比較（数詞の透明性と基数10表現）のレビュー：<a href="https://public-pages-files-2025.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2015.00740/pdf">Frontiers in Psychology</a></li>
+      <li id="r5">IES / What Works Clearinghouse <em>Assisting Students Struggling with Mathematics</em> — 明示的・体系的指導、視覚表現と抽象表記の明示的な接続、数直線の活用。<a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/26">ies.ed.gov</a></li>
+      <li id="r6">EEF <em>1stClass@Number 1</em> 有効性試験（30分×週3×10週、平均+2か月／低学力層+7か月、Promising Programme）。<a href="https://educationendowmentfoundation.org.uk/projects-and-evaluation/promising-programmes/1stclass-number-1">educationendowmentfoundation.org.uk</a></li>
+      <li id="r7">指と数の関係（finger gnosis）に関する研究群 — 作業記憶の負荷を肩代わりするという説明がある一方、指の訓練が非数的統制訓練を超えなかった報告もあり、結果は一致していません。<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.00529/full">Frontiers in Psychology</a></li>
+      <li id="r8">British Dyslexia Association — 算数障害と、その他の算数困難（指導の空白・不安・作業記憶など）の区別。診断は単一の検査では下せない。<a href="https://www.bdadyslexia.org.uk/dyscalculia/how-can-i-identify-dyscalculia/how-is-dyscalculia-different-from-other-maths-learning-difficulties">bdadyslexia.org.uk</a></li>
+      <li id="r9">熊谷恵子・山本ゆう『通常学級で役立つ 算数障害の理解と指導法』／『算数障害スクリーニング検査』（学研）— 数処理・数概念・計算・数的推論の4区分。<a href="https://www.kobetsu.co.jp/manabi-vitamin/special/article-448/">解説インタビュー</a></li>
+      <li id="r10">長尾秀夫「学習に困難がある子どもの診断と支援⑤ 算数障害」（愛媛県, 2022）。<a href="https://www.pref.ehime.jp/uploaded/attachment/6266.pdf">pref.ehime.jp</a></li>
+      <li id="r11">水道方式（遠山啓・銀林浩）— タイルによる位取り、5・2進法。<a href="https://www.math-suidomethod.com/%E6%B0%B4%E9%81%93%E6%96%B9%E5%BC%8F%E3%81%A8%E3%81%AF/">さんすう・数学指導者の会</a></li>
+      <li id="r12">Wilson, A. J. et al. — 適応型ゲーム <em>The Number Race</em> のオープン試験（サビタイジング・数比較の速度改善、引き算正答率+23%。小規模かつ統制群なしのため解釈には留保が必要）。<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1523349/">PMC</a></li>
+      <li id="r13">RTI（指導への反応）による学習障害の分類アプローチ — 初期の判断は暫定的なものとして扱う。<a href="https://www.intechopen.com/chapters/79900">IntechOpen</a></li>
+      <li id="r14">CPA アプローチ（シンガポール、ブルーナー由来）。<a href="https://math.nie.edu.sg/wkho/Research/My%20publications/Math%20Education/Yew%20Hoong%20et%20al%20(Final).pdf">NIE Singapore</a> ／ 空の数直線と現実的数学教育（オランダ）：<a href="https://www.cambridgemaths.org/Images/espresso_35_the_number_line.pdf">Cambridge Mathematics</a></li>
+      <li id="r15">教具の実際：レーケンレック <a href="https://www.hand2mind.com/glossary-of-hands-on-manipulatives/rekenreks">hand2mind</a>／モンテッソーリ セガン板・テンフレーム <a href="https://montessorimom.com/number-frames/">Montessori Mom</a>／20玉そろばんの特別支援での活用 <a href="https://tkk-fk.com/20dama/">特別支援教材開発研究所</a></li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。切り分けチェックと10パターンの仮定は、専門家によるアセスメントの代替ではなく、相談時に持参する観察記録を作るためのものです。
+  </p>
+</section>
+
+</div>
+</body>
+</html>
