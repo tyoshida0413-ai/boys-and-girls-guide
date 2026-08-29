@@ -1,0 +1,989 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="マス目があってもはみ出す、マスがないと字の大きさがそろわない子について、字が整うまでの6層（姿勢・見る力・手の運動・目と手の協応・字形の記憶・注意）を切り分け、9パターンの仮定ごとに姿勢・道具・書字練習の入れ方を選ぶための支援者向け資料。">
+<title>字がマスにおさまらない・大きさがそろわないとき</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+/* 明るい単一テーマ（ダークモードには追従しない） */
+:root{
+  color-scheme:light;
+  --ground:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f0ede6;
+  --ink:#1b2230;
+  --ink-2:#42506a;
+  --ink-3:#6f7c90;
+  --line:#ddd9cf;
+  --line-soft:#ebe6db;
+  --indigo:#2a4d78;
+  --indigo-soft:#e7edf6;
+  --brick:#b0413a;
+  --brick-soft:#f8e8e4;
+  --ochre:#9a7016;
+  --ochre-soft:#f8f0da;
+  --green:#2f6b52;
+  --green-soft:#e6f1ea;
+  --shadow:0 1px 2px rgba(27,34,48,.04), 0 10px 26px -18px rgba(27,34,48,.20);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0}
+a{color:var(--indigo)}
+a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* hero */
+.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,54px);letter-spacing:.02em}
+.hero .lede{margin-top:24px;max-width:62ch;color:var(--ink-2);font-size:17px}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+
+/* sections */
+section{padding-top:64px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
+.sec-head h2{font-size:clamp(23px,3.2vw,30px)}
+.sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
+.body-col{max-width:66ch;display:flex;flex-direction:column;gap:18px;color:var(--ink-2)}
+
+/* how to read + toc */
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto h2{font-size:20px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
+.flow .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--brick)}
+.flow b{font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 24px;border-top:1px solid var(--line-soft);padding-top:20px}
+.toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
+.toc a:hover{color:var(--brick)}
+.toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.tag{align-self:flex-start;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;background:var(--indigo-soft);color:var(--indigo)}
+.tag.brick{background:var(--brick-soft);color:var(--brick)}
+.tag.ochre{background:var(--ochre-soft);color:var(--ochre)}
+.verdict{border-left:3px solid var(--brick)}
+.verdict .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);letter-spacing:.1em}
+.verdict h3{font-size:19px;line-height:1.5}
+
+/* layer stack */
+.stack{display:flex;flex-direction:column;gap:6px;margin:8px 0 28px}
+.layer{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:16px 18px}
+.layer .lv{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--surface);background:var(--indigo);border-radius:2px;text-align:center;padding:3px 0}
+.layer h4{font-size:16px;margin-bottom:4px}
+.layer p{font-size:14px;color:var(--ink-2)}
+.layer .fail{font-size:13.5px;color:var(--brick);margin-top:6px;padding-left:12px;border-left:2px solid var(--brick-soft)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-top:8px}
+.gloss div{background:var(--surface);padding:16px 18px}
+.gloss dt{font-weight:700;font-size:14.5px;margin-bottom:3px}
+.gloss dd{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:8px 0 4px;border:1px solid var(--line-soft);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--surface-2);font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--brick);white-space:nowrap}
+td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick-soft)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .idx{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600;color:var(--line);line-height:1.1;font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin-bottom:10px}
+.step .row{display:grid;grid-template-columns:82px 1fr;gap:14px;font-size:14.5px;margin-top:8px;align-items:start}
+.step .k{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.step .v{color:var(--ink-2)}
+.step .v em{font-style:normal;color:var(--brick);font-weight:500}
+
+/* callouts */
+.callout{background:var(--indigo-soft);border-radius:4px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.callout h4{font-size:16px;color:var(--ink)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+.callout.warn{background:var(--ochre-soft)}
+
+/* hypotheses */
+.hyps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.hyp{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:24px}
+.hyp > .top{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:baseline;padding:20px 24px 16px;border-bottom:1px solid var(--line-soft)}
+.hyp .hid{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--surface);background:var(--brick);border-radius:2px;text-align:center;padding:3px 0}
+.hyp h3{font-size:17.5px;line-height:1.5}
+.hyp .inner{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.hyp .blk{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start}
+.hyp .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.hyp .lbl.sci{color:var(--indigo)}
+.hyp .txt{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.hyp .sci-box{background:var(--indigo-soft);border-radius:3px;padding:14px 16px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.hyp .sci-box .ref{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px}
+.hyp ol.acts{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.hyp ol.acts b{color:var(--ink)}
+.hyp .hit{color:var(--green)}
+.hyp .miss{color:var(--brick)}
+.hyp .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+.hyp a{color:var(--brick)}
+
+/* don't list */
+.dont ul{margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dont li{list-style:none;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.dont .x{color:var(--brick);font-family:"IBM Plex Mono",monospace;font-size:15px;line-height:1.7}
+.dont b{display:block;font-weight:700;font-size:15px;color:var(--ink)}
+.dont span.d{font-size:14px;color:var(--ink-2)}
+
+/* program */
+.phase{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.phase .ph{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--indigo);font-weight:600;padding-top:3px}
+.phase h4{font-size:16.5px;margin-bottom:6px}
+.phase p{font-size:14.5px;color:var(--ink-2)}
+.pass{margin-top:10px;font-size:13.5px;color:var(--green);border-left:2px solid var(--green);padding-left:12px}
+
+/* sources */
+.src{font-size:13.5px;color:var(--ink-2);line-height:1.9}
+.src ol{padding-left:22px;margin:0;display:flex;flex-direction:column;gap:10px}
+.src li{scroll-margin-top:24px}
+.src a{word-break:break-all}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+@media print{
+  body{background:#fff}
+  .card,.layer,.tablewrap,.hyp,.howto{box-shadow:none}
+  section,.hyp{break-inside:avoid}
+}
+@media (max-width:620px){
+  .step{grid-template-columns:44px 1fr;gap:14px}
+  .step .idx{font-size:20px}
+  .step .row,.hyp .blk{grid-template-columns:1fr;gap:3px}
+  .phase{grid-template-columns:1fr;gap:6px}
+  .layer{grid-template-columns:36px 1fr;gap:12px}
+  .hyp > .top{grid-template-columns:48px 1fr;gap:12px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow"><a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/" style="color:var(--brick);text-decoration:none">← 児童の困難事例</a> ／ 感覚・運動 ／ 書字 ／ 国内外調査まとめ</div>
+  <h1>字がマスにおさまらない・大きさがそろわないとき</h1>
+  <p class="lede">
+    マス目があってもはみ出す、マスがないと一字ごとに大きさが変わる、行が右上がり・右下がりに流れる——「ていねいに書けない」の背景は一つではありません。
+    まず必要なのは、「やる気がない」「雑」という説明をいったん外し、
+    <strong>字が形になるまでの、どの層——姿勢／見る力／手の動き／目と手の協応／字形の記憶／注意——で崩れているか</strong>を切り分けること。
+    そのうえで、書き直しや「ていねいに」の声かけをいったん止め、<strong>姿勢と道具・紙の環境、そして「お手本を見て写す」練習の入れ方を先に整えます</strong>。
+    この資料は、その切り分け方と、想定される9通りの原因ごとの対処、そして「感覚あそびだけでは字は上達しない」という研究知見の意味を整理したものです。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-29</span>
+    <span>対象 就学児（放課後等デイを想定）</span>
+    <span>読了 約19分</span>
+  </div>
+</header>
+
+<!-- ===== 使い方 ===== -->
+<div class="howto">
+  <h2>この資料の歩き方</h2>
+  <div class="flow">
+    <div class="f">
+      <span class="fn">STEP 1</span>
+      <b>崩れる場所を特定する</b>
+      <span>§02 の観察で、なぞり書き／お手本を見て写す／思い出して書く、マスあり大・小・なし、ゆっくり・普段の速さ、と条件をそろえて比べ、6つの層のどこで崩れているかを見ます。ここを飛ばすと、練習が的外れになります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 2</span>
+      <b>土台と環境を先に固定する</b>
+      <span>字の練習メニューを組む前に、まず §04 の「姿勢・机まわり・道具パッケージ」を2週間そろえて入れます。足の接地・紙の固定・机と椅子の高さだけで、崩れ方が変わる子がいます。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 3</span>
+      <b>2〜4週間試し、字のサンプルを残す</b>
+      <span>残った部分について §03 の仮定を一つずつ試します。「当たりの印」が出れば継続、出なければ次へ。日付入りの字のサンプル（なぞり・視写・自由書字）が、専門機関に相談するときの最良の材料になります。</span>
+    </div>
+  </div>
+  <div class="callout warn" style="margin:4px 0 0">
+    <h4>先に一つ、順番の話</h4>
+    <p>感覚統合あそび・バランス運動・粘土あそびは体づくりに意味がありますが、<strong>それだけを続けて実際の書字練習をしないと、字は上達しません</strong>（<a href="#h04">H04</a>、出典 [7][8]）。逆に、いきなり量を書かせる・速く書かせるのも、雑な書き方を固定します。<strong>「土台（姿勢・道具）を整える → お手本を見て写す練習を少量ずつ → 自分で見直す」</strong>の順で進めます。持ち方の矯正は、他の要因を見てから（<a href="#h04">H04</a>、出典 [9]）。</p>
+  </div>
+  <nav class="toc">
+    <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
+    <a href="#s01"><span class="n">01</span><span>字が整うまでの6層</span></a>
+    <a href="#s02"><span class="n">02</span><span>条件をそろえた観察チェック</span></a>
+    <a href="#s03"><span class="n">03</span><span>想定される原因と対処 9パターン</span></a>
+    <a href="#s04"><span class="n">04</span><span>世界の指導法・環境調整カタログ</span></a>
+    <a href="#s05"><span class="n">05</span><span>2〜6週間の進め方</span></a>
+    <a href="#s06"><span class="n">06</span><span>日本語（ひらがな・漢字・マス目）の論点</span></a>
+    <a href="#s07"><span class="n">07</span><span>やってしまいがちな8つ</span></a>
+    <a href="#s08"><span class="n">08</span><span>専門機関に相談するとき</span></a>
+    <a href="#s09"><span class="n">09</span><span>記録テンプレート</span></a>
+    <a href="#s10"><span class="n">出典</span><span>参照した情報</span></a>
+  </nav>
+</div>
+
+<!-- ===== 結論 ===== -->
+<section id="s-verdict">
+  <div class="sec-head"><span class="sec-num">結論</span><h2>先に、3つ</h2></div>
+  <p class="sec-sub">調査全体から言えることを最初に置きます。詳細は以降のセクションで裏づけます。</p>
+  <div class="grid g3">
+    <div class="card verdict">
+      <span class="n">01</span>
+      <h3>「字を書く」は1つの技能ではなく、6つの層の合成</h3>
+      <p>姿勢の安定／形と位置を見る力／指先の運動と筆圧／目と手の協応／字形と書き順の記憶／書きながら直す注意。<strong>どの層で崩れているかで、打ち手はまったく変わります。</strong>「大きさがそろわない」という同じ見え方でも、原因は空間認知のことも、記憶のことも、疲労のこともあります。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">02</span>
+      <h3>字形の「記憶」は、手先の器用さより効く</h3>
+      <p>研究では、<strong>字の形を思い出す力（オルソグラフィックな記憶）が、運動スキルよりも書字の出来に寄与する</strong>とされます。そして書くことが自動化していないと、字を思い出すだけで容量を使い切り、大きさや配置にまで注意が回りません。「何度も書けば手が覚える」の前に、形と書き順が像を結んでいるかを見ます。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">03</span>
+      <h3>効くのは「紙とえんぴつの直接練習」。感覚運動あそび単独では伸びない</h3>
+      <p>系統的レビューでは、<strong>紙と鉛筆を使った書字そのものの練習（お手本・言語的手がかり・自己評価つき）が、legibility を改善する強いエビデンス</strong>とされる一方、感覚運動の要素だけを鍛える介入は効果が乏しく、書字練習を伴わないと対照群より悪くなった報告もあります。体づくりは併走させ、書字練習を必ず入れます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 6層 ===== -->
+<section id="s01">
+  <div class="sec-head"><span class="sec-num">01</span><h2>字が整って書けるまでの6層 — どこで崩れているのか</h2></div>
+  <p class="sec-sub">「マスにおさまらない」「大きさがそろわない」は単一の現象ではありません。下の層のどこかが滞ると、結果はすべて「字が整わない」という同じ形になります。書字は、これらの層を<strong>同時に</strong>働かせる課題です。</p>
+
+  <div class="stack">
+    <div class="layer">
+      <div class="lv">L1</div>
+      <div>
+        <h4>土台をつくる — 姿勢・体幹の安定と、机・椅子・紙の環境</h4>
+        <p>体の中心（体幹）が安定して初めて、肩・ひじ・手首が固定され、指先の細かい動きが出せます（近位の安定が遠位の可動を支える）。足が床につかない、机が高すぎる・低すぎる、紙が固定されていない、といった環境も、直接ここに効きます。</p>
+        <p class="fail">現れ方：書くとき体が傾く・机に伏せる／足がぶらぶらしている／非利き手で紙を押さえていない／時間が経つと崩れがひどくなる。<a href="#h01">H01</a> <a href="#h09">H09</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L2</div>
+      <div>
+        <h4>見る — 形・大きさ・位置・傾きをとらえ、視線を運ぶ</h4>
+        <p>お手本や自分の字の「形」「大きさ」「マスの中のどこにあるか」「傾き」を正しくとらえる力（視空間認知）と、線をなぞって視線を動かす・お手本と紙のあいだで視点を移す眼球運動、近くを見続ける両眼のチームワーク。ここが弱いと、そもそも「ずれている」ことに気づけません。</p>
+        <p class="fail">現れ方：似た字（わ・ね／シ・ツ）を混同する／マスの左寄り・下寄りに偏る／板書を写すと行を飛ばす・遅い／近くを見続けると目が疲れる・まばたきが増える。<a href="#h02">H02</a> <a href="#h08">H08</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L3</div>
+      <div>
+        <h4>手を動かす — 指先の細かい動きと、筆圧のコントロール</h4>
+        <p>鉛筆を支え、指先で小さく動かし、力を強すぎず弱すぎず一定に保つ。微細運動（巧緻性）と筆圧の調整の力で、幼いほど、運動の発達に特性があるほど働きにくくなります。</p>
+        <p class="fail">現れ方：筆圧が極端（濃くて紙が凹む・芯が折れる／薄くて読めない）／線が震える・角がぐにゃぐにゃ／はさみ・ボタン・箸など他の手先の作業も苦手／すぐ「手が疲れた・痛い」と言う。<a href="#h03">H03</a> <a href="#h04">H04</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L4</div>
+      <div>
+        <h4>目と手をつなぐ — 見た形を、手の動きに翻訳する（視覚運動統合）</h4>
+        <p>「見えている形」と「手の動き」を結びつける働き（visual-motor integration, VMI）。見る力も手の力もあるのに、その2つが噛み合わないと、思ったとおりの線が引けません。就学前後の VMI の弱さは、その後の字の読みやすさをある程度予測するとされます。</p>
+        <p class="fail">現れ方：見本を見ながらでも形が崩れる／図形の模写（◇や重なった形）が苦手／なぞり書きはできるのに、見て写すと崩れる。<a href="#h05">H05</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L5</div>
+      <div>
+        <h4>字を思い出す・設計する — 字形と書き順の記憶、マスのどこに置くかの計画</h4>
+        <p>「あ」の形と書き順を、見本なしで思い出せる状態（字形の記憶）。さらに、その字をマスのどこから書き始め、どの大きさで、部品をどう配置するかを一瞬で組み立てる。研究では、この<strong>字形を思い出す力が、手先の器用さよりも書字の出来に寄与する</strong>とされます。</p>
+        <p class="fail">現れ方：なぞりや視写はできるが、思い出して書くと形が崩れる・書き順がばらばら／画数の多い漢字ほど部品の配置が乱れる／書き始める位置が毎回違う。<a href="#h06">H06</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L6</div>
+      <div>
+        <h4>保ちながら直す — 書きながら自分の字を見て、最後まで注意を向け続ける</h4>
+        <p>書いている最中に自分の字とマスを見比べ、ずれたら次で調整し、最後の行まで丁寧さを保つ。書くことが自動化していないと、この監視に回す余力がなくなります。注意の持続・衝動性の課題があると、速さが優先され、最後まで続きません。</p>
+        <p class="fail">現れ方：1行目はきれいで、下に行くほど大きく・雑になる／急いで書いて明らかにマスを無視する／「見直して」と言うと直せる＝気づいていない／宿題の後半だけ崩れる。<a href="#h06">H06</a> <a href="#h07">H07</a> <a href="#h09">H09</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:18px;margin-bottom:10px">この資料で使う言葉</h3>
+  <dl class="gloss">
+    <div><dt>視空間認知</dt><dd>目から入った情報を脳で処理し、形・大きさ・距離・位置関係・傾きを正確にとらえる力。マスの中に字を収める土台。</dd></div>
+    <div><dt>眼球運動</dt><dd>線をなめらかに追う（追従）、別の点へ視線を飛ばす（跳躍）、お手本と紙のあいだで視点を移す動き。視写や「行を追う」に必要。</dd></div>
+    <div><dt>両眼視・輻輳（ふくそう）</dt><dd>近くを見るとき両目を内側に寄せて1つに見る働き。弱い（輻輳不全）と、近業で目が疲れる・にじむ・字が二重に見える。眼科・視能訓練士の領域。</dd></div>
+    <div><dt>微細運動（巧緻性）</dt><dd>指先の細かく分化した動き。鉛筆・はさみ・ボタン・箸などに共通。</dd></div>
+    <div><dt>固有感覚</dt><dd>筋肉や関節から届く「今どのくらい力を入れているか・手がどこにあるか」の感覚。筆圧の調整や、見なくても手を動かす土台。</dd></div>
+    <div><dt>視覚運動統合（VMI）</dt><dd>見た形の情報と手の動きを結びつける働き。図形の模写、見て写す書字に直結する。Beery VMI などで評価する。</dd></div>
+    <div><dt>近位の安定・遠位の可動</dt><dd>体幹・肩など体の中心が安定して初めて、手首・指先の細かい動きが出せる、という運動の原則。</dd></div>
+    <div><dt>自動化</dt><dd>書くことに意識を向けなくても手が動く状態。自動化すると、その分の容量を「何を書くか」「マスに収める」に回せる。</dd></div>
+    <div><dt>字形の記憶（オルソグラフィック・コーディング）</dt><dd>文字の形・部品・並びを頭の中に保ち、見本なしで思い出す力。書字の出来に、運動スキル以上に寄与するとされる。</dd></div>
+    <div><dt>書字表出障害（ディスグラフィア）</dt><dd>知的発達などに比して、書字（字形・綴り・書字表出）が著しく困難な状態。DSM-5 の限局性学習症の一つ。</dd></div>
+    <div><dt>発達性協調運動症（DCD）</dt><dd>知能や視力・聴力に明らかな問題がないのに、協調運動（体の各部を連動させる動き）が年齢相応に育たない状態。書字困難と強く関連。ADHD の約半数に併存。</dd></div>
+    <div><dt>なぞり書き／視写／自由書字</dt><dd>難易度の順。なぞり＝上からなぞる、視写＝お手本を見て写す、自由書字＝思い出して書く。どこで崩れるかで、原因の層が絞れる。</dd></div>
+  </dl>
+</section>
+
+<!-- ===== 02 チェック ===== -->
+<section id="s02">
+  <div class="sec-head"><span class="sec-num">02</span><h2>条件をそろえた観察チェック</h2></div>
+  <p class="sec-sub">テストではなく、日常のなかでの観察です。ポイントは、<strong>同じ子・同じ字を、条件だけ変えて比べる</strong>こと。1回で決めず、数日ぶんの字のサンプルを日付入りで残します。うまく書けなかった字をその場で消させず、記録として取っておきます（消させ続けると疲労と回避が強まるため）。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>なぞり書き ／ 視写 ／ 自由書字 で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">同じ数文字を、(a) 薄い見本をなぞる、(b) 横のお手本を見て写す、(c) 見本を隠して思い出して書く、の3通りで書かせる。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a)(b) はできるが (c) で崩れる</em>なら、字形の記憶・書き順（L5）。<em>(a) はできるが (b) から崩れる</em>なら、目と手の協応（L4）や視空間認知（L2）。<em>(a) からすでに線が乱れる</em>なら、手の運動・筆圧（L3）。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L3・L4・L5 の切り分け。<a class="goto" href="#h03">H03</a> <a class="goto" href="#h05">H05</a> <a class="goto" href="#h06">H06</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>マスあり（大）／ マスあり（小）／ マスなし で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">同じ字を、(a) 2cm前後の大きめのマス、(b) 普段のマス、(c) 罫線だけ・白紙、で書かせる。基線（下の線）や十字の補助線があるマスも試す。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>大きめのマスや補助線つきだと整う</em>なら、空間の枠組みは使える＝サイズを段階的に上げていける。<em>マスがあってもはみ出す・偏る</em>なら、視空間認知（L2）そのものか、注意（L6）。<em>マスなしだと極端にばらつく</em>なら、外的な枠への依存が強い段階。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L2・L6。<a class="goto" href="#h02">H02</a> ／ <a class="goto" href="#s04">§04</a> の「マス・罫線の調整」。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>ゆっくり丁寧に ／ 普段の速さ で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a)「時間はいくらでもいいから、いちばんきれいに」と言って書かせる。(b) 普段どおりの速さで書かせる。同じ文を使う。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) だとかなり整う</em>なら、力はあるが自動化が未完成で、速さと丁寧さがトレードオフの段階（L6）。<em>(a) でも整わない</em>なら、記憶（L5）か協応（L4）か運動（L3）に本体がある。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L6 と、それ以外の層の切り分け。<a class="goto" href="#h06">H06</a> <a class="goto" href="#h07">H07</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>1行目 ／ 10行目（書いたあと）で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">同じ字を続けて10〜15行書かせ、最初の数行と最後の数行を見比べる。途中の様子（姿勢の崩れ、手を振る、ため息）もメモする。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>後半だけ大きく・雑になる／筆圧が変わる</em>なら、持久・疲労・痛み（L1・L3、<a class="goto" href="#h09">H09</a>）。<em>最初から最後まで同じように崩れている</em>なら、疲労ではなく、より上流の層。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L1・L3・疲労。<a class="goto" href="#h01">H01</a> <a class="goto" href="#h09">H09</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>手元のお手本（近く）／ 板書・離れた見本（遠く）で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">同じ文を、(a) すぐ横に置いたお手本を見て写す、(b) 2〜3m離れたホワイトボードの文字を写す、で書かせる。写すのにかかった時間、行を飛ばした回数も記録する。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(b) だけ極端に遅い・行を飛ばす・写し間違いが多い</em>なら、視点の移動・眼球運動・両眼視の負荷（L2）。近くを見続けると目が疲れる・片目を閉じる、が伴えばさらにその線。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L2（眼球運動・両眼視）。<a class="goto" href="#h08">H08</a>。目の疲れ・二重視の訴えがあれば眼科・視能訓練士へ。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">06</div>
+      <div>
+        <h3>書字以外の手先・体の動きを見る</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">はさみで線を切る、ボタンをとめる、折り紙、積み木、片足立ち10秒、ボールをキャッチ、スキップ。年齢相応にできるかをざっと見る。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>書字だけでなく、手先の作業も体の動きも全体にぎこちない</em>なら、協調運動の広がり（DCD の可能性）。<em>書字だけが突出して苦手で、他は年齢相応</em>なら、字形の記憶（L5）や視写（L2）など、より書字に限局した線。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">DCD の広がりの有無。<a class="goto" href="#h04">H04</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">07</div>
+      <div>
+        <h3>姿勢と机まわりを見る</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">書いているところを正面と横から観察（可能なら写真）。足の接地、体の傾き、机との距離、椅子と机の高さ、紙の位置と傾き、非利き手が紙を押さえているか。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>足が浮いている／机に伏せる／紙が固定されず動く／非利き手が膝の上</em>——どれか一つでもあれば、まず環境の調整（L1）から。この状態のまま書字の練習をしても土台が抜けています。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L1。<a class="goto" href="#h01">H01</a>。左利きなら §06 も参照。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">08</div>
+      <div>
+        <h3>筆圧・持ち方・手首を見る</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">書いた紙の裏を触って凹みを確認。芯の折れ・紙の破れの頻度。鉛筆の持ち方（指の位置、握り込み）、手首が反っていないか、書くとき紙をどれだけ近くで見ているか。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>裏が凹むほど濃い／すぐ芯が折れる</em>、または<em>薄すぎて読めない</em>なら、筆圧の調整（L3）。持ち方が未熟（握り込み・指が4本）で<strong>すぐ疲れる</strong>なら道具の工夫を検討。ただし、成熟した持ち方であれば形が多少違っても読みやすさに大差はない、という研究があります（<a class="goto" href="#h04">H04</a>）。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L3。筆圧の調整と、道具の適合。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:18px;margin:36px 0 12px">結果から、どの仮定へ進むか</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>目立った点</th><th>読み取れること</th><th>進む先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">足が浮く・机に伏せる・紙が動く</td><td>土台（姿勢・体幹）と机まわりの環境が整っていない。</td><td><a class="goto" href="#h01">H01</a>（先に確認）</td></tr>
+        <tr><td class="num">マスや補助線があっても左寄り・下寄り・はみ出す／似た字を混同</td><td>形・大きさ・位置をとらえる視空間認知の弱さ。</td><td><a class="goto" href="#h02">H02</a></td></tr>
+        <tr><td class="num">線が震える・筆圧が極端・他の手先の作業も苦手</td><td>微細運動・筆圧調整の困難。</td><td><a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">手先も体の動きも全体にぎこちない</td><td>協調運動の広がり（DCD の可能性）。</td><td><a class="goto" href="#h04">H04</a></td></tr>
+        <tr><td class="num">なぞりはできるが、見て写すと形が崩れる／図形の模写が苦手</td><td>見た形と手の動きが噛み合わない（視覚運動統合）。</td><td><a class="goto" href="#h05">H05</a></td></tr>
+        <tr><td class="num">なぞり・視写はできるが、思い出して書くと崩れる／書き順ばらばら</td><td>字形と書き順の記憶が未定着。</td><td><a class="goto" href="#h06">H06</a></td></tr>
+        <tr><td class="num">ゆっくりなら整う／下の行ほど大きく雑になる</td><td>書くことが自動化しておらず、速さと丁寧さがトレードオフ。</td><td><a class="goto" href="#h06">H06</a></td></tr>
+        <tr><td class="num">急いで書いてマスを無視／「見直して」で直せる／後半だけ崩れる</td><td>注意の持続・衝動性（ADHD 併存の可能性）。</td><td><a class="goto" href="#h07">H07</a></td></tr>
+        <tr><td class="num">板書など遠くの視写だけ極端に遅い・行を飛ばす／近業で目が疲れる</td><td>視点の移動・眼球運動・両眼視の負荷。</td><td><a class="goto" href="#h08">H08</a></td></tr>
+        <tr><td class="num">「手が痛い」「書きたくない」／量が多いと崩れる・拒否する</td><td>疲労・痛み、書字への回避（失敗経験の蓄積）。</td><td><a class="goto" href="#h09">H09</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 03 9パターン ===== -->
+<section id="s03">
+  <div class="sec-head"><span class="sec-num">03</span><h2>想定される原因と対処 — 9パターン</h2></div>
+  <p class="sec-sub">
+    「字が整わない」という同じ現れ方の裏には、少なくとも9通りの別々の状態があります。それぞれについて
+    <strong>①想定される原因／②こう見える（サイン）／③学術的な裏づけ／④具体的な対応策／⑤当たりの印と、外れたときの次の候補</strong>
+    をまとめました。上から順に試すのではなく、§02 の結果に対応するものから入ってください。1つの仮定は2〜4週間を目安に試し、目印が出なければ次へ移ります。複数が重なっていることも珍しくありません（とくに DCD と ADHD、記憶と自動化）。
+  </p>
+
+  <div class="hyps">
+
+    <!-- H01 -->
+    <div class="hyp" id="h01">
+      <div class="top"><div class="hid">H01</div><h3>姿勢・体幹の安定不足と、机・椅子・紙の環境</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">体の中心が安定して初めて、肩・ひじ・手首が固定され、指先の細かい動きが出せます（近位の安定が遠位の可動を支える）。体幹の力が弱い、姿勢を保つ持久力がない子は、書いているうちに体が傾き・机に伏せ、そのぶん手先のコントロールが落ちます。足が床につかない、机と椅子の高さが合っていない、紙が固定されず動く、といった<strong>環境要因は、特性と無関係にそのまま字の乱れに出ます</strong>。多くの現場で見落とされがちな層です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">書くとき体が傾く・机に伏せる・頬杖。足が床につかず、ぶらぶらしている。非利き手で紙を押さえていない。書き始めはよくても、下の行に行くほど姿勢が崩れて字も崩れる。長く座っていると疲れて集中が切れる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          作業療法では「近位の安定が遠位の可動を可能にする（proximal stability for distal mobility）」が基本原則とされ、体幹の力が弱いと頭・肩・ひじ・手首の位置が定まらず、書字の巧緻性が下がると説明されます。座位の推奨は<strong>「90/90/90」——足裏が床につき、ひざ・股関節・ひじがおよそ直角、体幹はまっすぐ</strong>。20〜30分ごとの姿勢替え・小休憩も、姿勢の疲労を減らすとされます。字の練習の前に、まずこの土台を整えるのが順序です。
+          <span class="ref">→ 出典 [14] 姿勢・座位と書字（作業療法・NHS）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>足の接地を確保する。</b>足が床につかなければ<span class="say">足台</span>（箱・雑誌の束でも可）。ひざ・股関節・ひじがほぼ直角になる椅子と机の高さに合わせる。</li>
+            <li><b>紙を固定する。</b><span class="say">クリップボード／マスキングテープ／滑り止めシート</span>で紙を止める。非利き手を「紙の上に置く」ことを毎回声かけで習慣化。</li>
+            <li><b>傾斜のある面で書く。</b><span class="say">スラントボード（20〜30度の書見台）</span>や、A4バインダーを横向きに置いた斜面。手首の角度が自然になり、目と紙の距離も取りやすい。</li>
+            <li><b>書く前に体を起こす活動を1つ。</b>壁腕立て、いす押し、動物歩きなど固有感覚が入る動きを短く。姿勢のスイッチを入れてから机に向かう。</li>
+            <li><b>書字を細切れにする。</b>長時間続けさせず、数分ごとに姿勢を替える・立つ。「後半だけ崩れる」なら、崩れる前で区切る。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">足台・紙の固定・高さ調整・傾斜面を入れるだけで、書き始めから終わりまでの崩れの差が縮まる。姿勢の崩れと同時に字が崩れる、という連動が減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03（手の運動）</a> または <a href="#h06">H06（記憶・自動化）</a> へ。環境を整えても字形そのものが崩れるなら、別の層です。</div></div>
+      </div>
+    </div>
+
+    <!-- H02 -->
+    <div class="hyp" id="h02">
+      <div class="top"><div class="hid">H02</div><h3>形・大きさ・位置をとらえる視空間認知の弱さ</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">目から入った情報を脳で処理し、形・大きさ・位置関係・傾きを正確にとらえる力（視空間認知）が弱いと、<strong>「マスの中央」「他の字と同じ大きさ」「まっすぐ」という基準そのものが、本人の中であいまい</strong>です。マス目という枠があっても、その枠を手がかりとして使えていないことがあります。似た形の字（わ・ね・れ／シ・ツ／ソ・ン）の混同、左右の反転もここに関わります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">マスや補助線があっても、左寄り・下寄り・はみ出しが直らない。一字ごとに大きさが変わる。行が斜めに流れる。似た字を混同する、鏡文字が出る。積み木やパズル、図形の模写、「同じ形さがし」も苦手なことがある。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          研究では、視知覚（TVPS などで測る形・空間の認知）は、とくに<strong>書字のよい子で legibility の最も強い予測因子</strong>とされ、就学前の空間関係・視覚運動統合・手指の巧緻性・注意の弱さが、1年後の字の読みにくさ・書く速さの遅さを予測したという報告があります。日本の療育で行われる「ビジョントレーニング」は、眼球運動・視空間認知・目と手の協応を狙うものですが、<strong>書字そのものへの直接効果を示すエビデンスは限定的</strong>で、実際の書字練習と併用するのが前提です。
+          <span class="ref">→ 出典 [2][3] 視知覚・VMI と legibility、[16] ビジョントレーニング（日本の療育）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>枠の手がかりを増やす。</b>基線（下の線）を太く／マスに十字の補助線／始点に色ドット。「どこから書き始め、どこで止まるか」を目で見える形にする。</li>
+            <li><b>大きいマスから始め、段階的に小さく。</b>いま整う大きさ（例：2cm）から出発し、整ったら少しずつ標準へ。<strong>枠が使えていない段階でいきなり小さいマスにしない。</strong></li>
+            <li><b>色分けで空間を教える。</b>4線ノートの各帯を色分け（空・地面・地下）、「た」の横棒は空の線から、など位置を言葉と色で結ぶ。</li>
+            <li><b>「見比べる」課題を入れる。</b>お手本と自分の字を並べ、「大きさ・傾き・マスの中の位置」の3点だけを本人にチェックさせる（<a href="#h06">H06</a> の自己評価と同じ手法）。</li>
+            <li><b>見る力の課題は、書字練習と並行で。</b>点つなぎ、迷路、間違いさがし、形の模写などは補助として。これ<em>だけ</em>で書字が伸びる前提にはしない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">補助線・色分け・大きめマスを入れると、マス内の位置と大きさのばらつきが目に見えて減る。整う大きさを少しずつ標準へ寄せていける。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h05">H05（目と手の協応）</a> または <a href="#h08">H08（視写・眼球運動）</a> へ。位置の基準は分かっているのに手が追いつかない／見て写す場面だけ崩れるなら、別の層。目の疲れ・二重視があれば眼科へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H03 -->
+    <div class="hyp" id="h03">
+      <div class="top"><div class="hid">H03</div><h3>指先の微細運動・筆圧調整の困難</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">鉛筆を支えながら指先で小さく分化した動きを出し、力を一定に保つ——この微細運動と筆圧の調整が未熟だと、線が震える、角が丸まる、筆圧が濃すぎ・薄すぎになります。固有感覚（今どのくらい力を入れているかの感覚）が弱いと、力加減がつかめず、筆圧のムラや芯折れが起きます。手が疲れやすく、それが後半の崩れにつながります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">線が震える・角がぐにゃぐにゃ。筆圧が極端（紙の裏が凹む・芯が折れる／薄くて読めない）。書くとすぐ「手が疲れた・痛い」。はさみ、ボタン、箸、折り紙など他の手先の作業も苦手。鉛筆を握り込む・4本指で持つ。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          学齢児では、書く速さと視知覚・視覚運動統合・手の中での操作（in-hand manipulation）に有意な相関があるとされます。書字困難のある子では<strong>握力の変動性が小さく（＝力の微調整が苦手）</strong>、それが legibility の低下と書字時間の延長につながる、という報告があります。一方で、<strong>成熟した持ち方であれば、その細かな型の違いは速さ・読みやすさに影響しない</strong>という研究が複数あり、「正しい持ち方」への過度なこだわりより、他の要因（筆圧・巧緻性・持久力）を見るべきとされます。ただし未熟な握り（握り込み・静的把持）は疲労と質の低下につながります。
+          <span class="ref">→ 出典 [3] 巧緻性と書字、[9] 持ち方と legibility（Schwellnus ほか 2012）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>筆圧を「見える化」して練習する。</b>下に薄紙やカーボンを敷き、「裏がうっすら写るくらい」を目標に。濃さのゲージ（薄・ちょうど・濃）を見せながら。</li>
+            <li><b>道具を合わせる。</b><span class="say">三角軸・太めの鉛筆、6B〜2B、ペンシルグリップ、消しやすい紙</span>。薄い子には少し抵抗のある紙やサインペン、濃い子にはやわらかい下敷き。合うものは子によって違うので、数種類試す。</li>
+            <li><b>指先を使うあそびを短く毎日。</b>洗濯ばさみ、シール貼り、ちぎり絵、粘土、豆つまみ、輪ゴムかけ。<strong>ただし書字練習の代わりにはしない</strong>（<a href="#h04">H04</a>）。</li>
+            <li><b>立って・大きく書く経路も使う。</b>ホワイトボードや床の模造紙に腕全体で大きく字を書く。肩・ひじから動かす感覚を作ってから机上へ。</li>
+            <li><b>短時間で区切る。</b>手が疲れる前にやめる。1回5分×複数回に分ける。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">道具の変更と筆圧の見える化で、線の震え・筆圧のムラ・芯折れが減り、「手が痛い」の訴えが減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h04">H04（DCD の広がり）</a> または <a href="#h06">H06（記憶）</a> へ。手先全般がぎこちなければ H04、線はしっかり引けるのに字形が崩れるなら H06。</div></div>
+      </div>
+    </div>
+
+    <!-- H04 -->
+    <div class="hyp" id="h04">
+      <div class="top"><div class="hid">H04</div><h3>協調運動の広がり — 発達性協調運動症（DCD）を含む</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">知能や視力・聴力に明らかな問題がないのに、体の各部を連動させる協調運動が年齢相応に育たない状態（DCD）があります。DCD は<strong>30人クラスに1〜2人</strong>とされ、書字困難はその中心的な現れの一つ。ADHD の子の約半数に DCD が併存します。この場合、字だけでなく、走る・跳ぶ・ボール・道具の扱い全般がぎこちなく、書字は「多くの苦手の一つ」として現れます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">字だけでなく、はさみ・ひも結び・箸・自転車・縄跳び・ボールのキャッチなども苦手で時間がかかる。転びやすい・ぶつかりやすい。体育や図工を嫌がる。書字は遅く、力を入れて疲れやすく、形も大きさも不安定。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          書字困難は DCD の主要な機能障害の一つで、DCD のある子の書字は形・大きさ・間隔・速さのいずれもが乱れやすいとされます。介入では、<strong>感覚運動の要素だけを鍛えるアプローチは効果が乏しく</strong>（書字練習を伴わないと対照群より悪化した報告あり）、実際の課題に取り組む<strong>課題志向型</strong>や、目標→計画→実行→確認のサイクルを子ども自身が回す<strong>CO-OP（Cognitive Orientation to daily Occupational Performance）</strong>が、DCD で相対的にエビデンスのある方法とされています。作業療法士が評価・介入・診断への橋渡しの役割を担います。
+          <span class="ref">→ 出典 [7][8] 感覚運動 vs 課題志向、[10] DCD と書字・OT の役割、[11] CO-OP</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>作業療法士（OT）につなぐ。</b>DCD が疑われるときの評価・介入の中心。学校・医療との連携も。§08 へ。</li>
+            <li><b>「できた」が積める課題設定にする。</b>要求を本人の今の水準に落とし、成功体験を設計する。失敗の反復が回避と自己評価の低下を招く。</li>
+            <li><b>CO-OP 的な進め方を取り入れる。</b>本人と「今日はここを目標」（例：全部の字を基線につける）を決め、書いたあと一緒に「できた？」と確認、次の計画を立てる。大人が直すのでなく、本人が気づいて直す構造にする。</li>
+            <li><b>書字練習は必ず含める。</b>体幹づくり・粗大運動・微細運動あそびは併走させてよいが、<strong>紙と鉛筆の練習を置き換えない</strong>。</li>
+            <li><b>書く量そのものを調整する。</b>同じ練習効果なら、少量を丁寧に。宿題・板書の量は学校と相談（§06）。</li>
+            <li><b>ICT への橋渡しを早めに検討する。</b>努力しても自動化が難しい子には、キーボード入力・音声入力・板書撮影を「逃げ」でなく正当な手段として用意する（<a href="#h09">H09</a>、[13]）。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">課題志向・CO-OP 的な関わりと書字練習の併用で、狙った1点（基線・大きさなど）から改善し、本人が自分の字の課題を言葉にできるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 書字だけが突出して苦手で他の運動は年齢相応なら、DCD の線は弱い。<a href="#h05">H05</a>・<a href="#h06">H06</a>（協応・記憶）や <a href="#h08">H08</a>（視写）へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H05 -->
+    <div class="hyp" id="h05">
+      <div class="top"><div class="hid">H05</div><h3>見た形と手の動きが噛み合わない — 視覚運動統合（VMI）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">見る力（形をとらえる）も、手の力（線を引く）もあるのに、その2つを結びつける働き（visual-motor integration）が弱いと、<strong>「見えているとおりに手が動かない」</strong>ことが起きます。なぞり書き（動きの経路が決まっている）はできるのに、お手本を見て写すと形が崩れる、というのが典型です。図形の模写（重なった形、斜めの線）も苦手なことが多い。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">なぞりはできるが、見て写すと形が崩れる。◇や重なり図形の模写が苦手。曲線・斜め線・折り返しがうまくいかない。見本から目を離すと再現できない。手先だけの作業（つまむ・切る）は年齢相応なのに、書字だけ崩れる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          視覚運動統合の成績（Beery VMI などで測る）は、<strong>書字のよい子・苦手な子の両方で、legibility の予測因子</strong>とされ、就学前の VMI の弱さがその後の字の読みにくさを予測したという報告があります。文字を書くとき、子どもは微細運動・注意・ワーキングメモリ・視覚の動き・知覚と運動の統合を同時に働かせており、これらの協調が、読みやすく・自動的で・なめらかな書字を支える、と整理されます。
+          <span class="ref">→ 出典 [2][3] VMI と legibility、[4] 書字の多成分モデル</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>なぞり → 部分手がかり → 視写、と段階を刻む。</b>全部なぞる→始点だけ点→薄い字→枠だけ→白紙、と支援を少しずつ外す。崩れたら一段戻す。</li>
+            <li><b>動きを言葉にする。</b>「上から下、はらう」「まわって、とめる」と<strong>書き順を声に出しながら</strong>書く。視覚だけに頼らず、言語と運動の経路を足す。</li>
+            <li><b>大きく → 小さく。</b>空中で大きく書く（エア書き）→ ホワイトボード → 大マス → 標準。動きの型を大きい運動で作ってから縮小する。</li>
+            <li><b>形の要素を分解する。</b>「たて棒」「よこ棒」「むすび」「はらい」の部品を個別に練習し、組み合わせる。</li>
+            <li><b>模写課題を補助に。</b>点描写、図形の模写、線なぞりを少量。<strong>書字練習と並行で</strong>。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">段階を刻んだなぞり→視写の練習で、見本を見て写す場面での形の崩れが減り、支援を一段ずつ外していける。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h06">H06（記憶・自動化）</a> へ。見て写せるのに思い出して書くと崩れる、速いと崩れるなら、そちらが本体。</div></div>
+      </div>
+    </div>
+
+    <!-- H06 -->
+    <div class="hyp" id="h06">
+      <div class="top"><div class="hid">H06</div><h3>字形・書き順の記憶が未定着／書くことが自動化していない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">「あ」の形と書き順を見本なしで思い出せること（字形の記憶）と、それを意識せず手が動く状態（自動化）。ここが不十分だと、<strong>一字を思い出して組み立てるだけでワーキングメモリを使い切り、大きさ・傾き・マス内の位置にまで注意が回りません</strong>。「ゆっくりなら書ける／下の行ほど雑になる」は、この層のサインです。画数の多い漢字ほど、部品の配置に必要な容量が増えて崩れます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">なぞり・視写はできるが、思い出して書くと形が崩れる。書き順が字ごと・回ごとに違う。書き始める位置が毎回違う。時間をかければ整うが、普段の速さだと崩れる。漢字の部品の左右・上下がずれる。1行目はきれいで下ほど崩れる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          Berninger の「単純ではない書字の見方（Not-so-Simple View of Writing）」では、書字は転写（handwriting・綴り）・文章生成・実行機能（計画・自己制御・ワーキングメモリ）の統合とされ、<strong>転写が自動化して初めて、上位の処理に容量を回せる</strong>とされます。さらに、<strong>字形を思い出すオルソグラフィックな記憶の過程が、運動スキルよりも書字に寄与する</strong>という指摘があります。介入研究では、<strong>記憶から字を書く練習</strong>（見本を見ずに書く）、書き順の言語化、自己評価が、legibility の改善に有効とされ、6週間程度でアルファベットを記憶から書けるようになった報告があります。
+          <span class="ref">→ 出典 [4][5] 書字の自動化と記憶、[6] 記憶書き・自己評価・HWT、[7][8] 書字練習を含めることの重要性</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>少数の字を「記憶から書く」まで固める。</b>一度に多くを扱わず、3〜5字ずつ。<span class="say">見本を見る→隠す→書く→見本と比べる</span>を繰り返す。書けたら次の数字へ。</li>
+            <li><b>書き順を言葉とセットで。</b>唱えながら書く。同じ字は毎回同じ書き順・同じ始点で。「どこから書き始めるか」を固定する。</li>
+            <li><b>形の似た字をまとめて教える。</b>同じ動きの家族（例：「い・り」「つ・し」「はらい」を含む字）でまとめると、動きのパターンが転移しやすい。</li>
+            <li><b>自己評価を毎回入れる。</b>書いた行から<strong>自分でいちばん良い字に丸</strong>、いちばん直したい字に印。大人が全部直さない。「大きさ・傾き・基線」の3観点に絞る。</li>
+            <li><b>量より頻度。</b>1日5〜10分、少量を丁寧に、毎日。長時間まとめてやらない。整う前に速さや量を求めない。</li>
+            <li><b>自動化が進むまで、他の負荷を下げる。</b>「考えながら書く」課題（作文・書き取り）では、字の丁寧さを一時的に問わない。転写と作文を同時に要求しない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">記憶書き＋書き順の言語化＋自己評価を数週間続けると、思い出して書いた字の形が安定し、普段の速さでも崩れが減る。子どもが自分の字の課題を言える。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h07">H07（注意・衝動性）</a> または <a href="#h02">H02（視空間認知）</a> へ。記憶はあるのに急ぐと崩れる／マス内の位置の基準自体があいまいなら、そちら。</div></div>
+      </div>
+    </div>
+
+    <!-- H07 -->
+    <div class="hyp" id="h07">
+      <div class="top"><div class="hid">H07</div><h3>注意の持続・衝動性 — ADHD 併存の可能性</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">注意を持続させる・衝動を抑える力に特性があると、<strong>速さが優先され、マスや基線を確認する余裕がなく、最後まで丁寧さが続きません</strong>。「書く」という単調な作業では、後半に注意が落ちやすい。ADHD の子には運動の協調（DCD）が併存しやすく、書字困難は「注意の問題」と「運動の問題」が重なって出ていることがあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">急いで書いて、明らかにマスを無視する。書き始めは整い、すぐ大きく・雑になる。「見直して」と言うと自分で直せる（＝ずれに気づいていない）。宿題の後半だけ崩れる。書字以外でも、作業の詰めが甘い・ケアレスミスが多い・じっと座るのが苦手。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          ADHD の子の書字は、教師評価で「未熟・乱雑・読みにくい」とされることが多く、系統的レビューでは<strong>質・legibility の低下、字の大きさ・形の不安定、限られた空間への配置の悪さ、字間・語間の乱れ</strong>が一貫して報告されています。速さそのものの低下は一部にとどまり、主たる問題は「product（書いた字の質）」と、筆圧・速度など「process」の側にあるとされます。ADHD の約50%に DCD が併存し、それが遅く・ぎこちなく・不安定な書字に直接寄与します。
+          <span class="ref">→ 出典 [12] ADHD と書字（系統的レビュー）、[10] ADHD と DCD の併存</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>1回の書字量を小さく区切る。</b>「この3行だけ」「この1マス」。ゴールが近いと丁寧さが保てる。終わったら短い休憩・動く時間。</li>
+            <li><b>書く前に狙いを1つ宣言する。</b><span class="say">「今日は全部の字を下の線につける、だけ」</span>。観点を1つに絞ると、注意がそこに向く（事前予告）。</li>
+            <li><b>途中と最後に「見比べ」を挟む。</b>数行ごとに手を止め、お手本と自分の字を1点だけ照合。ずれへの気づきを外から作る。</li>
+            <li><b>できた部分を具体的にほめる。</b><span class="say">「この行、全部マスに入ってる」</span>。「雑」ではなく、できている行を指す。</li>
+            <li><b>丁寧さと速さを同時に求めない。</b>丁寧さを狙う日は速さを問わない。作文・書き取りの日は字の質を一時的に不問に。</li>
+            <li><b>ADHD が疑われ、家庭・学校でも困りが共通するなら、評価につなぐ。</b>§08 へ。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">量を小さく区切り、狙いを1つに絞ると、後半の崩れが減り、「1行ごとに揃っている」状態が増える。本人が書く前に狙いを言えるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h06">H06（記憶・自動化）</a> または <a href="#h09">H09（疲労・回避）</a> へ。区切っても・急がなくても崩れるなら、記憶か持久の問題。</div></div>
+      </div>
+    </div>
+
+    <!-- H08 -->
+    <div class="hyp" id="h08">
+      <div class="top"><div class="hid">H08</div><h3>視写の困難 — 視点の移動・眼球運動・両眼のチームワーク</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">板書やプリントを写すには、<strong>離れた見本と手元の紙のあいだで何度も視線を移し、どこまで写したかを保持し、行を追い続ける</strong>必要があります。眼球運動（追う・飛ばす）や、近くを見続けるための両眼の寄せ（輻輳）が弱いと、この負荷で写しが遅く・不正確になり、字の丁寧さまで手が回りません。輻輳不全は子どもに多くはありませんが、あれば近業で目が疲れる・にじむ・二重に見えます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">手元のお手本ならそれなりに書けるが、板書など離れた見本の視写だけ極端に遅い・写し間違い・行の飛ばしが多い。読むとき指や定規で押さえないと行を追えない。近くを見続けると、目をこする・まばたきが増える・片目を閉じる・「目が疲れた」「二重に見える」。読書も嫌がる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          眼科・小児科の合同声明では、<strong>屈折異常・眼球運動・両眼視の問題は学習障害やディスレクシアの原因ではなく</strong>、視覚トレーニングでそれらを治すというエビデンスはないとされます。ただし例外として<strong>輻輳不全は治療の対象</strong>で、治療により「近くでの読み書きが楽になり、長く続けられるようになる」ことはある、とされています。視力検査で引っかかる／子ども・保護者・教員が見え方の問題を疑う場合は、小児眼科の受診が推奨されます。書字・読字の困難に、治療可能な視覚の問題が併存していないかを確認する意味があります。
+          <span class="ref">→ 出典 [15] 学習障害・視覚に関する合同声明（AAP/AAO ほか）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>視写の負荷を下げる。</b>手元にプリントのコピーを置く／板書を写真に撮る／写す量を減らす／穴埋め式にする。視点の往復回数そのものを減らす。</li>
+            <li><b>行を追う手がかりを足す。</b>読む・写す行にリーディングルーラーや定規、指でなぞる。写し元にも番号や色分け。</li>
+            <li><b>見え方のサインがあれば眼科へ。</b>目の疲れ・二重視・片目つぶり・極端な近距離。視力検査と、必要なら輻輳・調節の評価。</li>
+            <li><b>眼球運動の課題は補助として。</b>視線で線を追う、2点を交互に見る、などのトレーニングは併走可。ただし<strong>これで書字が治る前提にしない</strong>。</li>
+            <li><b>座席と黒板の位置を調整する。</b>板書が見やすい席、光の反射を避ける。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">手元コピー・板書撮影・量の削減で、視写の場面での崩れと時間がはっきり改善する。手元のお手本での書字と、板書視写の差が縮まる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 手元のお手本でも崩れるなら、視写は主因でない。<a href="#h02">H02</a>・<a href="#h05">H05</a>・<a href="#h06">H06</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H09 -->
+    <div class="hyp" id="h09">
+      <div class="top"><div class="hid">H09</div><h3>疲労・痛み、そして書字への回避</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">書字が自動化していない子にとって、書くことは常に高負荷です。手が痛くなる、すぐ疲れる、量が多い——こうした経験が積み重なると、<strong>字を書く場面そのものを避けるようになり、「早く終わらせたい」という動機が丁寧さを上回ります</strong>。「雑に見える字」の一部は、能力の問題ではなく、これ以上コストをかけたくないという合理的な反応です。失敗と叱責の反復は、自己評価も下げます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">「手が痛い」「疲れた」「書きたくない」と言う。書字の課題を先延ばし・拒否する。量が多い課題ほど崩れる・雑になる。最初の数行は整い、あとは急いで終わらせる。消しゴムで何度も消してぐしゃぐしゃになる。「どうせ下手だから」と言う。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          書字困難は学業成績と<strong>自己評価（self-esteem）の低下</strong>に関連するとされます。介入研究では、legibility を高めようとすると<strong>一時的に書く速さが落ちる</strong>ことがあり、「丁寧な字には時間がかかる」ことを前提に置く必要があるとされます。書字表出障害（ディスグラフィア）では、書く量を減らす・板書を撮影する・キーボードやタブレット入力を認めるといった<strong>合理的配慮</strong>が、学習権を守る手段として位置づけられ、就学児の5〜20%に何らかの書字の困難があると推計されています。
+          <span class="ref">→ 出典 [12] 書字困難と自己評価、[6] legibility と速さのトレードオフ、[13] 合理的配慮・ICT（日本）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>書く「量」を最初に減らす。</b>宿題・視写・書き取りの分量を、質を保てる範囲まで下げる。同じ字を10回でなく3回、丁寧に。学校と相談（§06）。</li>
+            <li><b>消させ続けない。</b>1回消したらそのまま次へ。消しゴムでの往復が、疲労と「ぐしゃぐしゃ」を増やす。間違いは残して、次の一字で挑戦。</li>
+            <li><b>短時間・成功で終える。</b>疲れる前に切り上げ、「今日はここまでできた」で終わる。うまくいった字を一緒に確認して閉じる。</li>
+            <li><b>ICT・代替手段を「正当な手段」として用意する。</b>キーボード入力、音声入力、板書撮影、穴埋めプリント。努力しても自動化が難しい子には、早めに。書けることを諦めるのではなく、学ぶ機会を守るため。</li>
+            <li><b>叱責をやめ、努力と工夫を承認する。</b>「雑」「もっとていねいに」は、原因が能力側にあるとき理不尽な体験になり、回避を強める。</li>
+            <li><b>手の痛みが続くなら、姿勢・道具・筆圧（<a href="#h01">H01</a><a href="#h03">H03</a>）を見直し、それでも続けば OT・小児科へ。</b></li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">量を減らし、消させず、成功で終える運用にすると、書字場面の拒否・「痛い」の訴えが減り、少量なら丁寧に取り組めるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 量を減らし負担を下げても字形そのものが崩れるなら、回避は主因でない。<a href="#h03">H03</a>〜<a href="#h06">H06</a> の切り分けへ。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:26px">
+    <h4>9パターンを一巡しても整わないとき</h4>
+    <p>該当しそうな仮定を2つ3つ試し、それぞれ2〜4週間、環境・道具・練習の入れ方を焦点を絞って変えてなお字が整わない——この<strong>「適切な調整と練習への反応が乏しい」という記録そのもの</strong>が、専門機関に持ち込むべき最も価値のある材料です。<a href="#s08">§08</a> の相談先へ、<a href="#s09">§09</a> の記録用紙と字のサンプルとあわせて持参してください。</p>
+  </div>
+</section>
+
+<!-- ===== 04 カタログ ===== -->
+<section id="s04">
+  <div class="sec-head"><span class="sec-num">04</span><h2>世界の指導法・環境調整カタログ</h2></div>
+  <p class="sec-sub">§03 の対応策に出てくる方法の詳細です。それぞれ効く層が違います。全部やる必要はなく、切り分けの結果に合うものを1〜2つ選び、しばらく替えないこと。<strong>タグは「効きやすい層」と、根拠の種類（研究知見／実践情報）／国</strong>を示します。<strong>共通の前提：どれを選ぶにせよ、実際の書字練習を必ず含めます。</strong></p>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <span class="tag brick">研究＋実践 ／ L5・L6 ／ アメリカ</span>
+      <h3>記憶から書く練習 ＋ 自己評価（HWT の考え方）</h3>
+      <p>Handwriting Without Tears などの多感覚型カリキュラムは、<strong>あいうえお順ではなく「同じ動きの家族」でまとめ、口頭の手がかりをつけ、見本を隠して記憶から書く</strong>ことを重視します。書いた行から自分でいちばん良い字に丸をつける自己評価が組み込まれています。系統的レビューでは、カリキュラム型の練習は legibility を小〜中程度改善（特定の1製品が優れるという証拠はなし）。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">研究 ／ L3〜L6 ／ 国際</span>
+      <h3>紙と鉛筆の直接練習（therapeutic practice）</h3>
+      <p>「紙と鉛筆で字を書く練習そのもの」が、legibility を改善する<strong>強いエビデンス</strong>とされます。逆に、感覚運動の要素（バランス・粘土・視知覚課題）<em>だけ</em>を鍛えて書字練習をしない介入は効果が乏しく、対照群より悪化した報告も。アルファベット課題・認知的方略・姿勢や道具の調整を<strong>組み合わせる</strong>と効果が高い。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag ochre">エビデンスあり（DCD）／ L4〜L6 ／ カナダ</span>
+      <h3>CO-OP（目標→計画→実行→確認）</h3>
+      <p>子ども自身が「目標を決め、やり方を計画し、書いて、できたか確認する」サイクルを回す認知的アプローチ。大人が直すのではなく、<strong>本人が自分の字の課題に気づき、方略を見つける</strong>のを支える。DCD で相対的にエビデンスのある方法とされる。例：目標「全部の字を下の線につける」→ 計画「書く前に線を指でなぞる」→ 実行 → 確認「何個ついた？」。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">実践 ／ L2 ／ 日本の療育</span>
+      <h3>マス・罫線の調整（枠・基線・色分け・段階的縮小）</h3>
+      <p>基線を太く、マスに十字の補助線、始点に色ドット。4線の帯を色分けして「空・地面・地下」で位置を教える。<strong>いま整う大きさから始め、整ったら少しずつ標準マスへ</strong>。枠が使えていない段階でいきなり小さいマスにしない。方眼ノートを一時的に使う手も。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">実践 ／ L4・L5 ／ 国際</span>
+      <h3>書き順の言語化・多感覚での字形学習</h3>
+      <p>「上から下、はらう」と<strong>唱えながら書く</strong>。砂・粘土・指で机になぞる、背中に書く、エア書き（空中に大きく）、ざらざら文字カードをなぞる。視覚だけに頼らず、言語・触覚・運動の経路を足して字形を記憶に定着させる。同じ字は毎回同じ書き順・同じ始点で。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">作業療法 ／ L1 ／ 国際</span>
+      <h3>姿勢・机まわりパッケージ（90/90/90）</h3>
+      <p>足裏が床につく（つかなければ足台）、ひざ・股関節・ひじがおよそ直角、体幹はまっすぐ。<strong>紙をクリップ／テープ／滑り止めで固定</strong>し、非利き手を紙の上に。20〜30分ごとに姿勢替え・小休憩。書く前に壁腕立てなど固有感覚が入る動きを短く。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">作業療法 ／ L1・L3 ／ 国際</span>
+      <h3>スラントボード（傾斜面）で書く</h3>
+      <p>20〜30度の書見台、またはA4バインダーを横向きに置いた斜面。<strong>手首の角度が自然になり、目と紙の距離が取りやすく、姿勢も起きやすい</strong>。壁や垂直面（ホワイトボード）に貼った紙に書くのも、肩・ひじからの動きを引き出す。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag ochre">留保つき ／ L3 ／ 国際</span>
+      <h3>筆記具・補助具の適合</h3>
+      <p>三角軸・太めの鉛筆、6B〜2B、ペンシルグリップ、やわらかい下敷き、滑り止め、消しやすい紙。<strong>合うものは子によって違う</strong>ので数種類試す。<em>留保</em>：成熟した持ち方なら細かな型の違いは読みやすさ・速さに影響しないという研究があり、「正しい持ち方」の矯正に時間をかけすぎない。未熟な握り込みで疲れる場合はグリップが有効。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag ochre">留保つき ／ L2 ／ 日本の療育</span>
+      <h3>ビジョントレーニング（眼球運動・視空間認知）</h3>
+      <p>点つなぎ、迷路、間違いさがし、視線で線を追う、形の模写。日本の療育で広く使われ、「見る力」の要素を狙う。<strong><em>留保</em>：書字そのものへの直接効果を示すエビデンスは限定的</strong>。実際の書字練習の<strong>補助</strong>として位置づけ、これだけで字が上達する前提にしない。見え方の心配（目の疲れ・二重視）があれば眼科・視能訓練士へ。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">実践 ／ L6・H07 ／ 国際</span>
+      <h3>量を区切る・狙いを1つに絞る・自己モニタリング</h3>
+      <p>「この3行だけ」と小さく区切る。書く前に狙いを1つ宣言（「全部の字を下の線につける」）。数行ごとに手を止めてお手本と1点だけ照合。できている行を具体的にほめる。注意が続きにくい子、速さ優先になる子に。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">実践 ／ H09 ／ 日本</span>
+      <h3>分量調整・ICT・合理的配慮</h3>
+      <p>書く量を減らす、板書を写真に撮る、穴埋めプリント、漢字テストの問題数調整。キーボード入力・音声入力・タブレットを<strong>「逃げ」でなく学ぶ機会を守る正当な手段</strong>として用意する。学校とは、書字の練習は続けつつ、評価される課題では負担を下げる、という切り分けで相談する。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">実践 ／ L1・L3 ／ 国際</span>
+      <h3>書く前の「ウォームアップ」</h3>
+      <p>手指：洗濯ばさみ、粘土、指の体操、グーパー。肩・体幹：壁押し、動物歩き、いす押し。<strong>2〜3分</strong>。字を書くモードに体を切り替える。あくまで前段で、これ自体が書字練習の代わりではない。</p>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:26px">
+    <h4>「マス目があるのに、なぜ収まらないのか」——枠は、使える子にしか効かない</h4>
+    <p>マス目は「ここに収める」という<strong>外的な手がかり</strong>です。ただし、その手がかりを利用するには、(1) マスの中心・四隅・基線を<strong>知覚できる</strong>（L2）、(2) 「今これがマスからはみ出している」と<strong>書きながら気づける</strong>（L6）、(3) 気づいたずれを<strong>次の一画で調整できる</strong>（L3・L4）——この3つが要ります。どれかが未熟だと、マスは「ただの背景の線」になります。
+    だから、切り分けの結果によって打ち手が分かれます：知覚の問題（L2）なら<strong>手がかりを強める</strong>（太い基線・十字線・色ドット・大きめマス）。気づきの問題（L6・H07）なら<strong>途中で見比べる手続きを外から入れる</strong>。調整の問題（L3・L4）なら<strong>ゆっくり・大きくから段階的に</strong>。「マスを小さくして慣れさせる」は、どの段階でもたいてい逆効果です。<span class="ref" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px">→ 出典 [2][3] 視空間認知と legibility、[4] 書字の多成分モデル</span></p>
+  </div>
+</section>
+
+<!-- ===== 05 進め方 ===== -->
+<section id="s05">
+  <div class="sec-head"><span class="sec-num">05</span><h2>2〜6週間の進め方</h2></div>
+  <p class="sec-sub">土台を固定 → 切り分け → 個別の仮説、の順に進めます。各段階に合格の目安を置き、満たすまで次に進みません。§02 の結果によっては、途中から始めて構いません。<strong>どの段階でも、実際に字を書く練習を少量ずつ続けます。</strong></p>
+
+  <div>
+    <div class="phase">
+      <div class="ph">STEP 0</div>
+      <div>
+        <h4>観察できる状態をつくる</h4>
+        <p>1〜2週間、書き直しの強要・「ていねいに」の連呼・消しゴムでの往復・叱責をいったん止める。<strong>日付を入れた字のサンプル</strong>（なぞり・視写・自由書字、各数行）を週に数回とり、そのまま保管する（消させない・直させない）。</p>
+        <p class="pass">合格の目安：条件のそろった字のサンプルが、数セットたまっている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 1</div>
+      <div>
+        <h4>土台（姿勢・机まわり・道具）を固定する</h4>
+        <p>仮説にかかわらず有効な土台を2週間そろえて入れる：<strong>①足の接地（足台）②机と椅子の高さ（90/90/90）③紙の固定 ④非利き手を紙の上に ⑤スラントボード ⑥合いそうな筆記具を数種類試す ⑦書字は5〜10分で区切る</strong>。職員間でそろえる。</p>
+        <p class="pass">合格の目安：姿勢の崩れと字の崩れの連動が減る／「1行目と最終行の差」が縮まる。ここで大きく変われば、L1 の要因が大きかったということ。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 2</div>
+      <div>
+        <h4>条件をそろえた観察（§02）</h4>
+        <p>なぞり／視写／自由書字、マス大・小・なし、ゆっくり／普段、1行目／10行目、手元／板書、他の手先・体の動き、姿勢、筆圧・持ち方。1〜2週間、叱らず記録だけ取る。</p>
+        <p class="pass">合格の目安：「どの層（L2〜L6）で崩れているか」の見立てが1〜2個に絞れている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 3</div>
+      <div>
+        <h4>個別の仮説に的を絞る</h4>
+        <p>§02 が指す仮説（H02〜H09 のいずれか）の対応策を、2〜4週間、focus して試す。1つずつ。<strong>記憶書き・自己評価・書き順の言語化を軸に、実際の書字練習を毎日5〜10分</strong>。反応を §09 に記録。</p>
+        <p class="pass">合格の目安：その仮説の「当たりの印」が出る。出なければ、指し示された次の仮説へ。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 4</div>
+      <div>
+        <h4>反応が乏しければ、記録と字のサンプルを持って相談</h4>
+        <p>2〜3の仮説を焦点を絞って試してなお変化が乏しい場合、§08 の相談先へ。§09 の記録と、STEP 0 からの日付入り字のサンプル、姿勢の写真、他の運動の様子を持参する。</p>
+        <p class="pass">目安：ここまでの記録が、専門機関での評価の出発点になる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 日本語の論点 ===== -->
+<section id="s06">
+  <div class="sec-head"><span class="sec-num">06</span><h2>日本語（ひらがな・漢字・マス目）の論点</h2></div>
+  <div class="body-col">
+    <p>海外の研究の多くはアルファベットが対象です。日本語で書字を見るときは、次の点が加わります。</p>
+    <p><strong>ひらがなは曲線と「とめ・はね・はらい」が多い。</strong>直線中心のアルファベットより、方向転換とペン先の力の抜き差しが求められます。「む」「ぬ」「な」など結びのある字、「そ」「ゆ」など折り返しの多い字でとくに崩れやすい。動きを言語化し（「まわって、むすぶ」）、大きく→小さくで型を作ります。</p>
+    <p><strong>漢字は視空間の負荷が大きい。</strong>画数が多く、へん・つくり・かんむり・あしの位置関係を保ちながら組み立てる必要があります。部品の大きさの配分（へんは細め、つくりは広め）、部品の上下・左右のそろえが、視空間認知（L2）とワーキングメモリ（L6）に強く依存します。部品ごとに練習して組み合わせる、部品に色をつける、といった支援が有効。</p>
+    <p><strong>マス目（田字格のような補助線）は日本の学習文化の強みでもある。</strong>十字の補助線つきマスは、始点・中心・部品の配置を教えるのに使えます。ただし §04 のとおり、<strong>枠を手がかりとして使える段階にあるか</strong>を見てから。使えていなければ、まず手がかりを強め、大きさを段階的に。</p>
+    <p><strong>縦書きと横書き。</strong>縦書きは行が右から左に進み、横書きは左から右。行を追う負荷（L2・H08）は方向で変わります。板書の視写がつらい子は、どちらで崩れやすいかも見ます。</p>
+    <p><strong>左利きの子。</strong>横書きでは書いた文字を手で隠す・こすってしまう、鉛筆を寝かせて手首を曲げる（フックポジション）姿勢になりやすい。<strong>紙をやや右に傾け、書く位置よりやや上・左に手を置く</strong>と楽になります。左手用の配慮（お手本を右に置く、消しゴムの位置）も。無理に右手に矯正しない。</p>
+    <p><strong>「書字表出障害（ディスグラフィア）」という枠。</strong>知的発達や教育機会に比して書字が著しく困難な場合、限局性学習症の一つとして評価の対象になります。日本でも、書く量の調整・板書撮影・タブレット入力などの合理的配慮が制度上位置づけられています（§08、出典 [13]）。</p>
+  </div>
+</section>
+
+<!-- ===== 07 落とし穴 ===== -->
+<section id="s07">
+  <div class="sec-head"><span class="sec-num">07</span><h2>やってしまいがちな8つ</h2></div>
+  <div class="dont">
+    <ul>
+      <li><span class="x">✕</span><span><b>何度も書き直させる・消しゴムで消させ続ける</b><span class="d">疲労と回避を強め、消しかすと紙の傷みで「ぐしゃぐしゃ」が増えます。legibility を求めると一時的に速さが落ちるのは自然。1回消したら次へ、間違いは残して次の一字で挑戦。</span></span></li>
+      <li><span class="x">✕</span><span><b>「ていねいに」「集中して」と言うだけ</b><span class="d">何をどうすればいいかの情報がありません。「下の線につける」「前の字と同じ大きさ」など、観点を1つに絞って具体的に。</span></span></li>
+      <li><span class="x">✕</span><span><b>整う前に、速さや量を求める</b><span class="d">自動化していない段階で速く・たくさん書かせると、雑な書き方が固定されます。少量を丁寧に、毎日短く。</span></span></li>
+      <li><span class="x">✕</span><span><b>持ち方の矯正に時間をかけすぎる</b><span class="d">成熟した持ち方なら、細かな型の違いは読みやすさ・速さに大きく影響しないという研究があります。握り込みで疲れる場合を除き、他の要因（筆圧・巧緻性・記憶・姿勢）を先に見る。</span></span></li>
+      <li><span class="x">✕</span><span><b>感覚統合あそび・粘土・バランス運動だけで、書字練習をしない</b><span class="d">要素だけを鍛える介入は書字への効果が乏しく、書字練習を伴わないと対照群より悪化した報告も。体づくりは併走、書字練習は必須。</span></span></li>
+      <li><span class="x">✕</span><span><b>マス目を小さくして「普通に」書かせる</b><span class="d">枠を手がかりとして使えていない段階では逆効果。まず基線・十字線・色ドットで手がかりを強め、いま整う大きさから段階的に。</span></span></li>
+      <li><span class="x">✕</span><span><b>板書をそのまま写させ続ける</b><span class="d">視写は、視点の往復・行の保持という別の負荷（H08）。手元のお手本なら書けるのに板書だと崩れる子には、コピー配布・撮影・量の削減を。</span></span></li>
+      <li><span class="x">✕</span><span><b>「発達の問題ではない＝努力不足」と決める／逆に、練習をやめて全部 ICT にする</b><span class="d">原因の切り分けをせずにどちらかに決めない。多くは複数の層が重なっています。書字練習は続けつつ、評価される課題では負担を下げる、という両立で。</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 08 相談 ===== -->
+<section id="s08">
+  <div class="sec-head"><span class="sec-num">08</span><h2>専門機関に相談するとき</h2></div>
+  <div class="body-col">
+    <p>この資料の切り分けと対応策は、専門家によるアセスメントの代わりではありません。目的は、<strong>相談のときに持参する観察記録と字のサンプルをつくること</strong>です。とくに、環境・道具・練習の入れ方を焦点を絞って数週間変えてなお字が整わない場合、その記録が評価の出発点になります（指導と調整への反応で判断する＝RTI の考え方）。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <span class="tag ochre">運動・道具・環境</span>
+      <h3>作業療法士（OT）</h3>
+      <p>微細運動・筆圧・視覚運動統合・姿勢・道具の適合の評価と、書字に直結した介入（課題志向・CO-OP）。DCD が疑われるとき（字だけでなく手先・体の動き全般がぎこちない）の中心。児童発達支援・放課後等デイに配置されていることも。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">見え方</span>
+      <h3>小児眼科／視能訓練士（ORT）</h3>
+      <p>視力・屈折、眼球運動、両眼視・輻輳・調節の評価。<strong>近業で目が疲れる・二重に見える・片目を閉じる・極端に近づく</strong>、視力検査で引っかかる、板書視写だけ極端につらい——このいずれかがあれば。視覚の問題は書字困難の「原因」ではないが、併存する治療可能な問題を見つける意味がある。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">特性・学習</span>
+      <h3>発達検査を扱う心理職／児童精神科・小児科</h3>
+      <p>限局性学習症（書字表出障害）・DCD・ADHD の評価。WISC の処理速度・ワーキングメモリ、Beery VMI などの視覚運動統合の検査。書字困難が家庭・学校でも共通し、読み・不注意・多動も気になる場合はここへ。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">場をそろえる・配慮</span>
+      <h3>学校の特別支援教育コーディネーター</h3>
+      <p>書く量の調整、板書の撮影許可、タブレット・キーボード入力、漢字テストの問題数など<strong>合理的配慮</strong>の相談。書字の練習方針（マス・書き順・声かけ）を学校と放デイでそろえる。学校での書字の様子・疲労の程度を共有する。</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <h4>持っていくもの</h4>
+    <p>§09 の<strong>記録</strong>と、STEP 0 からの<strong>日付入りの字のサンプル</strong>（なぞり・視写・自由書字、1行目と最終行、マスあり・なし）、<strong>姿勢の写真</strong>、<strong>他の手先・体の動きの様子</strong>、<strong>試した仮定の記録</strong>（何を・どのくらいの期間・当たりの印は出たか）。「字が下手」ではなく「大きめのマスと補助線を2週間入れ、記憶書きと自己評価を毎日続けても、思い出して書くと形が崩れ、書き順が回ごとに変わる」のように、条件つきで具体的に書かれた記録が、評価を早く正確にします。</p>
+  </div>
+</section>
+
+<!-- ===== 09 記録 ===== -->
+<section id="s09">
+  <div class="sec-head"><span class="sec-num">09</span><h2>記録テンプレート</h2></div>
+  <p class="sec-sub">印刷して使えます。同じ観点で2〜3週間おきに取り直し、字のサンプルと一緒に保管すると、「調整と練習への反応」が可視化されます。</p>
+
+  <h3 style="font-size:18px;margin:8px 0 12px">書字サンプル記録（1回ごと）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>日付</th><th>課題（なぞり／視写／自由）</th><th>マス（有無・サイズ）</th><th>崩れた要素</th><th>筆圧</th><th>様子・所要</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">／</td><td>なぞり ／ 視写 ／ 自由</td><td>有（大・標準・小）／ 無</td><td>形 ・ 大きさ ・ 傾き ・ 間隔 ・ 基線</td><td>濃 ・ 適 ・ 薄</td><td>疲れ 有・無 ／　分</td></tr>
+        <tr><td class="num">／</td><td>なぞり ／ 視写 ／ 自由</td><td>有（大・標準・小）／ 無</td><td>形 ・ 大きさ ・ 傾き ・ 間隔 ・ 基線</td><td>濃 ・ 適 ・ 薄</td><td>疲れ 有・無 ／　分</td></tr>
+        <tr><td class="num">／</td><td>なぞり ／ 視写 ／ 自由</td><td>有（大・標準・小）／ 無</td><td>形 ・ 大きさ ・ 傾き ・ 間隔 ・ 基線</td><td>濃 ・ 適 ・ 薄</td><td>疲れ 有・無 ／　分</td></tr>
+        <tr><td class="num">／</td><td>なぞり ／ 視写 ／ 自由</td><td>有（大・標準・小）／ 無</td><td>形 ・ 大きさ ・ 傾き ・ 間隔 ・ 基線</td><td>濃 ・ 適 ・ 薄</td><td>疲れ 有・無 ／　分</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">比較メモ（条件をそろえて）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>比べた条件</th><th>結果</th><th>気づき</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>なぞり ／ 視写 ／ 自由書字</td><td>　　／　　／　　</td><td></td></tr>
+        <tr><td>マス大 ／ マス標準 ／ マスなし</td><td>　　／　　／　　</td><td></td></tr>
+        <tr><td>ゆっくり丁寧 ／ 普段の速さ</td><td>　　　／　　　</td><td></td></tr>
+        <tr><td>1行目 ／ 10行目</td><td>　　　／　　　</td><td></td></tr>
+        <tr><td>手元のお手本 ／ 板書（遠く）</td><td>　　　／　　　</td><td></td></tr>
+        <tr><td>他の手先・体の動き（はさみ・ボタン・片足立ち・ボール）</td><td></td><td></td></tr>
+        <tr><td>姿勢（足の接地・傾き・紙の固定・非利き手）</td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">試した仮定の記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>仮定</th><th>試した期間</th><th>実際にやったこと</th><th>当たりの印は出たか</th><th>次の仮定</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 出典 ===== -->
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">出典</span><h2>参照した情報</h2></div>
+  <p class="sec-sub">研究知見と実践情報を分けて記載しています。番号は §03・§04 の「学術的には」から参照しています。書字介入の研究は小規模なもの・比較条件の少ないものが多く、効果量も一定しません。個別の子どもへの適用は、必ず実際の観察と、必要に応じた専門機関の評価を優先してください。</p>
+  <div class="src">
+    <h3 style="font-size:16px;margin:8px 0 10px;color:var(--ink)">研究知見</h3>
+    <ol>
+      <li id="r1">読みやすさ（legibility）の構成要素 — 字形（letter formation）・基線への整列（alignment）・字間と語間（spacing）・大きさ（size）・傾き（slant）の5要素。Minnesota Handwriting Assessment、Evaluation Tool of Children's Handwriting（ETCH）などの評価尺度が共通して用いる枠組み。概説：OT School House「Handwriting and Fine Motor Assessment Tools」 <a href="https://www.otschoolhouse.com/single-post/handwriting-and-fine-motor-assessment-tools-in-school-based-ot">otschoolhouse.com</a>／字形の詳細分析法 <a href="https://link.springer.com/article/10.1007/s11145-022-10308-z">Reading and Writing (2022)</a></li>
+      <li id="r2">視覚運動統合（VMI）と書字の読みやすさ — VMI の成績は、書字のよい子・苦手な子の両方で legibility の予測因子。就学前の VMI の弱さがその後の字の読みにくさを予測。Daly, Kelley &amp; Krauss (2003) <em>Relationship between visual-motor integration and handwriting skills of children in kindergarten: a modified replication study</em>, <em>AJOT</em> <a href="https://pubmed.ncbi.nlm.nih.gov/12911088/">PubMed</a>／Western Michigan Univ. 修士論文（VMI と書字）<a href="https://scholarworks.wmich.edu/cgi/viewcontent.cgi?article=5736&amp;context=masters_theses">scholarworks.wmich.edu</a></li>
+      <li id="r3">視知覚・手の中での操作と書字 — 視知覚（TVPS）は、とくに書字のよい子で legibility の最も強い予測因子。就学前の空間関係・VMI・手指の巧緻性・注意の弱さが、1年後の字の読みにくさと書字速度の遅さを予測。書字速度は視知覚・VMI・in-hand manipulation と相関。レビュー：<em>Relationship between Handwriting and Visual-Motor Integration in Primary School</em> <a href="https://www.redalyc.org/journal/6137/613784381006/html/">redalyc.org</a></li>
+      <li id="r4">書字の多成分モデル／自動化 — 文字を書くとき、子どもは微細運動・注意・ワーキングメモリ・視覚の動き・知覚と運動の統合を同時に働かせ、その協調が読みやすく自動的でなめらかな書字を支える。転写（handwriting・綴り）が自動化して初めて上位の処理に容量が回る。Berninger &amp; Amtmann の「Not-so-Simple View of Writing」／Berninger (1999) <em>Coordinating Transcription and Text Generation in Working Memory</em> <a href="https://journals.sagepub.com/doi/10.2307/1511269">SAGE</a>／<em>The Not-So-Simple View of Writing in Struggling Readers/Writers</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9246105/">PMC</a></li>
+      <li id="r5">字形の記憶は運動スキルより効く — オルソグラフィックな記憶の過程（字形を思い出す力）が、運動スキルよりも書字に寄与するとの指摘。早期の書字発達（時間・legibility・綴りの縦断研究）<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11752449/">PMC (2024)</a>／概説（Not-so-Simple View）<a href="https://portal.ct.gov/sde/academic-office/center-for-literacy-research-and-reading-success/for-educators/explore-the-center/instruction-aligned-to-evidence/components-of-evidence-aligned-instruction/not-so-simple-view-of-writing">portal.ct.gov</a></li>
+      <li id="r6">カリキュラム型書字プログラムの効果 — 12研究のメタ的レビューで、カリキュラム型（HWT 等）の練習は legibility を小〜中程度改善（平均効果量 0.39）、速さへの効果は一貫せず（0.13）、流暢性は証拠不十分。<strong>特定の1プログラムが他より優れるという証拠はない</strong>。legibility を高めると一時的に速さが落ちるトレードオフ。Engel, Lillie, Zurawski &amp; Travers (2018) <em>Curriculum-Based Handwriting Programs: A Systematic Review With Effect Sizes</em>, <em>AJOT</em> <a href="https://journals.sagepub.com/doi/full/10.5014/ajot.2018.027110">SAGE</a>／記憶からアルファベットを書けるまで約6週間 <a href="https://www.academia.edu/27748658/">academia.edu（HWT 事例研究）</a></li>
+      <li id="r7">感覚運動アプローチ単独は効果が乏しい — 感覚運動ベースの介入 vs 治療的練習の比較で、治療的練習群は改善、<strong>感覚運動群はむしろ低下</strong>。感覚運動の要素が改善しても、書字練習を伴わない群は対照群より成績が悪かった。Denton, Cope &amp; Moser (2006) <em>The Effects of Sensorimotor-Based Intervention Versus Therapeutic Practice…</em>, <em>AJOT</em> <a href="https://www.researchgate.net/publication/7236678">ResearchGate</a></li>
+      <li id="r8">課題志向・治療的練習の優位 — 感覚運動群・課題志向群ともに対照群より legibility が良好（Weintraub, Yinon, Hirsch &amp; Parush 2009 <a href="https://www.researchgate.net/publication/246797084">ResearchGate</a>）。紙と鉛筆による治療的練習は legibility 改善の強いエビデンスで、孤立した要素スキルへの感覚運動介入は効果が小さい。アルファベット課題・認知的方略・人間工学的調整の組み合わせが効果を高める（Grajo, Candler &amp; Sarafian 2020 の系統的レビュー、AOTA）。</li>
+      <li id="r9">鉛筆の持ち方と読みやすさ・速さ — 定型発達児では、成熟した4種の持ち方のあいだで書字の速さ・legibility に有意差なし。「正しい持ち方」への強調より、他の要因に注目すべき。Schwellnus ほか (2012) <em>Effect of Pencil Grasp on the Speed and Legibility of Handwriting in Children</em>, <em>AJOT</em> 66(6):718 <a href="https://research.aota.org/ajot/article/66/6/718/5698/">research.aota.org</a>。ただし未熟・静的な握りは疲労と質の低下につながる。</li>
+      <li id="r10">発達性協調運動症（DCD）と書字 — 書字困難は DCD の中心的な機能障害。作業療法士が同定・介入・診断への橋渡しを担う。ADHD の約50%に DCD が併存し、遅く・ぎこちなく・不安定な書字に直接寄与。CanChild <em>Recognizing and Referring Children with DCD: The Role of the Occupational Therapist</em> <a href="https://canchild.ca/resources/133-recognizing-and-referring-children-with-developmental-coordination-disorder-the-role-of-the-occupational-therapist/">canchild.ca</a>／<em>Handwriting Evaluation in School-Aged Children With DCD: A Literature Review</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10075016/">PMC</a></li>
+      <li id="r11">CO-OP（Cognitive Orientation to daily Occupational Performance） — 目標→計画→実行→確認のサイクルを子ども自身が回す認知的アプローチ。DCD で相対的にエビデンスのある介入法とされる。<em>Evidence-informed occupational therapy interventions for children with developmental coordination disorder</em> <a href="https://open.bu.edu/items/0f297cd7-28ec-4d42-9ae5-c5099649a174">open.bu.edu</a></li>
+      <li id="r12">ADHD と書字 — 系統的レビューで、product（質・legibility）の低下は方法的に妥当な全研究で、process（筆圧・速度など）の異常は91.7%で報告される一方、速度の差は25%にとどまる。字の大きさ・形の不安定、限られた空間への配置の悪さ、字間・語間の乱れが特徴。書字困難は学業成績・自己評価の低下と関連。<em>Is There a Deficit in Product and Process of Handwriting in Children with ADHD? A Systematic Review</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10813961/">PMC (2024)</a>／<em>Handwriting difficulties in children with ADHD</em> <a href="https://www.sciencedirect.com/science/article/abs/pii/S089142221830009X">ScienceDirect</a></li>
+      <li id="r13">姿勢・体幹と書字（作業療法の原則） — 「近位の安定が遠位の可動を可能にする」。座位の推奨は「90/90/90」（足裏接地、ひざ・股関節・ひじがおよそ直角、体幹直立）。20〜30分ごとの姿勢替え・小休憩。NHS（BCUHB）<em>Posture and Seating for Writing</em> <a href="https://bcuhb.nhs.wales/services/hospital-services/occupational-therapy/childrens-occupational-therapy/childrens-occupational-therapy-documents/posture-and-seating-for-writing/">bcuhb.nhs.wales</a>／The OT Toolbox <em>Writing Posture</em> <a href="https://www.theottoolbox.com/chair-posture-while-writing-slouched-handwriting/">theottoolbox.com</a></li>
+      <li id="r14">学習障害・ディスレクシアと視覚（合同声明） — 米国小児科学会（AAP）・米国眼科学会（AAO）・小児眼科斜視学会（AAPOS）・認定オルソプティスト協会の合同声明。<strong>屈折異常・眼球運動・両眼視の問題は学習障害の原因ではなく、視覚トレーニングでこれらを治すエビデンスはない</strong>。例外として輻輳不全は治療対象で、治療により近業の読み書きが楽になり長く続けられるようになることはある。視力検査で不合格、または見え方の問題が疑われる場合は小児眼科の受診を推奨。<em>Joint Statement: Learning Disabilities, Dyslexia, and Vision</em> <a href="https://www.aao.org/education/clinical-statement/joint-statement-learning-disabilities-dyslexia-vis">aao.org</a>／<em>Pediatrics</em> 124(2):837 <a href="https://publications.aap.org/pediatrics/article/124/2/837/72351/">publications.aap.org</a></li>
+    </ol>
+    <h3 style="font-size:16px;margin:26px 0 10px;color:var(--ink)">実践情報</h3>
+    <ol start="15">
+      <li id="r15">書字がなかなかできない子の支援（日本の療育） — 姿勢・体幹、目と手の協応、なぞり→視写→自由書字の段階づけ、書き順の言語化。発達障害臨床研究会（宇佐川研）<a href="https://usagawaken.com/syoji_nigate/">usagawaken.com</a></li>
+      <li id="r16">ビジョントレーニング（日本の療育） — 眼球運動・視空間認知・目と体の協応の3要素。マスや行から字がはみ出す・正しく書けないケースへの活用が紹介される（書字への直接効果のエビデンスは限定的で、書字練習の補助と位置づけるのが妥当）。LITALICO発達ナビ「ビジョントレーニングとは？」 <a href="https://h-navi.jp/column/article/35029473">h-navi.jp</a>／ステラ幼児教室「『見る力』が育つビジョントレーニング」 <a href="https://www.stella-edu.com/column/c_vision_training/">stella-edu.com</a></li>
+      <li id="r17">なぞり書き・視写・マス目の教材（作業療法士監修） — 視写はなぞり書きより難しく、字形をある程度覚えてから。マスサイズは1.8cm前後が使われる。凹凸書字ドリル（5ステップ、専門作業療法士監修）<a href="https://mywonder.jp/pripribooks/25913/">mywonder.jp</a>／作業療法 Tips &amp; PDF「なぞり書き・視写・縦マス目」 <a href="https://kana-ot.jp/wpm/tips/post/399">kana-ot.jp</a></li>
+      <li id="r18">書字障害（ディスグラフィア）と合理的配慮・ICT（日本） — 書かずに聞くことに集中させる、板書の撮影、タブレット入力、漢字テストの問題数調整など。DSM-5 の限局性学習症の一つ。就学児の5〜20%に何らかの書字の困難。東京都教育委員会「発達障害のある児童に対する ICT 機器等の導入ガイド」 <a href="https://www.kyoiku.metro.tokyo.lg.jp/documents/d/kyoiku/ict03">kyoiku.metro.tokyo.lg.jp</a>／LITALICOジュニア「ディスグラフィア（書字障害）とは？」 <a href="https://junior.litalico.jp/column/article/092/">junior.litalico.jp</a>／平林ルミのテクノロジーノート ALT <a href="https://rumihirabayashi.com/">rumihirabayashi.com</a></li>
+      <li id="r19">書字の構成要素と支援の全体像（作業療法） — 姿勢、握り、両手の協調、視知覚、視覚運動統合、字形の記憶、自己評価など。The OT Toolbox <em>A Complete Guide to Handwriting</em> <a href="https://www.theottoolbox.com/a-complete-guide-to-handwriting/">theottoolbox.com</a>／Handwriting Without Tears の一般教育での効果（コンサルテーション型）<em>AJOT</em> 69(6) <a href="https://research.aota.org/ajot/article/69/6/6906180050p1/6048/">research.aota.org</a></li>
+      <li id="r20">発達性協調運動症（DCD）の理解と支援（日本） — 30人クラスに1〜2人。OT による手先の操作性・感覚統合・姿勢保持、PT による体幹・バランス・粗大運動。「できる」経験を積める支援。福岡県「子どもの『運動が苦手』『不器用』には理由がある」 <a href="https://health.pref.fukuoka.lg.jp/column/exercise/1777/">health.pref.fukuoka.lg.jp</a>／AIAI VISIT「発達性協調運動症（DCD）の特性とは？」 <a href="https://visit.aiai-cc.co.jp/column/dcd-child-difficulties-and-approach/">visit.aiai-cc.co.jp</a></li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。切り分けチェックと9パターンの仮定は、専門家によるアセスメントの代替ではなく、相談時に持参する観察記録と字のサンプルを作るためのものです。書字介入の研究は小規模なものが多く、ここでの提案も「まず試す一手」であって確実な解決策ではありません。個々の子どもへの適用は、実際の観察と、必要に応じた専門機関の評価を優先してください。
+  </p>
+</section>
+
+</div>
+</body>
+</html>
