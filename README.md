@@ -8,19 +8,24 @@
 - 世界の指導法カタログ（テンフレーム／レーケンレック／Numicon／モンテッソーリ／水道方式／CPA／空の数直線ほか）
 - 6週間のプログラム案、記録テンプレート、出典
 
-公開ページ: https://tyoshida0413-ai.github.io/number-sense-guide/
+公開ページ:
+
+- 本文: https://tyoshida0413-ai.github.io/number-sense-guide/
+- 印刷キット（すごろく盤・比較カード）: https://tyoshida0413-ai.github.io/number-sense-guide/games.html
 
 > この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。
 
 ## 更新の手順
 
-原本（編集するのはこちら）:
+原本（編集するのはこちら）— どちらも同じフォルダ内:
 
 ```
-second_brain/000.Inbox/Code-desktop/数字の認識について（小学低学年）/10といくつの壁.html
+second_brain/000.Inbox/Code-desktop/数字の認識について（小学低学年）/
+  ├ 10といくつの壁.html          → index.html
+  └ かずのゲーム印刷キット.html   → games.html
 ```
 
-原本を編集したあと、このリポジトリで次を実行すると `index.html` が再生成され、
+原本を編集したあと、このリポジトリで次を実行すると `index.html` と `games.html` が再生成され、
 変更があれば自動で commit / push される。
 
 ```bash
@@ -28,5 +33,5 @@ second_brain/000.Inbox/Code-desktop/数字の認識について（小学低学�
 ```
 
 - 原本は Artifact 用の断片HTML（`<!doctype>` や `<head>` を持たない）。`sync.sh` が外枠を付けて単体HTMLに変換している
-- 原本の `<div class="wrap">` を目印に head を閉じているので、この行を消す構造変更をした場合は `sync.sh` の awk 条件も直す（消えていればエラーで止まる）
+- 最初のブロック要素（`<div>` / `<header>` など）の直前で head を閉じている。原本の冒頭構造を大きく変えた場合は `sync.sh` の awk 条件を確認する（body を開けなければエラーで止まる）
 - Pages への反映は push から1〜2分
