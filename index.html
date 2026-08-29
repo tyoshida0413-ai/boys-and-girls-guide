@@ -33,17 +33,71 @@
 }
 
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   margin:0; background:var(--ground); color:var(--ink);
   font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
   font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
 h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
 p{margin:0}
 a{color:var(--indigo)}
-a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+a:focus-visible,li:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* ===== 2カラムの外枠 ===== */
+.page{max-width:1288px;margin:0 auto;padding:0 24px;display:flex;gap:44px;align-items:flex-start}
+.wrap{max-width:960px;flex:1 1 auto;min-width:0;padding:0 0 96px}
+
+/* ===== サイドバー ===== */
+.sidenav{
+  flex:0 0 236px;position:sticky;top:0;align-self:flex-start;
+  max-height:100vh;overflow-y:auto;overscroll-behavior:contain;
+  padding:34px 0 48px;
+}
+.sidenav .nv-title{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);padding:0 12px 14px;margin:0;
+}
+.sidenav ul{list-style:none;margin:0;padding:0}
+.sidenav li{margin:1px 0}
+.sidenav a{
+  display:block;padding:7px 12px;font-size:13.5px;color:var(--ink-2);
+  text-decoration:none;border-left:2px solid transparent;line-height:1.5;
+  border-radius:0 3px 3px 0;transition:color .12s,background .12s,border-color .12s;
+}
+.sidenav a:hover{color:var(--brick);background:var(--surface-2)}
+.sidenav a.is-active{color:var(--ink);font-weight:700;border-left-color:var(--brick);background:var(--indigo-soft)}
+.sidenav .row{display:flex;align-items:center}
+.sidenav .row > a{flex:1 1 auto;min-width:0}
+.sidenav .count{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);
+  padding:0 2px 0 6px;flex:none;
+}
+.sidenav .tw{
+  flex:none;width:24px;height:28px;margin-right:4px;padding:0;border:0;background:none;
+  cursor:pointer;color:var(--ink-3);display:inline-flex;align-items:center;justify-content:center;
+}
+.sidenav .tw:hover{color:var(--brick)}
+.sidenav .tw svg{transition:transform .15s ease}
+.sidenav .grp.is-open > .row .tw svg{transform:rotate(90deg)}
+.sidenav .sub{margin:1px 0 4px;padding-left:12px;border-left:1px solid var(--line-soft)}
+.sidenav .sub a{font-size:12.5px;color:var(--ink-3);padding:5px 12px}
+.sidenav .sub a.is-active{color:var(--ink)}
+.sidenav [data-collapse-body][hidden]{display:none}
+
+/* もくじボタン（狭い画面のみ）＋ スクリム */
+.nav-toggle{
+  display:none;position:fixed;top:12px;left:12px;z-index:65;
+  align-items:center;gap:7px;padding:8px 13px 8px 11px;
+  font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;
+  color:var(--ink);background:var(--surface);border:1px solid var(--line);
+  border-radius:999px;box-shadow:var(--shadow);cursor:pointer;
+}
+.nav-toggle svg{display:block}
+.nav-scrim{display:none}
+.nav-close{display:none;position:absolute;top:14px;right:12px;width:34px;height:34px;padding:0;border:0;background:none;cursor:pointer;color:var(--ink-3);align-items:center;justify-content:center}
+.nav-close:hover{color:var(--brick)}
 
 /* hero */
 .hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
@@ -53,14 +107,14 @@ a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3
 .hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
 
 /* sections */
-section{padding-top:64px;scroll-margin-top:24px}
+section{padding-top:64px;scroll-margin-top:20px}
 .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
 .sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
 .sec-head h2{font-size:clamp(23px,3.2vw,30px)}
 .sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
 
 /* how to use */
-.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px;scroll-margin-top:20px}
 .howto h2{font-size:20px}
 .flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
 .flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
@@ -70,10 +124,20 @@ section{padding-top:64px;scroll-margin-top:24px}
 .howto .note{border-top:1px solid var(--line-soft);padding-top:18px;font-size:13.5px;color:var(--ink-3);line-height:1.8}
 
 /* domain groups */
-.domain{margin-top:44px}
-.domain > .dh{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.domain{margin-top:44px;scroll-margin-top:76px}
+.domain > .dh{display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:20px}
 .domain .dh h3{font-size:19px}
 .domain .dh .c{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+.domain .dh .dt{
+  margin-left:auto;flex:none;border:0;background:none;cursor:pointer;color:var(--ink-3);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;
+  display:inline-flex;align-items:center;gap:6px;padding:4px 4px 4px 8px;
+}
+.domain .dh .dt:hover{color:var(--brick)}
+.domain .dh .dt .cv{transition:transform .15s ease}
+.domain.is-open .dh .dt .cv{transform:rotate(90deg)}
+.domain [data-collapse-body][hidden]{display:none}
+.domain.is-empty .dh h3{color:var(--ink-3)}
 
 /* concern cards */
 .cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
@@ -81,6 +145,7 @@ section{padding-top:64px;scroll-margin-top:24px}
   background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;
   padding:22px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;
   text-decoration:none;color:inherit;transition:border-color .12s ease, transform .12s ease;
+  scroll-margin-top:80px;
 }
 a.concern:hover{border-color:var(--brick);transform:translateY(-2px)}
 .concern .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -94,6 +159,10 @@ a.concern:hover{border-color:var(--brick);transform:translateY(-2px)}
 .concern .go{color:var(--brick);font-weight:600}
 .concern.ghost{border-style:dashed;box-shadow:none;background:transparent}
 .concern.ghost h4{color:var(--ink-3)}
+
+/* クリックで着地したカード／領域を一瞬光らせる */
+@keyframes hubflash{0%,12%{box-shadow:0 0 0 3px var(--brick)}100%{box-shadow:0 0 0 0 rgba(176,65,58,0)}}
+.flash{animation:hubflash 1.8s ease-out}
 
 /* template */
 .tmpl{display:flex;flex-direction:column;margin-top:8px}
@@ -113,15 +182,105 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
 
 .foot-note{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3);line-height:1.9}
 
+/* ===== 狭い画面：サイドバーをドロワー化 ===== */
+@media (max-width:1040px){
+  .page{display:block;padding:0}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+  .sidenav{
+    position:fixed;z-index:70;top:0;left:0;bottom:0;width:min(330px,86vw);
+    max-height:none;background:var(--surface);border-right:1px solid var(--line);
+    box-shadow:0 0 46px rgba(27,34,48,.22);
+    transform:translateX(-100%);transition:transform .22s ease;
+    padding:52px 10px 40px;
+  }
+  body[data-nav-open] .sidenav{transform:none}
+  .nav-toggle{display:inline-flex}
+  .nav-close{display:inline-flex}
+  .nav-scrim{
+    display:block;position:fixed;inset:0;z-index:64;background:rgba(20,20,19,.34);
+    opacity:0;pointer-events:none;transition:opacity .2s ease;
+  }
+  body[data-nav-open] .nav-scrim{opacity:1;pointer-events:auto}
+  body[data-nav-open]{overflow:hidden}
+}
+
 @media (max-width:620px){
   .tmpl .r{grid-template-columns:32px 1fr;gap:6px 12px}
   .tmpl .r b{grid-column:2}
   .tmpl .r span{grid-column:2}
 }
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .flash{animation:none}
+  .sidenav,.nav-scrim,.sidenav .tw svg,.domain .dh .dt .cv{transition:none}
+}
 </style>
 
 </head>
 <body>
+<div class="page">
+
+<button class="nav-toggle" type="button" aria-label="もくじを開く" aria-controls="sidenav" aria-expanded="false">
+  <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M2 4h12M2 8h12M2 12h12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+  もくじ
+</button>
+<div class="nav-scrim" hidden></div>
+
+<nav class="sidenav" id="sidenav" aria-label="資料ナビゲーション">
+  <button class="nav-close" type="button" aria-label="もくじを閉じる">
+    <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true"><path d="M3 3l8 8M11 3l-8 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+  </button>
+  <p class="nv-title">この資料集の中身</p>
+  <ul class="nv">
+    <li><a href="#howto" data-spy="#howto">使い方</a></li>
+
+    <li class="grp" data-collapse="nav-list" data-collapse-open>
+      <div class="row">
+        <a href="#list" data-spy="#list">資料一覧</a>
+        <button class="tw" type="button" data-collapse-toggle aria-expanded="true" aria-label="資料一覧の中を開閉">
+          <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <ul class="sub" data-collapse-body>
+
+        <li class="grp" data-collapse="nav-d-gakushu" data-collapse-open>
+          <div class="row">
+            <a href="#dom-gakushu" data-spy="#dom-gakushu">学習・認知</a>
+            <span class="count">1</span>
+            <button class="tw" type="button" data-collapse-toggle aria-expanded="true" aria-label="学習・認知の事例を開閉">
+              <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <ul class="sub" data-collapse-body>
+            <li><a href="#case-number-sense" data-spy="#case-number-sense">「10といくつ」の壁</a></li>
+          </ul>
+        </li>
+
+        <li class="grp" data-collapse="nav-d-gengo" data-collapse-open>
+          <div class="row">
+            <a href="#dom-gengo" data-spy="#dom-gengo">言語・コミュニケーション</a>
+            <span class="count">1</span>
+            <button class="tw" type="button" data-collapse-toggle aria-expanded="true" aria-label="言語・コミュニケーションの事例を開閉">
+              <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <ul class="sub" data-collapse-body>
+            <li><a href="#case-not-listening" data-spy="#case-not-listening">聞こえていないように見えるとき</a></li>
+          </ul>
+        </li>
+
+        <li class="row"><a href="#dom-koudou" data-spy="#dom-koudou">行動・情動</a><span class="count">—</span></li>
+        <li class="row"><a href="#dom-kankaku" data-spy="#dom-kankaku">感覚・運動</a><span class="count">—</span></li>
+        <li class="row"><a href="#dom-seikatsu" data-spy="#dom-seikatsu">生活・自立／対人・社会性</a><span class="count">—</span></li>
+      </ul>
+    </li>
+
+    <li><a href="#template" data-spy="#template">資料の型</a></li>
+    <li><a href="#backlog" data-spy="#backlog">調査バックログ</a></li>
+  </ul>
+</nav>
+
 <div class="wrap">
 
 <header class="hero">
@@ -138,7 +297,7 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
     <span>調査予定 &gt; 下部バックログ</span>
   </div>
 
-  <div class="howto">
+  <div class="howto" id="howto">
     <h2>この資料集の使い方</h2>
     <div class="flow">
       <div class="f"><span class="fn">STEP 1</span><b>気づく</b><span>現場で「何かがうまくいっていない」と感じた場面を、具体的な行動として書き留める。</span></div>
@@ -155,61 +314,86 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
 <!-- ===== 資料一覧 ===== -->
 <section id="list">
   <div class="sec-head"><span class="sec-num">一覧</span><h2>懸案ごとの資料</h2></div>
-  <p class="sec-sub">領域ごとにまとめています。<span class="tag done">対応策あり</span> は切り分けと対処まで整理済み、<span class="tag wip">調査中</span> は執筆中、<span class="tag watch">経過観察</span> は対応後の様子を追っている段階です。</p>
+  <p class="sec-sub">領域ごとにまとめています。<span class="tag done">対応策あり</span> は切り分けと対処まで整理済み、<span class="tag wip">調査中</span> は執筆中、<span class="tag watch">経過観察</span> は対応後の様子を追っている段階です。左のもくじから領域や事例を直接ひらけます。</p>
 
-  <div class="domain">
-    <div class="dh"><h3>学習・認知</h3><span class="c">1 / 1</span></div>
-    <div class="cards">
-      <a class="concern" href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html">
-        <div class="tags"><span class="tag">学習・認知 ／ 算数</span><span class="tag done">対応策あり</span></div>
-        <h4>「10といくつ」の壁 — 11以上の数がつかめない</h4>
-        <p>10までは数えられるのに、11以上になると崩れる状態。数の理解を5層に分け、15分の切り分けチェックと、想定原因10パターンごとの対処をまとめています。印刷して使えるゲーム教材つき。</p>
-        <div class="foot"><span>更新 2026-08-29</span><span class="go">資料を読む →</span></div>
-      </a>
+  <div class="domain" id="dom-gakushu" data-collapse="dom-gakushu" data-collapse-open>
+    <div class="dh">
+      <h3>学習・認知</h3><span class="c">1 / 1</span>
+      <button class="dt" type="button" data-collapse-toggle aria-expanded="true" aria-label="学習・認知の一覧を開閉"><span class="lb">閉じる</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
-  </div>
-
-  <div class="domain">
-    <div class="dh"><h3>言語・コミュニケーション</h3><span class="c">1 / 1</span></div>
-    <div class="cards">
-      <a class="concern" href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/not-listening.html">
-        <div class="tags"><span class="tag">言語・コミュニケーション ／ 指示・注意</span><span class="tag done">対応策あり</span></div>
-        <h4>聞こえていないように見えるとき — 注意・指示が通りにくい</h4>
-        <p>注意をしても聞こえていないように反応せず、人が多い場面でとくに目立つ状態。「声が届いて動く」までを6経路に分け、場面をそろえた観察チェックと、想定原因10パターンごとの対処、聞こえ（滲出性中耳炎）を先に確認すべき理由をまとめています。</p>
-        <div class="foot"><span>更新 2026-08-29</span><span class="go">資料を読む →</span></div>
-      </a>
-    </div>
-  </div>
-
-  <div class="domain">
-    <div class="dh"><h3>行動・情動</h3><span class="c">0 / 0</span></div>
-    <div class="cards">
-      <div class="concern ghost">
-        <div class="tags"><span class="tag wip">未着手</span></div>
-        <h4>この領域の資料はまだありません</h4>
-        <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
+    <div class="domain-body" data-collapse-body>
+      <div class="cards">
+        <a class="concern" id="case-number-sense" href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html">
+          <div class="tags"><span class="tag">学習・認知 ／ 算数</span><span class="tag done">対応策あり</span></div>
+          <h4>「10といくつ」の壁 — 11以上の数がつかめない</h4>
+          <p>10までは数えられるのに、11以上になると崩れる状態。数の理解を5層に分け、15分の切り分けチェックと、想定原因10パターンごとの対処をまとめています。印刷して使えるゲーム教材つき。</p>
+          <div class="foot"><span>更新 2026-08-29</span><span class="go">資料を読む →</span></div>
+        </a>
       </div>
     </div>
   </div>
 
-  <div class="domain">
-    <div class="dh"><h3>感覚・運動</h3><span class="c">0 / 0</span></div>
-    <div class="cards">
-      <div class="concern ghost">
-        <div class="tags"><span class="tag wip">未着手</span></div>
-        <h4>この領域の資料はまだありません</h4>
-        <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
+  <div class="domain" id="dom-gengo" data-collapse="dom-gengo" data-collapse-open>
+    <div class="dh">
+      <h3>言語・コミュニケーション</h3><span class="c">1 / 1</span>
+      <button class="dt" type="button" data-collapse-toggle aria-expanded="true" aria-label="言語・コミュニケーションの一覧を開閉"><span class="lb">閉じる</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="domain-body" data-collapse-body>
+      <div class="cards">
+        <a class="concern" id="case-not-listening" href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/not-listening.html">
+          <div class="tags"><span class="tag">言語・コミュニケーション ／ 指示・注意</span><span class="tag done">対応策あり</span></div>
+          <h4>聞こえていないように見えるとき — 注意・指示が通りにくい</h4>
+          <p>注意をしても聞こえていないように反応せず、人が多い場面でとくに目立つ状態。「声が届いて動く」までを6経路に分け、場面をそろえた観察チェックと、想定原因10パターンごとの対処、聞こえ（滲出性中耳炎）を先に確認すべき理由をまとめています。</p>
+          <div class="foot"><span>更新 2026-08-29</span><span class="go">資料を読む →</span></div>
+        </a>
       </div>
     </div>
   </div>
 
-  <div class="domain">
-    <div class="dh"><h3>生活・自立 ／ 対人・社会性</h3><span class="c">0 / 0</span></div>
-    <div class="cards">
-      <div class="concern ghost">
-        <div class="tags"><span class="tag wip">未着手</span></div>
-        <h4>この領域の資料はまだありません</h4>
-        <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
+  <div class="domain is-empty" id="dom-koudou" data-collapse="dom-koudou">
+    <div class="dh">
+      <h3>行動・情動</h3><span class="c">0 / 0</span>
+      <button class="dt" type="button" data-collapse-toggle aria-expanded="false" aria-label="行動・情動の一覧を開閉"><span class="lb">ひらく</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="domain-body" data-collapse-body hidden>
+      <div class="cards">
+        <div class="concern ghost">
+          <div class="tags"><span class="tag wip">未着手</span></div>
+          <h4>この領域の資料はまだありません</h4>
+          <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="domain is-empty" id="dom-kankaku" data-collapse="dom-kankaku">
+    <div class="dh">
+      <h3>感覚・運動</h3><span class="c">0 / 0</span>
+      <button class="dt" type="button" data-collapse-toggle aria-expanded="false" aria-label="感覚・運動の一覧を開閉"><span class="lb">ひらく</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="domain-body" data-collapse-body hidden>
+      <div class="cards">
+        <div class="concern ghost">
+          <div class="tags"><span class="tag wip">未着手</span></div>
+          <h4>この領域の資料はまだありません</h4>
+          <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="domain is-empty" id="dom-seikatsu" data-collapse="dom-seikatsu">
+    <div class="dh">
+      <h3>生活・自立 ／ 対人・社会性</h3><span class="c">0 / 0</span>
+      <button class="dt" type="button" data-collapse-toggle aria-expanded="false" aria-label="生活・自立／対人・社会性の一覧を開閉"><span class="lb">ひらく</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="domain-body" data-collapse-body hidden>
+      <div class="cards">
+        <div class="concern ghost">
+          <div class="tags"><span class="tag wip">未着手</span></div>
+          <h4>この領域の資料はまだありません</h4>
+          <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
+        </div>
       </div>
     </div>
   </div>
@@ -255,6 +439,156 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
   特定の児童についての診断・評価・医学的助言ではありません。個々の子どもへの適用は、実際の観察と、必要に応じた専門機関の評価を優先してください。
 </p>
 
-</div>
+</div><!-- /.wrap -->
+</div><!-- /.page -->
+
+<script>
+(function(){
+  "use strict";
+  var LS = "hub-nav-v1";
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch (e) {}
+  function save(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch (e) {} }
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  /* ---- 折りたたみ（サイドバーのグループ／本文の領域） ---- */
+  document.querySelectorAll("[data-collapse]").forEach(function(root){
+    var key  = root.getAttribute("data-collapse");
+    var btn  = root.querySelector(":scope > .row [data-collapse-toggle], :scope > .dh [data-collapse-toggle]");
+    var body = root.querySelector(":scope > [data-collapse-body]");
+    if (!btn || !body) return;
+    var def  = root.hasAttribute("data-collapse-open");
+    var open = (key in state) ? !!state[key] : def;
+
+    function apply(o){
+      root.classList.toggle("is-open", o);
+      btn.setAttribute("aria-expanded", o ? "true" : "false");
+      body.hidden = !o;
+      var lb = btn.querySelector(".lb");
+      if (lb) lb.textContent = o ? "閉じる" : "ひらく";
+    }
+    apply(open);
+
+    btn.addEventListener("click", function(){
+      open = !open;
+      state[key] = open;
+      save();
+      apply(open);
+    });
+
+    root._open = function(){
+      if (!open){ open = true; state[key] = true; save(); apply(true); }
+    };
+  });
+
+  /* ---- サイドバーのリンク：スムーズスクロール＋対象を開く＋着地を光らせる ---- */
+  function scrollOffset(){ return window.innerWidth <= 1040 ? 64 : 18; }
+  function openChain(el){
+    var g = el;
+    while (g){
+      if (g._open) g._open();
+      g = g.parentElement ? g.parentElement.closest("[data-collapse]") : null;
+    }
+  }
+  document.querySelectorAll('.sidenav a[href^="#"]').forEach(function(a){
+    a.addEventListener("click", function(e){
+      var id = a.getAttribute("href").slice(1);
+      var t = document.getElementById(id);
+      if (!t) return;
+      e.preventDefault();
+      closeDrawer();                                     // 先にドロワーを閉じる
+      openChain(a.closest("[data-collapse]"));          // サイドバー側のグループ
+      var main = t.closest("[data-collapse]");
+      if (main && main._open) main._open();              // 本文側の領域
+      if (t.hasAttribute("data-collapse") && t._open) t._open();
+      history.replaceState(null, "", "#" + id);
+      if (window.innerWidth > 1040) a.focus({ preventScroll: true });
+      // スクロールロック解除と折りたたみ展開のレイアウトが確定してから移動
+      requestAnimationFrame(function(){
+        var y = t.getBoundingClientRect().top + window.pageYOffset - scrollOffset();
+        window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+        if (!reduce){ t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); }
+      });
+    });
+  });
+
+  /* ---- スクロールスパイ（現在地をサイドバーで強調） ---- */
+  var spies = [].slice.call(document.querySelectorAll(".sidenav a[data-spy]"));
+  var targets = [];
+  spies.forEach(function(l){
+    var el = document.getElementById(l.getAttribute("data-spy").slice(1));
+    if (el) targets.push(el);          // spies は文書順に並ぶ
+  });
+  function refresh(){
+    var line = window.innerHeight * 0.26;
+    var atBottom = (window.innerHeight + window.pageYOffset) >= (document.documentElement.scrollHeight - 2);
+    var current = null;
+    targets.forEach(function(el){
+      if (el.offsetParent === null) return;           // 折りたたみ等で非表示
+      var r = el.getBoundingClientRect();
+      if (r.height === 0) return;
+      if (r.top - 4 <= line) current = el;
+    });
+    if (atBottom && targets.length) current = targets[targets.length - 1];
+    var id = current ? current.id : null;
+    spies.forEach(function(l){
+      l.classList.toggle("is-active", id && l.getAttribute("data-spy") === "#" + id);
+    });
+  }
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ refresh(); ticking = false; });
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  refresh();
+
+  /* ---- 狭い画面：ドロワー ---- */
+  var body   = document.body;
+  var toggle = document.querySelector(".nav-toggle");
+  var scrim  = document.querySelector(".nav-scrim");
+  var nav    = document.getElementById("sidenav");
+  function openDrawer(){
+    body.setAttribute("data-nav-open", "");
+    if (toggle) toggle.setAttribute("aria-expanded", "true");
+    if (scrim) scrim.hidden = false;
+    var first = nav && nav.querySelector("a");
+    if (first) first.focus({ preventScroll: true });
+  }
+  function closeDrawer(){
+    if (!body.hasAttribute("data-nav-open")) return;
+    body.removeAttribute("data-nav-open");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+  }
+  if (toggle) toggle.addEventListener("click", function(){
+    body.hasAttribute("data-nav-open") ? closeDrawer() : openDrawer();
+  });
+  var closeBtn = nav && nav.querySelector(".nav-close");
+  if (closeBtn) closeBtn.addEventListener("click", function(){
+    closeDrawer();
+    if (toggle) toggle.focus({ preventScroll: true });
+  });
+  if (scrim) scrim.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeDrawer(); });
+  window.addEventListener("resize", function(){ if (window.innerWidth > 1040) closeDrawer(); });
+
+  /* ---- 直リンク（#case-... 付きで開いたとき）: 対象を開いて着地 ---- */
+  if (location.hash.length > 1){
+    var h = document.getElementById(location.hash.slice(1));
+    if (h){
+      openChain(h.closest("[data-collapse]"));
+      if (h.hasAttribute("data-collapse") && h._open) h._open();
+      setTimeout(function(){
+        var y = h.getBoundingClientRect().top + window.pageYOffset - scrollOffset();
+        window.scrollTo({ top: y, behavior: "auto" });
+        if (!reduce){ h.classList.add("flash"); }
+      }, 60);
+    }
+  }
+})();
+</script>
 </body>
 </html>
