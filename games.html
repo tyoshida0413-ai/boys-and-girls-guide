@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="直線型のすごろくと「どっちが多い」カードを、A4に印刷してすぐ遊べる形にした教材。1〜20の数を扱います。">
+<title>かずのゲーム印刷キット</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@600&display=swap">
+
+<style>
+:root{
+  --ground:#f3f4f6; --sheet:#ffffff; --surface-2:#eceef2;
+  --ink:#141b26; --ink-2:#3f4c5e; --ink-3:#6b7889;
+  --line:#d7dbe2; --line-soft:#e5e8ed;
+  --indigo:#26456e; --indigo-soft:#e3eaf4;
+  --brick:#b0413a; --brick-soft:#f6e6e4;
+  --ochre:#9c7420; --ochre-soft:#f6eeda;
+  --cut:#9aa4b2;
+  --shadow:0 1px 2px rgba(20,27,38,.05), 0 10px 30px -18px rgba(20,27,38,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#11161e; --surface-2:#222b37;
+    --ink-2:#b6c0cd; --ink-3:#8b96a5;
+    --line:#333d4b; --line-soft:#28313d;
+    --indigo:#89aede; --indigo-soft:#1e2b3d;
+    --brick:#e08b82; --brick-soft:#33221f;
+    --ochre:#d8ab55; --ochre-soft:#302818;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#11161e; --surface-2:#222b37;
+  --ink-2:#b6c0cd; --ink-3:#8b96a5;
+  --line:#333d4b; --line-soft:#28313d;
+  --indigo:#89aede; --indigo-soft:#1e2b3d;
+  --brick:#e08b82; --brick-soft:#33221f;
+  --ochre:#d8ab55; --ochre-soft:#302818;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  line-height:1.8; font-feature-settings:"palt" 1; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;margin:0;line-height:1.4;text-wrap:balance}
+
+/* ============ 画面だけのガイド ============ */
+.guide{max-width:820px;margin:0 auto;padding:64px 24px 40px}
+.guide .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);margin-bottom:18px}
+.guide h1{font-size:clamp(30px,5vw,44px)}
+.guide .lede{margin-top:20px;color:var(--ink-2);font-size:16px;max-width:62ch}
+.printbtn{
+  margin-top:28px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;
+  background:var(--indigo);color:#fff;border:none;border-radius:4px;padding:12px 26px;
+}
+.printbtn:hover{opacity:.9}
+.printbtn:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+.sheetlist{margin-top:36px;border-top:1px solid var(--line);}
+.sheetlist .r{display:grid;grid-template-columns:76px 1fr 96px;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+.sheetlist .p{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);font-weight:600}
+.sheetlist b{font-size:15px}
+.sheetlist .d{font-size:13.5px;color:var(--ink-2);display:block;font-weight:400}
+.sheetlist .need{font-size:12px;color:var(--ink-3);text-align:right}
+.tips{margin-top:32px;background:var(--ochre-soft);border-radius:4px;padding:20px 24px;font-size:14px;color:var(--ink-2)}
+.tips b{color:var(--ink)}
+.tips ul{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+
+/* ============ 用紙 ============ */
+.sheet{
+  width:210mm; min-height:297mm; margin:32px auto; padding:10mm;
+  background:var(--sheet); color:#141b26; box-shadow:var(--shadow);
+  position:relative; display:flex; flex-direction:column;
+}
+.sheet-label{
+  position:absolute; top:-24px; left:0; font-family:"IBM Plex Mono",monospace;
+  font-size:11px; letter-spacing:.1em; color:var(--ink-3);
+}
+.sh-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1.5px solid #141b26;padding-bottom:6px;margin-bottom:8mm}
+.sh-head h2{font-size:16pt}
+.sh-head .note{font-size:9pt;color:#5b6675}
+
+/* ---- 遊び方 ---- */
+.rules{display:flex;flex-direction:column;gap:7mm;color:#232c39}
+.rule h3{font-size:13pt;margin-bottom:3mm;display:flex;align-items:center;gap:8px}
+.rule h3 .badge{
+  font-family:"IBM Plex Mono",monospace;font-size:8.5pt;font-weight:600;color:#fff;
+  background:#b0413a;border-radius:2px;padding:2px 7px;
+}
+.rule ol{margin:0;padding-left:19px;display:flex;flex-direction:column;gap:2.2mm;font-size:10.5pt;line-height:1.7}
+.rule ol b{color:#141b26}
+.keybox{
+  margin-top:3.5mm;background:#f2f5f9;border-left:3px solid #26456e;
+  padding:3mm 4mm;font-size:10pt;line-height:1.7;color:#232c39;
+}
+.keybox .t{font-weight:700;color:#26456e;display:block;margin-bottom:1mm;font-size:9.5pt}
+.adult{border-top:1px dashed #b9c1cc;padding-top:5mm;margin-top:auto}
+.adult h3{font-size:11.5pt;margin-bottom:3mm}
+.adult ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:1.8mm;font-size:9.5pt;color:#3f4c5e;line-height:1.65}
+.adult ul b{color:#141b26}
+
+/* ---- すごろく盤 ---- */
+.strips{display:flex;flex-direction:column;gap:6mm}
+.strip{position:relative}
+.strip-tag{
+  font-family:"IBM Plex Mono",monospace;font-size:8pt;color:#6b7889;
+  margin-bottom:1.5mm;display:flex;align-items:center;gap:6px;
+}
+.strip-tag .no{background:#26456e;color:#fff;border-radius:2px;padding:1px 6px;font-weight:600}
+.cells{display:flex;border:1.2px solid #141b26}
+.cell{
+  flex:1 1 0;height:36mm;border-right:1.2px solid #141b26;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5mm;padding:1.5mm 0;
+}
+.cell:last-child{border-right:none}
+.cell.goal{background:#f6e6e4}
+.cell .n{font-family:"IBM Plex Mono",monospace;font-size:19pt;font-weight:600;line-height:1;color:#141b26}
+.cell .n small{font-size:8pt;letter-spacing:.05em}
+.cutline{
+  margin-top:2.5mm;border-top:1.5px dashed #9aa4b2;position:relative;height:0;
+}
+.cutline span{
+  position:absolute;top:-8px;left:0;background:var(--sheet);padding-right:6px;
+  font-size:7.5pt;color:#6b7889;
+}
+.tapehint{
+  margin-top:6mm;background:#f2f5f9;padding:3mm 4mm;font-size:9.5pt;color:#232c39;line-height:1.65;
+}
+.tapehint b{color:#141b26}
+
+/* ---- ドット（テンフレーム） ---- */
+.frames{display:flex;gap:1.6mm;align-items:center;justify-content:center}
+.frame{display:grid;grid-template-columns:repeat(5,var(--ds));grid-auto-rows:var(--ds);gap:.5mm;border:.7px solid #8f99a6;padding:.5mm}
+.dot{width:var(--ds);height:var(--ds);border-radius:50%;background:transparent}
+.dot.f1{background:#26456e}
+.dot.f2{background:#b0413a}
+
+/* ---- カード ---- */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr);flex:1;gap:0}
+.card{
+  border:1px dashed #9aa4b2; display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:3mm;position:relative;padding:3mm;
+}
+.card .cn{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:52pt;line-height:1;color:#141b26}
+.card .corner{
+  position:absolute;top:2.5mm;left:3mm;font-family:"IBM Plex Mono",monospace;
+  font-size:10pt;font-weight:600;color:#6b7889;
+}
+.card .corner.br{top:auto;left:auto;bottom:2.5mm;right:3mm;transform:rotate(180deg)}
+.card .kind{
+  position:absolute;bottom:2.5mm;left:3mm;font-size:7pt;color:#9aa4b2;letter-spacing:.08em;
+}
+.card.blank{border-style:dashed;background:#fafbfc}
+
+/* ---- こま・1と2カード ---- */
+.twoup{display:flex;flex-direction:column;gap:8mm;flex:1}
+.mini-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.mini{
+  border:1px dashed #9aa4b2;height:32mm;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:2mm;
+}
+.mini .mn{font-family:"IBM Plex Mono",monospace;font-size:30pt;font-weight:600;line-height:1}
+.tok-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.tok{
+  border:1px dashed #9aa4b2;height:30mm;display:flex;align-items:center;justify-content:center;
+}
+.tok .shape{width:20mm;height:20mm;border:1.8px solid #141b26;display:flex;align-items:center;justify-content:center;font-size:10pt;font-weight:700}
+.tok .shape.c{border-radius:50%}
+.subhead{font-size:11.5pt;font-family:"Shippori Mincho",serif;font-weight:700;margin-bottom:2.5mm;border-bottom:1px solid #d7dbe2;padding-bottom:1.5mm}
+.subhead small{font-family:"Noto Sans JP",sans-serif;font-weight:400;font-size:8.5pt;color:#5b6675;margin-left:8px}
+
+/* ============ 印刷 ============ */
+@page{ size:A4 portrait; margin:0; }
+@media print{
+  body{background:#fff}
+  .guide,.sheet-label{display:none !important}
+  .sheet{
+    width:210mm;height:297mm;min-height:0;margin:0;box-shadow:none;
+    page-break-after:always;break-after:page;
+  }
+  .sheet:last-of-type{page-break-after:auto;break-after:auto}
+  .cutline span,.card.blank{background:#fff}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media (max-width:860px){
+  .sheet{width:100%;min-height:0;padding:16px;overflow-x:auto}
+  .cells{min-width:max-content}
+}
+</style>
+
+<!-- ===================== 画面用ガイド ===================== -->
+</head>
+<body>
+<div class="guide">
+  <div class="eyebrow">「10といくつ」の壁 ／ 付属教材</div>
+  <h1>かずのゲーム印刷キット</h1>
+  <p class="lede">
+    調査資料の対応策のうち、<strong>「直線型のすごろく」</strong>と<strong>「どっちが多いかゲーム」</strong>を、印刷してすぐ遊べる形にしたものです。どちらも20までの数を扱います。
+    A4に等倍（100%）で印刷してください。<strong>「用紙に合わせる」設定は必ずオフに</strong>してください（マスの大きさが変わります）。
+  </p>
+  <button class="printbtn" onclick="window.print()">印刷する</button>
+
+  <div class="sheetlist">
+    <div class="r"><span class="p">1枚目</span><b>遊び方<span class="d">2つのゲームのルールと、大人が気をつけること</span></b><span class="need">—</span></div>
+    <div class="r"><span class="p">2枚目</span><b>すごろく盤（1〜20）<span class="d">4本の帯を切って、順につないで1本の直線にする</span></b><span class="need">はさみ・テープ</span></div>
+    <div class="r"><span class="p">3枚目</span><b>「1」「2」カード ＋ こま<span class="d">すごろくで進む数を決めるカードと、駒</span></b><span class="need">はさみ</span></div>
+    <div class="r"><span class="p">4〜6枚目</span><b>どっちが多い・ドット版（1〜20）<span class="d">量で比べるカード。まずはこちらから</span></b><span class="need">はさみ</span></div>
+    <div class="r"><span class="p">7〜9枚目</span><b>どっちが多い・数字版（1〜20）<span class="d">数字だけで比べるカード。ドット版に慣れてから</span></b><span class="need">はさみ</span></div>
+  </div>
+
+  <div class="tips">
+    <b>印刷のコツ</b>
+    <ul>
+      <li>厚紙（A4・180kg程度）に印刷するか、印刷後に工作用紙へ貼ると長持ちします。カードはラミネートすると繰り返し使えます。</li>
+      <li>白黒印刷でも使えます。ドットは前半5個と後半5個で濃さが違うので、グレースケールでも5のまとまりが見分けられます。</li>
+      <li>すごろく盤は4本つなぐと約76cmになります。机が狭ければ床に置いてください（床で遊ぶと、体で数直線をたどる練習にもなります）。</li>
+      <li>カードは全部で40枚（ドット版20枚・数字版20枚）。両方を一度に印刷する必要はありません。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== 1枚目：遊び方 ===================== -->
+<div class="sheet">
+  <div class="sheet-label">1枚目 ／ 遊び方</div>
+  <div class="sh-head">
+    <h2>かずのゲーム — 遊び方</h2>
+    <span class="note">対象：1〜20の数／1回15〜20分／週3〜4回</span>
+  </div>
+
+  <div class="rules">
+
+    <div class="rule">
+      <h3><span class="badge">GAME 1</span>すごろく「20までいこう」</h3>
+      <ol>
+        <li>盤（2枚目）の4本の帯を切って、<b>①→②→③→④の順に、まっすぐ1本になるように</b>テープでつなぐ。</li>
+        <li>「1」「2」カード（3枚目）をよく混ぜて、裏返して山にする。こまは「1」のマスの手前に置く。</li>
+        <li>順番に1枚めくり、出た数だけ進む。めくったカードは山の下に戻す。</li>
+        <li><b>進むとき、止まるマスの数字を1つずつ声に出す。</b>「10」にいて2進むなら、<b>「11、12」</b>と言いながら進む。</li>
+        <li>先に「20」に着いた人が勝ち。ぴったり止まらなくてもよい。</li>
+      </ol>
+      <div class="keybox">
+        <span class="t">ここが効きます</span>
+        「1、2」と<b>進んだ数</b>を数えるのではなく、「11、12」と<b>止まるマスの数</b>を言うこと。これが数の並びと大きさを結びつけます。言い間違えても直さず、大人がもう一度ゆっくり言って見せてください。
+      </div>
+    </div>
+
+    <div class="rule">
+      <h3><span class="badge">GAME 2</span>どっちが多い</h3>
+      <ol>
+        <li>カード20枚をよく混ぜ、2人に10枚ずつ裏向きで配る。</li>
+        <li>「せーの」で同時に1枚ずつめくる。<b>数が大きいほうが、2枚とももらえる。</b></li>
+        <li>同じ数のときは、その2枚を場に置いたまま、もう1枚ずつめくって勝負する。</li>
+        <li>カードがなくなったら、持っている枚数が多いほうが勝ち。</li>
+        <li><b>ドット版から始め、慣れたら数字版へ。</b>さらに慣れたら、ドット版と数字版を混ぜて遊ぶ。</li>
+      </ol>
+      <div class="keybox">
+        <span class="t">ここが効きます</span>
+        <b>17と19、13と14のような「近い数」</b>が出たときこそ本番です。「どうしてそっちが多いと思った？」と理由を聞いてください。「10のまとまりのあとが多いから」と言えたら、位取りが育っている印です。数え直してもかまいません。急がせないでください。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="adult">
+    <h3>大人が気をつけること</h3>
+    <ul>
+      <li><b>速さを求めない。</b>タイマーは使わず、「はやく」も言わない。この時期のスピード要求は不安を作るだけです。</li>
+      <li><b>間違いをその場で正解に直さない。</b>「もう一回いっしょに数えてみよう」と並んでやり直す形にします。</li>
+      <li><b>指を使うのを止めない。</b>指は量を覚えておくための道具です。禁止する理由はありません。</li>
+      <li><b>結果ではなく、やり方をほめる。</b>「10のまとまりで見たんだね」「ていねいに数えたね」。</li>
+      <li><b>「できた」で終える。</b>最後は必ず確実にできるところで切り上げると、次回も取り組めます。</li>
+      <li><b>短く、何回も。</b>1回15分を週3〜4回。長い1回より、短い複数回のほうが定着します。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== 2枚目：すごろく盤 ===================== -->
+<div class="sheet">
+  <div class="sheet-label">2枚目 ／ すごろく盤</div>
+  <div class="sh-head">
+    <h2>すごろく盤「20までいこう」</h2>
+    <span class="note">4本を切って、①②③④の順にまっすぐつなぐ（つなぐと約76cm）</span>
+  </div>
+  <div class="strips" id="board"></div>
+  <div class="tapehint">
+    <b>つなぎ方：</b>点線で4本の帯に切り分け、① の右はしに ② の左はしを、② の右はしに ③ を…という順に、
+    <b>まっすぐ一直線になるように</b>テープでつなぎます。折り返したり、輪にしたりしないでください
+    ——研究では、<b>直線の盤では効果が出て、円形の盤では効果が出ませんでした。</b>まっすぐであることがこのゲームの条件です。
+  </div>
+</div>
+
+<!-- ===================== 3枚目：カード＋こま ===================== -->
+<div class="sheet">
+  <div class="sheet-label">3枚目 ／ 「1」「2」カード・こま</div>
+  <div class="sh-head">
+    <h2>すごろくの道具</h2>
+    <span class="note">点線で切り取る</span>
+  </div>
+  <div class="twoup">
+    <div>
+      <div class="subhead">「1」「2」カード<small>10枚（1が5枚・2が5枚）／よく混ぜて裏向きの山にする</small></div>
+      <div class="mini-grid" id="twocards"></div>
+    </div>
+    <div>
+      <div class="subhead">こま<small>8個／2つ折りにして立てるか、消しゴムなどに貼る</small></div>
+      <div class="tok-grid" id="tokens"></div>
+    </div>
+    <div class="tapehint" style="margin-top:auto">
+      <b>カードがなくても：</b>さいころを使い、1か2が出たらその数だけ進む（3以上が出たらもう一度ふる）方法でも遊べます。
+      1か2しか進まないのは、<b>マスの数字を1つずつ声に出して通過させるため</b>です。大きく進ませると、この効果がなくなります。
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 4〜9枚目：カード（JSで生成） ===================== -->
+<div id="cardsheets"></div>
+
+<script>
+(function(){
+  // ---- テンフレームのドット ----
+  function frames(n, dotSize){
+    var out = '<div class="frames" style="--ds:' + dotSize + '">';
+    var count = n > 10 ? 2 : 1;
+    for (var f = 0; f < count; f++){
+      var filled = (f === 0) ? Math.min(n, 10) : n - 10;
+      out += '<div class="frame">';
+      for (var i = 0; i < 10; i++){
+        var cls = 'dot';
+        if (i < filled) cls += (i < 5) ? ' f1' : ' f2';
+        out += '<div class="' + cls + '"></div>';
+      }
+      out += '</div>';
+    }
+    return out + '</div>';
+  }
+
+  // ---- すごろく盤（4本 × 5マス） ----
+  var board = document.getElementById('board');
+  var bhtml = '';
+  for (var s = 0; s < 4; s++){
+    bhtml += '<div class="strip">';
+    bhtml += '<div class="strip-tag"><span class="no">' + (s + 1) + '</span>'
+           + (s === 0 ? 'ここがスタート' : (s === 3 ? '④の右はしがゴール' : '前の帯の右はしにつなぐ')) + '</div>';
+    bhtml += '<div class="cells">';
+    for (var c = 1; c <= 5; c++){
+      var n = s * 5 + c;
+      var goal = (n === 20) ? ' goal' : '';
+      bhtml += '<div class="cell' + goal + '">'
+             + '<div class="n">' + n + (n === 20 ? ' <small>ゴール</small>' : '') + '</div>'
+             + frames(n, '2.3mm')
+             + '</div>';
+    }
+    bhtml += '</div>';
+    if (s < 3) bhtml += '<div class="cutline"><span>切りとり線</span></div>';
+    bhtml += '</div>';
+  }
+  board.innerHTML = bhtml;
+
+  // ---- 「1」「2」カード ----
+  var two = '';
+  for (var i = 0; i < 10; i++){
+    var v = (i < 5) ? 1 : 2;
+    two += '<div class="mini"><div class="mn">' + v + '</div>' + frames(v, '3mm') + '</div>';
+  }
+  document.getElementById('twocards').innerHTML = two;
+
+  // ---- こま ----
+  var tk = '';
+  var labels = ['あか', 'あお', 'きいろ', 'みどり'];
+  for (var t = 0; t < 8; t++){
+    var round = t % 2 === 0;
+    tk += '<div class="tok"><div class="shape' + (round ? ' c' : '') + '">'
+        + labels[Math.floor(t / 2)] + '</div></div>';
+  }
+  document.getElementById('tokens').innerHTML = tk;
+
+  // ---- どっちが多いカード（ドット版・数字版） ----
+  function cardSheets(kind){
+    var isDot = (kind === 'dot');
+    var title = isDot ? 'どっちが多い・ドット版' : 'どっちが多い・数字版';
+    var note  = isDot ? '量で比べる。まずはこちらから' : '数字だけで比べる。ドット版に慣れてから';
+    var label = isDot ? 'ドット版' : '数字版';
+    var html = '';
+    for (var sheet = 0; sheet < 3; sheet++){
+      html += '<div class="sheet"><div class="sheet-label">'
+            + (isDot ? (4 + sheet) : (7 + sheet)) + '枚目 ／ ' + title + '</div>'
+            + '<div class="sh-head"><h2>' + title + '（' + (sheet + 1) + '/3）</h2>'
+            + '<span class="note">' + note + '／点線で切り取る</span></div>'
+            + '<div class="cards">';
+      for (var i = 0; i < 8; i++){
+        var n = sheet * 8 + i + 1;
+        if (n > 20){
+          html += '<div class="card blank"></div>';
+          continue;
+        }
+        html += '<div class="card">'
+              + '<div class="corner">' + n + '</div>'
+              + '<div class="corner br">' + n + '</div>'
+              + (isDot ? frames(n, '6mm') : '<div class="cn">' + n + '</div>')
+              + '<div class="kind">' + label + '</div>'
+              + '</div>';
+      }
+      html += '</div></div>';
+    }
+    return html;
+  }
+  document.getElementById('cardsheets').innerHTML = cardSheets('dot') + cardSheets('num');
+})();
+</script>
+</body>
+</html>

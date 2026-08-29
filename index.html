@@ -92,6 +92,18 @@ section{padding-top:64px;scroll-margin-top:24px}
 .toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
 .toc a:hover{color:var(--brick)}
 .toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+.kitbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+  border-top:1px solid var(--line-soft);padding-top:20px;font-size:14px;color:var(--ink-2);
+}
+.kitbar b{color:var(--ink);font-size:14.5px}
+.kitbar a{font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--brick-soft);color:var(--brick)}
+.kitbar a:hover{border-bottom-color:var(--brick)}
+a.kit{
+  font-weight:700;color:var(--brick);text-decoration:none;
+  border-bottom:1.5px solid var(--brick-soft);white-space:nowrap;
+}
+a.kit:hover{border-bottom-color:var(--brick)}
 
 /* cards */
 .grid{display:grid;gap:16px}
@@ -241,6 +253,11 @@ td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;
       <b>2週間試し、記録する</b>
       <span>「当たりの印」が出れば継続、出なければ次の候補へ。この記録自体が、専門機関に相談するときの最良の材料になります。</span>
     </div>
+  </div>
+  <div class="kitbar">
+    <b>付属教材</b>
+    <span>「直線型のすごろく」と「どっちが多いかゲーム」（ともに20まで）を、A4に印刷してすぐ遊べる形にしてあります。</span>
+    <a href="https://tyoshida0413-ai.github.io/number-sense-guide/games.html">かずのゲーム印刷キット →</a>
   </div>
   <nav class="toc">
     <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
@@ -535,8 +552,8 @@ td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;
         <div class="blk"><div class="lbl">対応策</div><div>
           <ol class="acts">
             <li><b>ドットの瞬間提示。</b>1〜2秒だけ見せて「いくつ？」。1日10試行、3個 → 4個 → 5個。<strong>サイコロ目やトランプのような“形として覚えられる配置”を使う</strong>のがコツで、ランダム配置は後回し。</li>
-            <li><b>直線型のすごろくを1日1ゲーム。</b>マスに数字が書かれた横一列の盤を使う。進むときは「7、8、9」と数字を声に出す。市販品を選ぶときは<strong>必ず直線型</strong>を。</li>
-            <li><b>どっちが多いゲーム。</b>2枚めくって多いほうが取る。ドット版と数字版を交互に行い、量と記号を橋渡しする。</li>
+            <li><b>直線型のすごろくを1日1ゲーム。</b>マスに数字が書かれた横一列の盤を使う。進むときは「7、8、9」と数字を声に出す。市販品を選ぶときは<strong>必ず直線型</strong>を。<a class="kit" href="https://tyoshida0413-ai.github.io/number-sense-guide/games.html">印刷用の盤（1〜20）→</a></li>
+            <li><b>どっちが多いゲーム。</b>2枚めくって多いほうが取る。ドット版と数字版を交互に行い、量と記号を橋渡しする。<a class="kit" href="https://tyoshida0413-ai.github.io/number-sense-guide/games.html">印刷用カード（1〜20）→</a></li>
             <li><b>形で量が見える教材。</b>Numicon のような穴あきプレート、色分けされた玉。数えずに見分ける経験を増やす。</li>
           </ol>
         </div></div>
@@ -748,7 +765,7 @@ td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;
     <div class="card">
       <span class="tag brick">研究エビデンス ／ L4</span>
       <h3>直線型の数のすごろく</h3>
-      <p>Siegler らの研究で、1〜10の数字が横一列に並んだボードゲームを<strong>15分×4回</strong>遊ぶだけで、数直線推定・大小比較・計数・数字認識が改善し、効果が約9週間持続することが示されています。重要なのは形で、<strong>円形の盤では効果が出ず、直線型でのみ効果が出た</strong>点。市販のすごろくを選ぶときの基準になります。</p>
+      <p>Siegler らの研究で、1〜10の数字が横一列に並んだボードゲームを<strong>15分×4回</strong>遊ぶだけで、数直線推定・大小比較・計数・数字認識が改善し、効果が約9週間持続することが示されています。重要なのは形で、<strong>円形の盤では効果が出ず、直線型でのみ効果が出た</strong>点。市販のすごろくを選ぶときの基準になります。<a class="kit" href="https://tyoshida0413-ai.github.io/number-sense-guide/games.html">印刷キット →</a></p>
     </div>
 
   </div>
@@ -769,7 +786,7 @@ td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;
       <div class="ph">STEP 0</div>
       <div>
         <h4>量そのものに慣れる（L4）</h4>
-        <p>ドットカードを1〜2秒だけ見せて「いくつ？」。1〜3個から始め、4〜5個へ。同時に、直線型のすごろくを毎回1ゲーム。数字は読ませても書かせません。</p>
+        <p>ドットカードを1〜2秒だけ見せて「いくつ？」。1〜3個から始め、4〜5個へ。同時に、直線型のすごろくを毎回1ゲーム。数字は読ませても書かせません。<a class="kit" href="https://tyoshida0413-ai.github.io/number-sense-guide/games.html">印刷キット →</a></p>
         <p class="pass">合格基準：3個・4個を数えずに即答できる。</p>
       </div>
     </div>
