@@ -11,3 +11,22 @@
 公開ページ: https://tyoshida0413-ai.github.io/number-sense-guide/
 
 > この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。
+
+## 更新の手順
+
+原本（編集するのはこちら）:
+
+```
+second_brain/000.Inbox/Code-desktop/数字の認識について（小学低学年）/10といくつの壁.html
+```
+
+原本を編集したあと、このリポジトリで次を実行すると `index.html` が再生成され、
+変更があれば自動で commit / push される。
+
+```bash
+./sync.sh "何を更新したか"
+```
+
+- 原本は Artifact 用の断片HTML（`<!doctype>` や `<head>` を持たない）。`sync.sh` が外枠を付けて単体HTMLに変換している
+- 原本の `<div class="wrap">` を目印に head を閉じているので、この行を消す構造変更をした場合は `sync.sh` の awk 条件も直す（消えていればエラーで止まる）
+- Pages への反映は push から1〜2分
