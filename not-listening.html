@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="注意しても聞こえていないように反応せず、人が多い場面でとくに目立つ子について、聞こえ・注意・処理・情動の経路を切り分け、10パターンの仮定ごとに環境調整と関わり方を選ぶための支援者向け資料。">
+<title>聞こえていないように見えるとき</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+/* 明るい単一テーマ（ダークモードには追従しない） */
+:root{
+  color-scheme:light;
+  --ground:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f0ede6;
+  --ink:#1b2230;
+  --ink-2:#42506a;
+  --ink-3:#6f7c90;
+  --line:#ddd9cf;
+  --line-soft:#ebe6db;
+  --indigo:#2a4d78;
+  --indigo-soft:#e7edf6;
+  --brick:#b0413a;
+  --brick-soft:#f8e8e4;
+  --ochre:#9a7016;
+  --ochre-soft:#f8f0da;
+  --green:#2f6b52;
+  --green-soft:#e6f1ea;
+  --shadow:0 1px 2px rgba(27,34,48,.04), 0 10px 26px -18px rgba(27,34,48,.20);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0}
+a{color:var(--indigo)}
+a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* hero */
+.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,54px);letter-spacing:.02em}
+.hero .lede{margin-top:24px;max-width:62ch;color:var(--ink-2);font-size:17px}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+
+/* sections */
+section{padding-top:64px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
+.sec-head h2{font-size:clamp(23px,3.2vw,30px)}
+.sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
+.body-col{max-width:66ch;display:flex;flex-direction:column;gap:18px;color:var(--ink-2)}
+
+/* how to read + toc */
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto h2{font-size:20px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
+.flow .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--brick)}
+.flow b{font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 24px;border-top:1px solid var(--line-soft);padding-top:20px}
+.toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
+.toc a:hover{color:var(--brick)}
+.toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.tag{align-self:flex-start;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;background:var(--indigo-soft);color:var(--indigo)}
+.tag.brick{background:var(--brick-soft);color:var(--brick)}
+.tag.ochre{background:var(--ochre-soft);color:var(--ochre)}
+.verdict{border-left:3px solid var(--brick)}
+.verdict .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);letter-spacing:.1em}
+.verdict h3{font-size:19px;line-height:1.5}
+
+/* layer stack */
+.stack{display:flex;flex-direction:column;gap:6px;margin:8px 0 28px}
+.layer{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:16px 18px}
+.layer .lv{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--surface);background:var(--indigo);border-radius:2px;text-align:center;padding:3px 0}
+.layer h4{font-size:16px;margin-bottom:4px}
+.layer p{font-size:14px;color:var(--ink-2)}
+.layer .fail{font-size:13.5px;color:var(--brick);margin-top:6px;padding-left:12px;border-left:2px solid var(--brick-soft)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-top:8px}
+.gloss div{background:var(--surface);padding:16px 18px}
+.gloss dt{font-weight:700;font-size:14.5px;margin-bottom:3px}
+.gloss dd{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:8px 0 4px;border:1px solid var(--line-soft);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--surface-2);font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--brick);white-space:nowrap}
+td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick-soft)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .idx{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600;color:var(--line);line-height:1.1;font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin-bottom:10px}
+.step .row{display:grid;grid-template-columns:82px 1fr;gap:14px;font-size:14.5px;margin-top:8px;align-items:start}
+.step .k{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.step .v{color:var(--ink-2)}
+.step .v em{font-style:normal;color:var(--brick);font-weight:500}
+
+/* callouts */
+.callout{background:var(--indigo-soft);border-radius:4px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.callout h4{font-size:16px;color:var(--ink)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+.callout.warn{background:var(--ochre-soft)}
+
+/* hypotheses */
+.hyps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.hyp{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:24px}
+.hyp > .top{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:baseline;padding:20px 24px 16px;border-bottom:1px solid var(--line-soft)}
+.hyp .hid{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--surface);background:var(--brick);border-radius:2px;text-align:center;padding:3px 0}
+.hyp h3{font-size:17.5px;line-height:1.5}
+.hyp .inner{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.hyp .blk{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start}
+.hyp .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.hyp .lbl.sci{color:var(--indigo)}
+.hyp .txt{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.hyp .sci-box{background:var(--indigo-soft);border-radius:3px;padding:14px 16px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.hyp .sci-box .ref{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px}
+.hyp ol.acts{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.hyp ol.acts b{color:var(--ink)}
+.hyp .hit{color:var(--green)}
+.hyp .miss{color:var(--brick)}
+.hyp .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+.hyp a{color:var(--brick)}
+
+/* don't list */
+.dont ul{margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dont li{list-style:none;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.dont .x{color:var(--brick);font-family:"IBM Plex Mono",monospace;font-size:15px;line-height:1.7}
+.dont b{display:block;font-weight:700;font-size:15px;color:var(--ink)}
+.dont span.d{font-size:14px;color:var(--ink-2)}
+
+/* program */
+.phase{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.phase .ph{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--indigo);font-weight:600;padding-top:3px}
+.phase h4{font-size:16.5px;margin-bottom:6px}
+.phase p{font-size:14.5px;color:var(--ink-2)}
+.pass{margin-top:10px;font-size:13.5px;color:var(--green);border-left:2px solid var(--green);padding-left:12px}
+
+/* sources */
+.src{font-size:13.5px;color:var(--ink-2);line-height:1.9}
+.src ol{padding-left:22px;margin:0;display:flex;flex-direction:column;gap:10px}
+.src li{scroll-margin-top:24px}
+.src a{word-break:break-all}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+@media print{
+  body{background:#fff}
+  .card,.layer,.tablewrap,.hyp,.howto{box-shadow:none}
+  section,.hyp{break-inside:avoid}
+}
+@media (max-width:620px){
+  .step{grid-template-columns:44px 1fr;gap:14px}
+  .step .idx{font-size:20px}
+  .step .row,.hyp .blk{grid-template-columns:1fr;gap:3px}
+  .phase{grid-template-columns:1fr;gap:6px}
+  .layer{grid-template-columns:36px 1fr;gap:12px}
+  .hyp > .top{grid-template-columns:48px 1fr;gap:12px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow"><a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/" style="color:var(--brick);text-decoration:none">← 児童の懸案事項ハブ</a> ／ 言語・コミュニケーション ／ 指示・注意が通りにくい ／ 国内外調査まとめ</div>
+  <h1>聞こえていないように見えるとき</h1>
+  <p class="lede">
+    名前を呼んでも、注意をしても、聞こえていないかのように反応しない——それも毎回ではなく、人が多く騒がしい場面でとくに目立つ。
+    悪意で無視しているようには見えない。このときまず必要なのは、「聞く気がない」という説明をいったん外し、
+    <strong>声が届いてから体が動きだすまでの経路</strong>の、どこで止まっているかを切り分けることです。
+    この資料は、その切り分け方と、想定される10通りの原因ごとの具体的な対処、そして専門機関に相談すべき局面を整理したものです。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-29</span>
+    <span>対象 就学児（放課後等デイを想定）</span>
+    <span>読了 約20分</span>
+  </div>
+</header>
+
+<!-- ===== 使い方 ===== -->
+<div class="howto">
+  <h2>この資料の歩き方</h2>
+  <div class="flow">
+    <div class="f">
+      <span class="fn">STEP 1</span>
+      <b>切り分ける</b>
+      <span>§02 の観察で、静かな場面と騒がしい場面をそろえて比べ、6つの経路のどこで止まっているかを見ます。ここを飛ばすと、対応が当てずっぽうになります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 2</span>
+      <b>仮定を選ぶ</b>
+      <span>結果に対応する仮定を §03 の10パターンから選びます。各パターンに、想定される原因・サイン・学術的な裏づけ・具体的な対処が並んでいます。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 3</span>
+      <b>2週間試し、記録する</b>
+      <span>環境と関わり方を変えて反応を見ます。「当たりの印」が出れば継続、出なければ次の候補へ。この記録が、専門機関に相談するときの最良の材料になります。</span>
+    </div>
+  </div>
+  <div class="callout warn" style="margin:4px 0 0">
+    <h4>先に一つだけ、順番の話</h4>
+    <p>「毎回ではない」「時期によって波がある」という様子がある場合、あるいは家庭でもテレビの音量を上げたがる・聞き返しが多いなら、<strong>他のどれより先に、耳鼻科で聞こえ（とくに滲出性中耳炎による変動性の難聴）を確認</strong>してください。ここが未確認のまま関わり方を変えても、評価ができません（<a href="#h07">H07</a>）。</p>
+  </div>
+  <nav class="toc">
+    <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
+    <a href="#s01"><span class="n">01</span><span>「声が届いて動く」までの6経路</span></a>
+    <a href="#s02"><span class="n">02</span><span>場面をそろえた観察チェック</span></a>
+    <a href="#s03"><span class="n">03</span><span>想定される原因と対処 10パターン</span></a>
+    <a href="#s04"><span class="n">04</span><span>環境調整・関わり方カタログ</span></a>
+    <a href="#s05"><span class="n">05</span><span>2〜6週間の進め方</span></a>
+    <a href="#s06"><span class="n">06</span><span>やってしまいがちな6つ</span></a>
+    <a href="#s07"><span class="n">07</span><span>専門機関に相談するとき</span></a>
+    <a href="#s08"><span class="n">08</span><span>記録テンプレート</span></a>
+    <a href="#s09"><span class="n">出典</span><span>参照した情報</span></a>
+  </nav>
+</div>
+
+<!-- ===== 結論 ===== -->
+<section id="s-verdict">
+  <div class="sec-head"><span class="sec-num">結論</span><h2>先に、3つ</h2></div>
+  <p class="sec-sub">調査全体から言えることを最初に置きます。詳細は以降のセクションで裏づけます。</p>
+  <div class="grid g3">
+    <div class="card verdict">
+      <span class="n">01</span>
+      <h3>「人が多いときに顕著」は、原因を狭める大きな手がかり</h3>
+      <p>騒がしい場面で崩れるという事実は、いくつもの原因に共通します。<strong>雑音で声が物理的に埋もれる／標的の声に注意を向けられない／情報過多で処理が飽和する／聞き取りの努力が尽きて疲れる。</strong>いずれも「静かな1対1なら通る」という形を取ります。まずこの落差の有無を確認することが、すべての出発点です。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">02</span>
+      <h3>「聞こえた」と「動いた」の間には6つの段階がある</h3>
+      <p>音が届く／自分宛だと気づく／今の活動から注意を外す／ことばを保持する／意味に変換する／体を動かして着手する。<strong>どの段階で止まっているかで、打ち手はまったく変わります。</strong>「声を大きくする」が効くのは最初の1段階だけで、他の段階の問題には無力です。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">03</span>
+      <h3>叱る前に、環境と伝え方を変える</h3>
+      <p>繰り返しの注意や叱責は、多くの場合この問題を悪化させます。<strong>「1回目は聞かなくてよい」と学習させ</strong>（H08）、緊張で反応がさらに鈍る（H09・H10）。SN比を上げ、注意を確保してから1つずつ伝える——この基本の徹底だけで大きく変わる子は少なくありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 6経路 ===== -->
+<section id="s01">
+  <div class="sec-head"><span class="sec-num">01</span><h2>「声が届いて動く」までの6経路 — どこで止まっているのか</h2></div>
+  <p class="sec-sub">「指示に反応しない」は単一の現象ではありません。下の経路のどこかが滞ると、結果はすべて「聞こえていないように見える」という同じ形になります。人が多い場面は、ほぼすべての段階の負荷を同時に上げます。</p>
+
+  <div class="stack">
+    <div class="layer">
+      <div class="lv">P1</div>
+      <div>
+        <h4>届く — 音声が十分な音量とSN比で耳に入る</h4>
+        <p>話し手との距離、周囲の騒がしさ（SN比＝目的の声と雑音の差）、部屋の反響、そして本人の聞こえ。ここが崩れると、以降の段階がどれだけ健全でも結果は出ません。</p>
+        <p class="fail">人が多いときの現れ方：ざわめきで声が埋もれる／遠くからの声だけ届かない／片方の耳を向ける。<a href="#h01" style="color:var(--brick)">H01</a> <a href="#h05" style="color:var(--brick)">H05</a> <a href="#h07" style="color:var(--brick)">H07</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P2</div>
+      <div>
+        <h4>自分宛だと気づく — 定位と呼名反応</h4>
+        <p>飛び交う音の中から「今の声は自分に向けられた」と拾い上げる。名前や「みんな」という語が自分を指すと結びつける。一斉指示は、この段階の負荷がとくに高い形式です。</p>
+        <p class="fail">人が多いときの現れ方：全体指示だと動かないが、名前を呼べば動く／複数の声が重なると誰の指示か分からなくなる。<a href="#h02" style="color:var(--brick)">H02</a> <a href="#h03" style="color:var(--brick)">H03</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P3</div>
+      <div>
+        <h4>切り替える — 今の活動から注意を外し、声のほうへ向ける</h4>
+        <p>何かに取り組んでいる注意を、いったん解いて別へ移す。これは実行機能を使う作業で、深く没頭しているほどコストが高くなります。</p>
+        <p class="fail">人が多いときの現れ方：好きな活動・遊びに入り込んでいるときだけ届かない／切り替えの合図で固まる。<a href="#h04" style="color:var(--brick)">H04</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P4</div>
+      <div>
+        <h4>保持する — ことばを一時的に覚えておく</h4>
+        <p>聞いた指示を、実行し終えるまで頭の中に保つ（聴覚的ワーキングメモリ）。2つ以上の手順、長い文になると容量を超えます。</p>
+        <p class="fail">人が多いときの現れ方：前半だけ実行して後半を忘れる／言われた直後に「なんだっけ」／口頭だと通らないが紙に書くと通る。<a href="#h06" style="color:var(--brick)">H06</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P5</div>
+      <div>
+        <h4>変換する — 意味を取り、やることに落とす</h4>
+        <p>言語理解と処理速度。聞き取れて覚えていても、意味を組み立てて行動に翻訳するのに時間がかかると、外からは「無反応」に見えます。</p>
+        <p class="fail">人が多いときの現れ方：数秒〜十数秒おいてから動きだす／急かされると止まる／「え？」と聞き返す。<a href="#h06" style="color:var(--brick)">H06</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P6</div>
+      <div>
+        <h4>着手する — 体を動かしはじめる</h4>
+        <p>やることは分かっていても、開始そのものに実行機能・動機・情動が関わります。不安や過負荷は、この最終段階を止めます。</p>
+        <p class="fail">人が多いときの現れ方：叱責・注目の場面で固まる／ざわざわの中でシャットダウンする／一日の後半に増える。<a href="#h08" style="color:var(--brick)">H08</a> <a href="#h09" style="color:var(--brick)">H09</a> <a href="#h10" style="color:var(--brick)">H10</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:18px;margin-bottom:10px">この資料で使う言葉</h3>
+  <dl class="gloss">
+    <div><dt>SN比（信号対雑音比）</dt><dd>目的の音声が、周囲の雑音より何デシベル大きいか。子どもは大人より大きなSN比を必要とする。</dd></div>
+    <div><dt>聴覚的 figure-ground</dt><dd>ざわめきの中から必要な音・声だけを前景として抜き出す働き。</dd></div>
+    <div><dt>選択的注意</dt><dd>関係ある音に注意を向け、関係ない音を抑える力。定型発達でも十代まで大人並みにならない。</dd></div>
+    <div><dt>呼名反応</dt><dd>名前を呼ばれて振り向く・反応すること。社会的な音への定位の一種。</dd></div>
+    <div><dt>モノトロピズム</dt><dd>注意が一つの対象に深く集まりやすい認知の傾向。自閉の中核仮説の一つ。離脱にコストがかかる。</dd></div>
+    <div><dt>聴覚的ワーキングメモリ</dt><dd>聞いた情報を、使い終わるまで一時的に保持する力。</dd></div>
+    <div><dt>処理速度</dt><dd>入ってきた情報を理解し、反応を組み立てて実行するまでの速さ。</dd></div>
+    <div><dt>APD / LiD</dt><dd>聴覚情報処理障害／聞き取り困難症。聴力検査は正常なのに、雑音下や複数話者で聞き取れない状態。</dd></div>
+    <div><dt>滲出性中耳炎</dt><dd>鼓膜の奥に液がたまり、軽度〜中等度の伝音難聴を起こす。痛みがなく気づかれにくい。聞こえが変動する。</dd></div>
+    <div><dt>シャットダウン</dt><dd>感覚や情報の過負荷で、脳が入力を受けつけなくなり反応が落ちる状態。</dd></div>
+    <div><dt>事前予告（precorrection）</dt><dd>つまずきやすい場面の直前に、期待される行動を先に伝えておく方法。</dd></div>
+    <div><dt>アルファ指示</dt><dd>簡潔・肯定形・1つの動作だけを求める指示。遂行率が高い。</dd></div>
+  </dl>
+</section>
+
+<!-- ===== 02 チェック ===== -->
+<section id="s02">
+  <div class="sec-head"><span class="sec-num">02</span><h2>場面をそろえた観察チェック</h2></div>
+  <p class="sec-sub">テストではなく、日常のなかでの観察です。ポイントは、<strong>同じ子・同じ指示を、条件だけ変えて比べる</strong>こと。1回で決めず、数日ぶんメモを取ります。できなかった場面をその場で叱らず、記録だけします（叱ると次の場面の反応が変わるため）。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>静かな1対1 と 集団のなか — 同じ指示で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">同じ短い指示（例：「コップを かごに入れて」）を、(a) 静かな部屋で正面から1対1、(b) 活動中のざわついた部屋で、それぞれ出して反応を比べる。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) は通り、(b) だと通らない</em>なら、聞こえ・注意・処理・情動のいずれか、つまり<strong>「場面の負荷」が本体</strong>。(a) でも通りにくいなら、難聴・言語理解・ワーキングメモリ・関係性の線を先に見ます。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P1〜P6のどこに寄っているかの、いちばん大きな仕分け。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>呼びかけ方を3通り試す</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) 離れた場所から名前だけ、(b) そばまで行って名前＋用件、(c) 視野に入って肩や机に軽く触れ、目線の高さで短く一言。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) では無反応でも (b)(c) で通る</em>なら、P2（自分宛だと気づく）か P1（距離・SN比）。<em>(c) でも通らない</em>なら、P3以降か、聞こえそのもの。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P1・P2。<a class="goto" href="#h02">H02</a> の対処がそのまま日常の関わりの基本形になります。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>家庭・園・学校での様子を聞き取る</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">保護者へ：テレビ・動画の音量を上げたがるか、聞き返しが多いか、片耳を向けるか、静かな家でも呼びかけに気づかないことがあるか、鼻づまり・中耳炎・風邪をひきやすいか、いびき。担任へ：一斉指示の通り方、座席、聞こえの検査結果。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>静かな環境でも呼びかけに気づかない・聞き返し・音量を上げる・中耳炎の既往</em>があれば、<strong>耳鼻科での聞こえの確認を最優先</strong>にします。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P1（難聴）。ここは支援の工夫では代替できません。<a class="goto" href="#h07">H07</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>反応の「質」を見分ける</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">指示を出したあと、10〜15秒は口を出さずに待ち、何が起きるかを見る。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>まったく無反応（視線も動かない）／数秒〜十数秒おいて動きだす／「え？」と聞き返す／一部だけ実行する。</em>「遅れて動く」「聞き返す」は、聞こえていない証拠ではなく、<strong>処理に時間がかかっているサイン</strong>のことがあります（P4・P5）。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P4・P5。<a class="goto" href="#h06">H06</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>いつ起きるか — タイミングの偏り</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">通らなかった場面を、時刻・直前の活動・そのとき本人がしていたこと・周囲の人数とともに記録する。1〜2週間ぶん。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>好きな活動に没頭しているときだけ</em>→ P3（<a class="goto" href="#h04">H04</a>）。<em>切り替え・叱責・注目の場面に偏る</em>→ P6（<a class="goto" href="#h09">H09</a>）。<em>一日の後半・集団活動の直後に増える</em>→ 疲労（<a class="goto" href="#h10">H10</a>）。<em>特定の子が近くにいる・特定の音があるとき</em>→ 感覚（<a class="goto" href="#h09">H09</a>）。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P3・P6。パターンが見えると、対処が一気に絞れます。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">06</div>
+      <div>
+        <h3>情報量を減らすと通るか</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) 指示を「1つの動作」だけに切る。(b) 言いながら実物や絵カードを指す・見せる。(c) 「〜しないで」ではなく「〜して」の肯定形に言い換える。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>1指示1動作にすると通る</em>→ P4（<a class="goto" href="#h06">H06</a>）。<em>見せると通る</em>→ P1・P4・P5のいずれか。<em>肯定形にすると通る</em>→ P5、または指示の出し方（<a class="goto" href="#h08">H08</a>）。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P4・P5、および伝え方の要因。ここで通るなら、障害の問題ではなく設計の問題です。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:18px;margin:36px 0 12px">結果から、どの仮定へ進むか</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>目立った点</th><th>読み取れること</th><th>進む先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">静かなら通る／騒がしいと崩れる</td><td>場面の負荷が本体。聞こえ・注意・処理・情動のどれか。</td><td><a class="goto" href="#h01">H01</a> ／ <a class="goto" href="#h03">H03</a> ／ <a class="goto" href="#h05">H05</a> ／ <a class="goto" href="#h09">H09</a></td></tr>
+        <tr><td class="num">名前を呼ぶ・近づくと通る</td><td>自分宛だと気づく段階の負荷。一斉指示が苦手。</td><td><a class="goto" href="#h02">H02</a> ／ <a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">家でも聞き返し・音量を上げる・中耳炎歴</td><td>聞こえそのものの可能性。支援の工夫では代替できない。</td><td><a class="goto" href="#h07">H07</a>（最優先）</td></tr>
+        <tr><td class="num">没頭しているときだけ届かない</td><td>注意の切り替えのコスト。悪意ではなく、離脱の困難。</td><td><a class="goto" href="#h04">H04</a></td></tr>
+        <tr><td class="num">遅れて動く／聞き返す／一部だけ実行</td><td>保持・変換に時間がかかっている。無反応とは別物。</td><td><a class="goto" href="#h06">H06</a></td></tr>
+        <tr><td class="num">1指示1動作・視覚化・肯定形にすると通る</td><td>伝え方と情報量の設計の問題。</td><td><a class="goto" href="#h06">H06</a> ／ <a class="goto" href="#h08">H08</a></td></tr>
+        <tr><td class="num">叱責・注目の場面で固まる／こわばる</td><td>緊張・不安による停止。フリーズ反応の可能性。</td><td><a class="goto" href="#h09">H09</a></td></tr>
+        <tr><td class="num">一日の後半・集団活動の直後に増える</td><td>聞き取りの努力が尽きている。疲労。</td><td><a class="goto" href="#h10">H10</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 03 10パターン ===== -->
+<section id="s03">
+  <div class="sec-head"><span class="sec-num">03</span><h2>想定される原因と対処 — 10パターン</h2></div>
+  <p class="sec-sub">
+    「聞こえていないように見える」という同じ現れ方の裏には、少なくとも10通りの別々の状態があります。それぞれについて
+    <strong>①想定される原因／②こう見える（サイン）／③学術的な裏づけ／④具体的な対応策／⑤当たりの印と、外れたときの次の候補</strong>
+    をまとめました。上から順に試すのではなく、§02 の結果に対応するものから入ってください。1つの仮定は2週間を目安に試し、目印が出なければ次へ移ります。複数が重なっていることも珍しくありません。
+  </p>
+
+  <div class="hyps">
+
+    <!-- H01 -->
+    <div class="hyp" id="h01">
+      <div class="top"><div class="hid">H01</div><h3>雑音で、声そのものが埋もれている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">子どもは、大人よりも大きなSN比（目的の声が雑音より何dB大きいか）がないと言葉を正確に聞き取れません。人が増えれば話し声・足音・椅子の音が重なり、反響の多い部屋ではそれが尾を引きます。<strong>「聞く気」の問題ではなく、届いている音声情報そのものが不足している</strong>状態です。距離が離れているだけでも同じことが起きます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">ざわつくと通らないが、静かだと通る。遠くからの声だけ届かない。話し手の口元が見えると分かりやすそうにする。反響する広い部屋（体育館・多目的室）でとくに弱い。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          教室音響の研究では、子どもが労せず聞き取るには<strong>SN比 +15 dB 以上、残響時間 0.4〜0.6 秒程度</strong>が推奨されます（ANSI/ASA S12.60 ほか）。しかし実際の教室のSN比は −6〜+13 dB にとどまることが多く、6〜7歳児は雑音・反響の影響を年長児より強く受けます。学習障害・注意の困難・APD・自閉のある子は、この影響をさらに大きく受ける集団として明示されています。雑音下では聞き取りに余分な認知的努力（listening effort）がかかり、それ自体が疲労と成績低下を生みます。
+          <span class="ref">→ 出典 [1] 教室音響ガイドライン、[2] 雑音下の聞き取り努力</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>距離を詰める。</b>離れて声を張るより、そばまで行って普通の声で。話し手と子どもの間に人や物が少ないほうが通ります。</li>
+            <li><b>口元が見える位置で話す。</b>正面から、顔の高さで。視覚情報が聞き取りを補います。</li>
+            <li><b>指示を出す前に、その場の音を一段下げる。</b>音楽を止める、全体に一拍静かにさせる合図を決める（§04）。指示と雑音を同時に流さない。</li>
+            <li><b>部屋の反響を減らす。</b>ラグ、カーテン、フェルト、本棚、掲示物。硬い面が多いほど声はぼやけます。少人数の「島」に分け、活動ゾーンを離す。</li>
+            <li><b>座席・立ち位置を固定する。</b>スピーカーや騒音源（出入口・空調・水道）から遠く、支援者に近い定位置を決める。</li>
+            <li><b>重要な指示は、静かな場所へ移動してから。</b>片づけ・帰りの準備など毎日のものは、ざわつく前に伝えておく（事前予告、§04）。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">距離・静けさ・正面を整えるだけで、集団場面でも一度で通るようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h05">H05（APD/LiD）</a> または <a href="#h07">H07（難聴）</a> へ。音を整えても届かないなら、聞き取りの機構そのものを疑います。</div></div>
+      </div>
+    </div>
+
+    <!-- H02 -->
+    <div class="hyp" id="h02">
+      <div class="top"><div class="hid">H02</div><h3>「自分に向けられた声」だと気づいていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">飛び交う音の中から「今のは自分宛だ」と拾い上げるには、社会的な音への定位が要ります。自閉スペクトラムの特性がある子では、呼名への反応が弱いことが早期からのサインとして知られ、雑音下で名前や標的の声を抜き出すのがとくに苦手です。また「みんな、片づけ」のような<strong>一斉指示は、自分が含まれると気づきにくい形式</strong>で、個別に名前で呼べば動くことがよくあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">全体指示では動かないが、名前を呼べば動く。呼びかけに一拍遅れて「呼ばれた？」という顔をする。複数の声が重なると、誰の指示か分からなくなる。テレビ・遊びに集中しているときの呼名反応が弱い（家庭でも）。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          自閉スペクトラムの子は<strong>聴覚的な空間的注意</strong>——特定の方向・話者の音声に注意を向け続けること——に弱さがあり、これが「騒がしい場面で大事な音に注意を向けにくい」ことの一因と説明されています。呼名反応の乏しさは、12か月時点でも自閉の早期兆候の一つとされます。ただし呼名反応の弱さ自体は、難聴・ADHD・言語の遅れ・その日の集中でも起こり、単独では診断になりません。
+          <span class="ref">→ 出典 [7] 自閉と聴覚的空間注意、[16] 一斉指示と個別指示</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>指示の前に、名前で個別に注意を確保する。</b><span class="say">「（名前）。……（一拍、視線が来るのを待つ）……コップをかごに」</span>。名前と用件を続けて言わない。</li>
+            <li><b>視野に入り、目の高さで。</b>後ろや横からではなく、正面へ回り込む。肩や机に軽く触れる合図を、事前に本人と決めておく（触覚が苦手な子には別の合図）。</li>
+            <li><b>一斉指示のあと、対象の子に「あなたも」と橋渡しする。</b>全体に言った直後、名前を添えて同じことをもう一度短く。</li>
+            <li><b>「聞いたよ」の返事をルール化する。</b>指示が届いたら、うなずく・「はい」・復唱のいずれかを返す約束にする。届いたかどうかが見えるようになります。</li>
+            <li><b>目を合わせて言わせることには固執しない。</b>視線が合わなくても聞いている子はいます（<a href="#h04">H04</a>・[15]）。触れる・名前・正面で十分です。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">名前＋一拍＋短い用件、の形にすると、集団の中でも安定して通る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03（選択的注意）</a> または <a href="#h04">H04（切り替え）</a> へ。気づいてはいるが、注意を移せていない可能性。</div></div>
+      </div>
+    </div>
+
+    <!-- H03 -->
+    <div class="hyp" id="h03">
+      <div class="top"><div class="hid">H03</div><h3>選択的注意が、場面の刺激量に負けている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">関係ある音に注意を向け、関係ない音を抑える力（選択的注意・妨害刺激の抑制）は、<strong>定型発達でも十代まで大人並みにはなりません</strong>。人が多く動きの多い場面では、抑えるべき刺激が増え、標的の声に注意を保てなくなります。ADHD などで注意の調整に弱さがあると、この閾値がさらに低くなります。悪意でも無関心でもなく、その場の情報量に対して注意の容量が足りていない状態です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">静かなら聞ける。人・音・動きが増えると、視線があちこちに動き、指示の途中で他へ注意が逸れる。始めても、周りの出来事ですぐ中断する。数以外の場面（読み聞かせ、着替え）でも似た様子。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          発達研究では、無関係な音を自動的に処理してしまうのを抑える「大人並み」の選択的注意は、学童期を通じて徐々に発達し、ティーンエイジまで完成しないとされています。一方で、<strong>外的な手がかりで注意の向け先を強く示すと、より早い年齢でも大人並みの制御が可能</strong>になることも示されています。つまり「手がかりの設計」で補える余地が大きい領域です。ADHD 不注意優勢型では、DSM-5 に「直接話しかけられても聞いていないように見える」が症状として挙げられています。
+          <span class="ref">→ 出典 [6] 選択的注意の発達、[9] ADHD 不注意と認知的離隔</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>指示の瞬間だけ、刺激を絞る。</b>全体を一拍止める合図、席に着かせる、手元の物をいったん置かせる。「聞くモード」への切り替えを外から作る。</li>
+            <li><b>注意の向け先を、はっきり指し示す。</b><span class="say">「先生の顔を見て」</span>→（視線）→用件。言葉だけでなく、指さし・カード提示・ジェスチャーを重ねる。</li>
+            <li><b>短く、区切って。</b>1文＝1動作。長い説明は、やりながら小分けに。</li>
+            <li><b>刺激の少ない席・時間帯を選ぶ。</b>出入口・窓・にぎやかな子から離す。聞き取りが要る活動は、人が少なく本人が元気な時間帯（多くは前半）に置く。</li>
+            <li><b>「できた」で細かく区切って戻す。</b>逸れても叱らず、<span class="say">「ここまでできたね。次は？」</span>と注意を連れ戻す。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">合図＋指し示し＋短い指示、の型で、にぎやかな場面でも通る回数が増える。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h06">H06（保持・処理速度）</a> または <a href="#h09">H09（過負荷）</a> へ。注意は向くのに続かない/固まるなら、別の要因です。</div></div>
+      </div>
+    </div>
+
+    <!-- H04 -->
+    <div class="hyp" id="h04">
+      <div class="top"><div class="hid">H04</div><h3>没頭している活動から、注意を外せない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">一つの対象に注意が深く集まる傾向（モノトロピズム）がある子では、活動に入り込んでいるあいだ、外からの声は「届いていない」というより「今は割り込めない」状態にあります。注意のトンネルから出るには複数の認知資源を切り替える必要があり、<strong>それ自体がエネルギーを要し、本人の意思で自由にできるものではありません</strong>。大切だと感じている活動ほど、割り込みは不快・苦痛として体験されます。人が多い＝刺激が多い環境で、自分の活動に強く閉じこもることで対処している場合もあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">好きな活動（工作、図鑑、ブロック、動画）のときだけ、まったく届かない。区切りのいいところまで来ると、急にこちらに気づく。中断されると強く怒る・混乱する。手が空いているときは普通に反応する。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          モノトロピズムは、自閉を「注意の配分の仕方」から理解する枠組みで、注意がひとたび対象に捕らわれると、完了・疲弊・十分に強い割り込みのいずれかまで解けにくいとされます。近年の横断研究では、この過集中と離脱の困難が自閉・ADHD の両方にまたがって見られることが報告されています。<strong>予告なしの中断は不随意的な苦痛を生む</strong>ため、切り替えを「指示への不服従」として扱うのは誤りです。
+          <span class="ref">→ 出典 [8] モノトロピズムと注意の切り替え</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>予告を入れる。</b><span class="say">「あと5分でおしまい」</span>→<span class="say">「あと1分」</span>→<span class="say">「はい、終わり」</span>。タイマーや砂時計を見せる。突然の中断をなくす。</li>
+            <li><b>区切りを一緒に決める。</b><span class="say">「このページまで？ それとも次まで?」</span>。終点が本人の中にあると、抜けやすくなります。</li>
+            <li><b>戻れる保証を与える。</b><span class="say">「これは置いておくから、あとで続きできるよ」</span>。中断＝喪失にしない。</li>
+            <li><b>移行そのものを短い儀式にする。</b>片づけの歌、決まった順路、次の活動の写真を見せる。「終わり方」を毎回同じにする。</li>
+            <li><b>本当に急ぐとき以外は、キリのいい所を待つ。</b>30秒待てば自分から動ける子に、0秒で従わせる必要はありません。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">予告があれば、怒らずに活動を終えて移れる。無反応が「没頭時だけ」に限られていることがはっきりする。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 没頭していない場面でも通らないなら、<a href="#h02">H02</a>〜<a href="#h03">H03</a> の注意の線、または <a href="#h09">H09</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H05 -->
+    <div class="hyp" id="h05">
+      <div class="top"><div class="hid">H05</div><h3>聴覚情報処理（APD／LiD）— 聴力は正常なのに、雑音下で聞き取れない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">耳から脳への音の伝わりは正常でも、<strong>脳が音声情報を処理する段階</strong>に困難があると、静かな場所では問題なく、雑音下・複数話者・早口・反響のある場面で急に聞き取れなくなります。「聞こえている」のに「聞き取れない」。聴覚情報処理障害（APD）／聞き取り困難症（LiD）と呼ばれ、単独のこともあれば、注意・記憶・言語の弱さと重なって現れることもあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">静かな1対1ではほぼ問題ない。ざわつくと聞き返しが急増する、または黙り込む。口頭指示は通らないが、書いた・見せたものは分かる。似た音の聞き分け（「ぱ／ば」「7時／1時」）を間違える。話が長くなると追えなくなる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          APD/LiD は聴力検査が正常でも生じ、雑音下・複数話者での聞き取りの弱さが中核です。日本の「LiD/APD 診断と支援の手引き（2024）」では、<strong>APD/LiD の症状を示す小児の約8割に、注意・ワーキングメモリ・音への順応などの発達的なばらつきが併存する</strong>と報告されています。根治的な治療はなく、支援は<strong>環境調整＋補聴機器（リモートマイク等）＋心理的支援</strong>を個別に組み合わせる形が基本です。まず耳鼻科で難聴を除外したうえで、専門の外来での評価が勧められます。
+          <span class="ref">→ 出典 [3] APD の概説、[4] LiD/APD 診断と支援の手引き（2024, AMED）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>まず H01 の環境調整をすべて行う。</b>SN比・距離・正面・反響対策・視覚支援。APD/LiD の子には、これが最も効きます。</li>
+            <li><b>口頭指示に、必ず視覚を添える。</b>絵カード、ホワイトボードの手順、指さし。「聞くだけ」で完結させない。</li>
+            <li><b>短く、ゆっくり、区切って。</b>早口をやめ、文と文の間を空ける。1文1動作。</li>
+            <li><b>聞き返しを歓迎する。</b><span class="say">「もう一回言って」</span>を言える雰囲気にする。言い直すときは、速く繰り返すのではなく、言い方を変えて・ゆっくり。</li>
+            <li><b>リモートマイク（送信機＋受信機）の適合を専門機関で相談する。</b>話し手の声を直接子どもの耳へ届ける機器で、APD の子で効果が確認されています（§04・[5]）。</li>
+            <li><b>耳鼻科／APD・LiD 対応の外来につなぐ。</b>この仮定が濃厚なら、支援の工夫と並行して評価を進めます。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">環境調整＋視覚支援で、集団場面の通り方が明確に改善する。静かな場所との落差が縮まる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h06">H06（ワーキングメモリ・処理速度）</a> へ。聞き取れてはいるが、その先で滞っている可能性。</div></div>
+      </div>
+    </div>
+
+    <!-- H06 -->
+    <div class="hyp" id="h06">
+      <div class="top"><div class="hid">H06</div><h3>聞こえてはいるが、保持・処理が追いつかず「無反応」に見える</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">言語のみの指示は、聴覚的ワーキングメモリの中にしか存在せず、<strong>数秒で消えます</strong>。手順が2つ以上、文が長い、直前に別の情報が入った——そうした負荷で容量を超えると、実行に移せません。また、聞き取れて覚えていても、意味を組み立てて行動に翻訳する速さ（処理速度）がゆっくりだと、外からは「固まっている」「無視している」ように見えます。実際には<strong>反応が「無い」のではなく「遅れている」</strong>のです。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">1つの指示なら通るが、2つ続けると前半だけ／後半だけになる。言われた直後に「なんだっけ」。口頭では通らないが、紙・絵にすると通る。指示のあと数秒〜十数秒の「間」があってから動きだす。急かすと止まる。「え？」と聞き返すが、待つと自力でやり出す。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          日本の療育現場では、言語のみの一斉指示は情報量が多く整理されていないため、ワーキングメモリに弱さのある子には残りにくいとされ、<strong>「1指示1動作」「視覚化して手元に残す」</strong>が定石です。処理速度の遅さは、反応の遅れを「反抗的」「気を引こうとしている」と誤解されやすいことが指摘されています。特異的言語発達の研究では、<strong>話す速度を上げると理解が落ちる</strong>ことも示されています。
+          <span class="ref">→ 出典 [16] 聴覚的ワーキングメモリと一斉指示、[10] 処理速度と早口の影響</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>1指示1動作。</b>「コップを片づけて、手を洗って、席に座る」を、1つずつ。前が終わってから次を言う。</li>
+            <li><b>手順を目に見える形にして、手元に残す。</b>絵カードを順に並べる、ホワイトボードに番号で書く、終わったら1つずつ外す/裏返す。頭の中に置かせない。</li>
+            <li><b>指示のあと、10〜15秒は黙って待つ。</b>言い直さない、急かさない、他の言葉を足さない。処理の時間を確保する。</li>
+            <li><b>ゆっくり、区切って話す。</b>文と文の間を空ける。キーワードを強調する。</li>
+            <li><b>復唱してもらう。</b><span class="say">「何するんだっけ、教えて」</span>。覚えられているかが分かり、言うことで定着もします。</li>
+            <li><b>遅れて動けたら、それを認める。</b><span class="say">「自分で思い出してえらい」</span>。「遅い」を責めない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">1指示1動作＋視覚化＋待つ、で通るようになる。<strong>これは「聞こえ・理解は保たれている」という重要な情報です。</strong></div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h05">H05（APD/LiD）</a> か、言語理解そのものの評価へ（§07）。1指示1動作でも通らないなら、より根本の理解を疑います。</div></div>
+      </div>
+    </div>
+
+    <!-- H07 -->
+    <div class="hyp" id="h07">
+      <div class="top"><div class="hid">H07</div><h3>難聴 — とくに変動する軽度〜中等度の難聴</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">滲出性中耳炎は、鼓膜の奥に液がたまって軽度〜中等度の伝音難聴を起こします。痛みも発熱もないことが多く、<strong>本人も周囲も気づかないまま数か月続き、しかも聞こえが日によって変動します</strong>。「毎回ではない」「時期によって波がある」という訴えに、非常によく合致します。軽度の感音難聴、一側性難聴でも、雑音下・集団場面で選択的に聞き取りが落ちます。難聴があると、静かな場面ではなんとか補い、負荷の高い集団場面で破綻するという形になりがちです。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">テレビ・動画の音量を上げたがる。聞き返しが多い（「え？」「なに？」）。呼びかけに、静かな家でも気づかないことがある。片方の耳を話し手に向ける。発音が不明瞭になった時期がある。鼻づまり・いびき・中耳炎の反復・アレルギー。風邪のあとに悪化する。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          滲出性中耳炎の多くは<strong>変動性または持続性の難聴を伴い、平均して約27 dB の聴力低下</strong>とされます（NICE/AAFP 2024）。臨床的には、受診のきっかけが「聞こえ」ではなく<strong>「行動」「学校での様子」「ことばの遅れ」</strong>であることが多く、伝音難聴が「不適切な行動」や「授業中の不注意」として現れると明記されています。集中力・気分・社会性・言語発達への影響、就学後の読み・行動への長期的影響も報告されています。
+          <span class="ref">→ 出典 [11] 滲出性中耳炎と難聴・行動（NICE/AAFP、レビュー）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>耳鼻咽喉科を受診する。</b>純音聴力検査とティンパノメトリ（鼓膜の動きの検査）を依頼する。1回で正常でも、変動するため、様子が続くなら時期をずらして再検査。</li>
+            <li><b>受診時に、現場の記録を渡す。</b>いつ・どんな場面で通らないか、聞き返しや音量の様子、風邪との関係。§08 のログがそのまま役立ちます。</li>
+            <li><b>結果が出るまでの間も、H01 の環境調整を行う。</b>距離・正面・静けさ・視覚支援は、難聴があってもなくても有効です。</li>
+            <li><b>学校・園と共有する。</b>座席を前方かつ支援者側に。聞こえの検査結果を関係者で共有する。</li>
+            <li><b>「聞いていない」という叱責を止める。</b>難聴が背景なら、叱責は理不尽な体験になります。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">受診で滲出性中耳炎や難聴が見つかり、治療・経過観察と環境調整で通り方が変わる。／ 検査で明確に問題なしと確認でき、他の仮定に安心して進める。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 聴力に問題がないと確認できたら、<a href="#h05">H05（APD/LiD）</a> や <a href="#h01">H01</a>〜<a href="#h03">H03</a> の切り分けへ。</div></div>
+      </div>
+    </div>
+
+    <!-- H08 -->
+    <div class="hyp" id="h08">
+      <div class="top"><div class="hid">H08</div><h3>指示の出し方と、通らない指示への「慣れ」</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">曖昧な指示（<span class="say">「ちゃんとして」</span><span class="say">「なにやってるの」</span>）、否定形（<span class="say">「走らないで」</span>）、一度に複数、余計な説明の多い指示は、子どもにとって<strong>何をすればいいかが分かりにくく、遂行率が低い</strong>ことが分かっています。さらに、出した指示にフォロー（確認・手助け・そこまで見届ける）が伴わないと、子どもは<strong>「1回目の呼びかけには反応しなくてよい」「注意は聞き流してよい」と学習</strong>します。人が多い場面ほど指示は雑になり、見届けも甘くなるため、この学習が進みやすくなります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">同じ指示を2回・3回言ってようやく動く（そしてそれが常態化している）。全体への注意・小言のときは反応しないが、名指しではっきり言うと動く。支援者によって通り方が大きく違う。叱られ慣れていて、注意されても表情が変わらない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          行動研究では、<strong>アルファ指示</strong>（簡潔・具体的・1動作・肯定形）が<strong>ベータ指示</strong>（曖昧・冗長・複数）より遵守されやすく、自閉のある子でも反応が速いことが示されています。「開始（〜して）」は「停止（〜しないで）」より従いやすい。そして<strong>「要求してフォローしなければ、子どもは指示を無視することを学ぶ」</strong>と指摘されています。学級研究では、つまずきやすい場面の直前に期待行動を伝える<strong>事前予告（precorrection）＋行動特異的な称賛</strong>が、叱責の必要を減らし、指示の通りを改善するとされています。
+          <span class="ref">→ 出典 [13] 事前予告と注意の獲得（IES 実践ガイド）、[14] アルファ指示／ベータ指示</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>アルファ指示に統一する。</b>簡潔・具体・1動作・肯定形。<span class="say">「走らないで」→「歩こう」</span>、<span class="say">「ちゃんと座って」→「おしりを椅子に」</span>。</li>
+            <li><b>指示は1回だけ。</b>そのかわり、注意を確保してから出し（<a href="#h02">H02</a>）、出したら<strong>そこまで見届ける</strong>。反応がなければ、繰り返すのではなく、近づいて・触れて・視覚で示す、と支援を一段上げる。</li>
+            <li><b>事前予告を使う。</b>ざわつく前・移行の前に、<span class="say">「このあと片づけね。合図が鳴ったら、まずブロックを箱に」</span>と先に伝えておく。</li>
+            <li><b>通ったら、すぐ具体的にほめる。</b><span class="say">「合図で手を止められたね」</span>。「できて当たり前」にしない。</li>
+            <li><b>小言・全体注意を減らす。</b>本人に向けた具体的な指示だけに絞る。注意の総量が減ると、一つひとつが届くようになります。</li>
+            <li><b>チームで出し方をそろえる。</b>支援者ごとに違うと、子どもは「この人のは聞かなくていい」を学びます。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">1回で通る割合が増える。繰り返しの注意や叱責の回数が減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 出し方を整えても通らないなら、<a href="#h01">H01</a>〜<a href="#h07">H07</a> の機構の問題へ戻る。伝え方の改善は、どの仮定でも土台として続けます。</div></div>
+      </div>
+    </div>
+
+    <!-- H09 -->
+    <div class="hyp" id="h09">
+      <div class="top"><div class="hid">H09</div><h3>感覚・情報の過負荷、または緊張で「止まって」いる</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">聴覚過敏や情報処理の負荷が高い子は、人が多くざわつく環境で入力が処理能力を超えると、<strong>脳が入力を受けつけなくなり、反応が落ちます</strong>（シャットダウン）。外からは、ぼんやりして呼びかけに応じない、動かない、と見えます。また、叱責や注目が集まる場面では、不安が引き金となって<strong>凍りつき（フリーズ）</strong>が起き、声が耳に入っても体が動かない・言葉が出ないことがあります。どちらも防御的な反応で、意思による無視ではありません。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">にぎやかな時間帯・特定の音（音楽、特定の子の声、機械音）のときに増える。耳をふさぐ、フードを深くかぶる、その場を離れようとする、逆に急に大声を出す。叱られている最中に、表情がこわばって固まり、いっそう反応しなくなる。集団活動やイベントのあとに、しばらく「抜けた」ようになる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          自閉のある人では、混雑・騒音・光などの感覚入力が処理容量を超えると<strong>シャットダウン</strong>が起こるとされ、耳をふさぐ・急に飛び出す・切り替えでパニックになる等は「問題行動」ではなく「環境が合っていないサイン」と捉え直すことが出発点とされます。ストレス反応としての<strong>フリーズ／解離</strong>は、闘争も逃走もできない状況で自動的に生じ、周囲の声から切り離され、numb（無感覚）になるのが特徴で、静かで目立たないため見逃されやすいと指摘されています。
+          <span class="ref">→ 出典 [12] 感覚過負荷とシャットダウン、[17] フリーズ／解離反応、[18] 感覚過敏の環境調整（日本の実践）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>音の総量と予測可能性を上げる。</b>目的は「無音」ではなく、突発音を減らし、いつ何が起きるか分かるようにすること。BGMを切る、活動の切れ目を予告する。</li>
+            <li><b>イヤーマフ・耳栓を選べるようにする。</b>聴覚過敏がある子には、我慢させず道具を使う。「わがまま」ではありません。</li>
+            <li><b>クールダウンできる場所を用意する。</b>刺激の少ない一角、パーテーション、テント。<strong>「逃げ場」ではなく「立て直す場所」</strong>として、いつでも使える約束にする。</li>
+            <li><b>固まっているときは、指示を重ねない。</b>近くで穏やかに、選択肢のない短い声かけ（<span class="say">「大丈夫。ここにいるよ」</span>）。落ち着いてから、1つだけ。</li>
+            <li><b>叱責をやめる。</b>問い詰め・「なんで聞いてないの」は、フリーズを強めます。場面を変える、時間を置く。</li>
+            <li><b>負荷の高い時間の前後に、静かな活動を挟む。</b>集団活動の直後に、個別の落ち着いた課題を置く。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">刺激を下げ、避難先を用意すると、無反応の時間が短くなる。イヤーマフやクールダウンを自分から使えるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ トラウマ・愛着の背景が疑われる、家庭でも同様の「抜け」がある場合は、§07 の相談先（児童精神科・心理）へ記録を持参する段階です。</div></div>
+      </div>
+    </div>
+
+    <!-- H10 -->
+    <div class="hyp" id="h10">
+      <div class="top"><div class="hid">H10</div><h3>聞き取りの努力が尽きている — 疲労と時間帯</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">雑音下で聞き取ることには、静かな場面よりずっと多くの認知的努力（listening effort）がかかります。学校で一日その努力を払い続けたあと、放課後の集団場面でさらに要求されれば、<strong>残りの資源が尽き、聞き取り・注意・切り替えが同時に鈍ります</strong>。「一日の後半に増える」「集団活動やイベントの直後に反応が落ちる」という時間的な偏りは、能力の問題ではなく、消耗の問題であることを示すサインです。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">午前や来所直後は通るのに、夕方に向けて通らなくなる。にぎやかな集団活動の直後に、ぼんやりして指示が入らない。疲れているサイン（あくび、姿勢の崩れ、いつもより幼い言動）と一緒に起きる。休憩や軽食のあとに戻る。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          雑音・反響下では、子ども（および大人）が主観的にも行動指標でも<strong>より大きな聞き取り努力を要し、それが疲労と成績低下につながる</strong>ことが、学齢児の研究で示されています。APD/LiD の子では「音への順応のしにくさ」も併存要因として挙げられており、負荷の蓄積の影響を受けやすいと考えられます。
+          <span class="ref">→ 出典 [2] 雑音下の聞き取り努力と疲労、[1] 教室音響、[4] LiD/APD 手引き</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>聞き取りが要る活動を、元気な時間帯に前倒しする。</b>説明の多い活動、新しいルールの導入は、来所直後〜前半に。</li>
+            <li><b>一日の構造に「静かな時間」を組み込む。</b>集団活動のあとに、必ず個別・低刺激の時間を置く。予定として固定する。</li>
+            <li><b>後半は、指示を減らし・視覚化する。</b>言葉での指示を最小にし、絵の手順表・ルーティンで動けるようにしておく。</li>
+            <li><b>休憩・水分・軽食を先回りで入れる。</b>崩れてからではなく、崩れる前に。</li>
+            <li><b>疲れて通らない時間帯は、要求水準を下げる。</b>その時間に難しいことを求めない、と割り切る。</li>
+            <li><b>保護者と学校での様子を共有する。</b>学校で疲れ切っている場合、放課後の設計を学校側の状況とあわせて考える。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">時間帯を変え、静かな時間を挟むと、後半の通り方が改善する。無反応が「疲れている時間帯」に限られると確認できる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 時間帯と関係なく起きるなら、<a href="#h01">H01</a>〜<a href="#h06">H06</a> の切り分けへ。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:26px">
+    <h4>10パターンを一巡しても動かないとき</h4>
+    <p>該当しそうな仮定を2つ3つ試し、それぞれ2〜4週間、環境と関わり方を焦点を絞って変えてなお反応が乏しい——この<strong>「適切な調整への反応が乏しい」という記録そのもの</strong>が、専門機関に持ち込むべき最も価値のある材料です。<a href="#s07">§07</a> の相談先へ、<a href="#s08">§08</a> の記録用紙とあわせて持参してください。何を試して何が起きなかったかが書かれた紙は、口頭の相談より確実に話を前に進めます。</p>
+  </div>
+</section>
+
+<!-- ===== 04 カタログ ===== -->
+<section id="s04">
+  <div class="sec-head"><span class="sec-num">04</span><h2>環境調整・関わり方カタログ</h2></div>
+  <p class="sec-sub">§03 の対応策に出てくる方法の詳細です。それぞれ効く経路が違います。全部やる必要はなく、切り分けの結果に合うものを1〜2つ選び、しばらく替えないこと。</p>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <span class="tag brick">エビデンスあり ／ P1</span>
+      <h3>リモートマイク（送信機＋受信機）</h3>
+      <p>話し手が小型マイクを付け、その声を子どもの耳元へ直接届ける機器。周囲の雑音に埋もれず、距離の影響も受けません。APD の子を対象としたランダム化比較試験で<strong>教室での聞き取りが改善し、注意や空間的な聞こえに悪影響はなかった</strong>と報告され、不注意の目立つ子でも効果が示されています。適合は耳鼻科・言語聴覚士に相談。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag brick">エビデンスあり ／ P1</span>
+      <h3>音場拡聴システム（サウンドフィールド）</h3>
+      <p>教室のスピーカーから話し手の声を適度に大きくし、部屋全体のSN比を底上げする方式。個人装用の抵抗がある場合の選択肢。教員評価で<strong>子どもの「聞く」行動、注意、コミュニケーション、教室での行動の改善</strong>が観察され、自閉の有無にかかわらず有効という報告があります。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">アメリカ ／ P3・P6</span>
+      <h3>事前予告（precorrection）＋ 行動特異的称賛</h3>
+      <p>つまずきやすい場面（移行、集団の切り替え）の<strong>直前</strong>に、期待される行動を具体的に伝えておき、できたらすぐ具体的にほめる。IES の学級行動介入ガイドで、叱責の必要を減らし指示の通りを改善する方法として位置づけられています。「注意する」より「先に言っておく」。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">行動支援 ／ P4・P5</span>
+      <h3>アルファ指示</h3>
+      <p>簡潔・具体的・1つの動作・肯定形。<span class="say">「ちゃんとして」→「本を机に置こう」</span>。「〜しないで」より「〜して」。余計な説明を足さない。曖昧で長い指示（ベータ指示）より遵守されやすく、自閉のある子でも反応が速いことが示されています。<strong>出したら、繰り返さず、見届ける</strong>。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">日本の療育 ／ P4</span>
+      <h3>手順の視覚化（絵カード・ホワイトボード）</h3>
+      <p>言語のみの指示は数秒で消えます。やることを<strong>絵や文字で示し、手元・目線の先に残す</strong>。順に並べ、終わったら1つずつ外す/裏返す。日本の児童発達支援・放課後等デイで、聴覚的ワーキングメモリに弱さのある子への定石とされる方法です。「聞くだけ」で完結させない。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">関わりの基本 ／ P1・P2</span>
+      <h3>「見て、そばで、短く」</h3>
+      <p>離れて声を張るのをやめ、視野に入り、名前を呼んで一拍待ち、目の高さで1文だけ。触れる合図を本人と決めておく（触覚が苦手なら別の合図）。<strong>目を合わせて言わせることには固執しない</strong>——視線をそらすのは処理のための方略で、強制するとかえって理解が下がることが示されています。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">感覚支援 ／ H09</span>
+      <h3>イヤーマフ・耳栓／クールダウンスペース</h3>
+      <p>聴覚過敏のある子が、我慢せず音量を下げられる道具。あわせて、刺激の少ない一角（パーテーション、テント）を<strong>「立て直す場所」</strong>としていつでも使える約束にする。日本の放デイ実践では「甘やかし」ではなく自立を促す第一歩と位置づけられています。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">空間・音響 ／ P1</span>
+      <h3>部屋づくり</h3>
+      <p>ラグ・カーテン・フェルト・本棚・掲示物で反響を抑える。少人数の「島」に分け、動の活動と静の活動のゾーンを離す。騒音源（出入口・空調・水道）から離れ、支援者に近い定位置を決める。指示の瞬間だけ音楽・機械音を止める習慣。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">集団運営 ／ P2・P3</span>
+      <h3>注目を集める決まった合図</h3>
+      <p>一斉指示の前に、全員の注意をそろえる合図を一つ決めて徹底する（手拍子のパターンを返す、ベル、「お耳ください」→静止）。ざわめきと指示を同時に流さない。合図→静けさ→指示、の順を毎回同じに。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">一日の設計 ／ H10</span>
+      <h3>時間帯のマネジメント</h3>
+      <p>説明の多い活動・新しいルールは前半に。集団活動の直後には、必ず静かな個別の時間を置く。後半は言葉の指示を減らし、絵の手順表で動けるようにしておく。休憩・水分・軽食は崩れる前に先回りで。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 05 進め方 ===== -->
+<section id="s05">
+  <div class="sec-head"><span class="sec-num">05</span><h2>2〜6週間の進め方</h2></div>
+  <p class="sec-sub">切り分け → 全体調整 → 個別の仮説、の順に進めます。各段階に合格の目安を置き、満たすまで次に進みません。§02 の結果によっては、途中から始めて構いません。</p>
+
+  <div>
+    <div class="phase">
+      <div class="ph">STEP 0</div>
+      <div>
+        <h4>聞こえの除外と、生活の聞き取り</h4>
+        <p>「毎回でない」「聞き返し・音量」「中耳炎歴」のいずれかがあれば、耳鼻科で純音聴力検査とティンパノメトリ。並行して、家庭・学校に §02-03 の聞き取りをする。</p>
+        <p class="pass">合格の目安：聞こえについて、受診結果または「問題なし」の確認が取れている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 1</div>
+      <div>
+        <h4>場面をそろえた観察（§02）</h4>
+        <p>静か／騒がしい、呼びかけ方3通り、反応の質、タイミングの偏り、情報量を減らすと通るか。1週間、叱らずに記録だけ取る。</p>
+        <p class="pass">合格の目安：「どの経路（P1〜P6）で止まっているか」の見立てが1〜2個に絞れている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 2</div>
+      <div>
+        <h4>全体の環境・伝え方パッケージを入れる</h4>
+        <p>仮説にかかわらず有効な土台を、まとめて2週間試す：<strong>①指示の前に音を下げる合図 ②名前＋一拍＋アルファ指示（1動作・肯定形） ③手順の視覚化 ④事前予告＋できたら具体的に称賛 ⑤繰り返さず見届ける</strong>。支援者間でそろえる。</p>
+        <p class="pass">合格の目安：1回で通る割合が上がる／叱責の回数が減る。ここで大きく変われば、H08 と伝え方の要因が大きかったということ。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 3</div>
+      <div>
+        <h4>個別の仮説に的を絞る</h4>
+        <p>STEP 2 で残った部分について、§02 が指す仮説（H01・H03・H04・H05・H06・H09・H10 のいずれか）の対応策を、2〜4週間、focusして試す。1つずつ。反応を §08 に記録。</p>
+        <p class="pass">合格の目安：その仮説の「当たりの印」が出る。出なければ、指し示された次の仮説へ。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 4</div>
+      <div>
+        <h4>反応が乏しければ、記録を持って相談</h4>
+        <p>2〜3の仮説を焦点を絞って試してなお変化が乏しい場合、§07 の相談先へ。§08 の場面ログと「試した仮定の記録」を持参する。</p>
+        <p class="pass">目安：ここまでの記録が、専門機関での評価の出発点になる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 落とし穴 ===== -->
+<section id="s06">
+  <div class="sec-head"><span class="sec-num">06</span><h2>やってしまいがちな6つ</h2></div>
+  <div class="dont">
+    <ul>
+      <li><span class="x">✕</span><span><b>声を大きくする・同じ指示を何度も繰り返す</b><span class="d">音量を上げても、雑音も一緒に大きい環境ではSN比は改善しません。繰り返しは「1回目は聞かなくてよい」を教えてしまいます。繰り返す代わりに、近づく・触れる・見せる、と支援を一段上げる。</span></span></li>
+      <li><span class="x">✕</span><span><b>「聞いてなかったでしょ」と叱る・問い詰める</b><span class="d">難聴や処理の問題なら理不尽な体験になり、緊張で反応がさらに鈍り（フリーズ）、回避を強めます。原因が分かるまで、叱責は保留する。</span></span></li>
+      <li><span class="x">✕</span><span><b>目を見て言わせることに固執する</b><span class="d">視線をそらすのは、聞くことに集中するための方略のことがあります。自閉のある子では、目を合わせさせると言語理解がむしろ下がるという報告があります。名前・正面・触れる合図で十分です。</span></span></li>
+      <li><span class="x">✕</span><span><b>静かな1対1で通ったから「やればできる／甘え」と判断する</b><span class="d">この懸案の本体は「人が多い場面」です。静かな場面でできることは、集団場面でできない理由を否定しません。落差そのものが情報です。</span></span></li>
+      <li><span class="x">✕</span><span><b>聞こえの確認を後回しにする</b><span class="d">滲出性中耳炎は痛みがなく、聞こえが変動し、「毎回でない」という訴えに合致します。工夫では代替できないので、疑わしければ先に耳鼻科へ。</span></span></li>
+      <li><span class="x">✕</span><span><b>一度に複数の指示を出す／遠くから声だけで指示する</b><span class="d">「片づけて、手洗って、座って」は、保持でも聞き取りでも負荷が高い。1指示1動作、注意を確保してから、が原則です。</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 07 相談 ===== -->
+<section id="s07">
+  <div class="sec-head"><span class="sec-num">07</span><h2>専門機関に相談するとき</h2></div>
+  <div class="body-col">
+    <p>この資料の切り分けと対応策は、専門家によるアセスメントの代わりではありません。目的は、<strong>相談のときに持参する観察記録をつくること</strong>です。とくに「毎回ではない」「時期による波がある」という特徴は、まず医学的な確認（聞こえ）を要します。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <span class="tag ochre">まず</span>
+      <h3>耳鼻咽喉科</h3>
+      <p>純音聴力検査とティンパノメトリ。滲出性中耳炎、軽度・一側性の難聴、聞こえの変動を確認する。1回正常でも、様子が続くなら時期をずらして再検査を。鼻・アレルギー・いびきも伝える。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">聞き取りの評価</span>
+      <h3>言語聴覚士／APD・LiD 対応の外来</h3>
+      <p>聴力が正常でも雑音下で聞き取れない場合の、雑音下聞き取り検査や、リモートマイクの適合。日本では対応機関がまだ少ないため、耳鼻科経由で紹介を受けるのが現実的です。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">注意・記憶・特性</span>
+      <h3>発達検査を扱う心理職／児童精神科・小児科</h3>
+      <p>WISC 等での処理速度・ワーキングメモリの評価、ADHD・自閉スペクトラムの特性の評価。フリーズや「抜け」が家庭でも見られる、背景に不安・逆境体験が疑われる場合も、ここへ。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">場をそろえる</span>
+      <h3>学校の特別支援教育コーディネーター</h3>
+      <p>座席（前方・支援者側・騒音源から遠く）、音場システムの検討、注目を集める合図の共有、聞こえの検査結果の関係者共有。放デイと学校で対応をそろえる。</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <h4>持っていくもの</h4>
+    <p>§08 の<strong>場面ログ</strong>（いつ・どんな人数と騒がしさ・時間帯・呼びかけ方・反応の質）と、<strong>試した仮定の記録</strong>（何を・どのくらいの期間・当たりの印は出たか）。「11以上でつまずく」ではなく「静かな1対1では通り、集団場面で、とくに午後に、遅れて反応する」のように、条件つきで具体的に書かれた記録が、評価を早く正確にします。</p>
+  </div>
+</section>
+
+<!-- ===== 08 記録 ===== -->
+<section id="s08">
+  <div class="sec-head"><span class="sec-num">08</span><h2>記録テンプレート</h2></div>
+  <p class="sec-sub">印刷して使えます。同じ観点で2〜3週間おきに取り直すと、「調整への反応」が可視化されます。</p>
+
+  <h3 style="font-size:18px;margin:8px 0 12px">場面ログ（通らなかった場面を中心に）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>日付・時刻</th><th>場面（人数／騒がしさ／直前の活動）</th><th>呼びかけ方</th><th>反応</th><th>そのとき本人がしていたこと</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">／　　:　</td><td>　　人／静・中・騒／</td><td>遠くから名前 ／ そばで名前＋用件 ／ 触れて目線で</td><td>無反応 ／ 遅れて（　秒）／ 一部だけ ／ 聞き返し</td><td></td></tr>
+        <tr><td class="num">／　　:　</td><td>　　人／静・中・騒／</td><td>遠くから名前 ／ そばで名前＋用件 ／ 触れて目線で</td><td>無反応 ／ 遅れて（　秒）／ 一部だけ ／ 聞き返し</td><td></td></tr>
+        <tr><td class="num">／　　:　</td><td>　　人／静・中・騒／</td><td>遠くから名前 ／ そばで名前＋用件 ／ 触れて目線で</td><td>無反応 ／ 遅れて（　秒）／ 一部だけ ／ 聞き返し</td><td></td></tr>
+        <tr><td class="num">／　　:　</td><td>　　人／静・中・騒／</td><td>遠くから名前 ／ そばで名前＋用件 ／ 触れて目線で</td><td>無反応 ／ 遅れて（　秒）／ 一部だけ ／ 聞き返し</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">比較メモ（条件をそろえて）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>比べた条件</th><th>結果</th><th>気づき</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>静かな1対1 ／ 集団のなか</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+        <tr><td>遠くから名前 ／ そばで ／ 触れて目線で</td><td></td><td></td></tr>
+        <tr><td>1指示1動作 ／ まとめて</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+        <tr><td>言葉だけ ／ 見せながら</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+        <tr><td>午前・前半 ／ 午後・後半</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">試した仮定の記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>仮定</th><th>試した期間</th><th>実際にやったこと</th><th>当たりの印は出たか</th><th>次の仮定</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 出典 ===== -->
+<section id="s09">
+  <div class="sec-head"><span class="sec-num">出典</span><h2>参照した情報</h2></div>
+  <p class="sec-sub">研究知見と実践情報を分けて記載しています。番号は §03 の「学術的には」から参照しています。個別の子どもへの適用は、必ず実際の観察と、必要に応じた専門機関の評価を優先してください。</p>
+  <div class="src">
+    <ol>
+      <li id="r1">教室音響と子どもの聞き取り — ASHA <em>Classroom Acoustics</em>（ANSI/ASA S12.60、推奨SN比・残響、雑音の影響を受けやすい集団としてLD・注意・APD・自閉・第二言語を明示）<a href="https://www.asha.org/practice-portal/professional-issues/classroom-acoustics/">asha.org</a>／Gheller et al. (2020) <em>Classroom acoustics: Listening problems in children</em> <a href="https://journals.sagepub.com/doi/10.1177/1351010X19886035">SAGE</a></li>
+      <li id="r2">雑音下の聞き取り努力（listening effort）と疲労・成績 — <em>Listening effort in children and adults in classroom noise</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11502858/">PMC</a></li>
+      <li id="r3">聴覚情報処理障害（APD）の概説 — 雑音下・複数話者・多段階指示での困難、静かな環境との落差。Child Mind Institute <a href="https://childmind.org/article/what-is-auditory-processing-disorder/">childmind.org</a>／Nationwide Children's Hospital <a href="https://www.nationwidechildrens.org/conditions/auditory-processing-disorder">nationwidechildrens.org</a></li>
+      <li id="r4">『LiD/APD 診断と支援の手引き（2024 第一版）』日本医療研究開発機構（AMED）— 症状を示す小児の約8割に注意・ワーキングメモリ・順応の発達的ばらつきが併存。支援は環境調整＋補聴機器＋心理的支援。<a href="https://apd.amed365.jp/doc/202403-seika.pdf">apd.amed365.jp（PDF）</a>／概説 <a href="https://apd.amed365.jp/about-apd/index.shtml">apd.amed365.jp</a></li>
+      <li id="r5">リモートマイク／音場拡聴のエビデンス — APD児のRCT（教室の聞き取り改善、注意・空間聴に悪影響なし）<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7472992/">PMC</a>／不注意児での効果 <em>npj Science of Learning</em> <a href="https://www.nature.com/articles/s41539-026-00427-5">nature.com</a>／通常学級での音場拡聴（自閉の有無を問わず有効）<em>J School Psychol</em> (2021) <a href="https://www.sciencedirect.com/science/article/abs/pii/S0021992421000654">ScienceDirect</a></li>
+      <li id="r6">選択的聴覚的注意・妨害刺激抑制の発達 — 大人並みの制御はティーンエイジまで完成せず、外的手がかりで前倒し可能。<em>Developmental Differences in Filtering Auditory and Visual Distractors During Visual Selective Attention</em> <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2018.02564/full">Frontiers in Psychology</a></li>
+      <li id="r7">自閉スペクトラムと聴覚的空間注意／呼名反応 — 特定方向・話者への注意の維持の弱さ。<em>Auditory Spatial Attention to Speech and Complex Non-speech Sounds in Children with ASD</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7751306/">PMC</a></li>
+      <li id="r8">モノトロピズム — 注意のトンネル、没頭からの離脱コスト、割り込みの不随意的な苦痛。Murray, Lesser &amp; Lawson の枠組み <a href="https://monotropism.org/">monotropism.org</a>／Dwyer et al. (2024) 自閉・ADHD横断の過集中・注意の研究 <a href="https://journals.sagepub.com/doi/10.1177/27546330241237883">SAGE</a></li>
+      <li id="r9">ADHD 不注意優勢型 — DSM-5「しばしば、直接話しかけられたときに聞いていないように見える」。処理速度の弱さ、認知的離隔症候群（旧 sluggish cognitive tempo）との関連。ADDitude <a href="https://www.additudemag.com/what-is-inattentive-adhd-add-symptoms-signs-treatment/">additudemag.com</a>／CDS/SCT <a href="https://www.getinflow.io/post/adhd-and-sluggish-cognitive-tempo-sct-cds">getinflow.io</a></li>
+      <li id="r10">処理速度・言語処理の遅さ — 反応の遅れが「反抗的」「注意喚起」と誤解されやすい。早口で理解が低下（特異的言語発達の研究）<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5786310/">PMC</a>／slow processing speed の支援 <a href="https://www.additudemag.com/slow-processing-speed-adhd-interventions/">additudemag.com</a></li>
+      <li id="r11">滲出性中耳炎（OME）と難聴・行動 — 変動性/持続性の難聴、平均約27dB、伝音難聴が「不適切な行動」「授業中の不注意」として現れる。受診契機は行動・学業・ことばであることが多い。NICE ガイドライン要約（AAFP, 2024）<a href="https://www.aafp.org/pubs/afp/issues/2024/0900/practice-guidelines-otitis-media-with-effusion.html">aafp.org</a>／レビュー <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2943809/">PMC</a></li>
+      <li id="r12">感覚の過負荷とシャットダウン — 混雑・騒音で処理容量を超えると反応が落ちる。「問題行動」ではなく「環境が合っていないサイン」。Autism Speaks <em>Sensory issues</em> <a href="https://www.autismspeaks.org/sensory-issues">autismspeaks.org</a>／Bristol Autism Support <a href="https://www.bristolautismsupport.org/sensory-overload/">bristolautismsupport.org</a></li>
+      <li id="r13">事前予告（precorrection）と注意の獲得 — 指示前に注意を確保、期待行動を先に伝え、できたら具体的に称賛。IES/WWC <em>Teacher-Delivered Behavioral Interventions in Grades K–5</em> <a href="https://ies.ed.gov/ncee/wwc/docs/practiceguide/behavioral-interventions-practice-guide_v3a_508a.pdf">ies.ed.gov（PDF）</a>／IRIS Center <a href="https://iris.peabody.vanderbilt.edu/module/bi2-elem/cresource/q1/p03/">iris.peabody.vanderbilt.edu</a></li>
+      <li id="r14">アルファ指示／ベータ指示 — 簡潔・肯定形・1動作は遵守されやすく、自閉のある子でも反応が速い。「開始」は「停止」より従いやすい。要求してフォローしなければ、子どもは指示を無視することを学ぶ。<em>Evaluation of Alpha and Beta Commands …</em> ERIC EJ1205740 <a href="https://eric.ed.gov/?id=EJ1205740">eric.ed.gov</a></li>
+      <li id="r15">視線回避と認知負荷 — 目をそらすのは思考・処理のための方略で、強制すると理解が下がる（cognitive load hypothesis of gaze aversion）。Doherty-Sneddon ほか <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3627297/">PMC</a></li>
+      <li id="r16">聴覚的ワーキングメモリと一斉指示（日本の療育実践）— 言語のみの指示は消えやすい／一斉指示は情報量が多く整理されていない。「1指示1動作」「視覚化して手元に残す」。EnRich <a href="https://enrich-child-life.jp/blog/child-listening-working-memory/">enrich-child-life.jp</a>／SHIP <a href="https://www.shipjihatsu.site/issei-shiji-ryoiku-jiho/">shipjihatsu.site</a></li>
+      <li id="r17">フリーズ／解離反応 — 闘争も逃走もできない状況で自動的に生じ、周囲の声から切り離され無感覚になる。静かで目立たず見逃されやすい。<em>Trauma and the Freeze Response</em>, Psychology Today <a href="https://www.psychologytoday.com/us/blog/evolution-the-self/201507/trauma-and-the-freeze-response">psychologytoday.com</a></li>
+      <li id="r18">感覚過敏の環境調整・クールダウン（日本の放デイ実践）— 「無音」ではなく音の質と予測可能性を上げる。クールダウンスペースは「甘やかし」でなく自立の第一歩。カラフル・キッズ <a href="https://www.colorful-kids.jp/post/%E3%83%91%E3%83%8B%E3%83%83%E3%82%AF%E4%BA%88%E9%98%B2%E3%81%AB%E3%81%AF%E3%80%8C%E3%82%AF%E3%83%BC%E3%83%AB%E3%83%80%E3%82%A6%E3%83%B3%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%80%8D%E3%81%8C%E6%9C%89%E5%8A%B9">colorful-kids.jp</a>／EnRich（聴覚過敏対策）<a href="https://enrich-child-life.jp/blog/hyperacusis-children-coping-strategies/">enrich-child-life.jp</a></li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。切り分けチェックと10パターンの仮定は、専門家によるアセスメントの代替ではなく、相談時に持参する観察記録を作るためのものです。とくに聞こえ（難聴・滲出性中耳炎）の確認は、支援の工夫では代替できません。
+  </p>
+</section>
+
+</div>
+</body>
+</html>
