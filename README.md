@@ -6,9 +6,9 @@
 
 公開ページ:
 
-- トップ（ハブ）: https://tyoshida0413-ai.github.io/number-sense-guide/
-- 「10といくつ」の壁: https://tyoshida0413-ai.github.io/number-sense-guide/number-sense.html
-- かずのゲーム印刷キット: https://tyoshida0413-ai.github.io/number-sense-guide/games.html
+- トップ（ハブ）: https://tyoshida0413-ai.github.io/boys-and-girls-guide/
+- 「10といくつ」の壁: https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html
+- かずのゲーム印刷キット: https://tyoshida0413-ai.github.io/boys-and-girls-guide/games.html
 
 ## 収録資料
 
@@ -51,5 +51,6 @@ second_brain/000.Inbox/Code-desktop/児童の懸案事項ハブ/
 
 - 原本は Artifact 用の断片HTML（`<!doctype>` や `<head>` を持たない）。`sync.sh` が外枠を付けて単体HTMLに変換している
 - 最初のブロック要素（`<div>` / `<header>` など）の直前で head を閉じている。原本の冒頭構造を大きく変えた場合は `sync.sh` の awk 条件を確認する（body を開けなければエラーで止まる）
-- `number-sense.html` は 2026-08-29 まで `index.html`（＝ルート）だった。ルートはハブに変わったが、本文内から印刷キットへは絶対URL（`/number-sense-guide/games.html`）でリンクしているため、その参照は影響を受けない
+- `number-sense.html` は 2026-08-29 まで `index.html`（＝ルート）だった。同日ルートをハブに変更
+- リポジトリ名は 2026-08-29 に `number-sense-guide` → `boys-and-girls-guide` に変更。旧URL（`tyoshida0413-ai.github.io/number-sense-guide/...`）は GitHub が新URLへリダイレクトする。原本内の絶対URL・sync.sh・READMEは新URLに更新済み
 - Pages への反映は push から1〜2分

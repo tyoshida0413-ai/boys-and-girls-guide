@@ -69,7 +69,7 @@ done
 cd "$DIR"
 if git diff --quiet -- "${OUTFILES[@]}" && git diff --cached --quiet -- "${OUTFILES[@]}"; then
   echo "変更なし。push はしていません。"
-  echo "https://tyoshida0413-ai.github.io/number-sense-guide/"
+  echo "https://tyoshida0413-ai.github.io/boys-and-girls-guide/"
   exit 0
 fi
 
@@ -80,6 +80,6 @@ git push -q origin main
 
 echo "✓ push しました: $MSG"
 echo "反映まで1〜2分 →"
-echo "  トップ     https://tyoshida0413-ai.github.io/number-sense-guide/"
-echo "  10といくつ https://tyoshida0413-ai.github.io/number-sense-guide/number-sense.html"
-echo "  印刷キット https://tyoshida0413-ai.github.io/number-sense-guide/games.html"
+echo "  トップ     https://tyoshida0413-ai.github.io/boys-and-girls-guide/"
+echo "  10といくつ https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html"
+echo "  印刷キット https://tyoshida0413-ai.github.io/boys-and-girls-guide/games.html"
