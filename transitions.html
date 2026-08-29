@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="自由遊びから次の活動へ移れず、大きな声や強い指示でないと動かない子について、切り替えが完了するまでの5層を切り分け、8パターンの仮定ごとに予告・合図・環境調整を選ぶための支援者向け資料。">
+<title>次の行動に切り替えられないとき</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+/* 明るい単一テーマ（ダークモードには追従しない） */
+:root{
+  color-scheme:light;
+  --ground:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f0ede6;
+  --ink:#1b2230;
+  --ink-2:#42506a;
+  --ink-3:#6f7c90;
+  --line:#ddd9cf;
+  --line-soft:#ebe6db;
+  --indigo:#2a4d78;
+  --indigo-soft:#e7edf6;
+  --brick:#b0413a;
+  --brick-soft:#f8e8e4;
+  --ochre:#9a7016;
+  --ochre-soft:#f8f0da;
+  --green:#2f6b52;
+  --green-soft:#e6f1ea;
+  --shadow:0 1px 2px rgba(27,34,48,.04), 0 10px 26px -18px rgba(27,34,48,.20);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0}
+a{color:var(--indigo)}
+a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* hero */
+.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,54px);letter-spacing:.02em}
+.hero .lede{margin-top:24px;max-width:62ch;color:var(--ink-2);font-size:17px}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+
+/* sections */
+section{padding-top:64px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
+.sec-head h2{font-size:clamp(23px,3.2vw,30px)}
+.sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
+.body-col{max-width:66ch;display:flex;flex-direction:column;gap:18px;color:var(--ink-2)}
+
+/* how to read + toc */
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto h2{font-size:20px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
+.flow .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--brick)}
+.flow b{font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 24px;border-top:1px solid var(--line-soft);padding-top:20px}
+.toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
+.toc a:hover{color:var(--brick)}
+.toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.tag{align-self:flex-start;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;background:var(--indigo-soft);color:var(--indigo)}
+.tag.brick{background:var(--brick-soft);color:var(--brick)}
+.tag.ochre{background:var(--ochre-soft);color:var(--ochre)}
+.verdict{border-left:3px solid var(--brick)}
+.verdict .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);letter-spacing:.1em}
+.verdict h3{font-size:19px;line-height:1.5}
+
+/* layer stack */
+.stack{display:flex;flex-direction:column;gap:6px;margin:8px 0 28px}
+.layer{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:16px 18px}
+.layer .lv{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--surface);background:var(--indigo);border-radius:2px;text-align:center;padding:3px 0}
+.layer h4{font-size:16px;margin-bottom:4px}
+.layer p{font-size:14px;color:var(--ink-2)}
+.layer .fail{font-size:13.5px;color:var(--brick);margin-top:6px;padding-left:12px;border-left:2px solid var(--brick-soft)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-top:8px}
+.gloss div{background:var(--surface);padding:16px 18px}
+.gloss dt{font-weight:700;font-size:14.5px;margin-bottom:3px}
+.gloss dd{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:8px 0 4px;border:1px solid var(--line-soft);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--surface-2);font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--brick);white-space:nowrap}
+td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick-soft)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .idx{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600;color:var(--line);line-height:1.1;font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin-bottom:10px}
+.step .row{display:grid;grid-template-columns:82px 1fr;gap:14px;font-size:14.5px;margin-top:8px;align-items:start}
+.step .k{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.step .v{color:var(--ink-2)}
+.step .v em{font-style:normal;color:var(--brick);font-weight:500}
+
+/* callouts */
+.callout{background:var(--indigo-soft);border-radius:4px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.callout h4{font-size:16px;color:var(--ink)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+.callout.warn{background:var(--ochre-soft)}
+
+/* hypotheses */
+.hyps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.hyp{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:24px}
+.hyp > .top{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:baseline;padding:20px 24px 16px;border-bottom:1px solid var(--line-soft)}
+.hyp .hid{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--surface);background:var(--brick);border-radius:2px;text-align:center;padding:3px 0}
+.hyp h3{font-size:17.5px;line-height:1.5}
+.hyp .inner{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.hyp .blk{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start}
+.hyp .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.hyp .lbl.sci{color:var(--indigo)}
+.hyp .txt{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.hyp .sci-box{background:var(--indigo-soft);border-radius:3px;padding:14px 16px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.hyp .sci-box .ref{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px}
+.hyp ol.acts{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.hyp ol.acts b{color:var(--ink)}
+.hyp .hit{color:var(--green)}
+.hyp .miss{color:var(--brick)}
+.hyp .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+.hyp a{color:var(--brick)}
+
+/* don't list */
+.dont ul{margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dont li{list-style:none;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.dont .x{color:var(--brick);font-family:"IBM Plex Mono",monospace;font-size:15px;line-height:1.7}
+.dont b{display:block;font-weight:700;font-size:15px;color:var(--ink)}
+.dont span.d{font-size:14px;color:var(--ink-2)}
+
+/* program */
+.phase{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.phase .ph{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--indigo);font-weight:600;padding-top:3px}
+.phase h4{font-size:16.5px;margin-bottom:6px}
+.phase p{font-size:14.5px;color:var(--ink-2)}
+.pass{margin-top:10px;font-size:13.5px;color:var(--green);border-left:2px solid var(--green);padding-left:12px}
+
+/* sources */
+.src{font-size:13.5px;color:var(--ink-2);line-height:1.9}
+.src ol{padding-left:22px;margin:0;display:flex;flex-direction:column;gap:10px}
+.src li{scroll-margin-top:24px}
+.src a{word-break:break-all}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+@media print{
+  body{background:#fff}
+  .card,.layer,.tablewrap,.hyp,.howto{box-shadow:none}
+  section,.hyp{break-inside:avoid}
+}
+@media (max-width:620px){
+  .step{grid-template-columns:44px 1fr;gap:14px}
+  .step .idx{font-size:20px}
+  .step .row,.hyp .blk{grid-template-columns:1fr;gap:3px}
+  .phase{grid-template-columns:1fr;gap:6px}
+  .layer{grid-template-columns:36px 1fr;gap:12px}
+  .hyp > .top{grid-template-columns:48px 1fr;gap:12px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow"><a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/" style="color:var(--brick);text-decoration:none">← 児童の困難事例</a> ／ 行動・情動 ／ 活動の切り替え ／ 国内外調査まとめ</div>
+  <h1>次の行動に切り替えられないとき</h1>
+  <p class="lede">
+    自由時間の遊びから次の活動へ——その一歩が、なかなか出ない。大きな声で言う、強い調子で言う、そうしないと動かない。
+    そんな子が、一つの集団に何人もいる。このときまず必要なのは、「やる気がない」「わがまま」という説明をいったん外し、
+    <strong>切り替えが完了するまでの経路の、どこで詰まっているか</strong>を切り分けること。そして、
+    <strong>「声を強める」という対応そのものが、問題を維持していないか</strong>を見直すことです。
+    この資料は、その切り分け方と、想定される8通りの原因ごとの対処、そして「先生が急に黙ると教室が静かになる」現象の何が使えるのかを整理したものです。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-29</span>
+    <span>対象 就学児（放課後等デイを想定）</span>
+    <span>読了 約18分</span>
+  </div>
+</header>
+
+<!-- ===== 使い方 ===== -->
+<div class="howto">
+  <h2>この資料の歩き方</h2>
+  <div class="flow">
+    <div class="f">
+      <span class="fn">STEP 1</span>
+      <b>切り分ける</b>
+      <span>§02 の観察で、予告あり／なし・好きな遊び／どうでもいい遊び・次が好き／嫌い、と条件をそろえて比べ、5つの層のどこで止まっているかを見ます。ここを飛ばすと、対応が当てずっぽうになります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 2</span>
+      <b>大人の側を先に固定する</b>
+      <span>子どもの特性を評価する前に、まず §04 の「合図と伝え方パッケージ」を2週間、支援者間でそろえて入れます。多くの場合、ここで動き方が変わります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 3</span>
+      <b>2週間試し、記録する</b>
+      <span>残った部分について §03 の仮定を一つずつ試します。「当たりの印」が出れば継続、出なければ次へ。この記録が、専門機関に相談するときの最良の材料になります。</span>
+    </div>
+  </div>
+  <div class="callout warn" style="margin:4px 0 0">
+    <h4>先に一つ、順番の話</h4>
+    <p>「大きな声・強い調子でないと動かない」が定着している場合、<strong>まず大人の側の合図と対応を固定して2週間変える</strong>（<a href="#s05">§05</a> STEP 2）。子どもの特性を評価するのは、そのあとです。順番を逆にすると、<strong>環境の問題を特性の問題と読み違えます</strong>。声を強めれば動く、という関係自体が学習の産物であることが多いためです（<a href="#h06">H06</a>）。</p>
+  </div>
+  <nav class="toc">
+    <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
+    <a href="#s01"><span class="n">01</span><span>切り替えが終わるまでの5層</span></a>
+    <a href="#s02"><span class="n">02</span><span>条件をそろえた観察チェック</span></a>
+    <a href="#s03"><span class="n">03</span><span>想定される原因と対処 8パターン</span></a>
+    <a href="#s04"><span class="n">04</span><span>予告・合図・環境調整カタログ</span></a>
+    <a href="#s05"><span class="n">05</span><span>2〜6週間の進め方</span></a>
+    <a href="#s06"><span class="n">06</span><span>やってしまいがちな6つ</span></a>
+    <a href="#s07"><span class="n">07</span><span>専門機関に相談するとき</span></a>
+    <a href="#s08"><span class="n">08</span><span>記録テンプレート</span></a>
+    <a href="#s09"><span class="n">出典</span><span>参照した情報</span></a>
+  </nav>
+</div>
+
+<!-- ===== 結論 ===== -->
+<section id="s-verdict">
+  <div class="sec-head"><span class="sec-num">結論</span><h2>先に、3つ</h2></div>
+  <p class="sec-sub">調査全体から言えることを最初に置きます。詳細は以降のセクションで裏づけます。</p>
+  <div class="grid g3">
+    <div class="card verdict">
+      <span class="n">01</span>
+      <h3>「切り替え」は1つの動作ではなく、5つの工程</h3>
+      <p>終わりを予測する／今の手を止める／没入先から注意を引きはがす／次を思い浮かべて動き出す／中断のいらだちを立て直す。<strong>どの工程で止まっているかで、打ち手はまったく変わります。</strong>「声を大きくする」が効くのは、そもそも予告が届いていなかった場合だけです。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">02</span>
+      <h3>自由遊びは「いちばん強い活動」。そこからの移行は報酬の中断に等しい</h3>
+      <p>自分で選んで始めた最も好きな活動から、非選好の活動へ移ることは、脳にとって「進行中のごほうびを断たれる」体験です。<strong>没入が深いほど、離脱のコストは上がります。</strong>抵抗・フリーズ・かんしゃくは、悪意ではなく、この構造から出ます。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">03</span>
+      <h3>「大声でないと動かない」は、多くの場合そこに定着した関係</h3>
+      <p>結果の伴わない指示を繰り返すと「1回目は聞かなくてよい」を学習し、動き出す基準がどんどん大声側へずれます（合図のインフレ）。<strong>予告 → 決まった合図 → 必ず次が起きる、を一定にするだけ</strong>で変わる子は少なくありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 5層 ===== -->
+<section id="s01">
+  <div class="sec-head"><span class="sec-num">01</span><h2>切り替えが終わるまでの5層 — どこで止まっているのか</h2></div>
+  <p class="sec-sub">「次に移れない」は単一の現象ではありません。下の層のどこかが滞ると、結果はすべて「言っても動かない」という同じ形になります。自由遊びからの移行は、5つの層すべての負荷が同時に上がる場面です。</p>
+
+  <div class="stack">
+    <div class="layer">
+      <div class="lv">P1</div>
+      <div>
+        <h4>予告が像を結ぶ — 終わりが近いこと・次に何が来るかが分かる</h4>
+        <p>「あと少しで終わる」「次は◯◯」が、本人の中でイメージになっている状態。ここが欠けると、終了の合図が“突然の中断”として体験されます。時間の感覚が弱い子は、口頭の「あと5分」がほとんど像を結びません。</p>
+        <p class="fail">現れ方：予告してもしなくても同じ／「あと◯分」がまるで効かない／終わりの直前になって初めて慌てる。<a href="#h02">H02</a> <a href="#h04">H04</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P2</div>
+      <div>
+        <h4>いま止める — 進行中の行動をいったん止める（抑制）</h4>
+        <p>手を動かし続けている、話し続けている、その流れをいったん止める働き。実行機能の一部で、幼いほど、興が乗っているほど働きにくくなります。</p>
+        <p class="fail">現れ方：返事はするのに手が止まらない／「あと1個だけ」が延々と続く／制止すると勢いで怒る。<a href="#h03">H03</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P3</div>
+      <div>
+        <h4>注意を引きはがす — 没入先から注意を外し、別へ向ける（認知的柔軟性）</h4>
+        <p>一つの対象に集まった注意を解いて、別へ移す。深く没頭しているほどコストが高く、本人の意思で自由にできるものではありません。刺激の多い集団場面で、自分の遊びに強く閉じこもって対処している場合もあります。</p>
+        <p class="fail">現れ方：好きな遊びのときだけ、まったく声が届かない／区切りのいいところまで来ると急にこちらに気づく／中断で混乱・パニック。<a href="#h01">H01</a> <a href="#h05">H05</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P4</div>
+      <div>
+        <h4>次を思い浮かべて動き出す — 手順を保持し、開始する</h4>
+        <p>「片づけて、席に着く」の手順を頭に保ちながら、最初の一歩を起こす。ワーキングメモリと「開始」の力が要り、開始そのものにも実行機能・動機・情動が関わります。</p>
+        <p class="fail">現れ方：やることは言えるのに体が動かない／途中で何をするか忘れて止まる／「次なんだっけ」を何度も聞く。<a href="#h03">H03</a> <a href="#h07">H07</a></p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">P5</div>
+      <div>
+        <h4>気持ちを立て直す — 中断のいらだち・不安を処理する（情動調整）</h4>
+        <p>「まだやりたかった」「次は何をされるか分からない」という感情を、暴れずに収める。ここが未熟だと、切り替えの要求そのものが情動の爆発の引き金になります。疲れている時間帯はとくに働きません。</p>
+        <p class="fail">現れ方：切り替えのたびに泣く・怒る・固まる／次が嫌な活動のときだけ強く抵抗／一日の後半に増える。<a href="#h04">H04</a> <a href="#h07">H07</a> <a href="#h08">H08</a></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:18px;margin-bottom:10px">この資料で使う言葉</h3>
+  <dl class="gloss">
+    <div><dt>実行機能</dt><dd>目標のために自分の思考・行動を制御する脳の働き。中核は「抑制」「ワーキングメモリ」「認知的柔軟性」。前頭前野が担い、20代半ばまで発達し続ける。</dd></div>
+    <div><dt>認知的柔軟性（切り替え）</dt><dd>注意やルールを、状況に合わせて別のものへ切り替える力。set-shifting とも。学童期を通じてゆっくり育つ。</dd></div>
+    <div><dt>抑制</dt><dd>いま出かかっている反応・衝動を止める力。「手を止める」「言いかけをやめる」の土台。</dd></div>
+    <div><dt>モノトロピズム</dt><dd>注意が一つの対象に深く集まりやすい認知の傾向。自閉の中核仮説の一つ。離脱にコストがかかり、割り込みが苦痛として体験される。</dd></div>
+    <div><dt>見通し</dt><dd>この先に何が起きるか、いつ終わるかの予測。持てていると不安が下がり、切り替えやすくなる。</dd></div>
+    <div><dt>タイムタイマー</dt><dd>残り時間が色面積の減少で見える視覚的なタイマー。数字が読めなくても「あとどれくらい」が伝わる。</dd></div>
+    <div><dt>ファースト・ゼン（プレマックの原理）</dt><dd>「まず◯◯、そのあと△△（好きなこと）」の順で提示する方法。起こりやすい行動が、起こりにくい行動のごほうびになる。</dd></div>
+    <div><dt>行動の勢い（behavioral momentum）</dt><dd>簡単で確実にできる指示を数個続けて「できた」の流れを作り、その勢いのまま難しい指示につなげる方法。高頻度要求連鎖。</dd></div>
+    <div><dt>事前予告（precorrection）</dt><dd>つまずきやすい場面の直前に、期待される行動を先に伝えておく方法。注意してから叱る、の逆。</dd></div>
+    <div><dt>定位反応（orienting response）</dt><dd>環境の予期しない変化を自動で検出し、そちらへ注意を向ける全身反応。動きの停止、心拍の減速などを伴う。</dd></div>
+    <div><dt>馴化（habituation）</dt><dd>同じ刺激が繰り返されると反応が弱まること。毎回同じトーンの号令が効かなくなる仕組み。</dd></div>
+    <div><dt>移行対象物</dt><dd>次の活動を表す物（座布団・道具・カード）を手渡し、「言葉で止める」を「物を受け取って動く」に置き換える手がかり。</dd></div>
+  </dl>
+</section>
+
+<!-- ===== 02 チェック ===== -->
+<section id="s02">
+  <div class="sec-head"><span class="sec-num">02</span><h2>条件をそろえた観察チェック</h2></div>
+  <p class="sec-sub">テストではなく、日常のなかでの観察です。ポイントは、<strong>同じ子・同じ場面を、条件だけ変えて比べる</strong>こと。1回で決めず、数日ぶんメモを取ります。できなかった場面をその場で叱らず、記録だけします（叱ると次の場面の反応が変わるため）。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>予告あり と 予告なし で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) 何も言わずに「はい、おしまい」。(b) 5分前・1分前に同じ言い方で予告し、タイマーを見せてから「おしまい」。数日ずつ試す。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(b) だと動けることが増える</em>なら、P1（見通し）が本体。<em>予告しても変わらない</em>なら、P3（引きはがし）以降、または予告の届け方（口頭のみ？）を疑う。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P1。<a class="goto" href="#h02">H02</a> の対処が、そのまま日常の基本形になります。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>没入している遊び と どうでもいい遊び からの切り替えを比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">同じ予告・同じ合図で、(a) 大好きな遊び（ブロック・図鑑・ごっこ）に入り込んでいるとき、(b) なんとなく過ごしているとき、それぞれ切り替えを求める。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) のときだけ極端に動けない</em>なら、P3（没入からの引きはがし）。区切りのいいところまで来ると急に気づく、中断で強く怒る、が伴えばさらにその線。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P3。<a class="goto" href="#h01">H01</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>次の活動が「好き」か「嫌い・難しい」かで比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">切り替え先が (a) 本人の好きな活動・おやつ、(b) 苦手な課題・集団活動・宿題、のときで、動き出しの速さを比べる。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(b) のときだけ動けない</em>なら、切り替えの問題というより<strong>次の活動そのものの回避</strong>。「何をするか分からない」不安か、「できない・つまらない」予期か、を聞き取る。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P4・P5。<a class="goto" href="#h07">H07</a></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>声のかけ方を3通り試す</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) 離れた場所から大きな声で全体に、(b) そばへ行き、名前を呼んで一拍おき、普通の声で1つだけ、(c) 予告＋タイマー＋決まった合図（曲・ジェスチャー）。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) でしか動かないと思っていたが、(c) でも動く</em>なら、大声は必要条件ではなく、<strong>これまで大声が唯一の合図になっていた</strong>だけ。(b)(c) を続けて定着させられる。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P1・P2、および <a class="goto" href="#h06">H06</a>（学習された合図）。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>いつ起きるか — タイミングの偏り</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">動けなかった場面を、時刻・直前の活動・次の活動・周囲の人数・本人の様子とともに記録する。1〜2週間ぶん。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>好きな遊びのときだけ</em>→ <a class="goto" href="#h01">H01</a>。<em>次が苦手な活動のときだけ</em>→ <a class="goto" href="#h07">H07</a>。<em>にぎやかな集団活動の最中・直後</em>→ <a class="goto" href="#h05">H05</a>。<em>一日の後半・夕方に増える</em>→ <a class="goto" href="#h08">H08</a>。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">パターンが見えると、対処が一気に絞れます。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">06</div>
+      <div>
+        <h3>個別に言う と 一斉に言う で比べる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">(a) 全体に「みんな、お片づけ」。(b) そのあと、対象の子に名前を添えて同じことをもう一度短く。(c) 役割を与える（「タイマーが鳴ったらみんなに教えて」）。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a) では動かないが (b)(c) で動く</em>なら、一斉指示に自分が含まれると気づきにくい、または能動的な役割があると切り替えやすい、ということ。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">P1・P4。<a class="goto" href="#h04">H04</a> ／ <a class="goto" href="#s04">§04</a> の「役割・ゲーム化」。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:18px;margin:36px 0 12px">結果から、どの仮定へ進むか</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>目立った点</th><th>読み取れること</th><th>進む先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">予告すると動ける／「あと◯分」が効かない</td><td>見通し・時間感覚が弱い。口頭だけでは像を結ばない。</td><td><a class="goto" href="#h02">H02</a></td></tr>
+        <tr><td class="num">好きな遊びのときだけ届かない</td><td>没入からの注意の引きはがしのコスト。悪意ではなく離脱の困難。</td><td><a class="goto" href="#h01">H01</a></td></tr>
+        <tr><td class="num">返事はするのに手が止まらない／「開始」ができない</td><td>抑制・開始の実行機能負荷。</td><td><a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">予定変更・見慣れない流れのときに崩れる</td><td>予測できない変化への不安。</td><td><a class="goto" href="#h04">H04</a></td></tr>
+        <tr><td class="num">にぎやかな集団活動の最中・直後に動けない</td><td>刺激過多で処理が飽和。自分の遊びに閉じこもって対処。</td><td><a class="goto" href="#h05">H05</a></td></tr>
+        <tr><td class="num">大きな声・強い調子でないと動かない</td><td>合図と結果の関係が、そこに定着している可能性。</td><td><a class="goto" href="#h06">H06</a>（先に確認）</td></tr>
+        <tr><td class="num">次が苦手な活動のときだけ動けない</td><td>切り替えではなく、次の活動そのものの回避。</td><td><a class="goto" href="#h07">H07</a></td></tr>
+        <tr><td class="num">一日の後半・夕方に増える</td><td>実行機能・情動調整に使える資源が尽きている。疲労。</td><td><a class="goto" href="#h08">H08</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 03 8パターン ===== -->
+<section id="s03">
+  <div class="sec-head"><span class="sec-num">03</span><h2>想定される原因と対処 — 8パターン</h2></div>
+  <p class="sec-sub">
+    「次に移れない」という同じ現れ方の裏には、少なくとも8通りの別々の状態があります。それぞれについて
+    <strong>①想定される原因／②こう見える（サイン）／③学術的な裏づけ／④具体的な対応策／⑤当たりの印と、外れたときの次の候補</strong>
+    をまとめました。上から順に試すのではなく、§02 の結果に対応するものから入ってください。1つの仮定は2週間を目安に試し、目印が出なければ次へ移ります。複数が重なっていることも珍しくありません。
+  </p>
+
+  <div class="hyps">
+
+    <!-- H01 -->
+    <div class="hyp" id="h01">
+      <div class="top"><div class="hid">H01</div><h3>没入している遊びから、注意を引きはがせない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">一つの対象に注意が深く集まる傾向（モノトロピズム）がある子では、遊びに入り込んでいるあいだ、外からの声は「届いていない」というより「今は割り込めない」状態にあります。注意のトンネルから出るには複数の認知資源を切り替える必要があり、<strong>それ自体がエネルギーを要し、本人の意思で自由にできるものではありません</strong>。大切だと感じている遊びほど、割り込みは不快・苦痛として体験されます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">好きな遊び（工作・図鑑・ブロック・ごっこ）のときだけ、まったく届かない。区切りのいいところまで来ると、急にこちらに気づく。中断されると強く怒る・混乱する。手が空いているときは普通に反応する。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          モノトロピズムは、自閉を「注意の配分の仕方」から理解する枠組みで、注意がひとたび対象に捕らわれると、完了・疲弊・十分に強い割り込みのいずれかまで解けにくいとされます。近年の横断研究では、この過集中と離脱の困難が自閉・ADHD の両方にまたがって見られると報告されています。<strong>予告なしの中断は不随意的な苦痛を生む</strong>ため、切り替えを「指示への不服従」として扱うのは誤りです。
+          <span class="ref">→ 出典 [3] モノトロピズムと注意の切り替え</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>予告を複数回、同じ言い方で。</b><span class="say">「あと5分」</span>→<span class="say">「あと1分」</span>→<span class="say">「はい、終わり」</span>。タイマー・砂時計を見せる。突然の中断をなくす（<a href="#s04">§04</a>）。</li>
+            <li><b>区切りを本人と決める。</b><span class="say">「あと1個作ったら」「この道が終わったら」</span>。完了の一歩手前で予告し、キリのつく点を作る。</li>
+            <li><b>物理的に近づき、視野に入って伝える。</b>離れて声を張るのではなく、そばで、目の高さで、1つだけ。触れる合図を事前に本人と決めておく（触覚が苦手なら別の合図）。</li>
+            <li><b>作りかけを「取っておける」ようにする。</b>写真を撮る、名前を書いた箱に入れる。「壊される／消える」不安が抵抗の一部なら、これで下がります。</li>
+            <li><b>次の活動の魅力を先に見せる。</b><span class="say">「次はトランポリンだよ」</span>。移行を「損失」から「次の楽しみへの入口」に変える。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">予告＋区切り＋取っておける、を組むと、好きな遊びからでも大声なしで動けるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03（実行機能）</a> または <a href="#h05">H05（過負荷）</a> へ。予告は届いているのに開始できない/固まるなら、別の層です。</div></div>
+      </div>
+    </div>
+
+    <!-- H02 -->
+    <div class="hyp" id="h02">
+      <div class="top"><div class="hid">H02</div><h3>終わりと次が「見えて」いない — 見通しと時間感覚</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">発達に特性のある子は、抽象的な指示が分かりにくい・時間や順序の感覚が弱い・音声情報だけだと理解しにくい、という傾向があります。<strong>「あと5分」という口頭の予告は、時間の量が体感として結びついていないと、ほとんど像を結びません。</strong>「終わりが近い」「次に何が来る」が見えていないと、終了の合図は毎回“不意打ち”になり、抵抗が出ます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">予告してもしなくても反応が変わらない。「あと◯分」と言っても遊び続け、時間になると急に慌てる・怒る。次に何をするか繰り返し聞く。時計を読めない、あるいは読めても「あとどれくらい」に結びつかない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          移行時の不適応行動への介入研究の多くは、<strong>先行子となる合図（事前の言語予告、絵カード、カウントダウンカード）を、移行のおよそ2分前に、視覚材料とセットで提示</strong>する形をとります。日本の児童発達支援・放課後等デイの実践でも、1日の流れを絵・写真カードで示す、タイムタイマーなど視覚的な時計で残り時間を見せる、予告の言い回しと終了合図を統一する、が定石とされています。時間の量は「減っていく面積」で見せると、数字が読めなくても伝わります。
+          <span class="ref">→ 出典 [1] 移行介入メタ分析、[5] 見通しと視覚支援（日本の療育）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>残り時間を面積で見せる。</b>タイムタイマー、砂時計、色つきの帯。「長い針がここに来たら」より、量が減るのが見えるものを。</li>
+            <li><b>1日の流れを、絵・写真で常に見える場所に。</b>「今ここ」を示すマグネットやクリップを動かす。自由時間の“次”を、いつでも指させるようにする。</li>
+            <li><b>予告の言い方を固定する。</b>毎回まったく同じフレーズ・同じタイミング（例：5分前と1分前）。人によって変えない。</li>
+            <li><b>終了の合図を1種類に。</b>同じ曲、同じベル、同じ手拍子。「この音がしたら片づけ」を条件づける（<a href="#s04">§04</a>）。</li>
+            <li><b>終わったカードを外す/裏返す。</b>「やることが1つ減った」が目で見えると、見通しが具体になります。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">視覚的なタイマーと固定した予告を入れると、時間になったとき自分から片づけ始める回数が増える。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h01">H01（没入）</a> または <a href="#h04">H04（不安）</a> へ。見通しは持てているのに動けないなら、離脱コストか情動の問題。</div></div>
+      </div>
+    </div>
+
+    <!-- H03 -->
+    <div class="hyp" id="h03">
+      <div class="top"><div class="hid">H03</div><h3>「止める・切り替える・始める」の実行機能負荷</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">移行の瞬間、脳は数秒のうちに「進行中の行動を止める（抑制）」「次の手順を思い浮かべて保持する（ワーキングメモリ）」「注意のギアを入れ替える（認知的柔軟性）」を同時に要求されます。これらを束ねる実行機能は前頭前野が担い、<strong>20代半ばまで発達し続けます</strong>。定型発達児でも未成熟で、ADHD・自閉の特性があるとさらに負荷が高くなります。「わざとやらない」のではなく「切り替えの処理コストが、その子の容量を超えている」状態です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">「はい」と返事はするのに手が止まらない。やることは言えるのに、最初の一歩が出ない。手順が2つ以上あると途中で止まる。切り替えだけでなく、朝の支度・着替え・宿題の開始でも似た様子。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          実行機能の中核は「抑制」「ワーキングメモリ」「認知的柔軟性」で、移行はこの3つを同時に使う課題です（Diamond 2013）。認知的柔軟性・抑制は学童期を通じてゆっくり発達し、成人水準に達するのは思春期以降とされます。したがって「1動作に切る」「手順を外に出す（視覚化）」「開始の合図を具体にする」など、<strong>実行機能への負荷を下げる設計</strong>が、そのまま支援になります。
+          <span class="ref">→ 出典 [2] 実行機能（Diamond 2013）、[8] 事前予告</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>1回の指示は1動作。</b><span class="say">「片づけて、手洗って、座って」→「まず、ブロックを箱に」</span>。1つ終わってから次を言う。</li>
+            <li><b>手順を外に出す。</b>絵の手順表、番号を振ったカード。「頭で覚えておく」を「見て確認する」に変える。</li>
+            <li><b>「開始」を小さく具体的に。</b><span class="say">「箱を持ってきて」</span>のような、迷いようのない最初の一歩を渡す。動き出すと続きは出やすい。</li>
+            <li><b>行動の勢いを使う。</b>確実にできる簡単な指示を3つほどテンポよく出し（<span class="say">「タッチ」「ジャンプ」「箱どうぞ」</span>）、その流れで切り替えの指示へ（<a href="#s04">§04</a>）。</li>
+            <li><b>待つ。</b>指示のあと10〜15秒は言葉を足さない。処理の時間を奪わない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">1動作化＋視覚化＋最初の一歩、で、繰り返し言わなくても動き出すようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h07">H07（次の活動の回避）</a> または <a href="#h05">H05（過負荷）</a> へ。手順を整えても動かないなら、動機か情動の問題。</div></div>
+      </div>
+    </div>
+
+    <!-- H04 -->
+    <div class="hyp" id="h04">
+      <div class="top"><div class="hid">H04</div><h3>予測できない変化への不安</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">自閉スペクトラムの特性がある子は、同一性・予測可能性を強く必要とし、ルーティンからのずれが equilibrium（心の安定）を崩して不安・混乱を生みます。何が起きるか分からない移行は、それ自体が脅威として体験されます。「動かない」は反抗ではなく、<strong>不確かさの前で身動きが取れなくなっている</strong>状態のことがあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">いつもと違う流れ・予定変更・見慣れない活動のときにとくに崩れる。「次、何するの？」を何度も確認する。決まった順序に強くこだわる。切り替え自体より「次が分からない」ことに反応している。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          移行時の不適応行動は、「不確かさ（unpredictability）」と「好子から嫌子への随伴性の変化（負の強化のシフト）」の少なくとも2つの機能で生じるとされ、<strong>介入は、その子の行動を実際に支配している変数に合わせる</strong>ことが効果の鍵と報告されています。予測可能性を上げる支援（視覚スケジュール、事前予告、ルーティン化、変更の事前告知）は、不安が主機能の子に有効です。
+          <span class="ref">→ 出典 [1] 移行介入メタ分析、[5] 見通しと視覚支援</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>次の活動を、具体的に見せる。</b>言葉だけでなく、写真・実物・場所を指す。<span class="say">「次はあの部屋で、粘土」</span>。</li>
+            <li><b>変更は、前もって予告する。</b><span class="say">「今日はいつもと違って、先に体操をします」</span>を、崩れる前に。可能なら朝いちばんに。</li>
+            <li><b>移行のルーティンを固定する。</b>毎回同じ順番・同じ動線・同じ言葉。「片づけ→水を飲む→席」のように手順化して、考えなくても体が動くようにする。</li>
+            <li><b>選択肢を1つ挟む。</b><span class="say">「歩いていく？ ジャンプでいく？」</span>。枠は固定しつつ本人に決めさせると、統制感が上がり不安が下がる。</li>
+            <li><b>終わりの見通しも渡す。</b><span class="say">「粘土は15分で、そのあとおやつ」</span>。「この先ずっと」ではないと分かると動きやすい。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">次を具体的に見せる・変更を先に伝える、で、予定変更の日の崩れが減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h07">H07（回避）</a> へ。不安の中身が「分からない」ではなく「その活動が嫌／できない」なら、そちらの対処。</div></div>
+      </div>
+    </div>
+
+    <!-- H05 -->
+    <div class="hyp" id="h05">
+      <div class="top"><div class="hid">H05</div><h3>集団のざわめき・刺激過多で、処理が飽和している</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">人が多く、音・動きが多い場面では、感覚入力の処理容量を超えて「シャットダウン」に近い状態になることがあります。そのとき子どもは、自分の遊びに強く閉じこもることで刺激から身を守っています。<strong>切り替えの指示は、すでに飽和している系にさらに要求を足す</strong>ことになり、反応が止まります。「わがまま」でも「無視」でもなく、環境が合っていないサインです。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">にぎやかな集団活動の最中・直後に、指示が入らない。人数が少ない日は切り替えられる。ざわつくと手遊び・独り言・特定の遊びに没頭が強まる。切り替えを求めると、耳をふさぐ・その場を離れる・固まる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          自閉のある子では、混雑・騒音などで感覚入力が処理容量を超えると、行動の停止や反応の低下（シャットダウン）が起こることが知られ、これは「問題行動」ではなく「環境が合っていないサイン」と説明されます。移行が難しい場面ほど、<strong>指示の前に刺激そのものを下げる</strong>——音楽を止める、全体をいったん静かにする、活動ゾーンを分ける——ことが前提条件になります。
+          <span class="ref">→ 出典 [12] 感覚過負荷とシャットダウン、[1] 移行介入メタ分析</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>指示の瞬間だけ、その場の音を一段下げる。</b>BGMを止める、全体に一拍静かにさせる合図を決める（<a href="#s04">§04</a>）。ざわめきと指示を同時に流さない。</li>
+            <li><b>切り替えは、少人数・低刺激のタイミングに寄せる。</b>全員が同時に動く一斉移行をやめ、数人ずつ時間差で動かす。</li>
+            <li><b>イヤーマフ・耳栓を選べるようにする。</b>聴覚過敏がある子には我慢させず道具を使う。「わがまま」ではありません。</li>
+            <li><b>クールダウンの場所を用意する。</b>刺激の少ない一角を「立て直す場所」として、いつでも使える約束にする。落ち着いてから1つだけ伝える。</li>
+            <li><b>固まっているときは指示を重ねない。</b>近くで穏やかに、選択肢のない短い声かけ。落ち着きを待つ。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">刺激を下げ、時間差移行にすると、集団場面でも切り替えられる回数が増える。人数の少ない日との差が縮まる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h08">H08（疲労）</a> へ。刺激量そのものより、蓄積した消耗が効いている可能性。</div></div>
+      </div>
+    </div>
+
+    <!-- H06 -->
+    <div class="hyp" id="h06">
+      <div class="top"><div class="hid">H06</div><h3>「強い声＝本気の合図」が学習されている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">結果（次の展開）を伴わない指示を何度も繰り返すと、子どもは「まだ言葉が続くだけ」と学習し、大人の声をフィルターアウトするようになります。そこで声を強めて初めて動く経験が重なると、<strong>「小さい声・普通の声では動かなくてよい／大声こそが本当の合図」</strong>という関係が定着します（合図のインフレ）。また、ぐずったときに大人が近づき強く関わること自体が一部の子には報酬になり、「動かない→大人が来る」が強まります。子どもの性質というより、その場に作られてしまった随伴性です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">普通の声・1回の指示ではまず動かず、声を張ると動く。予告やタイマーを入れても、最後は大人が大声で言うまで動かない。職員によって通り方が大きく違う（強く言う人には動く）。動かないあいだ、ちらちら大人を見ている。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          行動支援の知見では、簡潔・肯定形・1動作の指示（アルファ指示）は遵守されやすい一方、<strong>指示を出して従わせるフォローをしなければ、子どもは指示を無視することを学習する</strong>とされます。繰り返しの指示や叱責は、注意（大人の関わり）で維持されている行動をむしろ強めることがあり、「注意の最小化＋期待行動が出たときの具体的な称賛」への置き換えが推奨されます。
+          <span class="ref">→ 出典 [10] アルファ指示と「無視の学習」、[8] 事前予告と行動特異的称賛</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>合図を1つに決め、意味を固定する。</b><span class="say">曲／ベル／「お片づけの時間です」</span>のどれか。<strong>合図のあと、指示は1回だけ</strong>。繰り返さない。</li>
+            <li><b>1回言ったら、そばへ行って“見届ける”。</b>言い直す代わりに、距離を詰める・指さす・最初の一歩を手渡す、と支援を一段上げる（声量は上げない）。</li>
+            <li><b>動き出したら、すぐ具体的にほめる。</b><span class="say">「合図で片づけ始められたね」</span>。「合図で動く＝良いことが起きる」に変える。</li>
+            <li><b>動かないあいだ、注目を厚くしない。</b>説教・問い詰め・長い交渉をしない。淡々と身体的な手がかりだけ足す。</li>
+            <li><b>職員間で対応をそろえる。</b>「誰が言っても同じ合図・同じ手順・同じ待ち方」。1人でも大声で通す人がいると、インフレが戻ります。</li>
+            <li><b>2週間、声を張らないと決めて記録する。</b>最初は動きが悪くなることがある（消去バースト）。そこで大声に戻すと逆戻りするので、手がかりを増やして乗り切る。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">2〜3週間で、合図＋1回の指示＋見届け、で動くようになる。職員による差が縮まる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 合図と対応を固定してもなお動かない部分について、<a href="#h01">H01</a>〜<a href="#h05">H05</a> の切り分けへ。H06 は「まず外す」ための仮定です。</div></div>
+      </div>
+    </div>
+
+    <!-- H07 -->
+    <div class="hyp" id="h07">
+      <div class="top"><div class="hid">H07</div><h3>切り替えではなく、次の活動そのものを避けている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">問題が「切り替え」ではなく「行き先」にある場合です。次の活動が苦手・難しい・つまらない・失敗しそう、あるいは「何をどこまでやるのか分からない」とき、子どもは自由遊びに留まることで、その活動を先延ばし・回避しています。<strong>移行の抵抗は、次の活動への予期不安の裏返し</strong>です。この場合、予告やタイマーをいくら整えても動きません。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">次が好きな活動・おやつのときはすっと動く。苦手な課題・集団活動・宿題のときだけ抵抗する。動いたあとも、その活動から抜け出そうとする・課題を最小限で済ませようとする。「あれ、やりたくない」と言葉にすることがある。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          移行時の不適応行動の一因として、<strong>「好子（自由遊び）から、要求のある嫌子（課題）への随伴性の変化」＝逃避・回避で維持される行動</strong>が挙げられます。この機能の場合、有効なのは (1) 次の活動の要求水準・不確かさを下げる、(2) 高頻度要求連鎖で「開始」への抵抗を崩す、(3) 「まず少しやったら、好きなこと」の順（プレマックの原理）にする、です。プレマックの効果は「好きな活動へのアクセスを一時的に制限しておく」ことと結びついている、という指摘もあります。
+          <span class="ref">→ 出典 [1] 移行介入メタ分析、[6] 高頻度要求連鎖、[7] プレマックの原理と反応遮断</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>次の活動の「分からなさ」を消す。</b>何を・どれだけ・いつまで、を具体的に見せる。<span class="say">「プリント1枚、5問だけ、終わったら自由」</span>。ゴールが見えると回避が下がる。</li>
+            <li><b>ファースト・ゼンで提示する。</b><span class="say">「まず課題、そのあと好きな遊び」</span>。順番を絵カードで示す。好きな遊びは「取り上げるもの」ではなく「このあと戻ってくるもの」と位置づける。</li>
+            <li><b>最初のハードルを下げる。</b>1問だけ一緒にやる、道具を並べるところまで手伝う。「始めてしまえば進む」なら、開始だけ支える。</li>
+            <li><b>成功体験を設計する。</b>苦手な活動を、その子ができる水準に調整する。「行っても嫌なことが起きる」を「行けば、できる」に変える。</li>
+            <li><b>回避が強い活動は、内容を見直す。</b>切り替えの工夫で押し通す前に、その活動がその子に合っているかを検討する。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">次の活動のゴールを明示し、ファースト・ゼンにすると、苦手な活動への移行でも動けるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 好きな活動への移行でも動けないなら、回避ではない。<a href="#h01">H01</a>〜<a href="#h03">H03</a> へ戻る。</div></div>
+      </div>
+    </div>
+
+    <!-- H08 -->
+    <div class="hyp" id="h08">
+      <div class="top"><div class="hid">H08</div><h3>実行機能・情動調整の資源が尽きている — 疲労と時間帯</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">抑制・切り替え・開始・情動調整は、いずれも消耗する働きです。学校で一日、集団に合わせて自分を制御し続けたあと、放課後にさらに切り替えを要求されれば、<strong>残りの資源が尽きて、これらが同時に鈍ります</strong>。「一日の後半に増える」「にぎやかな集団活動やイベントの直後に崩れる」という時間的な偏りは、能力の問題ではなく消耗の問題であることを示すサインです。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">来所直後や前半は切り替えられるのに、夕方に向けて動けなくなる。集団活動の直後にぼんやりして指示が入らない。疲れのサイン（あくび、姿勢の崩れ、いつもより幼い言動、泣きやすさ）と一緒に起きる。休憩や軽食のあとに戻る。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          実行機能や自己制御を長時間使い続けると、その後の制御課題の成績が落ちることが知られています。切り替えは実行機能を集中的に使う課題なので、<strong>負荷の高い活動のあとや一日の後半は、同じ支援でも通りにくくなる</strong>のは自然なことです。対策は「聞き取り・切り替えの要る場面を、元気な時間帯に前倒しする」「負荷の高い活動の前後に静かな時間を挟む」です。
+          <span class="ref">→ 出典 [2] 実行機能、[12] 感覚過負荷</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>切り替えの多い活動・新しい流れは、前半に置く。</b>説明の多い活動、初めてのルールは来所直後〜前半に。</li>
+            <li><b>一日の構造に「静かな時間」を組み込む。</b>集団活動のあとに、必ず個別・低刺激の時間を固定で置く。</li>
+            <li><b>後半は、切り替えの回数そのものを減らす。</b>活動を細切れにせず、まとまった時間で。移行が少ない設計にする。</li>
+            <li><b>休憩・水分・軽食を先回りで入れる。</b>崩れてからではなく、崩れる前に。</li>
+            <li><b>疲れて通らない時間帯は、要求水準を下げる。</b>その時間に難しい切り替えを求めない、と割り切る。</li>
+            <li><b>学校での様子を保護者と共有する。</b>学校で疲れ切っているなら、放課後の設計を学校側の状況とあわせて考える。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">時間帯を変え、静かな時間を挟むと、後半の切り替えが改善する。崩れが「疲れている時間帯」に限られると確認できる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 時間帯と関係なく起きるなら、<a href="#h01">H01</a>〜<a href="#h05">H05</a> の切り分けへ。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:26px">
+    <h4>8パターンを一巡しても動かないとき</h4>
+    <p>該当しそうな仮定を2つ3つ試し、それぞれ2〜4週間、環境と関わり方を焦点を絞って変えてなお反応が乏しい——この<strong>「適切な調整への反応が乏しい」という記録そのもの</strong>が、専門機関に持ち込むべき最も価値のある材料です。<a href="#s07">§07</a> の相談先へ、<a href="#s08">§08</a> の記録用紙とあわせて持参してください。</p>
+  </div>
+</section>
+
+<!-- ===== 04 カタログ ===== -->
+<section id="s04">
+  <div class="sec-head"><span class="sec-num">04</span><h2>予告・合図・環境調整カタログ</h2></div>
+  <p class="sec-sub">§03 の対応策に出てくる方法の詳細です。それぞれ効く層が違います。全部やる必要はなく、切り分けの結果に合うものを1〜2つ選び、しばらく替えないこと。<strong>タグは「効きやすい層」と、根拠の種類（研究知見／実践情報）</strong>を示します。</p>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <span class="tag brick">研究＋実践 ／ P1</span>
+      <h3>複数回の予告（10分・5分・1分）</h3>
+      <p>単発の口頭予告ではなく、時間を追って複数回。早期childhoodの実践では<strong>10分前・5分前・1分前</strong>の3回にすると、準備できる子が増えるとされます。移行介入の研究でも、事前の言語予告は視覚材料とセットで、移行の約2分前に出す形が標準。言い方とタイミングは毎回固定します。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">日本の療育 ／ P1</span>
+      <h3>残り時間の可視化（タイムタイマー・砂時計）</h3>
+      <p>数字が減るのが見て分かる／色面積が減る／砂が落ちる。<strong>時間の減り方が視覚で伝わり、終了時に音も鳴る</strong>ので、聴覚と視覚の両方から手がかりが出ます。時計が読めない子、「あと5分」が体感に結びつかない子に有効。手作りの「区切りを示す手動タイマー」でも代用できます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag ochre">エビデンスあり（留保つき）／ P1・P4</span>
+      <h3>視覚スケジュール ＋ ファースト・ゼン</h3>
+      <p>1日の流れを絵・写真で示し、「今ここ」を動かす。「まず◯◯、そのあと△△（好きなこと）」の順（プレマックの原理）で、非選好→選好の見通しを与える。視覚スケジュールは自閉支援のエビデンスに基づく実践とされる一方、<strong>近年の成分分析では「視覚スケジュール単独で移行が改善する」証拠は弱く</strong>、予告・称賛など他の要素とセットで使うのが前提です。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">集団運営 ／ P2・P4</span>
+      <h3>移行の合図を1つに統一する</h3>
+      <p>片づけの歌、決まったベル、決まった掛け合い（<span class="say">「お片づけ〜」→「タイム!」</span>）。<strong>「この音がしたら片づけ」を条件づける</strong>と、言葉での説得が要らなくなります。合図の意味は固定し、職員全員が同じものを使う。移行そのものを歌やリズムに乗せると、身体が動くきっかけになります。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">教室運営 ／ P2・P3</span>
+      <h3>静かな合図・注目の合図（大声の代替）</h3>
+      <p>注意を引きたいときこそ声量を上げず、むしろ下げる。手を挙げる→気づいた子も挙げて黙る、指を5→1へ折る、決まった短いフレーズ→全員が静止。<strong>全員が静かに注目するまで、本題を話し始めない</strong>（話し始めると「静かにしなくても進む」と学習される）。合図が「効かなくなってきた」と感じたら、意味は固定したまま出し方を2〜3種ローテーションする。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">行動支援 ／ P4</span>
+      <h3>移行対象物（次を表す物を渡す）</h3>
+      <p>次の活動を表す物を手渡す——集まりなら座布団、制作なら道具、おやつならコップ。<strong>「言葉で止める」を「物を受け取って動く」に置き換える</strong>。具体思考の子、年少児にとくに有効。物を持って移動する、という身体の動きが切り替えを助けます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag brick">エビデンスあり ／ P2・P4</span>
+      <h3>行動の勢い（高頻度要求連鎖）</h3>
+      <p>いきなり難しい指示を出さず、確実にできる簡単な指示を3〜5個テンポよく出して「できた」の連続を作り、その勢いで切り替えの指示へつなげる。自閉のある子の遵守率向上がメタ分析で示されています。<strong>簡単な指示と本命の指示の間を、間を空けずすばやく</strong>つなぐのがコツ。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">関わりの基本 ／ P3・P5</span>
+      <h3>選択肢を与える</h3>
+      <p><span class="say">「片づけてから行く？ 先に行ってから片づける?」「歩く? ジャンプで行く?」</span>。移行の枠は固定したまま、やり方を本人に選ばせる。<strong>統制感が上がると抵抗が下がり</strong>、情動の爆発（P5）も減ります。選択肢は2つまで、どちらでも支援者が困らないものに。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">アメリカ ／ P1・P4</span>
+      <h3>事前予告（precorrection）＋ 具体的な称賛</h3>
+      <p>つまずきやすい移行の<strong>直前</strong>に、期待される行動を具体的に伝えておき（<span class="say">「合図が鳴ったら、ブロックを箱に入れて、青いイスに座ります」</span>）、できたらすぐ具体的にほめる。IESの学級行動介入ガイドで、叱責の必要を減らし指示の通りを改善する方法として位置づけられています。「注意する」より「先に言っておく」。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">実践 ／ P4・P5</span>
+      <h3>移行を役割・ゲームにする</h3>
+      <p><span class="say">「タイマーが鳴ったら、みんなに知らせる係」「片づけ競争、30秒」</span>。受け身で止められるのではなく、<strong>能動的なタスクにすると切り替えやすい</strong>子がいます。§02-06 で「役割があると動ける」と分かった子に。毎回同じ役割にして定着させる。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">一日の設計 ／ H08</span>
+      <h3>時間帯のマネジメント</h3>
+      <p>切り替えの多い活動・新しい流れは前半に。にぎやかな集団活動の直後には、必ず静かな個別の時間を置く。後半は移行の回数そのものを減らし、まとまった時間で活動する。休憩・水分・軽食は崩れる前に先回りで。</p>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:26px">
+    <h4>「先生が急に黙ると、ざわざわが静まる」——あれは何なのか</h4>
+    <p>人の神経系は、環境の<strong>予期しない変化</strong>を自動で検出し、そちらへ注意を向けます（定位反応）。心拍が下がり、動きが止まり、注意が再配分される全身の反応です。ざわめき（一定のノイズ）の中で声が<strong>急に消える</strong>のは「予測との差分」で、強い定位反応を引き起こします。大声は刺激を足し、沈黙は刺激を引きますが、<strong>注意を引くのは強度ではなく変化のほう</strong>です。加えて、先生の周りで数人が動きを止めると、周囲の子が「何が起きた?」と気づいて連鎖します。
+    ただし定位反応は<strong>繰り返すと馴化して消えます</strong>。毎回同じ「沈黙」を使えば効かなくなる。使うなら、(1) 合図の意味は固定（沈黙＝集合の合図、など）、(2) 出し方は変化させる、(3) 反応できたことをすぐ承認して「合図＝良いことの前触れ」にする、の3点をセットにします。<span class="ref" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px">→ 出典 [4] 定位反応と馴化、実践情報（静かな合図）</span></p>
+  </div>
+</section>
+
+<!-- ===== 05 進め方 ===== -->
+<section id="s05">
+  <div class="sec-head"><span class="sec-num">05</span><h2>2〜6週間の進め方</h2></div>
+  <p class="sec-sub">切り分け → 大人の側を固定 → 個別の仮説、の順に進めます。各段階に合格の目安を置き、満たすまで次に進みません。§02 の結果によっては、途中から始めて構いません。</p>
+
+  <div>
+    <div class="phase">
+      <div class="ph">STEP 0</div>
+      <div>
+        <h4>観察できる状態をつくる</h4>
+        <p>1〜2週間、切り替え場面での叱責・大声・長い交渉をいったん止め、「記録する人」を決める。誰が・どの合図で・何分で動いたかを、その場で判断せずメモする。</p>
+        <p class="pass">合格の目安：切り替え場面のログが、日に数件たまっている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 1</div>
+      <div>
+        <h4>条件をそろえた観察（§02）</h4>
+        <p>予告あり／なし、没入／非没入、次が好き／嫌い、声のかけ方3通り、タイミングの偏り、個別／一斉。1週間、叱らずに記録だけ取る。</p>
+        <p class="pass">合格の目安：「どの層（P1〜P5）で止まっているか」の見立てが1〜2個に絞れている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 2</div>
+      <div>
+        <h4>大人の側の「合図と伝え方パッケージ」を入れる</h4>
+        <p>仮説にかかわらず有効な土台を、まとめて2週間試す：<strong>①予告を10分・5分・1分前に固定した言い方で ②残り時間を見える化（タイマー） ③終了合図を1つに統一 ④名前＋一拍＋1動作の指示、繰り返さない ⑤動き出したら具体的に称賛 ⑥動かないあいだ注目を厚くしない</strong>。職員全員でそろえる。最初の数日は動きが悪くなることがある（<a href="#h06">H06</a>：消去バースト）が、大声に戻さず手がかりを増やして乗り切る。</p>
+        <p class="pass">合格の目安：合図＋1回の指示で動く割合が上がる／大声の回数が減る／職員による差が縮まる。ここで大きく変われば、H06 と伝え方の要因が大きかったということ。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 3</div>
+      <div>
+        <h4>個別の仮説に的を絞る</h4>
+        <p>STEP 2 で残った部分について、§02 が指す仮説（H01・H02・H03・H04・H05・H07・H08 のいずれか）の対応策を、2〜4週間、focusして試す。1つずつ。反応を §08 に記録。</p>
+        <p class="pass">合格の目安：その仮説の「当たりの印」が出る。出なければ、指し示された次の仮説へ。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 4</div>
+      <div>
+        <h4>反応が乏しければ、記録を持って相談</h4>
+        <p>2〜3の仮説を焦点を絞って試してなお変化が乏しい場合、§07 の相談先へ。§08 の切り替えログと「試した仮定の記録」を持参する。</p>
+        <p class="pass">目安：ここまでの記録が、専門機関での評価の出発点になる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 落とし穴 ===== -->
+<section id="s06">
+  <div class="sec-head"><span class="sec-num">06</span><h2>やってしまいがちな6つ</h2></div>
+  <div class="dont">
+    <ul>
+      <li><span class="x">✕</span><span><b>声を大きくする・強い調子にする</b><span class="d">動き出す基準が大声側へずれ（合図のインフレ）、一定トーンの号令は繰り返しで効かなくなります（馴化）。声量を上げる代わりに、近づく・見せる・最初の一歩を渡す、と支援を一段上げる。</span></span></li>
+      <li><span class="x">✕</span><span><b>予告なしで急に「はい、おしまい」</b><span class="d">没入している子にとって、予告のない中断は不随意的な苦痛です。抵抗・かんしゃくは「不服従」ではなく、突然断たれたことへの反応。最低でも1分前・直前の2回は予告する。</span></span></li>
+      <li><span class="x">✕</span><span><b>一度に複数の指示を出す</b><span class="d">「片づけて、手洗って、座って」は、保持でも開始でも負荷が高い。1指示1動作、1つ終わってから次、が原則です。</span></span></li>
+      <li><span class="x">✕</span><span><b>「何回言ったら分かるの」と問い詰める</b><span class="d">実行機能や処理の問題なら理不尽な体験になり、緊張で動きがさらに鈍り、回避を強めます。繰り返しの叱責は、注目で維持されている行動をむしろ強めることもあります。</span></span></li>
+      <li><span class="x">✕</span><span><b>静かな1対1で切り替えられたから「やればできる／甘え」と判断する</b><span class="d">この懸案の本体は「自由遊びから・集団のなかで」です。条件が違えばできない理由を否定しません。落差そのものが情報です。</span></span></li>
+      <li><span class="x">✕</span><span><b>ぐずったら関わりを厚くする／泣いたら要求を通す</b><span class="d">「動かない→大人が来て構ってくれる」「粘れば延長できる」を学習させると、切り替えはむしろ難しくなります。動かないあいだは淡々と、動き出したら手厚くほめる。</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 07 相談 ===== -->
+<section id="s07">
+  <div class="sec-head"><span class="sec-num">07</span><h2>専門機関に相談するとき</h2></div>
+  <div class="body-col">
+    <p>この資料の切り分けと対応策は、専門家によるアセスメントの代わりではありません。目的は、<strong>相談のときに持参する観察記録をつくること</strong>です。とくに、環境と関わり方を焦点を絞って数週間変えてなお反応が乏しい場合、その記録が評価の出発点になります。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <span class="tag ochre">特性・実行機能</span>
+      <h3>発達検査を扱う心理職／児童精神科・小児科</h3>
+      <p>WISC 等での処理速度・ワーキングメモリの評価、自閉スペクトラム・ADHD の特性の評価。切り替えの困難が家庭・学校でも共通し、不安・こだわりが強い場合もここへ。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">感覚の調整</span>
+      <h3>作業療法士（OT）</h3>
+      <p>聴覚・触覚などの過敏、感覚の処理・調整の評価と、集団場面での刺激マネジメント、クールダウンの設計。「にぎやかな場面でだけ崩れる」子に。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">場をそろえる</span>
+      <h3>学校の特別支援教育コーディネーター</h3>
+      <p>移行の合図・視覚スケジュール・予告の仕方を、学校と放デイでそろえる。学校での切り替えの様子、疲労の程度を共有し、放課後の設計に反映する。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">事業所の環境</span>
+      <h3>児童発達支援センター／相談支援専門員</h3>
+      <p>一斉移行の設計、活動の区切り方、職員間の対応統一など、<strong>個別の子より先に「場のつくり」</strong>を見直すべきとき。巡回相談・アドバイザーの活用も。</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <h4>持っていくもの</h4>
+    <p>§08 の<strong>切り替えログ</strong>（いつ・直前の遊び・次の活動・予告の有無・使った合図・かかった時間・声のトーン）と、<strong>試した仮定の記録</strong>（何を・どのくらいの期間・当たりの印は出たか）。「切り替えができない」ではなく「予告とタイマーを2週間入れても、好きな遊びからは、大人が大声で言うまで平均5分動けない」のように、条件つきで具体的に書かれた記録が、評価を早く正確にします。</p>
+  </div>
+</section>
+
+<!-- ===== 08 記録 ===== -->
+<section id="s08">
+  <div class="sec-head"><span class="sec-num">08</span><h2>記録テンプレート</h2></div>
+  <p class="sec-sub">印刷して使えます。同じ観点で2〜3週間おきに取り直すと、「調整への反応」が可視化されます。</p>
+
+  <h3 style="font-size:18px;margin:8px 0 12px">切り替えログ（動けなかった場面を中心に）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>日付・時刻</th><th>直前の遊び（没入度）</th><th>次の活動（好き／嫌い）</th><th>予告・合図</th><th>反応（動くまで）</th><th>声のトーン</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">／　　:　</td><td>　　　（強・中・弱）</td><td>　　　（好・普・嫌）</td><td>予告 有・無 ／ 合図　　　</td><td>即 ／ 　分 ／ 動かず</td><td>普通 ／ 強め ／ 大声</td></tr>
+        <tr><td class="num">／　　:　</td><td>　　　（強・中・弱）</td><td>　　　（好・普・嫌）</td><td>予告 有・無 ／ 合図　　　</td><td>即 ／ 　分 ／ 動かず</td><td>普通 ／ 強め ／ 大声</td></tr>
+        <tr><td class="num">／　　:　</td><td>　　　（強・中・弱）</td><td>　　　（好・普・嫌）</td><td>予告 有・無 ／ 合図　　　</td><td>即 ／ 　分 ／ 動かず</td><td>普通 ／ 強め ／ 大声</td></tr>
+        <tr><td class="num">／　　:　</td><td>　　　（強・中・弱）</td><td>　　　（好・普・嫌）</td><td>予告 有・無 ／ 合図　　　</td><td>即 ／ 　分 ／ 動かず</td><td>普通 ／ 強め ／ 大声</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">比較メモ（条件をそろえて）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>比べた条件</th><th>結果</th><th>気づき</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>予告あり ／ 予告なし</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+        <tr><td>没入している遊び ／ どうでもいい遊び</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+        <tr><td>次が好き ／ 次が嫌い・難しい</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+        <tr><td>大声で全体 ／ そばで合図 ／ 予告＋タイマー</td><td></td><td></td></tr>
+        <tr><td>午前・前半 ／ 午後・後半</td><td>　　　　 ／ 　　　　</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">試した仮定の記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>仮定</th><th>試した期間</th><th>実際にやったこと</th><th>当たりの印は出たか</th><th>次の仮定</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 出典 ===== -->
+<section id="s09">
+  <div class="sec-head"><span class="sec-num">出典</span><h2>参照した情報</h2></div>
+  <p class="sec-sub">研究知見と実践情報を分けて記載しています。番号は §03・§04 の「学術的には」から参照しています。移行支援の研究は小規模なもの・成分分析の少ないものが多く、効果量も一定しません。個別の子どもへの適用は、必ず実際の観察と、必要に応じた専門機関の評価を優先してください。</p>
+  <div class="src">
+    <h3 style="font-size:16px;margin:8px 0 10px;color:var(--ink)">研究知見</h3>
+    <ol>
+      <li id="r1">移行時の不適応行動への介入 — 行動分析系の研究を対象としたメタ分析。先行子となる合図（言語予告・視覚スケジュール・カウントダウンカード）は移行の約2分前に視覚材料とセットで提示されることが多い。合図のみの介入は効果が小さく不安定で、<strong>その子の行動を支配する変数（不確かさ／負の強化のシフト）に介入を合わせる</strong>ことが効果の鍵。Kim, Ravichandran, Moeyaert, Ditzler, Ryan &amp; Fienup (2026), <em>Behavior Modification</em> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13053881/">PMC</a>／<a href="https://doi.org/10.1177/01454455261421144">doi.org</a></li>
+      <li id="r2">実行機能（抑制・ワーキングメモリ・認知的柔軟性）と前頭前野の長い発達 — Diamond, A. (2013). <em>Executive Functions. Annual Review of Psychology, 64, 135–168.</em> <a href="https://www.annualreviews.org/doi/10.1146/annurev-psych-113011-143750">annualreviews.org</a>／全文PDF <a href="https://www.psychologie.uzh.ch/dam/jcr:b93485f4-7120-4fe4-9a5b-39a84f4e07e6/Diamond.AnnRevPsych.2013.pdf">psychologie.uzh.ch</a>。移行を「止める・思い浮かべる・切り替える」の同時課題として整理する背景。</li>
+      <li id="r3">モノトロピズム — 注意のトンネル、没頭からの離脱コスト、予告なしの割り込みの苦痛。Murray, Lesser &amp; Lawson の枠組み <a href="https://monotropism.org/">monotropism.org</a>／Dwyer ほか (2024) 自閉・ADHD横断の過集中・注意の研究 <a href="https://journals.sagepub.com/doi/10.1177/27546330241237883">SAGE</a></li>
+      <li id="r4">定位反応（orienting response）と馴化 — 環境の予期しない変化・新奇性を自動検出し注意を向ける全身反応。反復で馴化して消える（防御反射との違い）。Sokolov のモデル。<em>The Orienting Response in Healthy Aging: Novelty P3…</em> <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2017.01780/full">Frontiers in Psychology (2017)</a>／概説 <a href="https://www.sciencedirect.com/topics/medicine-and-dentistry/orienting-response">ScienceDirect</a></li>
+      <li id="r5">見通しと時間感覚、視覚支援（日本の児童発達支援・放課後等デイ実践）— 予告の言い回しと終了合図の統一、1日の流れの絵・写真カード、タイムタイマーで残り時間を見せる、時計が読めない子への時間感覚の育て方。オレンジスクール「見通しを持つための4つの工夫」 <a href="https://orangeschool.jp/blog-higashitotsuka4/%E8%A6%8B%E9%80%9A%E3%81%97%E3%82%92%E6%8C%81%E3%81%A4%E3%81%9F%E3%82%81%E3%81%AE4%E3%81%A4%E3%81%AE%E5%B7%A5%E5%A4%AB/">orangeschool.jp</a>／iroha「発達に特性のある子への視覚支援」 <a href="https://www.houdei-iroha.com/post/%E7%99%BA%E9%81%94%E3%81%AB%E7%89%B9%E6%80%A7%E3%81%AE%E3%81%82%E3%82%8B%E5%AD%90%E3%81%B8%E3%81%AE%E8%A6%96%E8%A6%9A%E6%94%AF%E6%8F%B4">houdei-iroha.com</a>／ゆめラボ「時計が読めない理由・時間感覚を育てる療育」 <a href="https://yumelabo.jp/blog/tokei-yomenai-jikan-kankaku-ryoiku/">yumelabo.jp</a></li>
+      <li id="r6">高頻度要求連鎖（行動の勢い） — 簡単で確実な指示を数個続けて遵守の勢いを作り、難しい指示につなげる先行子介入。自閉のある子の遵守率向上をメタ分析が示す。Sayar, Gulboy, Yucesoy-Ozkan &amp; Baran (2024), <em>Journal of Positive Behavior Interventions</em> <a href="https://journals.sagepub.com/doi/10.1177/01987429231224044">SAGE</a>／概説 <a href="https://howtoaba.com/high-probability-request-sequence-behavioural-momentum/">howtoaba.com</a></li>
+      <li id="r7">プレマックの原理／ファースト・ゼン — 起こりやすい行動が起こりにくい行動を強化する。効果は「好きな活動へのアクセスを一時的に制限しておく（反応遮断）」ことと結びつく、という指摘がある。<a href="https://www.simplypsychology.org/premack-principle.html">simplypsychology.org</a>／研究の位置づけ（EBSCO Research Starters）<a href="https://www.ebsco.com/research-starters/psychology/premacks-principle-relativity-theory-reinforcement">ebsco.com</a></li>
+      <li id="r8">事前予告（precorrection）と行動特異的称賛 — つまずく場面の前に期待行動を伝え、できたら具体的にほめる。叱責の必要を減らし指示の通りを改善。IES/WWC <em>Teacher-Delivered Behavioral Interventions in Grades K–5</em> <a href="https://ies.ed.gov/ncee/wwc/docs/practiceguide/behavioral-interventions-practice-guide_v3a_508a.pdf">ies.ed.gov（PDF）</a>／IRIS Center <a href="https://iris.peabody.vanderbilt.edu/module/bi2-elem/cresource/q1/p03/">iris.peabody.vanderbilt.edu</a></li>
+      <li id="r9">移行前の先行子プロンプトの効果 — 予告・先行子プロンプト条件で、障害のある幼児の自発的な移動が増え、教員のプロンプトが減少。Sainato, Strain, Lefebvre &amp; Rapp (1987) <em>Facilitating transition times with handicapped preschool children</em>, <em>Journal of Applied Behavior Analysis, 20, 285–291</em> <a href="https://pubmed.ncbi.nlm.nih.gov/3667478/">PubMed</a></li>
+      <li id="r10">アルファ指示と「無視の学習」 — 簡潔・肯定形・1動作の指示は遵守されやすい。<strong>指示を出してフォローしなければ、子どもは指示を無視することを学習する</strong>。<em>Evaluation of Alpha and Beta Commands…</em> ERIC EJ1205740 <a href="https://eric.ed.gov/?id=EJ1205740">eric.ed.gov</a>／繰り返しの指示・叱責の逆効果 <a href="https://www.empoweringparents.com/article/irresponsible-children-why-nagging-and-lecturing-dont-work/">empoweringparents.com</a></li>
+      <li id="r11">視覚スケジュールの成分分析 — 視覚スケジュールは自閉支援のエビデンスに基づく実践とされるが、移行改善への「視覚スケジュール単独の寄与」を示す証拠は不十分で、通常は他の要素とセット。Mouzakes ほか (2025) <em>A Closer Examination of the Visual Schedule Component…</em>, <em>Behavioral Interventions</em> <a href="https://onlinelibrary.wiley.com/doi/10.1002/bin.70028">Wiley</a>／AFIRM <em>Visual Supports</em> <a href="https://afirm.fpg.unc.edu/wp-content/uploads/Visual-Supports-Brief-Packet.pdf">afirm.fpg.unc.edu（PDF）</a></li>
+      <li id="r12">感覚の過負荷とシャットダウン — 混雑・騒音で処理容量を超えると反応が落ちる。「問題行動」ではなく「環境が合っていないサイン」。Autism Speaks <em>Sensory issues</em> <a href="https://www.autismspeaks.org/sensory-issues">autismspeaks.org</a></li>
+    </ol>
+    <h3 style="font-size:16px;margin:26px 0 10px;color:var(--ink)">実践情報</h3>
+    <ol start="13">
+      <li id="r13">移行時の不適応行動を減らす — 予告・カウントダウン・移行の歌・移行スポット、10分/5分/1分の複数回予告。NAEYC <em>Reducing Challenging Behaviors during Transitions</em> <a href="https://www.naeyc.org/resources/pubs/yc/sep2018/reducing-challenging-behaviors-during-transitions">naeyc.org</a>／continued.com <em>Trouble with Transitions? 5 Essential Ways</em> <a href="https://www.continued.com/early-childhood-education/articles/trouble-with-transitions-5-essential-22809">continued.com</a></li>
+      <li id="r14">静かな合図・注目の合図 — 声を張るより一段落とす、全員が注目するまで話し始めない、決まった合図の徹底。Responsive Classroom <em>Signals for Quiet</em> <a href="https://www.responsiveclassroom.org/signals-for-quiet/">responsiveclassroom.org</a>／Smart Classroom Management <em>How to Get Silent Student Attention</em> <a href="https://smartclassroommanagement.com/2026/01/09/silent-student-attention/">smartclassroommanagement.com</a></li>
+      <li id="r15">自閉のある子の移行支援 — 予告、視覚スケジュール、移行対象物、次の活動の魅力の先出し、ルーティン化、選択肢。Indiana Resource Center for Autism <em>Transition Time</em> <a href="https://iidc.indiana.edu/irca/articles/transition-time-helping-individuals-on-the-autism-spectrum-move-successfully-from-one-activity-to-another.html">iidc.indiana.edu</a>／Autism Little Learners <a href="https://autismlittlelearners.com/transitions-examples/">autismlittlelearners.com</a>／Autism Awareness Centre <a href="https://autismawarenesscentre.com/successful-transitions-from-one-activity-to-another-for-individuals-with-asd/">autismawarenesscentre.com</a>／Behavioral Innovations <a href="https://behavioral-innovations.com/blog/helping-children-transition-between-activities/">behavioral-innovations.com</a>／Brown University Health <a href="https://www.brownhealth.org/be-well/children-autism-and-change-tips-make-transition-easier">brownhealth.org</a></li>
+      <li id="r16">切り替えが難しい子への予告と終了合図（日本の療育） — 「あと1回で終わり」の予告と終了合図の統一、活動の区切りを示す手動タイマーの作り方・使い方。楽しい療育の三輪堂 <a href="https://sanrindou-members.com/230206-timer/">sanrindou-members.com</a>／児発・放デイの環境調整のコツ <a href="https://h-navi-biz.jp/management/6089">h-navi-biz.jp</a></li>
+      <li id="r17">子どもの移行の困りごと — なぜ切り替えが難しいか（ADHD の注意調整、自閉の予測可能性、感覚、不安）と、プレビュー・カウントダウン・ルーティン・視覚的手がかり・移行の歌・称賛。Child Mind Institute <a href="https://childmind.org/article/why-do-kids-have-trouble-with-transitions/">なぜ難しいか</a>／<a href="https://childmind.org/article/how-can-we-help-kids-with-transitions/">どう助けるか</a></li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。切り分けチェックと8パターンの仮定は、専門家によるアセスメントの代替ではなく、相談時に持参する観察記録を作るためのものです。移行支援の研究は小規模なものが多く、ここでの提案も「まず試す一手」であって確実な解決策ではありません。個々の子どもへの適用は、実際の観察と、必要に応じた専門機関の評価を優先してください。
+  </p>
+</section>
+
+</div>
+</body>
+</html>

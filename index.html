@@ -270,7 +270,18 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
           </ul>
         </li>
 
-        <li class="row"><a href="#dom-koudou" data-spy="#dom-koudou">行動・情動</a><span class="count">—</span></li>
+        <li class="grp" data-collapse="nav-d-koudou" data-collapse-open>
+          <div class="row">
+            <a href="#dom-koudou" data-spy="#dom-koudou">行動・情動</a>
+            <span class="count">1</span>
+            <button class="tw" type="button" data-collapse-toggle aria-expanded="true" aria-label="行動・情動の事例を開閉">
+              <svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <ul class="sub" data-collapse-body>
+            <li><a href="#case-transitions" data-spy="#case-transitions">次の行動に切り替えられないとき</a></li>
+          </ul>
+        </li>
         <li class="row"><a href="#dom-kankaku" data-spy="#dom-kankaku">感覚・運動</a><span class="count">—</span></li>
         <li class="row"><a href="#dom-seikatsu" data-spy="#dom-seikatsu">生活・自立／対人・社会性</a><span class="count">—</span></li>
       </ul>
@@ -293,7 +304,7 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
   </p>
   <div class="meta">
     <span>最終更新 2026-08-29</span>
-    <span>資料 2 本</span>
+    <span>資料 3 本</span>
     <span>調査予定 &gt; 下部バックログ</span>
   </div>
 
@@ -350,18 +361,19 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
     </div>
   </div>
 
-  <div class="domain is-empty" id="dom-koudou" data-collapse="dom-koudou">
+  <div class="domain" id="dom-koudou" data-collapse="dom-koudou" data-collapse-open>
     <div class="dh">
-      <h3>行動・情動</h3><span class="c">0 / 0</span>
-      <button class="dt" type="button" data-collapse-toggle aria-expanded="false" aria-label="行動・情動の一覧を開閉"><span class="lb">ひらく</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <h3>行動・情動</h3><span class="c">1 / 1</span>
+      <button class="dt" type="button" data-collapse-toggle aria-expanded="true" aria-label="行動・情動の一覧を開閉"><span class="lb">閉じる</span><svg class="cv" viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M4 2l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
-    <div class="domain-body" data-collapse-body hidden>
+    <div class="domain-body" data-collapse-body>
       <div class="cards">
-        <div class="concern ghost">
-          <div class="tags"><span class="tag wip">未着手</span></div>
-          <h4>この領域の資料はまだありません</h4>
-          <p>下部のバックログに候補を書き出しています。着手したらここにカードが増えます。</p>
-        </div>
+        <a class="concern" id="case-transitions" href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/transitions.html">
+          <div class="tags"><span class="tag">行動・情動 ／ 活動の切り替え</span><span class="tag done">対応策あり</span></div>
+          <h4>次の行動に切り替えられないとき — 自由遊びから活動へ移れない</h4>
+          <p>自由時間の遊びから次の活動へ移れず、大きな声や強い指示でないと動かない状態。切り替えが完了するまでを5層に分け、条件をそろえた観察チェックと、想定原因8パターンごとの予告・合図・環境調整、「大声でないと動かない」を先に外す理由をまとめています。</p>
+          <div class="foot"><span>更新 2026-08-29</span><span class="go">資料を読む →</span></div>
+        </a>
       </div>
     </div>
   </div>
@@ -425,7 +437,7 @@ td.dom{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--indigo
       </thead>
       <tbody>
         <tr><td class="dom">学習・認知</td><td>（例）繰り上がり・繰り下がりで手が止まる</td><td>「10といくつ」の次の段階。10の補数が入っているかで分岐しそう</td><td>未着手</td></tr>
-        <tr><td class="dom">行動・情動</td><td>（例）活動の切り替えで固まる／かんしゃく</td><td>予告の仕方・見通しの持たせ方を調べる</td><td>未着手</td></tr>
+        <tr><td class="dom">行動・情動</td><td>予定変更・行事のあとに崩れる／見通しが立たないとき</td><td>「次の行動に切り替えられないとき」の派生。不安・変更受容の線を別途</td><td>未着手</td></tr>
         <tr><td class="dom">言語</td><td>繰り上がりの口頭説明が伝わらない／会話の応答がずれる</td><td>「聞こえていないように見えるとき」の派生。理解・語彙の線を別途</td><td>未着手</td></tr>
         <tr><td class="dom">感覚・運動</td><td>（例）鉛筆の筆圧・書字の崩れ</td><td>手指の巧緻性／固有感覚／視知覚の切り分け</td><td>未着手</td></tr>
         <tr><td class="dom">—</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
