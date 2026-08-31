@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="発作的な大声とともに「死ね」「クソ」などの強い言葉が出る子について、言葉が出るまでを4層＋チック性の1経路に切り分け、8パターンの仮定（音声チック／情動の爆発／衝動抑制／感情語彙の不足／注目／要求・回避／発散／模倣）ごとに、叱責に頼らない対処を選ぶための支援者向け資料。">
+<title>汚い言葉・暴言が口をついて出るとき</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+/* 明るい単一テーマ（ダークモードには追従しない） */
+:root{
+  color-scheme:light;
+  --ground:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f0ede6;
+  --ink:#1b2230;
+  --ink-2:#42506a;
+  --ink-3:#6f7c90;
+  --line:#ddd9cf;
+  --line-soft:#ebe6db;
+  --indigo:#2a4d78;
+  --indigo-soft:#e7edf6;
+  --brick:#b0413a;
+  --brick-soft:#f8e8e4;
+  --ochre:#9a7016;
+  --ochre-soft:#f8f0da;
+  --green:#2f6b52;
+  --green-soft:#e6f1ea;
+  --shadow:0 1px 2px rgba(27,34,48,.04), 0 10px 26px -18px rgba(27,34,48,.20);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0}
+a{color:var(--indigo)}
+a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* hero */
+.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,54px);letter-spacing:.02em}
+.hero .lede{margin-top:24px;max-width:60ch;color:var(--ink-2);font-size:17px}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+
+/* sections */
+section{padding-top:64px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
+.sec-head h2{font-size:clamp(23px,3.2vw,30px)}
+.sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
+.body-col{max-width:66ch;display:flex;flex-direction:column;gap:18px;color:var(--ink-2)}
+
+/* how to read + toc */
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto h2{font-size:20px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
+.flow .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--brick)}
+.flow b{font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 24px;border-top:1px solid var(--line-soft);padding-top:20px}
+.toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
+.toc a:hover{color:var(--brick)}
+.toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.tag{align-self:flex-start;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;background:var(--indigo-soft);color:var(--indigo)}
+.tag.brick{background:var(--brick-soft);color:var(--brick)}
+.tag.ochre{background:var(--ochre-soft);color:var(--ochre)}
+.verdict{border-left:3px solid var(--brick)}
+.verdict .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);letter-spacing:.1em}
+.verdict h3{font-size:19px;line-height:1.5}
+
+/* layer stack */
+.stack{display:flex;flex-direction:column;gap:6px;margin:8px 0 28px}
+.layer{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:16px 18px}
+.layer .lv{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--surface);background:var(--indigo);border-radius:2px;text-align:center;padding:3px 0}
+.layer h4{font-size:16px;margin-bottom:4px}
+.layer p{font-size:14px;color:var(--ink-2)}
+.layer .fail{font-size:13.5px;color:var(--brick);margin-top:6px;padding-left:12px;border-left:2px solid var(--brick-soft)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-top:8px}
+.gloss div{background:var(--surface);padding:16px 18px}
+.gloss dt{font-weight:700;font-size:14.5px;margin-bottom:3px}
+.gloss dd{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:8px 0 4px;border:1px solid var(--line-soft);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--surface-2);font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--brick);white-space:nowrap}
+td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick-soft)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .idx{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600;color:var(--line);line-height:1.1;font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin-bottom:10px}
+.step .row{display:grid;grid-template-columns:82px 1fr;gap:14px;font-size:14.5px;margin-top:8px;align-items:start}
+.step .k{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.step .v{color:var(--ink-2)}
+.step .v em{font-style:normal;color:var(--brick);font-weight:500}
+
+/* callouts */
+.callout{background:var(--indigo-soft);border-radius:4px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.callout h4{font-size:16px;color:var(--ink)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+.callout.warn{background:var(--ochre-soft)}
+
+/* hypotheses */
+.hyps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.hyp{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:24px}
+.hyp > .top{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:baseline;padding:20px 24px 16px;border-bottom:1px solid var(--line-soft)}
+.hyp .hid{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--surface);background:var(--brick);border-radius:2px;text-align:center;padding:3px 0}
+.hyp h3{font-size:17.5px;line-height:1.5}
+.hyp .inner{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.hyp .blk{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start}
+.hyp .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.hyp .lbl.sci{color:var(--indigo)}
+.hyp .txt{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.hyp .sci-box{background:var(--indigo-soft);border-radius:3px;padding:14px 16px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.hyp .sci-box .ref{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px}
+.hyp ol.acts{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.hyp ol.acts b{color:var(--ink)}
+.hyp .hit{color:var(--green)}
+.hyp .miss{color:var(--brick)}
+.hyp .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+.hyp a{color:var(--brick)}
+
+/* don't list */
+.dont ul{margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dont li{list-style:none;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.dont .x{color:var(--brick);font-family:"IBM Plex Mono",monospace;font-size:15px;line-height:1.7}
+.dont b{display:block;font-weight:700;font-size:15px;color:var(--ink)}
+.dont span.d{font-size:14px;color:var(--ink-2)}
+
+/* program */
+.phase{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.phase .ph{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--indigo);font-weight:600;padding-top:3px}
+.phase h4{font-size:16.5px;margin-bottom:6px}
+.phase p{font-size:14.5px;color:var(--ink-2)}
+.pass{margin-top:10px;font-size:13.5px;color:var(--green);border-left:2px solid var(--green);padding-left:12px}
+
+/* sources */
+.src{font-size:13.5px;color:var(--ink-2);line-height:1.9}
+.src ol{padding-left:22px;margin:0;display:flex;flex-direction:column;gap:10px}
+.src li{scroll-margin-top:24px}
+.src a{word-break:break-all}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+@media print{
+  body{background:#fff}
+  .card,.layer,.tablewrap,.hyp,.howto{box-shadow:none}
+  section,.hyp{break-inside:avoid}
+}
+@media (max-width:620px){
+  .step{grid-template-columns:44px 1fr;gap:14px}
+  .step .idx{font-size:20px}
+  .step .row,.hyp .blk{grid-template-columns:1fr;gap:3px}
+  .phase{grid-template-columns:1fr;gap:6px}
+  .layer{grid-template-columns:36px 1fr;gap:12px}
+  .hyp > .top{grid-template-columns:48px 1fr;gap:12px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow"><a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/" style="color:var(--brick);text-decoration:none">← 児童の困難事例</a> ／ 小学生 ／ 行動・情動 ／ 国内外調査まとめ</div>
+  <h1>汚い言葉・暴言が口をついて出るとき</h1>
+  <p class="lede">
+    発作的に大きな声が出て、そのとき「死ね」「クソ」「おいコラ」といった強い言葉が一緒に飛び出す——この場面でまず必要なのは、
+    厳しく叱ってやめさせることでも、性格や育ちの問題として受け止めることでもありません。
+    その言葉が <strong>本人の意思と無関係に出ているのか（チック性）、感情の高ぶりに巻き込まれて出ているのか、
+    誰かの反応や発散のために出ているのか</strong> を切り分けることです。
+    この資料は、その切り分け方と、想定される8通りの原因ごとの具体的な対処、
+    そして専門機関に相談すべき局面を整理したものです。汚い言葉は「情動の言葉」として
+    ふつうの言葉より脳内で強く結びついており、禁止だけでは消えません。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-31</span>
+    <span>対象 小学生（就学後）</span>
+    <span>読了 約20分</span>
+  </div>
+</header>
+
+<!-- ===== 使い方 ===== -->
+<div class="howto">
+  <h2>この資料の歩き方</h2>
+  <div class="flow">
+    <div class="f">
+      <span class="fn">STEP 1</span>
+      <b>見極める</b>
+      <span>2週間のABC記録（§02）で、汚い言葉が「どのタイプか」「何を得ている／避けているか」を絞ります。ここを飛ばすと対応が当てずっぽうになり、しばしば逆効果になります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 2</span>
+      <b>仮定を選ぶ</b>
+      <span>記録に対応する仮定を §03 の8パターンから選びます。各パターンに、想定原因・学術的な裏づけ・具体的な対処が並んでいます。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 3</span>
+      <b>2週間試し、記録する</b>
+      <span>「当たりの印」が出れば継続、出なければ次の候補へ。暴言の回数と、代わりの言葉が使えた回数を数で残します。この記録が、専門機関に相談するときの最良の材料になります。</span>
+    </div>
+  </div>
+  <nav class="toc">
+    <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
+    <a href="#s01"><span class="n">01</span><span>言葉が出るまでの4層と用語</span></a>
+    <a href="#s02"><span class="n">02</span><span>2週間の切り分けチェック</span></a>
+    <a href="#s03"><span class="n">03</span><span>想定される原因と対処 8パターン</span></a>
+    <a href="#s04"><span class="n">04</span><span>世界の指導法・関わり方カタログ</span></a>
+    <a href="#s05"><span class="n">05</span><span>8週間のプログラム案</span></a>
+    <a href="#s06"><span class="n">06</span><span>放デイ特有の論点</span></a>
+    <a href="#s07"><span class="n">07</span><span>やってしまいがちな8つ</span></a>
+    <a href="#s08"><span class="n">08</span><span>専門機関に相談するとき</span></a>
+    <a href="#s09"><span class="n">09</span><span>記録テンプレート</span></a>
+    <a href="#s10"><span class="n">出典</span><span>参照した情報</span></a>
+  </nav>
+</div>
+
+<!-- ===== 結論 ===== -->
+<section id="s-verdict">
+  <div class="sec-head"><span class="sec-num">結論</span><h2>先に、3つ</h2></div>
+  <p class="sec-sub">調査全体から言えることを最初に置きます。詳細は以降のセクションで裏づけます。</p>
+  <div class="grid g3">
+    <div class="card verdict">
+      <span class="n">01</span>
+      <h3>「叱ってやめさせる」は、たいてい逆効果</h3>
+      <p>強く叱る・驚く・笑う・実況する——これらはすべて、<strong>その言葉に情動の記憶と「注目」と「スッキリ感」を上乗せ</strong>します。とくに注目や発散が目的の場合、叱責は燃料になります。原則は、反応を低く一定に保ち、淡々と扱うこと。反応を変えるだけで頻度が下がることは珍しくありません。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">02</span>
+      <h3>汚い言葉は「情動の言葉」で、脳内の結びつきが強い</h3>
+      <p>罵倒語は、ふつうの発話とは別に、<strong>感情の回路（扁桃体・大脳基底核・右半球）で処理される自動化された言葉</strong>です。幼児期に強い感情とセットで覚え、繰り返すほど「考える前に出る」。だから「言うな」だけでは減りません。<strong>同じ働きをする代わりの言葉を、同じ回数だけ練習して自動化する</strong>必要があります。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">03</span>
+      <h3>まず「意思と無関係に出る（チック性）」を外す</h3>
+      <p>きっかけなく突発する、「言いたくないのに出る」、直前に言わずにいられない感じ（前駆衝動）がある、まばたき・咳払いなど他の反復する動きも伴う——これらがあれば<strong>音声チック（コプロラリア）</strong>の可能性があります。該当すると対応の枠組みが変わり、叱責はかえって増やします。§02-02 と <a href="#h01" style="color:var(--brick)">H01</a> で確かめます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 4層 ===== -->
+<section id="s01">
+  <div class="sec-head"><span class="sec-num">01</span><h2>汚い言葉が口から出るまで — 4層と、それを通らない1経路</h2></div>
+  <p class="sec-sub">「強い言葉が出る」という同じ見え方の裏で、実際に起きていることは一つではありません。どの段でつまずいているかで、打ち手が変わります。</p>
+
+  <div class="stack">
+    <div class="layer">
+      <div class="lv">L1</div>
+      <div>
+        <h4>引き金</h4>
+        <p>不快、要求が通らない、制止された、疲労・空腹、感覚刺激（音・光・混雑）。感情が動く出来事があると、次の層へ進みます。</p>
+        <p class="fail">現れ方：特定の活動・相手・時間帯に偏る／まったく偏らず突発する。<strong>偏りの有無そのものが手がかり</strong>です。偏りがなく突発するなら、外の引き金ではなく下の層（抑制・発散・チック性）の比率が高くなります。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L2</div>
+      <div>
+        <h4>情動の高ぶり（覚醒）</h4>
+        <p>引き金を受けて、怒り・興奮が急速に立ち上がる段。ADHD傾向では、この立ち上がりが<strong>速く・大きく</strong>なりやすいことが知られています（情動調整の困難）。</p>
+        <p class="fail">現れ方：声量が急に上がる、体が固くなる・動きが荒くなる、表情が変わる。<strong>言葉より先に「大声」が来る</strong>なら、この層が主役です。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L3</div>
+      <div>
+        <h4>衝動の抑制（ブレーキ）</h4>
+        <p>「思ったことを、言う前に止める」働き。前頭前野が担います。ADHD傾向ではここが弱く、<strong>考えと発話の間のフィルターが薄い</strong>。感情がそれほど高ぶっていなくても、浮かんだ言葉が漏れます。</p>
+        <p class="fail">現れ方：言った直後に「あ」という顔をする、我に返る、後で「言うつもりはなかった」と言う。独り言のように小さく漏れることもあります。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L4</div>
+      <div>
+        <h4>言葉の選択</h4>
+        <p>何を言うか。ここで、<strong>過剰に練習された罵倒語が「最も速く出る言葉」</strong>になっています。不快を表す言葉のレパートリーが「クソ」「うざい」数語しかなければ、それしか出せません。</p>
+        <p class="fail">現れ方：強い言葉の種類が少なく固定的。驚き・痛み・怒り・不満のどれでも同じ語になる。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:0">
+    <h4>別経路：チック性（コプロラリア）</h4>
+    <p>この経路は L1〜L3 を通りません。<strong>前駆衝動（言わずにいられない、むずむずする感覚）→ 運動として言葉が出る</strong>、という順序です。感情の高ぶりと連動せず、状況にそぐわない語が出る、抑えると後で増える（リバウンド）、まばたき・咳払い・首振りなど他の反復運動を伴う、といった特徴があります。トゥレット症の人でも一部にしかみられず、必須の症状ではありません。ADHDに音声チックが併存することは珍しくありません。</p>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 10px">この資料で使う言葉</h3>
+  <dl class="gloss">
+    <div><dt>コプロラリア</dt><dd>本人の意思と関係なく、卑語・不適切な語が出てしまう音声チック。トゥレット症の人のおよそ1〜3割にみられるとされ、必須症状ではない。</dd></div>
+    <div><dt>前駆衝動</dt><dd>チックの直前に感じる「やらずにいられない」むずむず感。行動すると一時的に解消し、我慢すると強まる。</dd></div>
+    <div><dt>情動調整（の困難）</dt><dd>わき上がる感情の強さや持続を、場面に合わせて調整する働き。ADHDに高い頻度で併存する。</dd></div>
+    <div><dt>抑制／実行機能</dt><dd>目的に向けて衝動を止め、行動を選ぶ働き。前頭前野が中心。「考える前に言う／動く」の背景。</dd></div>
+    <div><dt>affect labeling</dt><dd>今の気持ちを具体的な言葉にすること。前頭前野を働かせ、扁桃体の反応を下げる＝言語化そのものが情動を弱める。</dd></div>
+    <div><dt>行動の機能</dt><dd>その行動が何をもたらしているか。注目・要求（獲得）・回避（逃避）・自動強化の4つで整理する。</dd></div>
+    <div><dt>分化強化</dt><dd>望ましい行動や「暴言のなかった時間」にだけ承認を与え、暴言には反応しないやり方（DRA／DRO／DRI）。</dd></div>
+    <div><dt>共調整（co-regulation）</dt><dd>大人が落ち着いた声・呼吸・距離で寄り添い、子どもの高ぶりを一緒に下げること。自分で調整する力の前段階。</dd></div>
+    <div><dt>ハビットリバーサル／CBIT</dt><dd>チックや癖に対し、「出そうな合図」に気づき、両立しない動作（競合反応）に置き換える訓練。チックの第一選択の行動療法。</dd></div>
+    <div><dt>カタルシス</dt><dd>強い言葉を発すること自体で、緊張・痛み・ストレスが一時的に下がること。だから繰り返される。</dd></div>
+  </dl>
+</section>
+
+<!-- ===== 02 チェック ===== -->
+<section id="s02">
+  <div class="sec-head"><span class="sec-num">02</span><h2>2週間でできる切り分けチェック</h2></div>
+  <p class="sec-sub">記録用紙（§09）と、落ち着いて話せる時間を用意します。テストにしないこと。「なぜ言ったの」と問い詰めないこと（本人も説明できないことが多く、追及は情動を上げます）。その場で叱らず、記録だけ取ります。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>タイプの観察 — ABC記録を2週間</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">暴言が出るたびに、<em>A（直前：時刻・場所・活動・関わっていた人・体調）／B（発した語・声量・持続・体の動き・直前の様子）／C（直後：周囲の反応・本人はどうなったか）</em>を書く。1日数件でも2週間続ける。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">Cのパターン（何が得られている／避けられているか）から機能を、Bの「直前のむずむずらしさ・状況とのズレ」からチック性を見ます。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">主なタイプ（チック性／情動／学習性）と、主な機能。以降のすべての判断の土台です。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>「意思と無関係か」を確かめる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">落ち着いている時に、責めない口調で <span style="font-family:'IBM Plex Mono',monospace;font-size:13px">「言う前に、むずむずする感じある？」「言いたくないのに出ちゃう？」</span>。抑えようとした後で増えるかを記録で確認。まばたき・首振り・咳払い・鼻鳴らしなど、反復する動きが他にないか観察。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>前駆衝動がある／抑えると後で増える／他の運動チックがある／状況と無関係な語が出る／集中時は減り、疲労・興奮時に増える。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">音声チック（コプロラリア）の可能性。当てはまるなら <a class="goto" href="#h01">H01</a> と、医療評価（§08）へ。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>機能を切り分ける — 反応を意図的に変えてみる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">数日ずつ条件を変えて記録。<br>(a) 低い声で一度だけ「その言葉は使わない、◯◯と言おう」と伝え、以後は反応しない。<br>(b) 暴言では要求を通さず、落ち着いてから適切な手段で通す。<br>(c) 苦手な活動から「休憩ください」で正当に離脱できるようにする。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>(a)で減る＝注目。(b)で減る＝要求。(c)で減る＝回避。どれをやっても変わらず、言った直後に本人がスッと落ち着く＝自動強化（発散）。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">機能に応じて <a class="goto" href="#h05">H05</a>〜<a class="goto" href="#h07">H07</a> のどれに進むか。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>感情の言葉のレパートリー</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">落ち着いた時に <span style="font-family:'IBM Plex Mono',monospace;font-size:13px">「嫌な気持ちを表す言葉、いくつ言える？」</span>。「痛い」「びっくり」「イライラ」「納得いかない」「疲れた」「悔しい」を区別して使えるかも見る。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>3語以下しか出ない／どの感情でも「クソ」「うざい」になる。</em>言い換えをその場で教えると使えるか。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">語彙不足が暴言の多用につながっている線（<a class="goto" href="#h04">H04</a>）。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>体調・環境の要因</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">睡眠時間、来所時の空腹・疲労、直前の学校での出来事、特定の音・光・混雑を、暴言の回数と並べて記録する。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>これらが重なる日に暴言が増えるか。</em>「よく出る日」と「出ない日」の違いを探す。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">予防（§03の各対応策の1項目め）で先に減らせる余地。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">06</div>
+      <div>
+        <h3>大人の言語環境</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">家庭・事業所・送迎中・動画やゲームで、同じ言葉が日常的に使われていないかを率直に点検する。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>模倣の供給源があるか。特定の新しい言い回しが急に増えていないか。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">模倣・使い分けの未学習の線（<a class="goto" href="#h08">H08</a>）。ここを放置すると他の対応が効きにくくなります。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:18px;margin:36px 0 12px">結果から、どの仮定へ進むか</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>当てはまったこと</th><th>読み取れること</th><th>進む先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">前駆衝動・運動チック</td><td>意思と無関係な音声チックの可能性。<strong>最優先で確認。</strong></td><td><a class="goto" href="#h01">H01</a></td></tr>
+        <tr><td class="num">大声・興奮が先、言葉が後</td><td>感情の爆発に巻き込まれている。きっかけは特定できることが多い。</td><td><a class="goto" href="#h02">H02</a> ／ <a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">言った直後に我に返る</td><td>抑制が追いついていない。感情はそれほど高ぶっていない。</td><td><a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">どの感情でも同じ少数の語</td><td>感情語彙が乏しく、汚い語で全部をまかなっている。</td><td><a class="goto" href="#h04">H04</a></td></tr>
+        <tr><td class="num">周囲が反応すると増える</td><td>注目が強化している。特定の相手・場面で頻発。</td><td><a class="goto" href="#h05">H05</a></td></tr>
+        <tr><td class="num">言うと要求が通る／離れられる</td><td>要求・回避の手段として学習されている。</td><td><a class="goto" href="#h06">H06</a></td></tr>
+        <tr><td class="num">誰の反応もなくても出る</td><td>発散（自動強化）。言うと本人がスッキリする。</td><td><a class="goto" href="#h07">H07</a></td></tr>
+        <tr><td class="num">新しい言い回しが急に増えた</td><td>模倣。どこで使ってよいかを学べていない。</td><td><a class="goto" href="#h08">H08</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sec-sub" style="margin-top:14px">複数が混在するのがふつうです（「情動＋発散＋模倣」など）。記録から比率の高いものを2つ選び、そこから始めます。</p>
+</section>
+
+<!-- ===== 03 8パターン ===== -->
+<section id="s03">
+  <div class="sec-head"><span class="sec-num">03</span><h2>想定される原因と対処 — 8パターン</h2></div>
+  <p class="sec-sub">
+    それぞれについて <strong>①想定される原因／②こう見える（サイン）／③学術的な裏づけ／④具体的な対応策／⑤当たりの印と、外れたときの次の候補</strong> をまとめました。
+    上から順にではなく、§02 の結果に対応するものから入ってください。1つの仮定は2週間を目安に、対応をそろえて試します。
+  </p>
+
+  <div class="hyps">
+
+    <!-- H01 -->
+    <div class="hyp" id="h01">
+      <div class="top"><div class="hid">H01</div><h3>意思と無関係に出ている（音声チック／コプロラリア）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">チックは、前駆衝動に押されて出る<strong>不随意の動き・発声</strong>です。コプロラリアはそのうち語が卑語になったもので、<strong>本人が最も言いたくない言葉ほど出やすい</strong>という逆説があります。緊張・疲労・興奮で増え、集中している時は減ります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">きっかけなく突発。相手も文脈も関係ない語が出る。直前に「むずむず」がある。抑えると後で増える（リバウンド）。まばたき・咳払い・首振り・鼻鳴らしなど、他の反復運動を伴う。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          コプロラリアは不随意の発声チックであり、叱責・罰では減らず、<strong>むしろ注目とストレスで増えます</strong>。エビデンスが最も強い行動療法は<strong>ハビットリバーサル訓練（HRT）／包括的行動介入（CBIT）</strong>で、「前駆衝動への気づき → 両立しない競合反応 → 般化」という手順をとります。トゥレット症の必須症状ではなく、有病率は限定的です。
+          <span class="ref">→ 出典 [9] Coprolalia (StatPearls)、[10] HRT/CBIT のチックへの有効性</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>まず医療評価につなぐ。</b>小児神経科・児童精神科でチック／トゥレットの評価を。運動チックの有無・経過・家族歴・増悪要因を整理して持参する（§09）。</li>
+            <li><b>叱らない・指摘しすぎない。</b>静かに受け流し、周囲（他児・他職員）にも<strong>「わざとではない」ことを事前に共有</strong>しておく。</li>
+            <li><b>CBIT/HRT の考え方を取り入れる。</b>「出そうな合図（むずむず）」を本人と一緒に言語化し、両立しない動作（口を閉じてゆっくり鼻呼吸、決めた小声の言葉）を1〜3分。できれば専門機関の指導下で。</li>
+            <li><b>増悪要因を減らす。</b>疲労・睡眠不足・強い緊張・退屈。チックは「我慢させる」より「安心して過ごせる環境」で減ります。</li>
+            <li><b>抑制を求める場面を絞る。</b>発表・来客時などに限り、それ以外は許容して<strong>我慢の総量を増やさない</strong>。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">「チックかどうか」の医療的な整理がつく。合図への気づきが育ち、競合反応で数十秒〜数分、発声を先送りできる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h02">H02（情動）</a> ／ <a href="#h03">H03（抑制）</a> へ。前駆衝動がはっきりせず、感情の高ぶりと連動しているなら情動由来の線です。</div></div>
+      </div>
+    </div>
+
+    <!-- H02 -->
+    <div class="hyp" id="h02">
+      <div class="top"><div class="hid">H02</div><h3>感情の爆発に巻き込まれて出ている（かんしゃく・メルトダウン型）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">不快や思い通りにならない事態で怒り・興奮が急速に立ち上がり、<strong>その勢いの中で最も出やすい言葉（＝罵倒語）が出る</strong>。言葉そのものが目的ではなく、あふれた感情の副産物です。ADHD傾向では情動の立ち上がりが速く大きくなります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">先に大声・興奮・体の緊張、その中で暴言。きっかけは多くの場合特定できる（制止・失敗・変更・待ち）。おさまると本人がぐったりする、または後悔する。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          ADHDにはしばしば<strong>情動調整の困難</strong>が併存し、易怒性・攻撃的な発言・かんしゃくとして現れます。心理社会的介入（親トレーニング、CBT/DBT の要素、感情調整プログラム）は、易怒性・攻撃性・全体的機能を改善することが系統的レビューで示されています。<strong>爆発の最中は学習が成立しない</strong>ため、その場で教えず、まず高ぶりを下げる（共調整）ことが推奨されます。
+          <span class="ref">→ 出典 [5] ADHDと情動調整、[6] 心理社会的介入の系統的レビュー、[7] APA(2024)</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>爆発の最中は教えない・説教しない・約束させない。</b>安全を確保し、刺激（人・音・視線）を減らす。</li>
+            <li><b>共調整する。</b>大人が声のトーンを落とし、話す量を減らし、呼吸をゆっくりにする。<span class="say">「言葉にできないくらい嫌だったんだね」</span><span class="say">「一緒に息を吸おう」</span>。</li>
+            <li><b>おさまった後（同日〜翌日）に振り返る。</b>責めずに「何が嫌だったか」を聞き、大人の心配を伝え、次どうするかを一緒に決める（協働的問題解決／<a href="#s04">§04</a>）。</li>
+            <li><b>予防に投資する。</b>§02-05 で見つかった引き金（変更・待ち・負け場面）を設計で減らす。予告と見通しを徹底する。</li>
+            <li><b>記録の単位を「爆発」にする。</b>「暴言が出た」ことより「爆発が起きた」ことを分析の単位にする。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">爆発の頻度・長さが減る。おさまるまでの時間が短くなる。暴言も連動して減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03（抑制）</a> ／ <a href="#h07">H07（発散）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H03 -->
+    <div class="hyp" id="h03">
+      <div class="top"><div class="hid">H03</div><h3>衝動の抑制が追いついていない（ADHD傾向の中核）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">「思う → 言う」の間で止める働き（反応抑制）が弱く、<strong>強い言葉が浮かんだ瞬間に口から出る</strong>。悪意でも反抗でもなく、フィルターの薄さです。感情がそれほど高ぶっていなくても起こります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">言った直後に我に返る・気まずそうにする。<span class="say">「言うつもりはなかった」</span>。独り言のように小さく漏れる。他の場面でも「考える前に動く」傾向がある。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          ADHDでは、行動抑制に関わる前頭前野系の働きの弱さが一貫して報告されています。中核症状に対する支援（行動療法・環境調整、必要に応じ薬物）は、この抑制の土台に働きます。一方、学校の<strong>ゼロトレランス（1回ごとの叱責・退室・報告）はADHDでは事態を悪化させやすい</strong>とされます。
+          <span class="ref">→ 出典 [3] 罵倒語の自動性、[4] Jay(2000)、[11] ADHDの薬物とゼロトレランスの弊害</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>ADHDの評価・支援全体を検討する（<a href="#s08">§08</a>）。</b>抑制の弱さは「しつけ」では埋まりません。</li>
+            <li><b>「間」を外から作る。</b>発言の前に一拍おく合図（手のサイン、「3秒」）。要求は口頭ではなく紙・カードで受ける。</li>
+            <li><b>気づき訓練＋競合反応。</b>「言いそうになる直前」の身体感覚を一緒に同定し、両立しない動作（口を閉じる＋深呼吸＋置換語を小声で）に置き換える。1回1〜3分。</li>
+            <li><b>疲労・空腹・睡眠不足を減らす。</b>抑制はこれらで簡単に落ちます。</li>
+            <li><b>できた時に即・具体的に承認する。</b><span class="say">「今、言いそうだったのを止めたね」</span>。抑制の成功は見えにくいので、大人が見つけて言葉にする。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">「言いかけてやめた」場面が観察できるようになる。合図・カードの支援を入れると出ない。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h04">H04（語彙）</a> ／ <a href="#h05">H05（注目）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H04 -->
+    <div class="hyp" id="h04">
+      <div class="top"><div class="hid">H04</div><h3>感情の言葉が乏しく、少数の汚い語で全部をまかなっている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">不快な感情を表す語彙が「クソ」「うざい」「むかつく」数語しかないと、<strong>驚き・痛み・不満・悔しさ・疲れのすべてがその語になります</strong>。語彙の不足が、結果として汚い言葉の多用として現れている状態です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">どの感情でも同じ語。「嫌な気持ちの言葉を言ってみて」に3語以下しか出ない。適切な言い換えを教えると、その場では使える。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          感情を具体的な言葉にすること（<strong>affect labeling</strong>）は、右腹外側前頭前野を活動させ扁桃体の反応を下げます——つまり言語化そのものが情動を弱めます。ただし「イヤ」「むかつく」のような粗い語では効果が弱く、<strong>区別された具体語ほど調整に効く</strong>（emotion granularity）。したがって感情語彙を増やすこと自体が介入になります。
+          <span class="ref">→ 出典 [8] Lieberman ら「Putting Feelings Into Words」、[12] emotion granularity</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>気持ちの温度計／ゲージ（1〜5、1〜10）。</b><span class="say">「今どれくらい？」</span>を1日数回、落ち着いている時から。数値化するだけで少し下がります。</li>
+            <li><b>「言いかえ」の練習。</b>場面カードを読み、「クソ」を「納得いかない」「悔しい」「痛かった」などに置き換える。療育教材が多数あります。</li>
+            <li><b>感情語のセットを掲示する。</b>痛い／びっくりした／イライラする／納得いかない／悔しい／疲れた／こわい／悲しい。まず8語から。</li>
+            <li><b>大人が実況する。</b><span class="say">「あー、悔しいね」</span><span class="say">「それはイライラする」</span>。子どもの感情に先回りして名前をつける。</li>
+            <li><b>うまく言えた時に承認。</b><span class="say">「“悔しい”って言えたね、伝わったよ」</span>。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">「クソ」以外の感情語が自発的に出る。同じ場面での暴言が言い換えに変わる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h02">H02（情動）</a> ／ <a href="#h07">H07（発散）</a> へ。語彙はあるのに高ぶりで出せない、または発散として必要としている可能性です。</div></div>
+      </div>
+    </div>
+
+    <!-- H05 -->
+    <div class="hyp" id="h05">
+      <div class="top"><div class="hid">H05</div><h3>周囲の反応が、汚い言葉を強化している（注目・学習性）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">暴言を言うと、大人が振り向く・強く反応する、他児が笑う・驚く、という結果が得られます。<strong>叱責も「負の注目」として機能</strong>し、注目に飢えている子には報酬になります。特定の相手・場面で出やすいのが特徴です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">周りが見ている時に出やすい。反応が大きいほど増える。言った後、相手の顔を見る。淡々と流すと拍子抜けしたように収まる。特定の職員・他児との間で頻発する。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          行動の機能が注目のとき、<strong>叱責・驚愕・議論はすべて強化子として働きうる</strong>。有効なのは、暴言には最小限の反応（淡々と短く／計画的無視）＋望ましい行動・代替語が出た時の即時承認、という「分化強化」です。<strong>無視だけでは不十分で、"できた時の承認"と対で初めて機能します。</strong>
+          <span class="ref">→ 出典 [13] 行動の4機能・分化強化、[15] 淡々とした対応（PBS/実践情報）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>反応を小さく一定にする。</b>低い声で一度だけ<span class="say">「その言葉は使わない。◯◯と言おう」</span>。議論しない、表情を動かさない、繰り返さない。</li>
+            <li><b>他児の反応をあらかじめ弱める。</b><span class="say">「あの言葉が出ても、みんなは反応しないでいいよ」</span>を事前に共有し、観客をなくす。</li>
+            <li><b>注目を、暴言以外で先に・たっぷり与える。</b>関われる役割、1対1の時間、「見て」に応じる。飢餓状態を作らない。</li>
+            <li><b>代替語・適切な呼びかけが出た瞬間に強く承認する。</b><span class="say">「今の呼び方いいね、すぐ来たよ」</span>。</li>
+            <li><b>低レベルの暴言（小声の悪態など）は計画的に流し</b>、直後の望ましい行動を承認する。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">反応を一定にして1〜2週で頻度が下がる。代替の呼びかけが増える。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h06">H06（要求・回避）</a> ／ <a href="#h07">H07（発散）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H06 -->
+    <div class="hyp" id="h06">
+      <div class="top"><div class="hid">H06</div><h3>要求を通す・苦手な場面を避ける手段になっている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">「暴言 → 要求が通る」「暴言 → 活動を中断できる／苦手な課題から離れられる」という経験が繰り返されると、<strong>暴言はコミュニケーション手段として学習されます</strong>。本人にとっては「効く道具」です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">欲しいものが手に入らない時、苦手な活動が始まる時に集中して出る。要求が通る／活動を離れると、すぐ収まる。おだやかな時間帯には少ない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          行動の機能が要求・回避のとき、<strong>罰はしばしば逆効果</strong>になります（回避したい場面から結果的に逃れられ、強化される）。有効なのは<strong>機能的コミュニケーション訓練（FCT）</strong>——同じ結果を得られる適切な手段（「かして」「休憩ください」カード等）を教え、そちらを確実に通すことです。
+          <span class="ref">→ 出典 [13] 機能的コミュニケーション訓練（FCT）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>暴言では要求を通さない。</b>ただし要求そのものは正当なので、<strong>落ち着いてから適切な手段で必ず通す</strong>。「暴言では動かない／適切に言えば動く」を一貫させる。</li>
+            <li><b>「休憩ください」「パスします」カードを渡す。</b>苦手な場面から正当に離脱できる道を保証する。離脱を認めることが、暴言の必要をなくす。</li>
+            <li><b>苦手な活動の負荷を下げる。</b>量を減らす、選択肢を与える、先に見通しを示す。</li>
+            <li><b>適切な要求・離脱ができた時に、すぐ応える。</b><span class="say">「“休憩”って言えたね、いいよ」</span>。応答が遅いと元に戻ります。</li>
+            <li><b>家庭・学校と「通す手段」をそろえる。</b>事業所だけ違うと学習が進みません。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">カードや適切な言い方の使用が増え、要求場面・苦手場面の暴言が減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h05">H05（注目）</a> ／ <a href="#h02">H02（情動）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H07 -->
+    <div class="hyp" id="h07">
+      <div class="top"><div class="hid">H07</div><h3>発散・スッキリするために出ている（自動強化・カタルシス）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">強い言葉を発すること自体が、緊張・不快・痛みを一時的に和らげます。<strong>誰の反応がなくても成立</strong>し、言うと本人がスッと落ち着きます。「場面を問わず突発する」ケースでは、この比率が高いことがあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">観客がいなくても出る。ぶつけた・失敗した・思い通りにいかない瞬間に反射的に。言った直後に表情がゆるむ・力が抜ける。止めても得るものがなさそうに見えるのに繰り返す。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          罵ることは自律神経を賦活し（心拍・皮膚電気反応の上昇）、<strong>痛みやストレスへの耐性を一時的に高めます</strong>（発話の鎮痛効果）。つまり暴言は感情の放出弁として機能しうる。ただし<strong>日常的に罵る頻度が高いほどこの効果は目減りします</strong>——「言い過ぎると効かなくなる」ことは、置き換えを促す説明に使えます。
+          <span class="ref">→ 出典 [1] Stephens「Swearing as a response to pain」、[2] 「The power of swearing」レビュー</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>「言ってよい言葉（セーフワード）」を一緒に決める。</b>本人が気に入る無害な語（<span class="say">「うわー！」</span><span class="say">「ぐぬぬ」</span><span class="say">「なんてこった」</span><span class="say">「もー！」</span>）。禁止だけでなく代わりを与える。</li>
+            <li><b>発散してよい形・場所を用意する。</b>強く握るもの、クッションを押す、決めた動作、カームコーナーへ移動。</li>
+            <li><b>運動の出口を1日の中に固定する。</b>中〜低強度でリズミカルな運動（歩く、なわとび、押す・運ぶ作業）。生理的な高ぶりの出口になります（激しく興奮を上げる発散は、かえって怒りを下げないという知見があります）。</li>
+            <li><b>「言葉は減らしていける」ことを本人に説明する。</b>使うほど"効き目"が薄れること、代わりの発散でも同じくらい楽になることを伝える。</li>
+            <li><b>ぶつけた・失敗した瞬間に、大人が先に代替語をモデルで言う。</b><span class="say">「うわー！ びっくりした！」</span></li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">セーフワードや代替の発散に置き換わる。突発的な暴言の回数が減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h03">H03（抑制）</a> ／ <a href="#h01">H01（チック性）</a> へ。反射的で止められないなら、抑制かチックの線を再検討します。</div></div>
+      </div>
+    </div>
+
+    <!-- H08 -->
+    <div class="hyp" id="h08">
+      <div class="top"><div class="hid">H08</div><h3>周囲の言葉の模倣／どこで使ってよいかを学べていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">家庭・通学路・動画・ゲーム・年上の子から強い言葉を吸収し、そのまま使っています。子どもは「言語の掃除機」で、<strong>聞いた言葉を場面の区別なく再生します</strong>。悪意ではなく、TPO（どこで・誰に・どの言葉）の未学習です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">特定の新しい言い回しが急に増えた。供給源が思い当たる。友だち同士では自然に使い、注意されると場面差があることに戸惑う。家では許容されている。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          子どもは3〜5歳で既に多数のタブー語を持ち、周囲の使用を強く反映します。介入の柱は、(1) <strong>環境の言語モデルを整えること</strong>（大人が使わない）、(2) 「言葉には使ってよい場所と相手がある」という<strong>コードスイッチングを、善悪ではなくルールとして明示的に教えること</strong>。家庭・学校・事業所でルールを一致させることが前提です。
+          <span class="ref">→ 出典 [4] Jay（タブー語彙の獲得）、[15] 子どもの swearing への対応（実践情報）</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>大人の言語環境を見直す。</b>事業所内・送迎中・家庭で同じ言葉が使われていないかを率直に点検する。</li>
+            <li><b>コードスイッチングを教える。</b><span class="say">「その言葉は、友だちと遊ぶ時は出ても、先生やお客さん、小さい子の前では使わない」</span>。場所の絵カードで整理する。</li>
+            <li><b>家庭と共有する。</b>「しつけの失敗」ではなく<strong>「使い分けの学習中」</strong>という枠組みで保護者に伝え、家庭でも同じルールにしてもらう。</li>
+            <li><b>見せしめ的な罰はしない。</b>恥は学習を妨げ、反発と隠れた使用を生む。淡々と「ここでは使わない」を繰り返す。</li>
+            <li><b>代わりに使える"強い言葉"を与える。</b>強調したい時の言い方（「めちゃくちゃ」「本気で」「マジで」など、その場で許容できる範囲）。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">場面による使い分けができ始める。事業所内での使用が減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h04">H04（語彙）</a> ／ <a href="#h05">H05（注目）</a> へ。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:26px">
+    <h4>8パターンを一巡しても動かないとき</h4>
+    <p>比率の高そうな仮定を2つ3つ試し、それぞれ2〜4週間、<strong>関係者で対応をそろえて</strong>行ってなお反応が乏しい——この「適切な対応への反応が乏しい」という記録そのものが、専門機関に持ち込むべき最も価値のある材料です。<a href="#s08">§08</a> の相談先へ、<a href="#s09">§09</a> の記録用紙とあわせて持参してください。とくに、前駆衝動やチックの疑いが少しでもあれば、一巡を待たずに医療評価を先行させてください。</p>
+  </div>
+</section>
+
+<!-- ===== 04 カタログ ===== -->
+<section id="s04">
+  <div class="sec-head"><span class="sec-num">04</span><h2>世界の指導法・関わり方カタログ</h2></div>
+  <p class="sec-sub">§03 の対応策に出てくる枠組みの詳細です。それぞれ狙う層が違います。全部やる必要はなく、見立てに合うものを1つか2つ選び、数週間は替えないこと。</p>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <span class="tag">アメリカ ／ 情動の言語化</span>
+      <h3>Zones of Regulation</h3>
+      <p>感情・覚醒度を4色（青＝低下、緑＝ちょうどよい、黄＝高ぶり始め、赤＝制御困難）で共通言語化し、色ごとの対処を練習します。<strong>暴言が出る前の「黄」の段階で使えるようにする</strong>のが要点。落ち着いている時に教え、予防ツールとして使います。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">アメリカ ／ 衝動の抑制</span>
+      <h3>タートル・テクニック</h3>
+      <p>合図で「止まる → 甲羅にこもる（深呼吸）→ 落ち着く → 解決を考える」。低学年や特別な配慮が要る子で、攻撃行動が4割前後減ったという報告があります。感覚的な落ち着きスペースと組み合わせて使います。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag brick">欧米 ／ チック・習慣</span>
+      <h3>CBIT／ハビットリバーサル訓練</h3>
+      <p>「前駆衝動への気づき → 両立しない競合反応 → 般化」。チックに対する<strong>第一選択の行動療法</strong>で、情動・習慣由来の「考える前に出る」暴言にも応用できます。競合反応は毎回1〜3分続けるのが原則。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">アメリカ ／ 爆発の事後</span>
+      <h3>Collaborative &amp; Proactive Solutions（Ross Greene）</h3>
+      <p>暴言を「できない子」ではなく<strong>「まだ解けていない問題がある」</strong>と捉える非懲罰的アプローチ。(1) 本人の困りごとを共感的に聞く →(2) 大人の心配を伝える →(3) 一緒に解決策を出す。ALSUP（未成熟なスキルと未解決の問題の整理表）を使います。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">ABA ／ 学習性</span>
+      <h3>分化強化＋トークン</h3>
+      <p>「暴言のなかった◯分」で承認・トークン（DRO）、代替語・カードが出た瞬間に強化（DRA）。低レベルの暴言は計画的無視。<strong>無視と承認は必ず対で</strong>行います。時間は本人の現状に合わせて短く始め、徐々に延ばします。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">ABA ／ 要求・回避</span>
+      <h3>機能的コミュニケーション訓練（FCT）</h3>
+      <p>暴言と<strong>同じ結果を得られる適切な手段</strong>（「かして」「休憩ください」「手伝って」カード等）を教え、そちらを確実に・すぐに通す。暴言では通さない。要求そのものは否定しないのがポイント。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">日本の療育 ／ 語彙</span>
+      <h3>気持ちの言語化・きもち言いかえ</h3>
+      <p>ステータスゲージ（気持ちの温度計）、感情語カード、「言いかえチャレンジ」プリント。SSTのロールプレイで、よくある場面ごとに「クソ」を具体的な感情語に置き換える練習をします。落ち着いた時間に、繰り返し。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">英米の家庭実践 ／ 発散</span>
+      <h3>置換語・セーフワード</h3>
+      <p>家庭・事業所で一緒に決めた、無害でユーモアのある語に置き換える。<strong>「言うな」ではなく「代わりにこれを言う」</strong>を与えるのがコツ。子ども自身が気に入る語を選ばせると定着します。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag ochre">医療 ／ ADHDの情動調整</span>
+      <h3>行動療法＋（必要に応じ）薬物</h3>
+      <p>ペアレントトレーニング・感情調整プログラムが土台。加えて、易怒性・攻撃性・情動調整の困難には<strong>中枢刺激薬やグアンファシン等</strong>が選択肢になりえます。適否・用量は専門医の判断で、副作用と急な中断の禁忌に注意します。</p>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:24px">
+    <h4>「どれくらいやれば足りるか」の目安</h4>
+    <p>行動の置き換えは、競合反応を<strong>毎回1〜3分、数週間</strong>続けて初めて自動化に近づきます（数秒では不十分という報告があります）。感情調整プログラムや親トレーニングは、通常<strong>8〜12週</strong>の設計です。「毎日の短い練習を2〜3か月」という規模感は、決して過剰ではありません。数日で変わらないことを理由に、やり方を次々に替えないでください。</p>
+  </div>
+</section>
+
+<!-- ===== 05 プログラム ===== -->
+<section id="s05">
+  <div class="sec-head"><span class="sec-num">05</span><h2>8週間のプログラム案</h2></div>
+  <p class="sec-sub">STEP 0〜1 は並行して始め、以降は積み上げます。合格基準を満たすまで次に進まないことが唯一のルールです。切り分けの結果によっては途中から始めて構いません。チックが疑われる場合は、STEP 0 と同時に医療評価を先行させます。</p>
+
+  <div>
+    <div class="phase">
+      <div class="ph">STEP 0</div>
+      <div>
+        <h4>記録と、タイプの見極め（1〜2週）</h4>
+        <p>ABC記録（§09）。タイプ（チック性／情動／学習性）と機能（注目・要求・回避・自動強化）を見立てる。チック疑いなら受診予約。</p>
+        <p class="pass">合格基準：主なタイプと機能について、支援者間で見立てが一致する。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 1</div>
+      <div>
+        <h4>落ち着いた時間の土台づくり（並行）</h4>
+        <p>気持ちの温度計を導入。感情語8語を掲示。セーフワードを本人と決める。カームコーナーを整備（罰の場所にしない）。</p>
+        <p class="pass">合格基準：温度計で「今3」などと言える。セーフワードを本人が覚えている。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 2</div>
+      <div>
+        <h4>引き金と体調の設計</h4>
+        <p>§02 で見つかった引き金を減らす（予告・見通し・負荷調整）。睡眠・補食・感覚環境を整える。中〜低強度の運動の出口を1日1回固定する。</p>
+        <p class="pass">合格基準：引き金場面での暴言が、対応前より減る。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 3</div>
+      <div>
+        <h4>反応をそろえる ＋ 強化を始める</h4>
+        <p>暴言への反応を「低い声で一度だけ／議論しない／表情を動かさない」に全職員で統一。「暴言のなかった時間」と代替語・カード使用をトークンで強化。低レベルは計画的に流す。</p>
+        <p class="pass">合格基準：職員間で対応が一致している。トークンが毎日たまる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 4</div>
+      <div>
+        <h4>気づき ＋ 競合反応</h4>
+        <p>「言いそうになる直前」の身体感覚を本人と言語化。合図が出たら、両立しない動作（口を閉じる＋鼻呼吸＋セーフワードを小声で）を1〜3分。チック性はできれば専門機関の指導下で。</p>
+        <p class="pass">合格基準：「言いかけてやめた」場面が観察できる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 5</div>
+      <div>
+        <h4>爆発時は共調整、事後に協働的問題解決</h4>
+        <p>赤ゾーンでは教えない。声を落とし呼吸を合わせる。おさまった後に、CPS で「解けていない問題」を1つずつ一緒に解く。</p>
+        <p class="pass">合格基準：爆発の長さが短くなる。同じ引き金の問題が1つ解ける。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 6</div>
+      <div>
+        <h4>レビュー（4週ごと）</h4>
+        <p>暴言の頻度・持続、代替語の使用回数、トークン獲得、爆発の回数を集計する。動きが乏しければ機能の見立てを再検討／専門職へ。</p>
+        <p class="pass">合格基準：数値で変化を説明できる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06 放デイ特有の論点 ===== -->
+<section id="s06">
+  <div class="sec-head"><span class="sec-num">06</span><h2>放課後等デイサービス特有の論点</h2></div>
+  <div class="body-col">
+    <p><strong>他児への波及。</strong>「死ね」などの語は他児を傷つけ、模倣も広がります。対象児への対応と並行して、他児に「あの言葉が出ても反応しなくていい」「あなたが使う言葉ではない」を伝えます。<strong>観客をなくすことは、対象児の支援（注目・発散の機能を弱める）にもなります。</strong></p>
+    <p><strong>「死ね」という語の重さ。</strong>発達段階によっては、語の重大さを理解しないまま使っていることがあります。ただし他児・保護者・職員の受け止めは重い。「本人に悪意はないかもしれないが、この言葉は使わない」を、悪意の有無と切り離して一貫させます。あわせて、<strong>自傷・希死の文脈がないか</strong>は別途ていねいに確認してください（§08）。</p>
+    <p><strong>保護者対応。</strong>「ご家庭でも言っていますか」は、責める文脈ではなく情報として聞きます。家庭が供給源であっても、詰めずに「使い分けを一緒に教えたい」という枠組みで協力を求めます。</p>
+
+    <div class="callout">
+      <h4>職員間の対応統一が、いちばん効く</h4>
+      <p>職員によって「強く叱る」「つい笑ってしまう」「流す」がバラバラだと、注目機能を強化し、子どもを混乱させます。§03 の見立てに基づく<strong>共通の対応手順を1枚にまとめて共有</strong>してください。「暴言が出たら：低い声で一度だけ『◯◯と言おう』／議論しない／代替語が出たら承認」——この程度の粒度で十分です。</p>
+    </div>
+
+    <p><strong>記録の扱い。</strong>発した語をそのまま記録に残すことは分析に必要ですが、他者の目に触れる書類での扱いには配慮します。特定の児童が識別される形での外部共有はしません。</p>
+  </div>
+</section>
+
+<!-- ===== 07 落とし穴 ===== -->
+<section id="s07">
+  <div class="sec-head"><span class="sec-num">07</span><h2>やってしまいがちな8つ</h2></div>
+  <div class="dont">
+    <ul>
+      <li><span class="x">✕</span><span><b>強い声で制止する・大声で叱り返す</b><span class="d">情動の記憶と「注目」を上乗せし、しばしば増やします。反応は低く一定に。</span></span></li>
+      <li><span class="x">✕</span><span><b>驚く・笑う・「今なんて言った？」と実況する</b><span class="d">どれも注目という報酬です。表情を動かさず、短く。</span></span></li>
+      <li><span class="x">✕</span><span><b>見せしめ・辱め（「口を洗う」など）</b><span class="d">恥は学習を妨げ、反発と隠れた使用を生みます。攻撃性を助長するという知見も。</span></span></li>
+      <li><span class="x">✕</span><span><b>ゼロトレランス（毎回、退室・報告・叱責）</b><span class="d">ADHD傾向では事態が悪化しやすい。1回ごとの厳罰は割に合いません。</span></span></li>
+      <li><span class="x">✕</span><span><b>家庭・学校・事業所でルールが食い違う</b><span class="d">「どこで何が許されるか」を学べず混乱します。関係者で対応と代替語をそろえる。</span></span></li>
+      <li><span class="x">✕</span><span><b>チック性の暴言を叱る・我慢させ続ける</b><span class="d">抑制のリバウンドで、後でかえって増えます。まず医療評価を。</span></span></li>
+      <li><span class="x">✕</span><span><b>「言うな」だけで、代わりの言葉を用意しない</b><span class="d">最速で出る言葉を封じるには、同じくらい練習した代替語が必要です。</span></span></li>
+      <li><span class="x">✕</span><span><b>大人自身の言葉づかいを点検しない</b><span class="d">模倣の供給源を残したまま子どもだけ直そうとしても進みません。</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 08 相談 ===== -->
+<section id="s08">
+  <div class="sec-head"><span class="sec-num">08</span><h2>専門機関に相談するとき</h2></div>
+  <div class="body-col">
+    <p>判断は「<strong>対応への反応</strong>」で行います（RTI の考え方）。比率の高そうな仮定を2〜3、それぞれ数週間ずつ、関係者で対応をそろえて試し、記録を残す。それ自体が支援であると同時に、最良の相談材料になります。ただし、次に挙げる状況では一巡を待たず、先に相談してください。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <span class="tag ochre">先に確認すること</span>
+      <h3>危険がないか</h3>
+      <p>他害・自傷・器物破損を伴う暴言、<strong>「死ね」を自分に向ける・希死をうかがわせる発言</strong>がある場合は、様子見にせず早めに児童精神科等へ。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">医療（チック）</span>
+      <h3>小児神経科／児童精神科</h3>
+      <p>前駆衝動がある、運動チックを伴う、状況と無関係な語が突発する——チック／トゥレットの評価。CBIT を行う機関を紹介してもらえることもあります。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">医療（ADHD・情動）</span>
+      <h3>児童精神科・発達外来</h3>
+      <p>衝動性・情動調整の困難が生活全体に及ぶ場合。ペアレントトレーニング、感情調整プログラム、必要に応じ薬物（中枢刺激薬、グアンファシン等）。適否は専門医の判断で、<strong>副作用・急な中断の禁忌に注意</strong>。ここでの記載は一般情報です。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">他職種</span>
+      <h3>ST・OT・心理</h3>
+      <p>言語聴覚士（語用・感情語彙）、作業療法士（自己調整・感覚）、心理職（CBT／SST／CBIT）。自治体の発達相談・教育センターも窓口になります。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">判断の原則</span>
+      <h3>1回では決まらない</h3>
+      <p>1エピソードや1つの検査で診断はされません。焦点の合った対応を一定期間行い、反応を見る。<strong>「何を試して、何が起きなかったか」</strong>の記録が、口頭の相談より確実に話を前に進めます。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">併存を疑う</span>
+      <h3>単独とは限らない</h3>
+      <p>チックとADHD、ADHDと不安、学習の困難などが重なることが少なくありません。他場面（家庭・学校）の様子、運動チックの有無、気分・不安・睡眠の様子も並べて記録してください。</p>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:24px">
+    <h4>相談に持っていくもの</h4>
+    <p>ABC記録（2週間以上）／試した仮定と結果の記録／暴言の頻度・場面の週次推移／運動チック・気分・不安・睡眠のメモ／家庭・学校での様子。<a href="#s09">§09</a> の様式をそのまま使えます。</p>
+  </div>
+</section>
+
+<!-- ===== 09 記録 ===== -->
+<section id="s09">
+  <div class="sec-head"><span class="sec-num">09</span><h2>記録テンプレート</h2></div>
+  <p class="sec-sub">印刷して使えます。ABC記録は2週間、週次集計は毎週、仮定の記録は仮説を試すたびに。</p>
+
+  <h3 style="font-size:18px;margin:8px 0 12px">ABC記録（1件1行）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>日付・時刻</th><th>A：直前（場所・活動・相手・体調）</th><th>B：発した語／声量／持続／直前の様子</th><th>C：直後（周囲の反応・本人の様子）</th><th>推定される機能</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">／　　:</td><td></td><td></td><td></td><td>注目 ／ 要求 ／ 回避 ／ 発散 ／ チック</td></tr>
+        <tr><td class="num">／　　:</td><td></td><td></td><td></td><td>注目 ／ 要求 ／ 回避 ／ 発散 ／ チック</td></tr>
+        <tr><td class="num">／　　:</td><td></td><td></td><td></td><td>注目 ／ 要求 ／ 回避 ／ 発散 ／ チック</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">週次集計</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>週</th><th>暴言の回数</th><th>主な場面</th><th>代替語・カードが使えた回数</th><th>爆発（大声）の回数／平均の長さ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">／　〜／</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num">／　〜／</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num">／　〜／</td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">試した仮定の記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>仮定</th><th>試した期間</th><th>実際にやったこと（対応をそろえたか）</th><th>当たりの印は出たか</th><th>次の仮定</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">H　　</td><td>　／　〜　／</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 出典 ===== -->
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">出典</span><h2>参照した情報</h2></div>
+  <p class="sec-sub">研究知見と実践情報を分けて記載しています。番号は §03 の「学術的には」から参照しています。小規模研究・エビデンスの弱さには留保を添えています。個別の子どもへの適用は、必ず実際の観察を優先してください。</p>
+  <div class="src">
+    <p style="font-weight:700;color:var(--ink);margin-bottom:8px">研究知見</p>
+    <ol>
+      <li id="r1">Stephens, R. et al. — <em>Swearing as a Response to Pain</em>／<em>Assessing Hypoalgesic Effects of Novel "Swear" Words</em>（罵倒の鎮痛効果、自律神経賦活、頻用による効果の目減り）。<a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2020.00723/full">Frontiers in Psychology (2020)</a> ／ <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2024.1416041/full">mini-review (2024)</a></li>
+      <li id="r2">Stephens, R. — <em>The power of swearing: what we know and what we don't</em>（罵倒の認知・情動・生理・対人的効果のレビュー）。<a href="https://www.sciencedirect.com/science/article/pii/S002438412200170X">ScienceDirect (Lingua, 2022)</a></li>
+      <li id="r3">Van Lancker, D. &amp; Cummings, J. — <em>Expletives: neurolinguistic and neurobehavioral perspectives on swearing</em>（罵倒語の皮質下・右半球処理、失語症でも保存される自動化言語）。<a href="https://www.sciencedirect.com/science/article/pii/S0165017399000600">ScienceDirect</a> ／ 概説：<a href="https://www.brainfacts.org/thinking-sensing-and-behaving/language/2019/your-cursing-cortex-071019">BrainFacts.org</a></li>
+      <li id="r4">Jay, T. — <em>Why We Curse: A Neuro-Psycho-Social Theory of Speech</em>（罵倒語の発達、幼児期の情動条件づけ、3〜5歳のタブー語彙）。<a href="https://web.stanford.edu/class/linguist1/Rdgs/jay00.pdf">全文PDF</a></li>
+      <li id="r5">Faraone, S. et al. ほか — 「ADHDにおける情動調整の困難」レビュー。<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5110580/">NCBI/PMC</a></li>
+      <li id="r6">「ADHDと情動調整困難のある子どもへの心理社会的介入の有効性：系統的レビュー」（易怒性・攻撃性・全体的機能の改善）。<a href="https://www.sciencedirect.com/science/article/abs/pii/S0165178119305487">Psychiatry Research</a></li>
+      <li id="r7">American Psychological Association — <em>Emotional dysregulation is part of ADHD. See how psychologists are helping</em>。<a href="https://www.apa.org/monitor/2024/04/adhd-managing-emotion-dysregulation">APA Monitor (2024)</a></li>
+      <li id="r8">Lieberman, M. et al. (2007) — <em>Putting Feelings Into Words: Affect Labeling Disrupts Amygdala Activity</em>（感情の言語化が扁桃体活動を下げる）。<a href="https://teams.semel.ucla.edu/sites/default/files/publications/May%202007%20-%20Putting%20Feelings%20Into%20Words.pdf">UCLA (PDF)</a> ／ Torre &amp; Lieberman (2018) 総説：<a href="https://journals.sagepub.com/doi/10.1177/1754073917742706">Emotion Review</a></li>
+      <li id="r9">Coprolalia — <em>StatPearls</em>（不随意の発声チック、有病率、経過、叱責の非有効性）。<a href="https://www.ncbi.nlm.nih.gov/books/NBK549763/">NCBI Bookshelf</a></li>
+      <li id="r10">ハビットリバーサル訓練（HRT）／包括的行動介入（CBIT）のチック・トゥレットに対する有効性。<a href="https://www.jpsychopathol.it/article/view/960">Journal of Psychopathology</a> ／ 概説：<a href="https://my.clevelandclinic.org/health/treatments/habit-reversal-training">Cleveland Clinic</a></li>
+      <li id="r11">グアンファシンによる ADHD の情動調整困難への治療（研究プロトコル）<a href="https://www.frontiersin.org/journals/child-and-adolescent-psychiatry/articles/10.3389/frcha.2025.1547672/full">Frontiers (2025)</a> ／ 副作用・中断の注意：<a href="https://www.medicinesforchildren.org.uk/medicines/guanfacine-for-adhd/">Medicines for Children</a> ／ ゼロトレランスの弊害：<a href="https://scienceinsights.org/how-to-stop-your-adhd-child-from-swearing/">ScienceInsights</a></li>
+      <li id="r12">感情のきめ細かさ（emotion granularity）とレジリエンス。<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12404502/">PMC (2024)</a></li>
+      <li id="r13">行動の4機能と機能的アセスメント／機能的コミュニケーション訓練（FCT）／分化強化（DRA・DRO・DRI）。<a href="https://iris.peabody.vanderbilt.edu/module/bi2-elem/cresource/q1/p08/">IRIS Center, Vanderbilt</a> ／ <a href="https://www.txautism.net/interventions/differential-reinforcement">Texas Autism Resources</a></li>
+      <li id="r19">身体運動と子ども（ADHD）の情動調整：系統的レビュー・メタ分析（中〜低強度・リズミカルな運動が有効）。<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11747210/">PMC (2025)</a> ／ 「落ち着ける活動 vs 発散させる活動」：<a href="https://mentalhealthcenterkids.com/blogs/articles/research-on-effective-anger-management-activities-calming-vs-venting">Mental Health Center Kids</a></li>
+    </ol>
+    <p style="font-weight:700;color:var(--ink);margin:18px 0 8px">実践情報</p>
+    <ol start="14">
+      <li id="r14">一般社団法人こども発達支援研究会「暴言が多い子への支援方法」（マイナス感情語彙の拡張、「困った子は困っている子」という視点）。<a href="https://kohaken.net/20200302-sk/">kohaken.net</a></li>
+      <li id="r15">Lucid Minds Positive Behaviour Support「Addressing Swearing in Children: Understanding Context and Setting Boundaries」（機能の理解、淡々とした対応、置き換えと境界設定）。<a href="https://www.lucidmindpbs.com/news-articles/addressing-swearing-in-children-understanding-context-and-setting-boundaries">lucidmindpbs.com</a> ／ Common Sense Media「5 Ways to Talk to Your Kids About Swearing」：<a href="https://www.commonsensemedia.org/articles/5-ways-to-talk-to-your-kids-about-swearing-and-why">commonsensemedia.org</a> ／ Joon「How to Stop Your Child with ADHD from Constantly Swearing」：<a href="https://www.joonapp.io/post/how-to-stop-adhd-swearing">joonapp.io</a></li>
+      <li id="r16">The Zones of Regulation（公式）<a href="https://zonesofregulation.com/">zonesofregulation.com</a> ／ タートル・テクニック（CSEFEL, Vanderbilt）<a href="http://csefel.vanderbilt.edu/modules-archive/module2/handouts/6.html">csefel.vanderbilt.edu</a> ／ 教室での共調整：<a href="https://www.structural-learning.com/post/co-regulation-strategies-teachers-guide">Structural Learning</a></li>
+      <li id="r17">Greene, R. W. — <em>The Explosive Child</em> ／ Collaborative &amp; Proactive Solutions（ALSUP、非懲罰的な協働問題解決）。<a href="https://www.scpcn.ca/wp-content/uploads/2020/03/Collaborative-Proactive-Solutions-CPS-Booklet.pdf">CPS 解説booklet (PDF)</a></li>
+      <li id="r18">SST（ソーシャルスキルトレーニング）とは（LITALICOジュニア）<a href="https://junior.litalico.jp/column/article/018/">junior.litalico.jp</a> ／ 放課後等デイサービスで行う感情コントロールトレーニング：<a href="https://tortoise-h.jp/wiki/%E6%94%BE%E8%AA%B2%E5%BE%8C%E7%AD%89%E3%83%87%E3%82%A4%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%A7%E8%A1%8C%E3%81%86%E6%84%9F%E6%83%85%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%83%88/">介護・福祉のQ&amp;A</a> ／ 気持ちの言葉 言いかえプリント（療育の引き出し）：<a href="https://ke-sensei-habilitation.com/%E3%80%90sst%E3%80%91%E6%B0%97%E6%8C%81%E3%81%A1%E3%81%AE%E8%A8%80%E8%91%89-%E8%A8%80%E3%81%84%E6%8F%9B%E3%81%88%E3%83%81%E3%83%A3%E3%83%AC%E3%83%B3%E3%82%B8%E3%83%97%E3%83%AA%E3%83%B3%E3%83%88/">ke-sensei-habilitation.com</a></li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。切り分けチェックと8パターンの仮定は、専門家によるアセスメントの代替ではなく、相談時に持参する観察記録を作るためのものです。
+    とくに<strong>チックが疑われる場合、および他害・自傷・希死をうかがわせる発言がある場合は、様子を見ずに専門機関へご相談ください。</strong>
+  </p>
+</section>
+
+</div>
+</body>
+</html>
