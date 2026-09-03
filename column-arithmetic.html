@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="九九がまだ不確かなうえに筆算の手順が重なり、かけ算・わり算の筆算が進まない子について、筆算を支える6つの土台（位取り・九九・くり上がり・演算の意味・部分積）を切り分け、10パターンの仮定ごとに、面積モデル・部分積・部分商など理屈から積み直す教え方と世界の指導法を選ぶための支援者向け資料。">
+<title>「かけ算・わり算の筆算」でつまずくとき</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+/* 明るい単一テーマ（ダークモードには追従しない） */
+:root{
+  color-scheme:light;
+  --ground:#faf9f6;
+  --surface:#ffffff;
+  --surface-2:#f0ede6;
+  --ink:#1b2230;
+  --ink-2:#42506a;
+  --ink-3:#6f7c90;
+  --line:#ddd9cf;
+  --line-soft:#ebe6db;
+  --indigo:#2a4d78;
+  --indigo-soft:#e7edf6;
+  --brick:#b0413a;
+  --brick-soft:#f8e8e4;
+  --ochre:#9a7016;
+  --ochre-soft:#f8f0da;
+  --green:#2f6b52;
+  --green-soft:#e6f1ea;
+  --shadow:0 1px 2px rgba(27,34,48,.04), 0 10px 26px -18px rgba(27,34,48,.20);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"Noto Sans JP",system-ui,-apple-system,"Hiragino Sans","Yu Gothic",sans-serif;
+  font-size:16px; line-height:1.85; font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px 96px}
+h1,h2,h3,h4{font-family:"Shippori Mincho","Hiragino Mincho ProN",serif;font-weight:700;text-wrap:balance;line-height:1.4;margin:0}
+p{margin:0}
+a{color:var(--indigo)}
+a:focus-visible,li:focus-visible{outline:2px solid var(--brick);outline-offset:3px}
+
+/* hero */
+.hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-size:clamp(34px,6vw,54px);letter-spacing:.02em}
+.hero .lede{margin-top:24px;max-width:60ch;color:var(--ink-2);font-size:17px}
+.hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 20px;font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3)}
+
+/* sections */
+section{padding-top:64px;scroll-margin-top:24px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--brick);letter-spacing:.06em;flex:none}
+.sec-head h2{font-size:clamp(23px,3.2vw,30px)}
+.sec-sub{color:var(--ink-3);font-size:14.5px;margin-bottom:28px;max-width:64ch}
+.body-col{max-width:66ch;display:flex;flex-direction:column;gap:18px;color:var(--ink-2)}
+
+/* how to read + toc */
+.howto{margin-top:48px;background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:28px 30px;display:flex;flex-direction:column;gap:22px}
+.howto h2{font-size:20px}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.flow .f{display:flex;flex-direction:column;gap:6px;padding-left:14px;border-left:2px solid var(--brick-soft)}
+.flow .fn{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--brick)}
+.flow b{font-size:15px}
+.flow span{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.toc{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px 24px;border-top:1px solid var(--line-soft);padding-top:20px}
+.toc a{display:flex;gap:10px;text-decoration:none;font-size:14px;padding:4px 0;color:var(--ink-2)}
+.toc a:hover{color:var(--brick)}
+.toc a .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);flex:none;padding-top:2px}
+.kitbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+  border-top:1px solid var(--line-soft);padding-top:20px;font-size:14px;color:var(--ink-2);
+}
+.kitbar b{color:var(--ink);font-size:14.5px}
+.kitbar a{font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--brick-soft);color:var(--brick)}
+.kitbar a:hover{border-bottom-color:var(--brick)}
+a.kit{
+  font-weight:700;color:var(--brick);text-decoration:none;
+  border-bottom:1.5px solid var(--brick-soft);white-space:nowrap;
+}
+a.kit:hover{border-bottom-color:var(--brick)}
+
+/* cards */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+.card h3{font-size:18px}
+.card p{font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.tag{align-self:flex-start;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;padding:3px 8px;border-radius:2px;background:var(--indigo-soft);color:var(--indigo)}
+.tag.brick{background:var(--brick-soft);color:var(--brick)}
+.tag.ochre{background:var(--ochre-soft);color:var(--ochre)}
+.verdict{border-left:3px solid var(--brick)}
+.verdict .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--brick);letter-spacing:.1em}
+.verdict h3{font-size:19px;line-height:1.5}
+
+/* layer stack */
+.stack{display:flex;flex-direction:column;gap:6px;margin:8px 0 28px}
+.layer{display:grid;grid-template-columns:44px 1fr;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:16px 18px}
+.layer .lv{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--surface);background:var(--indigo);border-radius:2px;text-align:center;padding:3px 0}
+.layer h4{font-size:16px;margin-bottom:4px}
+.layer p{font-size:14px;color:var(--ink-2)}
+.layer .fail{font-size:13.5px;color:var(--brick);margin-top:6px;padding-left:12px;border-left:2px solid var(--brick-soft)}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;margin-top:8px}
+.gloss div{background:var(--surface);padding:16px 18px}
+.gloss dt{font-weight:700;font-size:14.5px;margin-bottom:3px}
+.gloss dd{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.75}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:8px 0 4px;border:1px solid var(--line-soft);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
+thead th{background:var(--surface-2);font-family:"Noto Sans JP",sans-serif;font-weight:700;font-size:12.5px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--brick);white-space:nowrap}
+td .goto{font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;color:var(--brick);text-decoration:none;border-bottom:1px solid var(--brick-soft)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;margin-top:8px}
+.step{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step .idx{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:600;color:var(--line);line-height:1.1;font-variant-numeric:tabular-nums}
+.step h3{font-size:18px;margin-bottom:10px}
+.step .row{display:grid;grid-template-columns:82px 1fr;gap:14px;font-size:14.5px;margin-top:8px;align-items:start}
+.step .k{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.step .v{color:var(--ink-2)}
+.step .v em{font-style:normal;color:var(--brick);font-weight:500}
+
+/* callouts */
+.callout{background:var(--indigo-soft);border-radius:4px;padding:22px 26px;display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.callout h4{font-size:16px;color:var(--ink)}
+.callout p{font-size:14.5px;color:var(--ink-2)}
+.callout.warn{background:var(--ochre-soft)}
+
+/* worked example (筆算の板書) */
+.work{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);padding:20px 24px;margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.work h4{font-size:15.5px}
+.work .fig{font-family:"IBM Plex Mono",monospace;font-size:14px;line-height:1.7;white-space:pre;overflow-x:auto;background:var(--surface-2);border-radius:3px;padding:14px 16px;color:var(--ink)}
+.work p{font-size:14px;color:var(--ink-2);line-height:1.8}
+.work .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+
+/* hypotheses */
+.hyps{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.hyp{background:var(--surface);border:1px solid var(--line-soft);border-radius:4px;box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:24px}
+.hyp > .top{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:baseline;padding:20px 24px 16px;border-bottom:1px solid var(--line-soft)}
+.hyp .hid{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--surface);background:var(--brick);border-radius:2px;text-align:center;padding:3px 0}
+.hyp h3{font-size:17.5px;line-height:1.5}
+.hyp .inner{padding:20px 24px 24px;display:flex;flex-direction:column;gap:16px}
+.hyp .blk{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:start}
+.hyp .lbl{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-3);padding-top:5px}
+.hyp .lbl.sci{color:var(--indigo)}
+.hyp .txt{font-size:14.5px;color:var(--ink-2);line-height:1.85}
+.hyp .sci-box{background:var(--indigo-soft);border-radius:3px;padding:14px 16px;font-size:14px;color:var(--ink-2);line-height:1.8}
+.hyp .sci-box .ref{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--indigo);display:block;margin-top:7px}
+.hyp ol.acts{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:14.5px;color:var(--ink-2);line-height:1.8}
+.hyp ol.acts b{color:var(--ink)}
+.hyp .hit{color:var(--green)}
+.hyp .miss{color:var(--brick)}
+.hyp .say{display:inline-block;background:var(--surface-2);border-radius:3px;padding:1px 7px;font-size:13.5px;color:var(--ink)}
+.hyp a{color:var(--brick)}
+
+/* don't list */
+.dont ul{margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.dont li{list-style:none;display:grid;grid-template-columns:26px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--line-soft)}
+.dont .x{color:var(--brick);font-family:"IBM Plex Mono",monospace;font-size:15px;line-height:1.7}
+.dont b{display:block;font-weight:700;font-size:15px;color:var(--ink)}
+.dont span.d{font-size:14px;color:var(--ink-2)}
+
+/* program */
+.phase{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.phase .ph{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--indigo);font-weight:600;padding-top:3px}
+.phase h4{font-size:16.5px;margin-bottom:6px}
+.phase p{font-size:14.5px;color:var(--ink-2)}
+.pass{margin-top:10px;font-size:13.5px;color:var(--green);border-left:2px solid var(--green);padding-left:12px}
+
+/* sources */
+.src{font-size:13.5px;color:var(--ink-2);line-height:1.9}
+.src ol{padding-left:22px;margin:0;display:flex;flex-direction:column;gap:10px}
+.src li{scroll-margin-top:24px}
+.src a{word-break:break-all}
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
+
+@media print{
+  body{background:#fff}
+  .card,.layer,.tablewrap,.hyp,.howto,.work{box-shadow:none}
+  section,.hyp{break-inside:avoid}
+}
+@media (max-width:620px){
+  .step{grid-template-columns:44px 1fr;gap:14px}
+  .step .idx{font-size:20px}
+  .step .row,.hyp .blk{grid-template-columns:1fr;gap:3px}
+  .phase{grid-template-columns:1fr;gap:6px}
+  .layer{grid-template-columns:36px 1fr;gap:12px}
+  .hyp > .top{grid-template-columns:48px 1fr;gap:12px}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow"><a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/" style="color:var(--brick);text-decoration:none">← 児童の困難事例</a> ／ 小学中学年 ／ 算数・筆算 ／ 国内外調査まとめ</div>
+  <h1>「かけ算・わり算の筆算」でつまずくとき</h1>
+  <p class="lede">
+    九九がまだ完璧でないうえに筆算の手順が重なり、かけ算がなかなか進まない。わり算は「たてる・かける・ひく・おろす」の意味が入らない——
+    この段階でまず必要なのは、筆算プリントの反復でも、九九の再テストでもありません。
+    「筆算ができる」という一言に束ねられた <strong>いくつもの土台</strong>（十進位取り・九九・くり上がり・演算の意味・部分積）のうち、どれが立っていて、どれがまだかを切り分けること。
+    この資料は、その切り分け方と、<strong>筆算を理屈から積み直すための教え方の台本</strong>、想定される10通りのつまずきごとの対処、そして世界で使われている指導法を整理したものです。
+  </p>
+  <div class="meta">
+    <span>作成 2026-09-03</span>
+    <span>対象 小3〜小5／つまずきは学年を問わず</span>
+    <span>読了 約25分</span>
+  </div>
+</header>
+
+<!-- ===== 使い方 ===== -->
+<div class="howto">
+  <h2>この資料の歩き方</h2>
+  <div class="flow">
+    <div class="f">
+      <span class="fn">STEP 1</span>
+      <b>切り分ける</b>
+      <span>15分のチェック（§04）で、筆算の6つの土台のどこで止まっているかを見ます。ここを飛ばすと、教材選びが当てずっぽうになります。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 2</span>
+      <b>理屈で積み直す</b>
+      <span>§02・§03 が教え方の台本です。「0を1つ足す」「かける・ひく・おろす」を呪文にせず、部分積・分ける・配る、という意味の言葉に置き換えます。道具は §06。</span>
+    </div>
+    <div class="f">
+      <span class="fn">STEP 3</span>
+      <b>2週間試し、記録する</b>
+      <span>§05 の仮定から1つ選び、2週間試します。「当たりの印」が出れば継続、出なければ次へ。この記録が、専門機関に相談するときの最良の材料になります。</span>
+    </div>
+  </div>
+  <div class="kitbar">
+    <b>関連資料</b>
+    <span>数のまとまり・位取りそのものが不安定なら、先にこちら。桁が縦にそろわない・行を追えないなら書字の資料もあわせて。</span>
+    <a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html">「10といくつ」の壁 →</a>
+    <a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/handwriting.html">字がマスにおさまらないとき →</a>
+  </div>
+  <nav class="toc">
+    <a href="#s-verdict"><span class="n">結論</span><span>先に、3つ</span></a>
+    <a href="#s01"><span class="n">01</span><span>筆算の理屈と、6つの土台</span></a>
+    <a href="#s02"><span class="n">02</span><span>かけ算の筆算を理屈で通す</span></a>
+    <a href="#s03"><span class="n">03</span><span>わり算の筆算を理屈で通す</span></a>
+    <a href="#s04"><span class="n">04</span><span>15分の切り分けチェック</span></a>
+    <a href="#s05"><span class="n">05</span><span>想定されるつまずきと対処 10パターン</span></a>
+    <a href="#s06"><span class="n">06</span><span>世界の指導法カタログ</span></a>
+    <a href="#s07"><span class="n">07</span><span>8週間のプログラム案</span></a>
+    <a href="#s08"><span class="n">08</span><span>やってしまいがちな8つ</span></a>
+    <a href="#s09"><span class="n">09</span><span>専門機関に相談するとき</span></a>
+    <a href="#s10"><span class="n">10</span><span>記録テンプレート</span></a>
+    <a href="#s11"><span class="n">出典</span><span>参照した情報</span></a>
+  </nav>
+</div>
+
+<!-- ===== 結論 ===== -->
+<section id="s-verdict">
+  <div class="sec-head"><span class="sec-num">結論</span><h2>先に、3つ</h2></div>
+  <p class="sec-sub">調査全体から言えることを最初に置きます。詳細は以降のセクションで裏づけます。</p>
+  <div class="grid g3">
+    <div class="card verdict">
+      <span class="n">01</span>
+      <h3>筆算は「位ごとの九九とひき算」に分解する仕組み</h3>
+      <p>かけ算の筆算は <strong>23×4 を 20×4 と 3×4 に分けて足す</strong>（部分積の和）。わり算の筆算は <strong>大きい位のまとまりから順に配っていく</strong>。土台は〈十進位取り〉〈九九の自動化〉〈くり上がり・くり下がり〉〈かけ算・わり算の意味〉。どれか一つでも欠けたまま手順だけ教えると、丸暗記になり、桁が増えた瞬間に崩れます。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">02</span>
+      <h3>「0を1つ足す」「かける・ひく・おろす」を呪文にしない</h3>
+      <p>2桁×2桁で2段目を左にずらすのは、かけているのが <strong>4ではなく40</strong> だから。答えも10倍の位置に来る——「0を足す」のではなく「十の位から書く」。世界の主流は <strong>面積モデル → 部分積 → 標準の筆算</strong> の順で意味を先に通し、あとで手順を短くします。日本の実践研究でも「部分積の和から成り立っていること」を理解させる指導が、桁が増えたときの支えになると報告されています。</p>
+    </div>
+    <div class="card verdict">
+      <span class="n">03</span>
+      <h3>わり算の筆算は「見当」と「商の位置」が二大難所</h3>
+      <p>わり算だけ大きい位から計算します。最大のつまずきは <strong>商をどの位から立てるか分からなくなること</strong> と、<strong>「1回にいくつ配れるか」の見当がつかないこと</strong>。先に <strong>くり返しひき算・部分商（大きいまとまりから何回引けるか）</strong> を経由すると、見当が多少ずれても途中でやり直せて崩れにくくなります。標準の4拍子は、それを最短に圧縮したものだと位置づけます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 理屈と土台 ===== -->
+<section id="s01">
+  <div class="sec-head"><span class="sec-num">01</span><h2>筆算の理屈と、6つの土台 — 何を分解しているのか</h2></div>
+  <p class="sec-sub">「筆算ができる」は単一の技能ではありません。下の土台が抜けたまま手順だけ上に積むと、1桁のうちは通用し、桁が増えると崩れます。日本の課程では、かけ算の筆算は3年（2〜3桁×1〜2桁）、わり算の筆算は4年（2〜3桁÷1〜2桁）で扱います。</p>
+
+  <div class="stack">
+    <div class="layer">
+      <div class="lv">L1</div>
+      <div>
+        <h4>かけ算・わり算の意味</h4>
+        <p>かけ算＝「1あたりの数 × いくつ分」。わり算＝「等分（何人に分けると1人いくつ）」と「包含（いくつずつ分けると何人分）」の2つの意味。この土台があると、筆算の各行が「何をしているか」に翻訳できます。</p>
+        <p class="fail">現れ方：4×23 を「4の23倍」とも「23が4つ」とも言い換えられない／12÷3 で「3人に分ける」場面と「3個ずつ分ける」場面を作れない。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L2</div>
+      <div>
+        <h4>十進位取り（位ごとに数を見る）</h4>
+        <p>34 を〈30と4〉、234 を〈200と30と4〉として見る。筆算は位ごとに処理する仕組みなので、位で分けられないと手順が意味を持ちません。</p>
+        <p class="fail">現れ方：「34は30といくつ？」に詰まる／筆算で位が縦にそろわない／234×2 で百の位を忘れる。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L3</div>
+      <div>
+        <h4>九九の自動化（想起の速さ）</h4>
+        <p>九九が「考えないと出てこない」状態だと、その想起に作業記憶を使い切ってしまい、くり上がりのメモや位の管理に手が回りません。正確さだけでなく <strong>速さ</strong> が土台になります。</p>
+        <p class="fail">現れ方：7の段・8の段で3秒以上かかる／指で数え直す／筆算の途中で「今どこだっけ」となる。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L4</div>
+      <div>
+        <h4>くり上がり・くり下がりのあるたし算・ひき算</h4>
+        <p>かけ算の筆算は部分積を足すときにくり上がり、わり算の筆算は毎回ひき算をします。この2つが不確かだと、九九が合っていても最終の答えがずれます。</p>
+        <p class="fail">現れ方：8+7、13−6 でつまる／くり上がりの小さい数を書き忘れる・足し忘れる。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L5</div>
+      <div>
+        <h4>「分ける」考え（分配法則）と部分積</h4>
+        <p>23×4 =〈20×4〉+〈3×4〉。言葉で「分配法則」と呼ぶ必要はありませんが、<strong>数を位で切って、それぞれにかけて、足し戻す</strong> という発想が、かけ算の筆算そのものです。面積モデル（長方形を分ける絵）がこの考えを見せます。</p>
+        <p class="fail">現れ方：23×4 の筆算で書いた「8」と「12」がどこから来たか説明できない／2桁×2桁で2段目のずらし方を間違える。</p>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="lv">L6</div>
+      <div>
+        <h4>筆算の手順そのもの（書く位置・メモ・4拍子）</h4>
+        <p>ここで初めて、どこに何を書くか、くり上がりをどうメモするか、わり算の「たてる→かける→ひく→おろす」の順序を扱います。<strong>L1〜L5 が立っていれば、この層は数回で入ります。</strong></p>
+        <p class="fail">現れ方：意味は説明できるのに書式でつまる（この場合は軽い）／意味を飛ばして手順だけ覚え、少し形が変わると崩れる（この場合は L1〜L5 に戻る）。</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:18px;margin-bottom:10px">この資料で使う言葉</h3>
+  <dl class="gloss">
+    <div><dt>部分積（ぶぶんせき）</dt><dd>23×4 を 20×4=80 と 3×4=12 に分けたときの、それぞれの積（80 と 12）。筆算はこれを足している。</dd></div>
+    <div><dt>分配法則</dt><dd>(20+3)×4 =20×4＋3×4 のように、たし算の中身に分けてかけても答えが同じ、という決まり。かけ算の筆算の根拠。</dd></div>
+    <div><dt>面積モデル</dt><dd>かけ算を長方形の面積で表す図。たてと横をそれぞれ位で切ると、部分積が「部屋」として見える。</dd></div>
+    <div><dt>位取り（くらいどり）</dt><dd>234 を〈2が百、3が十、4が一〉と読む仕組み。目に見えない約束事。</dd></div>
+    <div><dt>部分商（ぶぶんしょう）</dt><dd>わり算で「まず100回分、次に20回分…」と大きなまとまりで何回引けるかを出し、あとで足し合わせて商にする方法（chunking）。</dd></div>
+    <div><dt>等分除・包含除</dt><dd>12÷3 を「3人に等しく分ける（等分除）」と見るか「3個ずつ分ける（包含除）」と見るか。余りの意味が変わる。</dd></div>
+    <div><dt>被除数・除数・商・余り</dt><dd>738÷6=123 余り0 なら、738＝被除数、6＝除数、123＝商。余りは必ず除数より小さい。</dd></div>
+    <div><dt>概数・見積もり</dt><dd>正確に計算する前に「だいたいいくつ」を出すこと。わり算で商の見当をつけるとき、答えの点検をするときに使う。</dd></div>
+    <div><dt>CPA</dt><dd>具体（実物）→ 半具体（絵・図）→ 抽象（数字・式）の順で橋を架ける進め方。シンガポールの算数教育の骨格。</dd></div>
+  </dl>
+</section>
+
+<!-- ===== 02 かけ算の台本 ===== -->
+<section id="s02">
+  <div class="sec-head"><span class="sec-num">02</span><h2>かけ算の筆算を、理屈で通す — 教え方の台本</h2></div>
+  <p class="sec-sub">「面積モデル → 部分積 → 標準の筆算」の順で、同じ問題を3つの形で見せます。数字だけを先に教えないのが原則です。用意するもの：基数10ブロック（または10のまとまりが作れるもの）、方眼紙、位取り表。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>まず「×10」で、0が付く理由を言葉にする</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">6個のブロックを見せ、「これが10セットあったら？」と10のまとまりに置き替える。<em>6が、6の“十”に変わる</em>。位取り表で6を一の位から十の位へ動かす。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「6×10 は、6を10倍するから、一のかたまりが十のかたまりになる。数字は左に1つずれて、空いた一の位に0を書く」</span>。「0を足す」ではなく「位が上がる」と言う。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">「6×100 は？」で0が2つになる理由を、位が2つ上がるからと説明できるか。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>面積モデルで 2桁×1桁（23×4）</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">方眼にたて4マス・横23マスの長方形をかく。横を <em>20と3で線引き</em>。2つの部屋ができる：4×20 と 4×3。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「23を20と3に分けたから、長方形も2つに分かれた。大きい部屋は 4×20＝80、小さい部屋は 4×3＝12。合わせて 92」</span>。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">部屋の面積を足すと全体になる、という関係を自分の言葉で言えるか。ブロックでも同じことを（23の山を4セット→十の束が8、ばらが12→ばらを組み替えて9と2）。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>部分積を「そのまま縦に」書く（expanded method）</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">面積モデルの2つの数を、筆算の形に並べて書く。まだ短くしない。</div></div>
+        <div class="row"><div class="k">板書</div><div class="v"><span class="say">23 × 4 → 「3×4＝12」「20×4＝80」→ 12＋80＝92</span>。12 と 80 を縦に書いて足す形にする。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">面積モデルの「部屋」と、縦に書いた2つの数（12・80）が1対1で対応していると分かっているか。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>標準の筆算に圧縮し、くり上がりの正体を言う</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">「12 と 80 を、いちいち書かずに1行で足すとこうなる」と標準形へ。くり上がりの「1」を指さす。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「4×3＝12 の“1”は、十のかたまり1つ。次の 4×2（ほんとは 4×20）＝8 に、その1を足して9。だから 92」</span>。くり上がりの1は <em>部分積12の十の位</em> だと明示する。</div></div>
+        <div class="row"><div class="k">つまずいたら</div><div class="v">くり上がりを書き忘れる・足し忘れるなら、しばらく STEP 03 の「部分積を縦に書く形」に戻す。短くするのは急がない。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>2桁×2桁（23×45）は「4つの部屋」で</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">たて(20+3)、横(40+5)の長方形を <em>4部屋</em> に区切る：20×40＝800／20×5＝100／3×40＝120／3×5＝15。足すと 1035。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「45を40と5に分けた。だから 23×5 と 23×40 の2つを足す。23×40 は 23×4 を先に計算して、10倍の位置——十の位から書く」</span>。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">2段目の右端に0を書く（または1つ左にずらす）理由を <em>「かけているのが4ではなく40だから」</em> と言えるか。ここが言えれば、この単元の山は越えています。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="work">
+    <h4>23 × 45 を、3つの形で見比べる</h4>
+    <div class="fig">面積モデル（4部屋）        部分積を全部書く         標準の筆算
+┌─────┬───┐              23 × 45                    2 3
+│20×40│20×5│            ───────────                 × 4 5
+│ 800 │100 │              3 ×  5 =   15              ─────
+├─────┼───┤              20 ×  5 =  100              1 1 5   ← 23×5
+│ 3×40│3×5 │              3 × 40 =  120              9 2 0   ← 23×40
+│ 120 │ 15 │             20 × 40 =  800              ─────
+└─────┴───┘            ───────────               1 0 3 5
+  合計 1035               合計    1035</div>
+    <p>左から右へ、同じ計算を <span class="say">見える形 → 途中を全部書く形 → 短い形</span> にしているだけ。どの形でも答えは 1035。子どもがどの段階でつまずいているかで、どの形に戻すかを決めます。</p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>標準の筆算で書くこと（23×4）</th><th>声に出す意味</th><th>数の裏側</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">一の位に 2、小さく 1</td><td>3×4＝12。2はそのまま、十のかたまり1つはとなりへ</td><td>3×4 の部分積 12</td></tr>
+        <tr><td class="num">十の位に 9</td><td>2（＝20）×4＝8、さっきの1を足して9</td><td>20×4 の部分積 80 ＋ くり上がり 10</td></tr>
+        <tr><td class="num">答え 92</td><td>80＋12</td><td>部分積の和</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 03 わり算の台本 ===== -->
+<section id="s03">
+  <div class="sec-head"><span class="sec-num">03</span><h2>わり算の筆算を、理屈で通す — 教え方の台本</h2></div>
+  <p class="sec-sub">「配る場面 → くり返しひき算・部分商 → 標準の4拍子」の順。わり算だけ大きい位から計算する理由と、商をどの位から立てるかを、必ず言葉にします。用意するもの：おはじき等（多め）、紙皿や小分けカップ、位取り表。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>2つのわり算の意味を、場面で作る</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">おはじき12個。<em>(a) 3枚の皿に等しく配る</em>（等分除：1皿に4）。<em>(b) 3個ずつ袋に入れる</em>（包含除：4袋できる）。どちらも 12÷3＝4。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「わり算には“何人に分けると1人いくつ”と“いくつずつ分けると何人分”の2つがある。筆算では“大きいまとまりを何回配れるか”と考えると進めやすい」</span>。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">余りのある場面（25÷4）で、「1人6個で4個余り」「6袋できて4個余り」を作れるか。<em>余りは必ずわる数より小さい</em>（4個余ったらもう1回配れてしまう）ことを確認。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>なぜ大きい位から配るのか</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">738を〈7百・3十・8〉のブロックで用意。6人に配る。<em>まず百のブロックから</em>：6人に1枚ずつ配れて（600配る）、1百＝100 が残る。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「たし算・ひき算・かけ算は一の位から。でもわり算は、大きいかたまりから配るほうが早い。だから逆」</span>。残った100は、くずして次の位（十）に混ぜる＝これが「おろす」。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">「大きい位から」「余りを次の位に繰り込む」という2点を、ブロック操作と対応させて言えるか。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>くり返しひき算・部分商（大きいまとまりで何回引けるか）</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">738 から 6 を引き続ける代わりに、<em>大きく引く</em>。「6の100回分＝600、引くと138」「6の20回分＝120、引くと18」「6の3回分＝18、引くと0」。</div></div>
+        <div class="row"><div class="k">板書</div><div class="v">右側に 100 ／ 20 ／ 3 と書き足していき、最後に合計 <span class="say">100＋20＋3＝123</span>。これが商。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">見当が小さすぎても（10回分ずつでも）最後にたどり着けること。<em>「引きすぎなければやり直せる」</em> のがこの方法の安全性だと理解しているか。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>商をどの位から立てるか（指かくしの術）</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">738÷6：左から1桁ずつ見て「7は6で分けられる？」→ はい → <em>商は百の位から</em>。738÷8 なら「7は8で分けられる？」→ いいえ →「73は？」→ はい → <em>商は十の位から</em>。上の位を指でかくして確かめる。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「いちばん上の位の数が、わる数で分けられるかを見る。分けられなければ、1つ下の位まで合わせて見る。分けられた位から、商が始まる」</span>。</div></div>
+        <div class="row"><div class="k">つまずいたら</div><div class="v">桁がずれる子は、商を書く前に「商は□の位から」と口で宣言させてから書く。位取り表の上に問題を置くと、位の対応が見えます。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>標準の4拍子に圧縮し、各拍の意味を貼る</h3>
+        <div class="row"><div class="k">やって見せる</div><div class="v">部分商の「100・20・3」を、位ごとに1桁ずつ最短で出す形へ。「たてる（1）→かける（6）→ひく（1）→おろす（3）」を1周ずつ実演。</div></div>
+        <div class="row"><div class="k">言い方</div><div class="v"><span class="say">「たてる＝この位に何こずつ配れるか見当をつける。かける＝配った分の合計。ひく＝まだ配ってない残り。おろす＝次の位を残りに合わせる」</span>。4語の下に意味を書いた紙を机に置く。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v">「たてる」で見当が1つずれたとき（大きすぎ→引けない、小さすぎ→余りがわる数以上）、自分で1つ直せるか。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="work">
+    <h4>738 ÷ 6 を、2つの形で見比べる</h4>
+    <div class="fig">部分商（大きく引く）              標準の筆算（4拍子）
+                                        1 2 3
+  738                             ┌──────────
+- 600  ← 6×100                  6 │ 7 3 8
+─────                              6        ← 1×6（百を6人に1枚ずつ＝600）
+  138                             ───
+- 120  ← 6×20                     1 3      ← 7−6=1、3をおろす
+─────                             1 2      ← 2×6（十を6人に2枚ずつ＝120）
+   18                             ───
+-  18  ← 6×3                        1 8    ← 13−12=1、8をおろす
+─────                              1 8    ← 3×6（一を6人に3こずつ＝18）
+    0                              ───
+                                      0    ← 余り0
+100 + 20 + 3 = 123                商 123</div>
+    <p>右の筆算の「6」「12」「18」は、左の「600」「120」「18」を <span class="say">位を省いて書いたもの</span>。やっていることは同じ「大きいまとまりから配る」です。</p>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>4拍子</th><th>声に出す意味</th><th>ずれたときのサイン</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">たてる</td><td>この位に何こずつ配れるか、見当をつける</td><td>—</td></tr>
+        <tr><td class="num">かける</td><td>配った分の合計（商の数字 × わる数）</td><td>ひき算の答えがマイナスになる → 商が大きすぎた</td></tr>
+        <tr><td class="num">ひく</td><td>まだ配っていない残り</td><td>残りがわる数以上 → 商が小さすぎた。1増やす</td></tr>
+        <tr><td class="num">おろす</td><td>次の位の分を、残りにくっつける</td><td>おろしたのに商が立たない → 商にその位は0を書く</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <h4>「商に0が立つ」場合を、別扱いにしない</h4>
+    <p>618÷6 のように途中で0が立つ問題は、丸暗記の子がいちばん落ちる形です。理屈で通していれば <span class="say">「十のかたまりは1こしかない。6人には配れない。だから十の位は0こずつ。0を書いて、次の位へ」</span> と、同じ手続きの中で説明できます。0を「特別なルール」として覚えさせない。</p>
+  </div>
+</section>
+
+<!-- ===== 04 チェック ===== -->
+<section id="s04">
+  <div class="sec-head"><span class="sec-num">04</span><h2>15分でできる切り分けチェック</h2></div>
+  <p class="sec-sub">おはじき20個ほど、位取り表（百・十・一）、九九表、白紙、筆算プリントを数枚。テストではなく「どこまで自分でできるか見せて」という形で。できなかった項目はその場で正解を教えず、記録だけします（訂正すると次の項目の反応が変わるため）。まず「学校でどこまで習ったか」を担任に確認しておくこと——未習なら「つまずき」ではありません。</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="idx">01</div>
+      <div>
+        <h3>九九の想起 — 速さを見る</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">7×8、6×7、8×9、4×6… とランダムに20問、口頭で。ストップウォッチは見せずに、詰まった段をメモ。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>3秒以上かかる／指で数え直す／「しちは…」と唱え直す段がある。</em>正確でも遅ければ、筆算の手順に手が回りません。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L3。ここが弱いと、他が立っていても筆算全体が崩れます。<strong>最初に確認する項目です。</strong></div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">02</div>
+      <div>
+        <h3>位で分ける — 34、234 を位取り表に置く</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「34は30といくつ？」「234は、200と、いくつと、いくつ？」。数字カードを位取り表のマスに置いてもらう。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>詰まる／234を「2と3と4」と分ける／位のマスがずれる。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L2。ここが不安定なら、筆算の前に <a class="goto" href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html">位取りの資料</a> の段階に戻ります。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">03</div>
+      <div>
+        <h3>かけ算の意味 — 4×23 をおはじきや絵で</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「4×23 ってどういうこと？ おはじきか絵で作ってみて」。「23の4つ分」でも「4の23倍」でもよい。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>「かける」を動作にできない／九九の暗唱はできるのに意味の場面が作れない。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L1。意味が空洞なら、筆算は必ず手順の丸暗記になります。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">04</div>
+      <div>
+        <h3>×10・×100 の意味 — 「0が付く」理由</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「6×10 は？ どうして0が付くの？」「6×100 は？ なぜ0が2つ？」</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>「そういうルールだから」しか言えない／位が上がるという説明が出ない。</em>「10のかたまりが6つ」と言えれば十分。</div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L2・L5。2桁×2桁で2段目をずらす理由に直結します。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">05</div>
+      <div>
+        <h3>かけ算の筆算の途中を説明させる</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">23×4 を筆算で解いてもらい、「この2は？」「小さい1は何？」「9はどうやって出た？」と指さして聞く。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>「4×3で、2を書いて1くり上げて…」と手順は言えるが、1が“十のかたまり”だと言えない／80や12という部分積が出てこない。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L5。手順は動くが意味が空洞、という最も多い状態。<a class="goto" href="#h04">H04</a>。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">06</div>
+      <div>
+        <h3>2桁×2桁のずらし — なぜ0？</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">23×45 を解いてもらい、「2段目の右はしに0を書く（または左にずらす）のはなぜ？」</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>「先生がそう言った」／「4だから」。「40だから」「10倍の位置だから」が出るか。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L5。ここが言えれば、かけ算側の理解は十分。<a class="goto" href="#h04">H04</a>。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">07</div>
+      <div>
+        <h3>わり算の意味 — 2つの場面を作る</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「15÷3 で、“3人に分ける”話と“3個ずつ分ける”話、両方おはじきで作って」。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>片方しか作れない／わり算を「九九の逆」としか捉えていない。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L1。余りの意味の理解にも関わります。<a class="goto" href="#h03">H03</a>。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">08</div>
+      <div>
+        <h3>見積もり — だいたいの答え</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「84÷4 はだいたいいくつ？」「73×6 は 400 より大きい？ 小さい？」「738÷6 は、10のくらい？ 100のくらい？」</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>正確に筆算しないと答えられない／桁の見当がまるでつかない。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L1・L3。わり算の「たてる」で見当がつけられない原因になります。<a class="goto" href="#h06">H06</a>。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">09</div>
+      <div>
+        <h3>わり算の商の位置</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">「738÷6 の商は何の位から始まる？」「738÷8 は？」を、筆算を書く前に口で。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>いつも左端の位から書こうとする／738÷8 で百の位に商を立ててしまう。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L6。わり算の筆算の二大難所の1つ。<a class="goto" href="#h07">H07</a>。</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="idx">10</div>
+      <div>
+        <h3>多ステップでの持続と、桁のそろえ方</h3>
+        <div class="row"><div class="k">やり方</div><div class="v">3桁×2桁、3桁÷1桁を1問ずつ。書いている途中で「今、何してるところ？」と一度だけ聞く。</div></div>
+        <div class="row"><div class="k">見るところ</div><div class="v"><em>前半は合っているのに後半で崩れる／桁が縦にそろわず、たし引きの相手を間違える／「どこだっけ」で止まる。</em></div></div>
+        <div class="row"><div class="k">分かること</div><div class="v">L6＋作業記憶・空間の負荷。<a class="goto" href="#h08">H08</a>／<a class="goto" href="#h09">H09</a>。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 style="font-size:18px;margin:36px 0 12px">結果から、どの仮定へ進むか</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>最初に崩れた項目</th><th>読み取れること</th><th>進む先</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">01 九九の想起</td><td>想起が遅く、手順に作業記憶を回せない。</td><td><a class="goto" href="#h01">H01</a></td></tr>
+        <tr><td class="num">02 位で分ける</td><td>十進位取りが不安定。筆算の前段階。</td><td><a class="goto" href="#h02">H02</a></td></tr>
+        <tr><td class="num">03・07 意味</td><td>かけ算・わり算が動作・場面と結びついていない。</td><td><a class="goto" href="#h03">H03</a></td></tr>
+        <tr><td class="num">04・06 ×10／ずらし</td><td>部分積・位の10倍関係が空洞。手順だけ動いている。</td><td><a class="goto" href="#h04">H04</a></td></tr>
+        <tr><td class="num">05 途中の説明</td><td>くり上がりのメモ管理、または部分積の意味。</td><td><a class="goto" href="#h04">H04</a> ／ <a class="goto" href="#h05">H05</a></td></tr>
+        <tr><td class="num">08 見積もり</td><td>数の大きさの見当が育っていない。「たてる」の土台。</td><td><a class="goto" href="#h06">H06</a></td></tr>
+        <tr><td class="num">09 商の位置</td><td>わり算の桁対応。0が立つ形も要確認。</td><td><a class="goto" href="#h07">H07</a></td></tr>
+        <tr><td class="num">10 後半で崩れる</td><td>桁のそろえ方（空間）／多ステップの保持（作業記憶）。</td><td><a class="goto" href="#h08">H08</a> ／ <a class="goto" href="#h09">H09</a></td></tr>
+        <tr><td class="num">—</td><td>項目はできるのに、日や場面で崩れる。速さを嫌がる。</td><td><a class="goto" href="#h10">H10</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 05 10パターン ===== -->
+<section id="s05">
+  <div class="sec-head"><span class="sec-num">05</span><h2>想定されるつまずきと対処 — 10パターン</h2></div>
+  <p class="sec-sub">
+    「筆算が進まない」という同じ見え方の裏に、少なくとも10通りの別々の状態がありえます。それぞれについて
+    <strong>①想定される原因／②こう見える（サイン）／③学術的な裏づけ／④具体的な対応策／⑤当たりの印と、外れたときの次の候補</strong>
+    をまとめました。上から順にではなく、§04 の結果に対応するものから入ってください。1つの仮定は2週間を目安に試し、印が出なければ次へ。
+  </p>
+
+  <div class="hyps">
+
+    <!-- H01 -->
+    <div class="hyp" id="h01">
+      <div class="top"><div class="hid">H01</div><h3>九九の想起が遅く、手順に手が回らない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">筆算は「九九を思い出す」「くり上がりを覚えておく」「位を管理する」を同時に走らせます。九九が <strong>即答でなく“計算して出す”状態</strong> だと、その一手だけで作業記憶が埋まり、メモや位の管理が押し出されます。正確さの問題ではなく、自動化（速さ）の問題です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">7・8の段で詰まる。指で数え直す、段を頭から唱え直す。単発の九九は正答するのに、筆算の中だと九九を間違える。前の行の結果を忘れる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          IES／What Works Clearinghouse の実践ガイドは、算数につまずく児童への介入で <strong>「基礎的な計算の流暢性を高める時間を、毎回のセッションに組み込む」</strong> ことを推奨しています。あわせて、明示的・体系的な指導（手本の提示・思考の言語化・段階的な練習・即時のフィードバック）も柱に挙げられます。九九の流暢性は、概念理解の代わりではなく、<strong>概念理解を働かせる余地を作るための土台</strong>という位置づけです。
+          <span class="ref">→ 出典 [4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>苦手な段を2つに絞る。</b>全部を一度に回さない。7の段・8の段など、詰まった段だけを1日3分、フラッシュカードで。答えを言うまで待たず、0.5秒で裏返して正答を見せ、次へ。</li>
+            <li><b>関係で覚える。</b>7×8 は 7×7＝49 の次だから＋7、8×6 は 8×5＝40 の次だから＋8。ばらばらの暗記ではなく、近い九九からの足し算で導けるようにする。</li>
+            <li><b>筆算中は九九表を机に出しておく。</b>想起の負荷を一時的に外に出す。表を見ながらでも「筆算の手順」の練習にはなります。数週間で表を見る回数が減ります。</li>
+            <li><b>くり上がりは書かせる。</b>頭で覚えさせない。小さい数を必ず書き、足したら斜線で消す。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">2〜3週間で、筆算の中でも九九を間違えなくなる。表を見る回数が目に見えて減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h09">H09（作業記憶・注意）</a> へ。九九だけの問題ではないかもしれません。</div></div>
+      </div>
+    </div>
+
+    <!-- H02 -->
+    <div class="hyp" id="h02">
+      <div class="top"><div class="hid">H02</div><h3>十進位取りが不安定なまま、筆算に入っている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">筆算は「位ごとに分けて処理し、位ごとに書く」仕組みです。34 を〈30と4〉、234 を〈200と30と4〉として見られないと、手順の一つひとつが意味を持たず、<strong>位のそろえ方も“形の模写”になります</strong>。かけ算の筆算が3年で始まる時点で、ここが十分でない子は珍しくありません。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">「34は30といくつ？」に詰まる。234を「2と3と4」と分ける。筆算で位が縦にずれる。234×2 で百の位を落とす。10のまとまり・100のまとまりの言い方が出てこない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          Fuson らの研究は、多数桁の数の理解が <strong>「十を単位としてまとめ直す（unitizing）」</strong> という再構成を必要とし、この理解が多数桁の加減の方法と結びついて発達することを示しました。位取りの弱さは不注意ではなく発達段階の問題であり、その後の算数の成否を予測する中核的な理解の一つとされています。IES ガイドも「視覚表現（位取りブロック等）を、抽象的な数式と明示的に結びつけよ」と勧めています。
+          <span class="ref">→ 出典 [5] Fuson ほか、[4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>いったん筆算を止め、位取りに戻る。</b><a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html">「10といくつ」の壁</a> の後半（10のまとまり・位取り）の活動を2〜3週間。ここは急がば回れです。</li>
+            <li><b>基数10ブロックと位取り表を常設する。</b>数を必ず「百が2、十が3、一が4」と口に出してから筆算に置く。</li>
+            <li><b>お金で位を体感する。</b>100円玉・10円玉・1円玉で 234 を作る。「10円が10枚で100円」の両替を、くり上がり・くり下がりと対応させる。</li>
+            <li><b>方眼を使い、1マス1数字。</b>位が自動でそろう紙にする。市販ドリルの詰まったマスは使わない。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">3桁の数を位ごとに分けて言える。筆算で位が自然にそろう。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h08">H08（空間・書字）</a> へ。位取りの理解はあるのに、紙面上でそろえられないのかもしれません。</div></div>
+      </div>
+    </div>
+
+    <!-- H03 -->
+    <div class="hyp" id="h03">
+      <div class="top"><div class="hid">H03</div><h3>かけ算・わり算の意味が、動作や場面と結びついていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">「九九は言える」「わり算は九九の逆」で止まっていて、<strong>かけ算＝1あたり×いくつ分、わり算＝等分／包含</strong>という意味が場面として持てていない状態。意味が空洞だと、筆算の各行を「何をしているか」に翻訳できず、手順の丸暗記に頼るしかなくなります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">4×23 を動作や絵にできない。15÷3 で「3人に分ける」か「3個ずつ」の片方しか作れない。文章題で立式ができない。余りの意味（4個余ったらどうなる？）を説明できない。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          オランダの現実的数学教育（RME）では、written multiplication / division の指導を <strong>大きな数を含む「場面のある問題」から始め</strong>、くり返し加える・くり返し引くという手続きが、段階的に標準的な筆算へと洗練されていく（progressive schematisation）と位置づけます。オランダの長除法の研究でも、子どもの方略は「除数のまとまりをどう作るか（chunking）」と「記号的な書き方をどれだけ使うか」の2軸で発達すると報告されています。意味の場面が出発点で、手順はその圧縮形、という順序です。
+          <span class="ref">→ 出典 [6] RME・progressive schematisation、[7] van Putten ほか 長除法の研究</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>1日1つ、場面を作る。</b>「1袋4個入りのあめが23袋」「クッキー25枚を4人で」。式の前に、おはじきや絵で場面を作ってから式にする。</li>
+            <li><b>等分と包含を毎回両方言う。</b>12÷3 なら「3人に分けると1人4個」「3個ずつなら4袋」。2つの見方を口ぐせにする。</li>
+            <li><b>余りを場面で確かめる。</b>25÷4：「1人6個で4個余る。余った4個、もう1回配れる？（配れない、1人1個ずつだと足りない）」。<em>余り＜わる数</em> を体験で。</li>
+            <li><b>筆算に意味の言葉を貼る。</b>§02・§03 の対応表を机に置き、各行で「今は 20×4 をしている」「今は十のかたまりを配っている」と言わせる。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">かけ算・わり算の場面を自分で作れる。筆算の途中を「今なにをしているか」で説明できる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h04">H04（部分積）</a> へ。意味は分かっても、位で分ける発想がまだかもしれません。</div></div>
+      </div>
+    </div>
+
+    <!-- H04 -->
+    <div class="hyp" id="h04">
+      <div class="top"><div class="hid">H04</div><h3>部分積・位の10倍関係が空洞で、手順だけ動いている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">かけ算の筆算は <strong>23×4＝20×4＋3×4</strong> という「分けて、かけて、足す」の圧縮形です。この部分積の考えを持たずに「4×3、2を書いて1くり上げ、4×2たす1」と手順だけ覚えていると、2桁×2桁で <strong>2段目をなぜずらすのか</strong> が分からず、0を忘れる・位置を間違える・2段目を足し忘れる、が起きます。<strong>最も多い状態です。</strong></div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">23×4 の筆算で「8」「12」「80」という部分積が出てこない。くり上がりの1が「十のかたまり」だと言えない。23×45 の2段目のずらしを「4だから」と説明する、または右づめで書いて答えがずれる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          アメリカの標準的な学年進行（Common Core）では、3〜4年で <strong>面積モデルと部分積</strong> を用い、標準アルゴリズムはその後に位置づけられます。「戦略を先に、アルゴリズムは後」という設計は、部分積の理解が標準の筆算の意味を支えるという前提に立っています。日本の実践研究（啓林館）でも、1位数をかける筆算で <strong>「部分積の和から成り立っていること」を意識させる指導</strong> が、被乗数・乗数の桁が増えたときの解決に役立つと報告されています。
+          <span class="ref">→ 出典 [1] Common Core 面積モデル・部分積、[8] 啓林館 部分積の実践、[9] NCETM 拡張法→簡潔法</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>§02 の台本を STEP 02 からやり直す。</b>面積モデル（部屋に分ける絵）→ 部分積を全部縦に書く形 → 標準形。急いで短くしない。</li>
+            <li><b>2週間は「部分積を全部書く形」で解かせる。</b>23×4 なら 12 と 80 を書いて足す。標準形はその後。書く手間より、意味の定着が優先。</li>
+            <li><b>×10・×100 を毎回はさむ。</b>「6×40 は？ 6×4＝24、それが10倍だから240、位が1つ上がる」。2段目のずらしの根拠をここで作る。</li>
+            <li><b>「0を書く」を「十の位から書く」と言い替える。</b>2段目は 23×40 だから、答えは十の位から始まる。空いた一の位に0。</li>
+            <li><b>面積モデルと筆算を並べて貼る。</b>「この部屋＝この行」と線でつなぐ。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">23×45 の2段目のずらしを「40をかけているから」と言える。部分積を全部書く形と標準形が同じことだと分かる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h02">H02（位取り）</a> に戻る。位で分けられないと部分積は成立しません。</div></div>
+      </div>
+    </div>
+
+    <!-- H05 -->
+    <div class="hyp" id="h05">
+      <div class="top"><div class="hid">H05</div><h3>くり上がり・くり下がりのメモ管理でつまずいている</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">意味も九九も大丈夫なのに、<strong>「小さくメモした数を、次の位で足す」</strong> という管理でずれる。書き忘れ、足し忘れ、前の問題のメモが残る、メモした位置がずれて別の位に足す。処理の負荷というより、書式の運用の問題です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">九九は合っているのに答えが10や100ずれる。くり上がりの数を書いたり書かなかったりムラがある。たし算の筆算では起きないのに、かけ算・わり算の筆算だけで起きる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          IES ガイドの「明示的・体系的な指導」の要素——手順を分解して手本を示す、声に出して考える、練習を積み上げる、即時にフィードバックする——は、いずれも <strong>手続きの実行時に保持すべき情報量を減らす設計</strong> です。くり上がりの管理のように「覚えておくこと」を、紙の上の決まった場所に固定して外部化するのは、この方針に沿った具体策です。
+          <span class="ref">→ 出典 [4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>くり上がりの定位置を決める。</b>その位の数字の「左上に小さく」など、書く場所を固定。毎回同じ場所。</li>
+            <li><b>足したら消す。</b>くり上がりの数を足したら、すぐ斜線。「まだ足していない数」だけが残る状態にする。</li>
+            <li><b>1行ずつ指で押さえる。</b>今計算している位を指で押さえ、終わったら1つ動かす。視線の迷子を防ぐ。</li>
+            <li><b>かけ算は「部分積を全部書く形」に一時退避。</b>くり上がりをその場で処理せず、12・80 と書いてから最後に1回だけ足す。管理する回数が減ります。</li>
+            <li><b>新しい問題の前に、前のメモを全部消す。</b>プリントは1問ずつ切って渡してもよい。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">くり上がりの書き忘れ・足し忘れが2週間でほぼなくなる。答えのずれ方が「10・100単位」でなくなる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h09">H09（作業記憶・注意）</a> ／ <a href="#h08">H08（空間）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H06 -->
+    <div class="hyp" id="h06">
+      <div class="top"><div class="hid">H06</div><h3>わり算の「たてる」で、見当がつけられない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">わり算の筆算は毎回「この位に何こずつ配れるか」を <strong>先に見積もって</strong> から確かめます。数の大きさの感覚（73は6の何倍くらいか、84÷4はだいたいいくつか）が弱いと、この見当が当てずっぽうになり、大きすぎて引けない・小さすぎて余りが多い、を何度もくり返して行き詰まります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">「84÷4 はだいたい？」に、筆算せずに答えられない。「73×6 は 400 より上？下？」が分からない。わり算の筆算で商を何度も消して書き直す。1や9から順に全部試す。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          オランダの長除法研究では、標準アルゴリズムに直行させるより、<strong>「除数のまとまりを大きくとって引く」段階（high-level chunking）を経由した子のほうが、方略が安定し正答率が高い</strong>傾向が報告されています。見当が多少ずれても、部分商なら小さめに取ってやり直せるため、行き詰まりが起きにくい。見積もりの力そのものは、数直線や概数の指導で育てられます（IES ガイドも数直線の活用を推奨）。
+          <span class="ref">→ 出典 [7] van Putten ほか、[6] RME、[4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>標準の4拍子の前に、部分商（大きく引く）を2週間。</b>§03 STEP 03。「6の10回分ずつ」でもよい、と最初は小さめのまとまりを許す。たどり着ける経験を先に作る。</li>
+            <li><b>わる数の段を、横に書き出しておく。</b>÷6 なら「6 12 18 24 30 36 42 48 54」。見当をつけるとき、この列と照らす。</li>
+            <li><b>先に概算する習慣。</b>738÷6 → 「700を6で、100ちょっと」。筆算の前に必ず「答えは何の位で、だいたいいくつ」を言う。</li>
+            <li><b>数直線で「何倍くらい」を体感。</b>0〜100 の数直線に 6の倍数を印し、73 がどのあたりかを指す。</li>
+            <li><b>商の点検を教える。</b>「商×わる数＋余り＝わられる数」。合わなければ見当がずれている。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">筆算の前に「だいたいの商」を言えるようになる。商の書き直しが減る。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h01">H01（九九の想起）</a> ／ 数の大きさの感覚が広く弱ければ <a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/number-sense.html">「10といくつ」の壁</a> の量感（L4）の活動へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H07 -->
+    <div class="hyp" id="h07">
+      <div class="top"><div class="hid">H07</div><h3>わり算の商の位置がずれる／0が立つ形で崩れる</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">かけ算・たし算・ひき算は一の位から。わり算だけ大きい位からで、しかも <strong>商が何の位から始まるかが問題ごとに変わります</strong>（738÷6 は百の位から、738÷8 は十の位から）。ここが不安定だと桁が全部ずれます。さらに、途中で商に0が立つ形（618÷6、836÷4 など）は、丸暗記の子がほぼ確実に落ちます。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">いつも割られる数の左端の位から商を書こうとする。738÷8 で百の位に商を立てる。途中で0を書かず桁を詰めてしまう。おろしたのに商が立たない場面で止まる。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          日本の指導でも「わり算は大きい位から順に考えることが大切」「桁数が増えて難しいのは、商の立つ位置がどこか分からなくなること」と、この点が最大の難所として明示されています。水道方式では <strong>「指かくしの術」</strong>——割られる数を上の位から順に隠し、わる数で分けられる最小の桁を見つける——で商の開始位置を特定します。0が立つ形も、部分商や意味の言葉で通せば「その位には配れない＝0」と同じ手続きで説明できます。
+          <span class="ref">→ 出典 [10] わり算の筆算の指導、[11] 水道方式、[12] 学習指導要領解説 算数編</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>筆算を書く前に「商は□の位から」と宣言させる。</b>指かくしの術で、上の位から順に「これ、わる数で分けられる？」と確認してから書き始める。</li>
+            <li><b>位取り表の上で筆算する。</b>商・割られる数・途中式が、同じ位のマスに縦にそろう紙を使う。</li>
+            <li><b>0が立つ形を、避けずに正面から。</b>618÷6 を部分商で。「十のかたまりは1つ、6人には配れない、だから十の位は0、次へ」。同じ言い方をくり返す。</li>
+            <li><b>「おろしたら必ず商を1つ書く（0でも）」をルールに。</b>おろす回数と商の桁数が一致することを確認させる。</li>
+            <li><b>検算を毎回。</b>商×わる数＋余り＝わられる数。桁がずれていれば必ず合いません。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">商の開始位置を書く前に言える。0が立つ問題を、特別扱いせずに解ける。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h02">H02（位取り）</a> ／ <a href="#h08">H08（空間・書字）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H08 -->
+    <div class="hyp" id="h08">
+      <div class="top"><div class="hid">H08</div><h3>桁がそろわない・行を追えない（空間と書字の負荷）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">筆算は徹底して <strong>空間的な書式</strong> です。位を縦にそろえる、行を上下に移動する、くり上がりを決まった場所に書く——視覚的な注意の配分や、文字を整えて書く力に弱さがあると、計算の理解とは独立に答えがずれます。立体教具や口頭ではできるのに、紙にすると崩れるのが典型です。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">数字が斜めに流れ、位がずれる。ずれた相手どうしを足し引きしている。行を1つ飛ばす・重ねて読む。マス目に収まらず自分の字が読めない。口で言わせると正しい手順を言える。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          IES ガイドは視覚表現の活用を勧める一方で「表現は慎重に選び、明示的に結びつけよ」と条件を付けています。裏を返せば、提示のしかたで成績が変わるということ。<strong>紙面のレイアウトを変えただけで正答率が上がるなら、それは計算の困難ではなく書式の問題</strong>です。書字の困難が背景にある場合は、<a href="https://tyoshida0413-ai.github.io/boys-and-girls-guide/handwriting.html">別資料（字がマスにおさまらないとき）</a> の切り分けもあわせて。
+          <span class="ref">→ 出典 [4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>方眼を使う。1マス1数字。</b>できれば大きめのマス。位が自動でそろう紙にするだけで解決することがあります。</li>
+            <li><b>色で位を分ける。</b>百＝青、十＝緑、一＝黒。途中式も同じ色で書く。</li>
+            <li><b>ガイド線・位取り表を印刷する。</b>市販ドリルはそのまま使わず、1問を大きく引き写して渡す。</li>
+            <li><b>使わない行を紙で隠す。</b>今の行だけ見える窓を作る。</li>
+            <li><b>縦書き用紙を横向きに使う。</b>桁数の多い問題で、横幅を確保する。</li>
+            <li><b>本人が読めない字は、支援者が清書して並べる。</b>「計算はできている」と可視化する。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">紙面のレイアウトを整えただけで正答率が上がる。口頭での手順説明と、紙上の結果が一致する。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h09">H09（作業記憶・注意）</a> へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H09 -->
+    <div class="hyp" id="h09">
+      <div class="top"><div class="hid">H09</div><h3>多ステップの保持でつまずいている（作業記憶・注意・実行機能）</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">算数の困難は、数に固有の問題だけでなく、<strong>領域を問わず働く力（作業記憶・注意の持続・実行機能）</strong> からも生じます。多桁の筆算は10〜20の小ステップの連鎖で、途中の結果を保持しながら次に進む必要があります。保持の容量が小さいと、理解が十分でも後半で崩れます。<strong>算数障害と取り違えられやすい代表格です。</strong></div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">前半は合っているのに後半で失速する。「今どこ？」で止まる。1問ごとに集中が切れる。数以外の場面（片づけの手順、複数の指示）でも同じ様子がある。日によって出来がまるで違う。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          英国 British Dyslexia Association は、算数の困難の原因として <strong>作業記憶の制約・不安・注意・指導の空白などを、算数障害（ディスカリキュリア）と区別して</strong> 整理しています。IES ガイドの「明示的・体系的な指導」は、手順の分解・言語化・段階的練習・即時フィードバック・累積的復習という、いずれも <strong>一度に保持する情報量を減らす</strong> 設計であり、この型に有効に働きます。
+          <span class="ref">→ 出典 [13] British Dyslexia Association、[4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>手順カードを机に置く。</b>かけ算・わり算それぞれの手順を絵と短い言葉で。頭の中に手順を置かせない。</li>
+            <li><b>途中結果を全部書かせる。</b>部分積を全部書く、くり上がりを書く、余りを書く。暗算区間を作らない。</li>
+            <li><b>1問を分割する。</b>3桁×2桁なら、1段目・2段目・合計で一度手を止め、確認してから次へ。</li>
+            <li><b>時間を区切る。</b>5〜7分やって短い別活動、また戻る。連続して長くやるより正答率が上がることが多い。</li>
+            <li><b>支援者が考えを声に出すモデルを見せる。</b>「まず一の位、9×4は36、6を書いて3をここに…」。</li>
+            <li><b>問題数を減らし、1問の質を上げる。</b>20問より、5問を全部説明つきで。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">支援（手順カード・分割・時間区切り）を入れると正答できる。<strong>これは「計算の理解自体は保たれている」という重要な情報です。</strong></div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ <a href="#h10">H10（不安・回避）</a> ／ 他教科・生活面の記録もそろえて <a href="#s09">§09</a> の相談へ。</div></div>
+      </div>
+    </div>
+
+    <!-- H10 -->
+    <div class="hyp" id="h10">
+      <div class="top"><div class="hid">H10</div><h3>算数不安・失敗回避で、本来の力が出ていない</h3></div>
+      <div class="inner">
+        <div class="blk"><div class="lbl">想定原因</div><div class="txt">筆算は「できる／できない」がはっきり出て、×がつきやすく、速さを比べられやすい単元です。算数への不安はそれ自体が作業記憶を占有して成績を下げ、<strong>不安 → 回避 → 練習不足 → いっそう難しくなる</strong> 悪循環を作ります。能力の問題に見えて、実際は取り組みの量の問題であることがあります。</div></div>
+        <div class="blk"><div class="lbl">サイン</div><div class="txt">筆算のプリントを見ると手が止まる、話題を変える。<span class="say">「どうせできない」</span>。当てずっぽうで早く終わらせようとする。機嫌や場面によって出来がまるで違う。家ではできるのに教室でできない（逆も）。</div></div>
+        <div class="blk"><div class="lbl sci">学術的には</div><div class="sci-box">
+          BDA は不安・動機を、算数障害とは区別すべき困難の原因として明記しています。ゼロトレランス的な「速く・正確に」の圧は、注意や不安に困難のある子でむしろ成績を下げます。少人数の算数介入では、反復だけでなく <strong>「考える・話す・振り返る」というメタ認知的な要素</strong> を組み込んだ設計が効果を示しています。安心して考えを口に出せる場を作ること自体が、介入の中身に含まれます。
+          <span class="ref">→ 出典 [13] British Dyslexia Association、[4] IES 実践ガイド</span>
+        </div></div>
+        <div class="blk"><div class="lbl">対応策</div><div>
+          <ol class="acts">
+            <li><b>速さの要求をすべてやめる。</b>タイマー、「はやく」、他児との比較。この段階で速さを求める利点はありません。正確さと「自分で説明できるか」だけを見る。</li>
+            <li><b>必ず「できた」で終える。</b>最後の1問は確実にできる難度に。締めの記憶が次回の入りを決めます。</li>
+            <li><b>方略をほめる。</b><span class="say">「部分積、全部書いたのいいね」</span><span class="say">「先に見当つけたね」</span>。正解に触れない回を作る。</li>
+            <li><b>×をつけない。</b>合っている行に印をつけ、崩れた行だけ一緒にやり直す。</li>
+            <li><b>問題数を大幅に減らす。</b>5問、全部説明つきで。「終わった」の達成感を先に。</li>
+            <li><b>記録を本人に見せる。</b>「先週は2桁×1桁、今週は2桁×2桁の1段目まで」。伸びが見えると回避が減ります。</li>
+          </ol>
+        </div></div>
+        <div class="blk"><div class="lbl">当たりの印</div><div class="txt hit">取り組む時間が延びる。当てずっぽうが減り、「ここが分からない」と言えるようになる。</div></div>
+        <div class="blk"><div class="lbl">外れたら</div><div class="txt miss">→ 課題の難度が高すぎる可能性。1段階下げ、<a href="#h01">H01</a>〜<a href="#h07">H07</a> のどこかに戻る。</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:26px">
+    <h4>10パターンを一巡しても動かないとき</h4>
+    <p>該当しそうな仮定を2つ3つ試し、それぞれ2〜4週間の焦点の合った指導を行ってなお反応が乏しい——この <strong>「適切な指導への反応が乏しい」という記録そのもの</strong> が、専門機関に持ち込むべき最も価値のある材料です。<a href="#s09">§09</a> の相談先へ、<a href="#s10">§10</a> の記録用紙とあわせて持参してください。「未習ではないか」の確認（担任への進度確認）を先に済ませておくこと。</p>
+  </div>
+</section>
+
+<!-- ===== 06 カタログ ===== -->
+<section id="s06">
+  <div class="sec-head"><span class="sec-num">06</span><h2>世界の指導法カタログ</h2></div>
+  <p class="sec-sub">§02・§03 の台道具の詳細です。狙う土台が違います。全部やる必要はなく、1つか2つ選び、しばらく替えないこと。国名は「その国の課程や教育研究で主流の位置づけ」を示します。</p>
+
+  <div class="grid g2">
+
+    <div class="card">
+      <span class="tag">アメリカ ／ L5（かけ算）</span>
+      <h3>面積モデル（area model／box method）</h3>
+      <p>かけ算を長方形の面積で表し、たて・横をそれぞれ位で切って「部屋」に分ける。23×45 なら4部屋（800／100／120／15）。<strong>部分積が図として見える</strong>のが本質で、Common Core では3〜4年でこれと部分積を扱い、標準アルゴリズムはその後に置きます。方眼と鉛筆で今日から始められます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">アメリカ・イギリス ／ 進め方</span>
+      <h3>部分積アルゴリズム／拡張法（expanded → compact）</h3>
+      <p>面積モデルの絵を外し、部分積（12・80 など）を <strong>そのまま縦に書いて足す</strong>形。イギリスの NCETM も「拡張法は簡潔法への踏み石」と位置づけ、どこで“余分な0”が生まれるかを可視化する方法だとしています。標準の筆算へは、この形を「短く書くとこうなる」と圧縮して橋を架けます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">アメリカ ／ L1-L6（わり算）</span>
+      <h3>部分商／ビッグ7（partial quotients／big 7）</h3>
+      <p>「まず100回分、次に20回分…」と大きなまとまりで何回引けるかを出し、最後に足し合わせて商にする。割り算の箱が「7」の形に見えることからビッグ7。<strong>見当が小さめならやり直せる</strong>ので行き詰まりにくく、標準アルゴリズムの複数の入口になります。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">オランダ ／ L1→L6（わり算）</span>
+      <h3>くり返しひき算からの漸進的図式化（RME）</h3>
+      <p>現実的数学教育。大きな数の場面（「81人を1台6人乗りのボートで」）から出発し、<strong>くり返し引く手続きが、少しずつ標準の筆算へと洗練されていく</strong>過程を指導設計に組み込む。オランダの長除法研究では、除数のまとまりを大きくとって引く段階を経た子のほうが方略が安定すると報告されています。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">日本 ／ L5（かけ算）</span>
+      <h3>部分積の和を意識させる指導</h3>
+      <p>啓林館の実践報告。1位数をかける筆算で、あえて誤答（「4×3＝12 と 4×2＝8 だから 812」）を提示して、位ごとに分ける必然性を引き出す。「分ける」をキーワードに <strong>部分積の和から筆算ができていること</strong>を言語化させ、桁が増えたときの支えにする。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">日本 ／ L2・L6</span>
+      <h3>水道方式のタイル／指かくしの術</h3>
+      <p>遠山啓・銀林浩。正方形タイルで位取りを表し、筆算を「暗算より基本的な方法」と位置づける。わり算では <strong>「指かくしの術」</strong>——割られる数を上の位から順に隠し、わる数で分けられる最小の桁を見つけて、そこから商を立てる——で、商の位置のつまずきに直接対処します。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">シンガポール ／ L2・進め方</span>
+      <h3>位の円盤（place value discs）＋ CPA</h3>
+      <p>1・10・100 と書かれた色分けの円盤で数を作り、かけ算は「同じ円盤が何セット」、わり算は「円盤を等しく分ける・両替する」で操作する。<strong>具体（円盤）→ 半具体（円盤の絵）→ 抽象（筆算）</strong>の橋を必ず架けるのがシンガポール式。よくある失敗は具体で成功したまま止まること。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">イタリア ／ L1→L6</span>
+      <h3>モンテッソーリ：切手遊び・チェッカーボード・テストチューブ</h3>
+      <p>色分けタイル（切手遊び）で位ごとの操作を、チェッカーボードで多桁のかけ算を、テストチューブ（racks and tubes）で多桁のわり算を、いずれも <strong>色で位を統一しながら</strong>手で操作する。教具の上で十分こなれてから、記号だけの計算へ移行する設計です。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">イギリス ／ L5（かけ算）</span>
+      <h3>グリッド法（grid method）</h3>
+      <p>面積モデルを数値の表にしたもの。10×10、10×5、3×10、3×5 のようにマスに分けてかけ、全部足す。2014年の全国カリキュラムは簡潔法を重視する方向へ動きましたが、<strong>導入段階の踏み石としては今も広く使われています</strong>。面積モデルと標準筆算の中間。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">共通 ／ L2・L5</span>
+      <h3>基数10ブロック（base-ten blocks）</h3>
+      <p>1の立方体・10の棒・100の板。かけ算は「23のブロックを4セット作り、10がたまったら棒に両替」で部分積とくり上がりが同時に見える。わり算は「738のブロックを6人に、大きい板から配る」。<strong>抽象の筆算と必ず並べて</strong>、対応を口に出させます。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag brick">研究エビデンス ／ 進め方</span>
+      <h3>CRA ＋ 明示的指導（学習困難・ディスカリキュリア）</h3>
+      <p>具体（Concrete）→ 表象（Representational）→ 抽象（Abstract）を、学習障害のある子には <strong>何度も往復しながら</strong>進める。明示的指導（手本・思考の言語化・段階的練習・即時フィードバック）と組み合わせたときに効果量が大きい、というのが介入研究の一致した知見です。教具を使った指導は、使わない指導より <strong>「記憶の保持」で中〜大の効果</strong>（Carbonneau らのメタ分析）。</p>
+    </div>
+
+    <div class="card">
+      <span class="tag brick">研究エビデンス ／ 順序</span>
+      <h3>「意味を先に、手順は後」の裏づけ</h3>
+      <p>Hiebert &amp; Wearne の3年間の研究では、<strong>位取りと多数桁の計算で「標準手順の前に、子ども自身が手続きを発明する」指導</strong>を受けた学級のほうが、概念的理解も手続き的技能も伸びました。手順から入って意味を後付けするより、意味から入って手順を圧縮するほうが、結果として速い、という含意です。</p>
+    </div>
+
+  </div>
+
+  <div class="callout warn" style="margin-top:24px">
+    <h4>「どれくらいやれば足りるか」の目安</h4>
+    <p>算数につまずく児童への少人数介入は、国際的なガイドで <strong>週3〜5回・1回20〜40分・10〜20週</strong> という規模が標準とされています。家庭や支援現場で計画を立てるとき、「毎日15〜20分を数週間〜数か月」という規模感は過剰ではありません。ただし <strong>1つの方法を数週間は替えないこと</strong>——道具が替わるたび、子どもは道具の使い方の学習からやり直します。</p>
+  </div>
+</section>
+
+<!-- ===== 07 プログラム ===== -->
+<section id="s07">
+  <div class="sec-head"><span class="sec-num">07</span><h2>8週間のプログラム案</h2></div>
+  <p class="sec-sub">1回15〜20分、週3〜4回を想定。合格基準を満たすまで次に進まないことが唯一のルールです。§04 の切り分け結果によっては、途中のステップから始めて構いません。かけ算とわり算は、STEP 0〜2 を共通土台として、その後で分けても、並行してもかまいません。</p>
+
+  <div>
+    <div class="phase">
+      <div class="ph">STEP 0</div>
+      <div>
+        <h4>九九の想起と、位で分ける（L2・L3）</h4>
+        <p>詰まる九九の段を2つに絞って1日3分。並行して、2〜3桁の数を位取り表で「百が□、十が□、一が□」と分ける。ここが弱ければ、他に進まない。</p>
+        <p class="pass">合格基準：苦手な段の九九が2秒以内。3桁の数を位ごとに言える。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 1</div>
+      <div>
+        <h4>かけ算・わり算の意味を、場面で（L1）</h4>
+        <p>「1あたり×いくつ分」の場面、「等分」と「包含」の場面を、おはじきや絵で毎回作ってから式にする。余りのある場面も。</p>
+        <p class="pass">合格基準：かけ算・わり算の場面を自分で作れる。余りがわる数より小さい理由を言える。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 2</div>
+      <div>
+        <h4>×10・×100 の意味（L2・L5）</h4>
+        <p>「10のかたまりが6つ」でブロックを置き替える。位取り表で位が上がるのを見る。「0を足す」ではなく「位が上がって、空いた位に0」と言い直す。</p>
+        <p class="pass">合格基準：6×40、6×100 の「0が付く」理由を、位の言葉で説明できる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 3</div>
+      <div>
+        <h4>面積モデルで 2〜3桁×1桁 → 部分積を全部書く</h4>
+        <p>方眼で長方形を位ごとに分ける。部分積（12・80 など）を縦に書いて足す形で、10問ほど。まだ標準形にしない。</p>
+        <p class="pass">合格基準：面積モデルの「部屋」と、縦に書いた部分積が対応していると言える。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 4</div>
+      <div>
+        <h4>標準の筆算へ圧縮（かけ算 1桁）</h4>
+        <p>「部分積を全部書く形を、短くするとこうなる」と標準形へ。くり上がりの数が「十のかたまり」だと毎回言わせる。くり上がりは必ず書く。</p>
+        <p class="pass">合格基準：標準の筆算で、途中の数字が何かを指さして説明できる。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 5</div>
+      <div>
+        <h4>2桁×2桁：4部屋 → なぜ2段目がずれるか</h4>
+        <p>面積モデルの4部屋 → 部分積（23×5 と 23×40）を書く → 標準形。2段目の0を「40をかけているから、十の位から書く」と説明させる。</p>
+        <p class="pass">合格基準：2段目のずらしの理由を「40だから」と言える。3桁×2桁も同じ考えで解ける。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 6</div>
+      <div>
+        <h4>わり算：部分商（大きく引く）で配る</h4>
+        <p>2〜3桁÷1桁を、部分商で。「6の100回分、20回分、3回分」。わる数の段を横に書き出しておく。先に概算を言う習慣を。</p>
+        <p class="pass">合格基準：部分商で3桁÷1桁を解ける。筆算の前に「だいたいの商」を言える。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 7</div>
+      <div>
+        <h4>わり算：標準の4拍子、商の位置、余り、0が立つ形</h4>
+        <p>部分商を位ごとに最短化。指かくしの術で商の位置を宣言してから書く。0が立つ形（618÷6）も同じ言い方で。毎回、検算（商×わる数＋余り）。</p>
+        <p class="pass">合格基準：商の開始位置を書く前に言える。0が立つ問題を特別扱いせず解ける。検算を自分でする。</p>
+      </div>
+    </div>
+    <div class="phase">
+      <div class="ph">STEP 8</div>
+      <div>
+        <h4>見積もりで点検する習慣</h4>
+        <p>どの筆算も、解く前に「答えは何の位で、だいたいいくつ」、解いた後に「見当と合っているか」。ずれていたら、どの行かを一緒に探す。</p>
+        <p class="pass">合格基準：自分から見積もり→計算→点検の順で進める。桁のずれを自分で見つけられる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08 落とし穴 ===== -->
+<section id="s08">
+  <div class="sec-head"><span class="sec-num">08</span><h2>やってしまいがちな8つ</h2></div>
+  <div class="dont">
+    <ul>
+      <li><span class="x">✕</span><span><b>「0を1つ足す」と呪文で教える</b><span class="d">2桁×2桁の2段目のずらしを丸暗記させると、3桁×2桁・0を含む数で崩れます。「40をかけているから十の位から」と、理由をセットにする。</span></span></li>
+      <li><span class="x">✕</span><span><b>「たてる・かける・ひく・おろす」だけ暗唱させる</b><span class="d">4語が動作の名前でしかないと、商の位置・0が立つ形・見当のやり直しで止まります。各語に「配る／合計／残り／次の位へ」の意味を貼る。</span></span></li>
+      <li><span class="x">✕</span><span><b>九九が不確かなまま、筆算プリントの反復に入る</b><span class="d">九九の想起に作業記憶を使い切り、手順が入りません。苦手な段を先に、または筆算中は九九表を出す。</span></span></li>
+      <li><span class="x">✕</span><span><b>面積モデル・具体物を飛ばして、手順から入る</b><span class="d">意味の土台がないまま手順を積むと、少し形が変わるだけで崩れます。「意味を先に、手順は後」のほうが結局は速い（Hiebert &amp; Wearne）。</span></span></li>
+      <li><span class="x">✕</span><span><b>面積モデルで止まり、標準の筆算へ橋を架けない</b><span class="d">教具・図は通過点です。「同じ計算を短く書くとこうなる」と圧縮する移行を、最初から計画に入れる。</span></span></li>
+      <li><span class="x">✕</span><span><b>速さ・タイムを求める</b><span class="d">この段階でのスピード要求は算数不安を作るだけ。正確さと「自分で説明できるか」だけを見る。</span></span></li>
+      <li><span class="x">✕</span><span><b>誤答に×だけつけて、どの行で崩れたか見ない</b><span class="d">九九の間違いか、部分積の位置か、くり上がりの管理か、商の見当かで、打ち手がまったく違います。崩れた行を特定して記録する（§10）。</span></span></li>
+      <li><span class="x">✕</span><span><b>「もう中学年だから」と方眼・補助線・位取り表を外す</b><span class="d">桁がそろわないことが原因なら、支援を外した瞬間に戻ります。書式の支援は、計算ができるようになってからでも遅くない。</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== 09 相談 ===== -->
+<section id="s09">
+  <div class="sec-head"><span class="sec-num">09</span><h2>専門機関に相談するとき</h2></div>
+  <div class="body-col">
+    <p>算数障害（発達性ディスカリキュリア）は、知的発達全般の遅れや教育経験の不足では説明できない、数と計算の特異的な困難を指します。出現率はおおむね3〜7%とされ、読み書きの困難に比べて <strong>気づかれにくく、支援につながりにくい</strong> のが国際的にも共通した課題です。筆算のような手続きが本格化する中学年で顕在化することがあります。</p>
+    <p>日本では、熊谷恵子らが算数障害を <strong>数処理（具体物・数詞・数字の三項関係）／数概念（序数性・基数性）／計算（暗算＝数的事実、筆算＝手続き）／数的推論（文章題）</strong> の4領域に分けて捉える枠組みを示しています。この資料の切り分けチェックは、主に「数処理」「計算（筆算＝手続き）」にあたります。</p>
+  </div>
+
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card">
+      <span class="tag ochre">判断の原則</span>
+      <h3>1回では決まらない</h3>
+      <p>スクリーニングは「診断」ではありません。国際的には、<strong>適切な指導を一定期間行い、その反応を見てから</strong>判断する考え方（RTI）が標準です。数週間、焦点の合った指導を行い、記録を残す。それ自体が支援であると同時に、最良の判断材料になります。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">先に除外すること</span>
+      <h3>計算以外の理由で崩れていないか</h3>
+      <p>九九の未定着、位取りの弱さ、書字・空間の負荷、作業記憶、注意、そして不安。「後半で崩れる」「桁がずれる」は、計算の障害ではなく <strong>書式や保持の負荷</strong>で説明できることがあります（H05・H08・H09）。紙面を整えるだけで結果が変わるなら、そちらの線です。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">相談先</span>
+      <h3>どこに持っていくか</h3>
+      <p>学校の特別支援教育コーディネーター、自治体の教育相談・教育センター、小児科／児童精神科、発達検査を扱う心理職。「筆算ができない」だけでなく、<strong>§04 の切り分け結果と、§05 で試した仮定の記録を持参する</strong>と、話が具体的に進みます。</p>
+    </div>
+    <div class="card">
+      <span class="tag ochre">持っていくもの</span>
+      <h3>記録の束</h3>
+      <p>(1) 切り分けチェックの結果（いつ・何ができて何が崩れたか）、(2) 試した仮定・期間・やったこと・変化、(3) 崩れた筆算の実物（誤答分析つき）、(4) 他教科・生活面の様子。口頭の相談より、この紙の束が確実に話を前に進めます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10 記録 ===== -->
+<section id="s10">
+  <div class="sec-head"><span class="sec-num">10</span><h2>記録テンプレート</h2></div>
+  <p class="sec-sub">印刷して使えます。同じ項目を2〜3週間おきに取り直すと、「指導への反応」が可視化されます。</p>
+
+  <h3 style="font-size:18px;margin:8px 0 12px">切り分けチェックの記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>項目</th><th>課題</th><th>できた／崩れた</th><th>様子・使った方略</th><th>日付</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">01</td><td>九九の想起（速さ／詰まる段）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">02</td><td>位で分ける（34／234／位取り表）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">03</td><td>かけ算の意味（4×23 を作る）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">04</td><td>×10・×100 の意味（0が付く理由）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">05</td><td>かけ算筆算の途中を説明</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">06</td><td>2桁×2桁のずらし（なぜ0）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">07</td><td>わり算の意味（等分／包含の場面）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">08</td><td>見積もり（84÷4／73×6）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">09</td><td>わり算の商の位置（738÷6／÷8）</td><td></td><td></td><td></td></tr>
+        <tr><td class="num">10</td><td>多ステップの持続／桁のそろえ</td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">誤答分析（崩れた筆算を1問ずつ）</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>問題</th><th>どの行・どの位で崩れたか</th><th>どんな誤り</th><th>推定パターン</th><th>試した手だて／変化</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num"></td><td></td><td></td><td>H　　</td><td></td></tr>
+        <tr><td class="num"></td><td></td><td></td><td>H　　</td><td></td></tr>
+        <tr><td class="num"></td><td></td><td></td><td>H　　</td><td></td></tr>
+        <tr><td class="num"></td><td></td><td></td><td>H　　</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size:18px;margin:32px 0 12px">試した仮定の記録</h3>
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr><th>仮定</th><th>試した期間</th><th>実際にやったこと</th><th>当たりの印は出たか</th><th>次の仮定</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+        <tr><td class="num">H　　</td><td>　／　〜　／　</td><td></td><td>出た ／ 出ない</td><td>H　　</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 出典 ===== -->
+<section id="s11">
+  <div class="sec-head"><span class="sec-num">出典</span><h2>参照した情報</h2></div>
+  <p class="sec-sub">研究知見と実践情報を分けて記載しています。番号は §05 の「学術的には」から参照しています。個別の子どもへの適用は、必ず実際の観察を優先してください。</p>
+  <div class="src">
+    <ol>
+      <li id="r1">Common Core における多数桁のかけ算——面積モデル・部分積・分配法則・標準アルゴリズムへの学年進行。<a href="https://www.fishtanklearning.org/curriculum/math/4th-grade/multi-digit-multiplication/">Fishtank Learning（4年 Multi-Digit Multiplication）</a>／<a href="https://openwa.pressbooks.pub/math131/chapter/common-core-and-multiplication/">Mathematics for Elementary Education I（Common Core and Multiplication）</a>／<a href="https://www.mathcoachscorner.com/2022/03/building-understanding-for-multi-digit-multiplication/">Math Coach's Corner</a></li>
+      <li id="r2">わり算の部分商・面積モデル・ビッグ7による指導。<a href="https://www.ashleigh-educationjourney.com/dividing-with-area-models/">Ashleigh's Education Journey（Dividing With Area Models and Partial Quotient）</a>／<a href="https://jumpingelephantmath.com/how-to-use-the-big-seven-division-method/">Jumping Elephant Math（Big Seven Division Method）</a></li>
+      <li id="r3">わり算の意味（等分除・包含除）と標準アルゴリズムへのつなぎ方。<a href="https://topdrawer.aamt.edu.au/Mental-computation/Misunderstandings/Mental-calculation/Division-as-sharing-and-measuring">AAMT Top Drawer（Division as sharing and measuring）</a>／<a href="https://www.cde.state.co.us/comath/standard-algorithm-for-division">Colorado Dept. of Education（Standard Algorithm for Division）</a></li>
+      <li id="r4">IES／What Works Clearinghouse <em>Assisting Students Struggling with Mathematics</em>——明示的・体系的な指導、計算の流暢性の時間確保、視覚表現と抽象表記の明示的な接続、数直線の活用。<a href="https://ies.ed.gov/ncee/wwc/practiceguide/26">2021年版（Intervention in the Elementary Grades）</a>／<a href="https://ies.ed.gov/ncee/wwc/practiceguide/2">2009年版（RtI）</a></li>
+      <li id="r5">Fuson, K. C. ほか——多数桁の数の概念的構造（十を単位とするまとめ直し）と多数桁の加減の方法。関連レビュー：<a href="https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=3401&amp;context=teal_facpub">Components of place value understanding（USU）</a>／<a href="https://mathsuccess.dmtinstitute.com/p/place-value-the-understandings-that">Place Value: The Understandings That Predict Later Math Success</a></li>
+      <li id="r6">現実的数学教育（RME）と漸進的図式化（progressive schematisation, Treffers 1987）——文脈のある問題から標準的な筆算へ。<a href="https://link.springer.com/rwe/10.1007/978-3-030-15789-0_170">Realistic Mathematics Education（Springer）</a>／<a href="https://link.springer.com/chapter/10.1007/978-3-030-05514-1_3">Didactics of Mathematics in the Netherlands</a></li>
+      <li id="r7">van Putten, C. M. ほか（2005）<em>Progressive Mathematization of Long Division Strategies in Dutch Primary Schools</em>, Journal for Research in Mathematics Education 36(1)——長除法の方略の2軸（チャンキングの水準・記号化の程度）。<a href="https://pubs.nctm.org/view/journals/jrme/36/1/article-p44.xml">pubs.nctm.org</a>／<a href="https://eric.ed.gov/?id=EJ764975">ERIC EJ764975</a></li>
+      <li id="r8">「1けたをかけるかけ算の筆算」において"部分積の和"を意識させる指導のあり方——啓林館 私の実践・私の工夫アーカイブ。<a href="https://www.shinko-keirin.co.jp/keirinkan/sho/sansu/support/jissen_arch/201605/">shinko-keirin.co.jp</a></li>
+      <li id="r9">NCETM（英国）——長乗法の「拡張法（expanded）→ 簡潔法（compact）」の進行、拡張法が部分積と"余分な0"を可視化する。<a href="https://www.ncetm.org.uk/classroom-resources/primm-223-multiplication-strategies-for-larger-numbers-and-long-multiplication/">Multiplication strategies for larger numbers and long multiplication</a></li>
+      <li id="r10">わり算の筆算「たてる・かける・ひく・おろす」の意味と、大きい位から計算する理由、商の位置のつまずき。<a href="https://www.city.hachioji.tokyo.jp/kurashi/kyoiku/003/004/001/p023522_d/fil/4-8-13-1.pdf">八王子市 学習支援資料（4年 わり算の筆算）</a>／<a href="https://kyoukasyo.com/primary-school/two-digit-division-long-division/">ゆみねこの教科書（わり算の筆算）</a></li>
+      <li id="r11">水道方式（遠山啓・銀林浩）——タイルによる位取り、筆算を基本に置く考え方、わり算の「指かくしの術」。<a href="https://ja.wikipedia.org/wiki/%E6%B0%B4%E9%81%93%E6%96%B9%E5%BC%8F">水道方式（Wikipedia）</a>／<a href="https://www.math-suidomethod.com/method/%E3%82%8F%E3%82%8A%E7%AE%97%E3%81%AE%E6%95%99%E3%81%88%E6%96%B9/">さんすう・数学指導者の会（わり算の教え方）</a></li>
+      <li id="r12">文部科学省『小学校学習指導要領解説 算数編』（平成29年）——計算の意味や仕方を具体物・言葉・図・式で考え説明する活動、乗法・除法の筆算の位置づけ。<a href="https://www.mext.go.jp/a_menu/shotou/new-cs/1387014.htm">mext.go.jp</a></li>
+      <li id="r13">British Dyslexia Association——算数障害（ディスカリキュリア）と、その他の算数困難（指導の空白・不安・作業記憶・注意など）の区別。診断は単一の検査では下せない。<a href="https://www.bdadyslexia.org.uk/dyscalculia/how-can-i-identify-dyscalculia/how-is-dyscalculia-different-from-other-maths-learning-difficulties">bdadyslexia.org.uk</a></li>
+      <li id="r14">熊谷恵子・山本ゆう『通常学級で役立つ 算数障害の理解と指導法』／『算数障害スクリーニング検査』（学研）——数処理・数概念・計算・数的推論の4区分。<a href="https://www.kobetsu.co.jp/manabi-vitamin/special/article-448/">解説インタビュー</a></li>
+      <li id="r15">Carbonneau, K. J., Marley, S. C. &amp; Selig, J. P. (2013) <em>A Meta-Analysis of the Efficacy of Teaching Mathematics With Concrete Manipulatives</em>, Journal of Educational Psychology 105(2), 380–400——教具使用は記号のみの指導より、保持で中〜大の効果。<a href="https://eric.ed.gov/?id=EJ1007941">ERIC EJ1007941</a></li>
+      <li id="r16">Hiebert, J. &amp; Wearne, D. (1996) <em>Instruction, Understanding, and Skill in Multidigit Addition and Subtraction</em>, Cognition and Instruction 14, 251–283——標準手順の前に子どもが手続きを発明する指導のほうが、概念・手続きとも伸びた。<a href="https://www.semanticscholar.org/paper/Instruction,-Understanding,-and-Skill-in-Multidigit-Hiebert-Wearne/26e69bee348e4e2b9af8f6f384f9f4a7c9df66a8">Semantic Scholar</a></li>
+      <li id="r17">CRA（具体–表象–抽象）＋明示的指導——学習障害・ディスカリキュリアのある子への基本手続き。<a href="https://www.ldatschool.ca/concrete-representational-abstract/">LD@School</a>／<a href="https://files.eric.ed.gov/fulltext/ED521890.pdf">Mathematics Instruction for Students with Learning Disabilities（ERIC）</a>／<a href="https://www.researchgate.net/publication/327078001_Using_the_Concrete-Representational-Abstract_Sequence_to_Teach_Conceptual_Understanding_of_Basic_Multiplication_and_Division">CRA でかけ算・わり算の概念理解を教える（研究）</a></li>
+      <li id="r18">シンガポール算数（CPA と place value discs）。<a href="https://www.ednc.org/edexplainer-singapore-math/">EdNC（EdExplainer: Singapore Math）</a>／モンテッソーリの多桁計算教具（チェッカーボード・racks and tubes）：<a href="https://www.berkshiremontessori.org/msb-blog/materials-spotlight-racks-and-tubes">Materials Spotlight: Racks and Tubes</a>／<a href="https://thatssomontessori.com/montessori-checkerboard/">The Montessori Checkerboard</a></li>
+      <li id="r19">英国の除法・乗法の方法（グリッド法、チャンキング、bus stop）と2014年カリキュラムの方向。<a href="https://thirdspacelearning.com/blog/what-is-long-division/">Third Space Learning（What Is Long Division）</a>／<a href="https://thirdspacelearning.com/blog/what-is-bus-stop-method/">同（Bus Stop Method）</a>／<a href="https://en.wikipedia.org/wiki/Chunking_(division)">Chunking (division)</a></li>
+    </ol>
+  </div>
+
+  <p class="foot">
+    この資料は公開情報の調査に基づく整理であり、診断や医学的助言ではありません。切り分けチェックと10パターンの仮定は、専門家によるアセスメントの代替ではなく、指導の一手を選び、相談時に持参する観察記録を作るためのものです。特定の児童の情報は含みません。
+  </p>
+</section>
+
+</div>
+</body>
+</html>
